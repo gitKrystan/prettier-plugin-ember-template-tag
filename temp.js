@@ -4,9 +4,9 @@
 
 vite v3.1.6 building for production...
 transforming...
-✓ 452 modules transformed.
+✓ 454 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1172.74 KiB / gzip: 243.50 KiB
+dist/ember-template-tag-prettier.cjs   1799.64 KiB / gzip: 390.04 KiB
 {
   estreePrinter: {
     preprocess: [Function: preprocess],
@@ -30,9 +30,9 @@ dist/ember-template-tag-prettier.cjs   1172.74 KiB / gzip: 243.50 KiB
 }
 {
   GJSPrinter: {
+    embed: [Function: embed],
     preprocess: [Function: preprocess],
     print: [Function: genericPrint],
-    embed: [Function: embed],
     insertPragma: [Function: insertPragma],
     massageAstNode: [Function: clean] { ignoredProperties: [Set] },
     hasPrettierIgnore: [Function: hasPrettierIgnore],
@@ -49,104 +49,55 @@ dist/ember-template-tag-prettier.cjs   1172.74 KiB / gzip: 243.50 KiB
     getCommentChildNodes: [Function: getCommentChildNodes]
   }
 }
-preprocess {
-  output: "import Component from '@glimmer/component';\n" +
-    '\n' +
-    '  [__GLIMMER_TEMPLATE(`\n' +
-    '  <h1>   Hello World   </h1>\n' +
-    '`, { strictMode: true })]\n' +
-    '\n' +
-    'const temp = [__GLIMMER_TEMPLATE(`\n' +
-    '\n' +
-    '  <h1>   Hello World   </h1>\n' +
-    '`, { strictMode: true })]\n' +
-    '\n' +
-    '/**\n' +
-    ' * An example GJS file on which we can run the Prettier for GJS plugin.\n' +
-    ' */\n' +
-    'export default class MyComponent\n' +
-    '  extends Component {\n' +
-    '  [__GLIMMER_TEMPLATE(`\n' +
-    '    <h1>   Hello World   </h1>\n' +
-    '  `, { strictMode: true })]\n' +
-    '\n' +
-    '\n' +
-    '        // comment\n' +
-    '}\n',
-  replacements: [
-    {
-      type: 'start',
-      index: 47,
-      oldLength: 10,
-      newLength: 21,
-      originalCol: 3,
-      originalLine: 3
-    },
-    {
-      type: 'end',
-      index: 87,
-      oldLength: 11,
-      newLength: 25,
-      originalCol: 1,
-      originalLine: 5
-    },
-    {
-      type: 'start',
-      index: 113,
-      oldLength: 10,
-      newLength: 21,
-      originalCol: 14,
-      originalLine: 7
-    },
-    {
-      type: 'end',
-      index: 154,
-      oldLength: 11,
-      newLength: 25,
-      originalCol: 1,
-      originalLine: 10
-    },
-    {
-      type: 'start',
-      index: 304,
-      oldLength: 10,
-      newLength: 21,
-      originalCol: 3,
-      originalLine: 17
-    },
-    {
-      type: 'end',
-      index: 348,
-      oldLength: 11,
-      newLength: 25,
-      originalCol: 3,
-      originalLine: 19
-    }
-  ]
+preprocess import Component from '@glimmer/component';
+
+  [__GLIMMER_TEMPLATE(`
+  <h1>   Hello World 1   </h1>
+`, { strictMode: true })]
+
+const temp = [__GLIMMER_TEMPLATE(`
+
+  <h1>   Hello World 2   </h1>
+`, { strictMode: true })]
+
+/**
+ * An example GJS file on which we can run the Prettier for GJS plugin.
+ */
+export default class MyComponent
+  extends Component {
+  [__GLIMMER_TEMPLATE(`
+    <h1>   Hello World 3   </h1>
+  `, { strictMode: true })]
+
+  what = `template literal that is not a template`
+
+
+        // comment
 }
+
 parsed Pt {
   type: 'File',
   start: 0,
-  end: 458,
+  end: 516,
   loc: d {
     start: p { line: 1, column: 0, index: 0 },
-    end: p { line: 24, column: 0, index: 458 },
+    end: p { line: 26, column: 0, index: 516 },
     filename: undefined,
     identifierName: undefined
   },
-  range: [ 0, 458 ],
+  range: [ 0, 516 ],
   errors: [],
   program: Pt {
     type: 'Program',
     start: 0,
-    end: 458,
+    end: 516,
     loc: d {
       start: [p],
       end: [p],
       filename: undefined,
       identifierName: undefined
     },
-    range: [ 0, 458 ],
+    range: [ 0, 516 ],
     sourceType: 'module',
     interpreter: null,
     body: [ [Pt], [Pt], [Pt], [Pt] ],
@@ -158,15 +109,15 @@ parsed Pt {
       value: '*\n' +
         ' * An example GJS file on which we can run the Prettier for GJS plugin.\n' +
         ' ',
-      start: 217,
-      end: 296,
+      start: 221,
+      end: 300,
       loc: [d]
     },
     {
       type: 'CommentLine',
       value: ' comment',
-      start: 445,
-      end: 455,
+      start: 503,
+      end: 513,
       loc: [d]
     }
   ],
@@ -194,160 +145,219 @@ parsed Pt {
     Ee { type: [or], value: '`', start: 67, end: 68, loc: [d] },
     Ee {
       type: [or],
-      value: '\n  <h1>   Hello World   </h1>\n',
+      value: '\n  <h1>   Hello World 1   </h1>\n',
       start: 68,
-      end: 98,
+      end: 100,
       loc: [d]
     },
-    Ee { type: [or], value: '`', start: 98, end: 99, loc: [d] },
-    Ee { type: [or], value: undefined, start: 99, end: 100, loc: [d] },
+    Ee { type: [or], value: '`', start: 100, end: 101, loc: [d] },
     Ee { type: [or], value: undefined, start: 101, end: 102, loc: [d] },
+    Ee { type: [or], value: undefined, start: 103, end: 104, loc: [d] },
     Ee {
       type: [or],
       value: 'strictMode',
-      start: 103,
-      end: 113,
+      start: 105,
+      end: 115,
       loc: [d]
     },
-    Ee { type: [or], value: undefined, start: 113, end: 114, loc: [d] },
-    Ee { type: [or], value: 'true', start: 115, end: 119, loc: [d] },
-    Ee { type: [or], value: undefined, start: 120, end: 121, loc: [d] },
-    Ee { type: [or], value: undefined, start: 121, end: 122, loc: [d] },
+    Ee { type: [or], value: undefined, start: 115, end: 116, loc: [d] },
+    Ee { type: [or], value: 'true', start: 117, end: 121, loc: [d] },
     Ee { type: [or], value: undefined, start: 122, end: 123, loc: [d] },
-    Ee { type: [or], value: 'const', start: 125, end: 130, loc: [d] },
-    Ee { type: [or], value: 'temp', start: 131, end: 135, loc: [d] },
-    Ee { type: [or], value: '=', start: 136, end: 137, loc: [d] },
-    Ee { type: [or], value: undefined, start: 138, end: 139, loc: [d] },
+    Ee { type: [or], value: undefined, start: 123, end: 124, loc: [d] },
+    Ee { type: [or], value: undefined, start: 124, end: 125, loc: [d] },
+    Ee { type: [or], value: 'const', start: 127, end: 132, loc: [d] },
+    Ee { type: [or], value: 'temp', start: 133, end: 137, loc: [d] },
+    Ee { type: [or], value: '=', start: 138, end: 139, loc: [d] },
+    Ee { type: [or], value: undefined, start: 140, end: 141, loc: [d] },
     Ee {
       type: [or],
       value: '__GLIMMER_TEMPLATE',
-      start: 139,
-      end: 157,
+      start: 141,
+      end: 159,
       loc: [d]
     },
-    Ee { type: [or], value: undefined, start: 157, end: 158, loc: [d] },
-    Ee { type: [or], value: '`', start: 158, end: 159, loc: [d] },
+    Ee { type: [or], value: undefined, start: 159, end: 160, loc: [d] },
+    Ee { type: [or], value: '`', start: 160, end: 161, loc: [d] },
     Ee {
       type: [or],
-      value: '\n\n  <h1>   Hello World   </h1>\n',
-      start: 159,
-      end: 190,
+      value: '\n\n  <h1>   Hello World 2   </h1>\n',
+      start: 161,
+      end: 194,
       loc: [d]
     },
-    Ee { type: [or], value: '`', start: 190, end: 191, loc: [d] },
-    Ee { type: [or], value: undefined, start: 191, end: 192, loc: [d] },
-    Ee { type: [or], value: undefined, start: 193, end: 194, loc: [d] },
+    Ee { type: [or], value: '`', start: 194, end: 195, loc: [d] },
+    Ee { type: [or], value: undefined, start: 195, end: 196, loc: [d] },
+    Ee { type: [or], value: undefined, start: 197, end: 198, loc: [d] },
     Ee {
       type: [or],
       value: 'strictMode',
-      start: 195,
-      end: 205,
+      start: 199,
+      end: 209,
       loc: [d]
     },
-    Ee { type: [or], value: undefined, start: 205, end: 206, loc: [d] },
-    Ee { type: [or], value: 'true', start: 207, end: 211, loc: [d] },
-    Ee { type: [or], value: undefined, start: 212, end: 213, loc: [d] },
-    Ee { type: [or], value: undefined, start: 213, end: 214, loc: [d] },
-    Ee { type: [or], value: undefined, start: 214, end: 215, loc: [d] },
+    Ee { type: [or], value: undefined, start: 209, end: 210, loc: [d] },
+    Ee { type: [or], value: 'true', start: 211, end: 215, loc: [d] },
+    Ee { type: [or], value: undefined, start: 216, end: 217, loc: [d] },
+    Ee { type: [or], value: undefined, start: 217, end: 218, loc: [d] },
+    Ee { type: [or], value: undefined, start: 218, end: 219, loc: [d] },
     {
       type: 'CommentBlock',
       value: '*\n' +
         ' * An example GJS file on which we can run the Prettier for GJS plugin.\n' +
         ' ',
-      start: 217,
-      end: 296,
+      start: 221,
+      end: 300,
       loc: [d]
     },
-    Ee { type: [or], value: 'export', start: 297, end: 303, loc: [d] },
-    Ee { type: [or], value: 'default', start: 304, end: 311, loc: [d] },
-    Ee { type: [or], value: 'class', start: 312, end: 317, loc: [d] },
+    Ee { type: [or], value: 'export', start: 301, end: 307, loc: [d] },
+    Ee { type: [or], value: 'default', start: 308, end: 315, loc: [d] },
+    Ee { type: [or], value: 'class', start: 316, end: 321, loc: [d] },
     Ee {
       type: [or],
       value: 'MyComponent',
-      start: 318,
-      end: 329,
+      start: 322,
+      end: 333,
       loc: [d]
     },
-    Ee { type: [or], value: 'extends', start: 332, end: 339, loc: [d] },
+    Ee { type: [or], value: 'extends', start: 336, end: 343, loc: [d] },
     Ee {
       type: [or],
       value: 'Component',
-      start: 340,
-      end: 349,
+      start: 344,
+      end: 353,
       loc: [d]
     },
-    Ee { type: [or], value: undefined, start: 350, end: 351, loc: [d] },
     Ee { type: [or], value: undefined, start: 354, end: 355, loc: [d] },
+    Ee { type: [or], value: undefined, start: 358, end: 359, loc: [d] },
     Ee {
       type: [or],
       value: '__GLIMMER_TEMPLATE',
-      start: 355,
-      end: 373,
+      start: 359,
+      end: 377,
       loc: [d]
     },
-    Ee { type: [or], value: undefined, start: 373, end: 374, loc: [d] },
-    Ee { type: [or], value: '`', start: 374, end: 375, loc: [d] },
+    Ee { type: [or], value: undefined, start: 377, end: 378, loc: [d] },
+    Ee { type: [or], value: '`', start: 378, end: 379, loc: [d] },
     Ee {
       type: [or],
-      value: '\n    <h1>   Hello World   </h1>\n  ',
-      start: 375,
-      end: 409,
+      value: '\n    <h1>   Hello World 3   </h1>\n  ',
+      start: 379,
+      end: 415,
       loc: [d]
     },
-    Ee { type: [or], value: '`', start: 409, end: 410, loc: [d] },
-    Ee { type: [or], value: undefined, start: 410, end: 411, loc: [d] },
-    Ee { type: [or], value: undefined, start: 412, end: 413, loc: [d] },
+    Ee { type: [or], value: '`', start: 415, end: 416, loc: [d] },
+    Ee { type: [or], value: undefined, start: 416, end: 417, loc: [d] },
+    Ee { type: [or], value: undefined, start: 418, end: 419, loc: [d] },
     Ee {
       type: [or],
       value: 'strictMode',
-      start: 414,
-      end: 424,
+      start: 420,
+      end: 430,
       loc: [d]
     },
-    Ee { type: [or], value: undefined, start: 424, end: 425, loc: [d] },
-    Ee { type: [or], value: 'true', start: 426, end: 430, loc: [d] },
-    Ee { type: [or], value: undefined, start: 431, end: 432, loc: [d] },
-    Ee { type: [or], value: undefined, start: 432, end: 433, loc: [d] },
-    Ee { type: [or], value: undefined, start: 433, end: 434, loc: [d] },
+    Ee { type: [or], value: undefined, start: 430, end: 431, loc: [d] },
+    Ee { type: [or], value: 'true', start: 432, end: 436, loc: [d] },
+    Ee { type: [or], value: undefined, start: 437, end: 438, loc: [d] },
+    Ee { type: [or], value: undefined, start: 438, end: 439, loc: [d] },
+    Ee { type: [or], value: undefined, start: 439, end: 440, loc: [d] },
+    Ee { type: [or], value: 'what', start: 444, end: 448, loc: [d] },
+    Ee { type: [or], value: '=', start: 449, end: 450, loc: [d] },
+    Ee { type: [or], value: '`', start: 451, end: 452, loc: [d] },
+    Ee {
+      type: [or],
+      value: 'template literal that is not a template',
+      start: 452,
+      end: 491,
+      loc: [d]
+    },
+    Ee { type: [or], value: '`', start: 491, end: 492, loc: [d] },
     {
       type: 'CommentLine',
       value: ' comment',
-      start: 445,
-      end: 455,
+      start: 503,
+      end: 513,
       loc: [d]
     },
-    Ee { type: [or], value: undefined, start: 456, end: 457, loc: [d] },
-    Ee { type: [or], value: undefined, start: 458, end: 458, loc: [d] }
+    Ee { type: [or], value: undefined, start: 514, end: 515, loc: [d] },
+    Ee { type: [or], value: undefined, start: 516, end: 516, loc: [d] }
   ]
+}
+formatHbs 
+  <h1>   Hello World 1   </h1>
+
+startsWithHardline {
+  type: 'group',
+  id: undefined,
+  contents: [
+    {
+      type: 'group',
+      id: undefined,
+      contents: [Array],
+      break: false,
+      expandedStates: undefined
+    },
+    { type: 'indent', contents: [Object] },
+    { type: 'indent', contents: '</h1>' }
+  ],
+  break: false,
+  expandedStates: undefined
+}
+formatHbs 
+
+  <h1>   Hello World 2   </h1>
+
+startsWithHardline {
+  type: 'group',
+  id: undefined,
+  contents: [
+    {
+      type: 'group',
+      id: undefined,
+      contents: [Array],
+      break: false,
+      expandedStates: undefined
+    },
+    { type: 'indent', contents: [Object] },
+    { type: 'indent', contents: '</h1>' }
+  ],
+  break: false,
+  expandedStates: undefined
+}
+formatHbs 
+    <h1>   Hello World 3   </h1>
+  
+startsWithHardline {
+  type: 'group',
+  id: undefined,
+  contents: [
+    {
+      type: 'group',
+      id: undefined,
+      contents: [Array],
+      break: false,
+      expandedStates: undefined
+    },
+    { type: 'indent', contents: [Object] },
+    { type: 'indent', contents: '</h1>' }
+  ],
+  break: false,
+  expandedStates: undefined
 }
 import Component from "@glimmer/component";
 
-[
-  __GLIMMER_TEMPLATE(
-    `
-  <h1>   Hello World   </h1>
-`,
-    { strictMode: true }
-  ),
-];
+<template>
+  <h1> Hello World 1 </h1>
+</template>;
 
-const temp = [
-  __GLIMMER_TEMPLATE(
-    `
-
-  <h1>   Hello World   </h1>
-`,
-    { strictMode: true }
-  ),
-];
+const temp = <template>
+  <h1> Hello World 2 </h1>
+</template>;
 /**
  * An example GJS file on which we can run the Prettier for GJS plugin.
  */
 export default class MyComponent extends Component {
-  [__GLIMMER_TEMPLATE(
-    `
-    <h1>   Hello World   </h1>
-  `,
-    { strictMode: true }
-  )];
+  <template>
+    <h1> Hello World 3 </h1>
+  </template>
+  what = `template literal that is not a template`;
 }
