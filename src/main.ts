@@ -3,7 +3,7 @@ import type { Parser, ParserOptions, Printer, SupportLanguage } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
 
 import { parse } from './parse';
-import { GJSPrinter, mergePrinters } from './print/index';
+import { estreePrinter, mergePrinters } from './print/index';
 
 const PARSER_NAME = 'gjs-parse';
 const PRINTER_NAME = 'gjs-ast';
@@ -30,5 +30,5 @@ export const parsers: Record<string, Parser<BaseNode>> = {
 };
 
 export const printers: Record<string, Printer<BaseNode>> = {
-  [PRINTER_NAME]: GJSPrinter
+  [PRINTER_NAME]: estreePrinter
 };

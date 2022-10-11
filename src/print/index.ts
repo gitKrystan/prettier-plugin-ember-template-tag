@@ -12,20 +12,7 @@ import {
 } from './template';
 
 // @ts-expect-error
-const estreePrinter: Printer<BaseNode> = {};
-
-// @ts-expect-error
-export const GJSPrinter: Printer<BaseNode> = {
-  embed(path, print, textToDoc, options) {
-    if (isTemplateInvocationExpressionPath(path)) {
-      return printTemplateTagForExpression(path, print, textToDoc, options);
-    } else if (isTemplateInvocationPropertyPath(path)) {
-      return printTemplateTagForProperty(path, print, textToDoc, options);
-    } else {
-      return estreePrinter.embed?.(path, print, textToDoc, options) ?? null;
-    }
-  }
-};
+export const estreePrinter: Printer<BaseNode> = {};
 
 // FIXME: HACK because estree printer isn't exported
 // see https://github.com/prettier/prettier/issues/10259 and
@@ -45,12 +32,19 @@ export function mergePrinters(options: ParserOptions<BaseNode>) {
     'expected to find estree printer',
     estreePlugin && isEstreePlugin(estreePlugin)
   );
-  const estreePrinter = estreePlugin.printers.estree;
 
-  for (let [key, value] of Object.entries(estreePrinter)) {
-    estreePrinter[key as keyof typeof estreePrinter] = value;
-    if (!(key in GJSPrinter)) {
-      GJSPrinter[key as keyof typeof GJSPrinter] = value;
+  Reflect.setPrototypeOf(
+    estreePrinter,
+    Object.create(estreePlugin.printers.estree)
+  );
+
+  estreePrinter.embed = (path, print, textToDoc, options) => {
+    if (isTemplateInvocationExpressionPath(path)) {
+      return printTemplateTagForExpression(path, print, textToDoc, options);
+    } else if (isTemplateInvocationPropertyPath(path)) {
+      return printTemplateTagForProperty(path, print, textToDoc, options);
+    } else {
+      return estreePrinter.embed?.(path, print, textToDoc, options) ?? null;
     }
-  }
+  };
 }

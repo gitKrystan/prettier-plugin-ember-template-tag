@@ -4,9 +4,9 @@
 
 vite v3.1.6 building for production...
 transforming...
-✓ 464 modules transformed.
+✓ 462 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1799.34 KiB / gzip: 390.21 KiB
+dist/ember-template-tag-prettier.cjs   1799.51 KiB / gzip: 390.20 KiB
 preprocess 
 import Component from '@glimmer/component';
 
