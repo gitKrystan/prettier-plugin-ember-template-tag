@@ -3,6 +3,10 @@ import Component from '@glimmer/component';
   <template>
 
   <h1>   Hello World 1 Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1  </h1>
+
+
+
+
 </template>
 
 const multiline = <template>
@@ -10,10 +14,7 @@ const multiline = <template>
   <h1>   Hello World 2 Hello World 2Hello World 2Hello World 2Hello World 2Hello World 2Hello World 2Hello World 2  </h1>
 </template>
 
-const oneline = <template>
-
-  Hello World 4
-</template>
+const oneline = <template>      Hello World 4 {{true}}</template>
 
 /**
  * An example GJS file on which we can run the Prettier for GJS plugin.
