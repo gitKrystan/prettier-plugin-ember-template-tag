@@ -4,7 +4,7 @@ import Component from '@glimmer/component';
 
   <template>
 
-  <h1>   Hello World 1 Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1  </h1>
+  <h1>   Module top level template. Module top level template. Module top level template. Module top level template. Module top level template. Module top level template.   </h1>
 
 
 
@@ -13,20 +13,22 @@ import Component from '@glimmer/component';
 
 //        comment between templates
 
-const multiline = <template>
+const Multiline = <template>
 
-  <h1>   Hello World 2 Hello World 2Hello World 2Hello World 2Hello World 2Hello World 2Hello World 2Hello World 2  </h1>
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
 </template>
 
-const oneline = <template>      Hello World 4 {{true}}</template>
+const Oneline = <template>      Module variable template (one line). </template>
+
+export const Exported = <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
 
 /**
  * An example GJS file on which we can run the Prettier for GJS plugin.
  */
-export default class MyComponent
+class MyComponent
   extends Component {
   <template>
-    <h1>   Hello World 3 Hello World 3Hello World 3Hello World 3Hello World 3Hello World 3Hello World 3Hello World 3  </h1>
+    <h1>   Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
   </template>
 
   what = `template literal that is not a template`
@@ -34,3 +36,5 @@ export default class MyComponent
 
         // comment in the class
 }
+
+export default <template>     Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. </template>

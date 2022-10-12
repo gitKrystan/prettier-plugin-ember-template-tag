@@ -1,14 +1,11 @@
 import type { BaseNode } from 'estree';
 import type { ParserOptions, Plugin, Printer } from 'prettier';
 
-import {
-  isTemplateInvocationExpressionPath,
-  isTemplateInvocationPropertyPath
-} from '../types';
+import { isGlimmerExpressionStatement, isGlimmerClassProperty } from '../types';
 import { assertExists } from '../utils';
 import {
-  printTemplateTagForExpression,
-  printTemplateTagForProperty
+  printTemplateTagForExpression as printGlimmerExpressionStatement,
+  printTemplateTagForProperty as printGlimmerClassProperty
 } from './template';
 
 // @ts-expect-error
@@ -25,10 +22,10 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
   Reflect.setPrototypeOf(printer, Object.create(estreePrinter));
 
   printer.embed = (path, print, textToDoc, options) => {
-    if (isTemplateInvocationExpressionPath(path)) {
-      return printTemplateTagForExpression(path, print, textToDoc, options);
-    } else if (isTemplateInvocationPropertyPath(path)) {
-      return printTemplateTagForProperty(path, print, textToDoc, options);
+    if (isGlimmerExpressionStatement(path)) {
+      return printGlimmerExpressionStatement(path, print, textToDoc, options);
+    } else if (isGlimmerClassProperty(path)) {
+      return printGlimmerClassProperty(path, print, textToDoc, options);
     } else {
       return printer.embed?.(path, print, textToDoc, options) ?? null;
     }

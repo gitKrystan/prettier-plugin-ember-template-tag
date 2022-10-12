@@ -31,3 +31,4 @@ https://github.com/prettier/prettier/blob/main/commands.md
 - [ ] Add tests
 - [ ] What happens w/ arguments?
 - [ ] What if `<template>` is prefaced by prettier-ignore?
+- [ ] TypeScript support

@@ -3,6 +3,7 @@ import type {
   BaseNode,
   CallExpression,
   Expression,
+  ExpressionStatement,
   Identifier,
   Pattern,
   PrivateIdentifier,
@@ -21,6 +22,10 @@ export type GlimmerCallExpression = CallExpression & {
   callee: GlimmerIdentifier;
 };
 
+export type GlimmerArrayExpression = ArrayExpression & {
+  elements: [GlimmerCallExpression];
+};
+
 // FIXME: Type might not be accurate...derive from Prettier estree types?
 export type ClassProperty = BaseNode & {
   type: 'ClassProperty';
@@ -33,11 +38,11 @@ export type ClassProperty = BaseNode & {
   computed: boolean;
 };
 
-export type TemplateInvocationExpression = ArrayExpression & {
-  elements: [GlimmerCallExpression];
+export type GlimmerExpressionStatement = ExpressionStatement & {
+  expression: GlimmerArrayExpression;
 };
 
-export type TemplateInvocationProperty = ClassProperty & {
+export type GlimmerClassProperty = ClassProperty & {
   key: GlimmerCallExpression;
   value: null;
 };
@@ -50,20 +55,28 @@ export function isTemplateLiteral(value: unknown): value is TemplateLiteral {
   return isRecord(value) && value.type === 'TemplateLiteral';
 }
 
-export function isTemplateInvocationPropertyPath(
+export function isGlimmerClassProperty(
   path: AstPath<BaseNode>
-): path is AstPath<TemplateInvocationProperty> {
+): path is AstPath<GlimmerClassProperty> {
   return path.match((node: BaseNode | null) => {
     return isClassProperty(node) && isGlimmerCallExpression(node.key);
   });
 }
 
-export function isTemplateInvocationExpressionPath(
+export function isGlimmerExpressionStatement(
   path: AstPath<BaseNode>
-): path is AstPath<TemplateInvocationExpression> {
+): path is AstPath<GlimmerExpressionStatement> {
   return path.match((node: BaseNode | null) => {
-    return isArrayExpression(node) && isGlimmerCallExpression(node.elements[0]);
+    return (
+      isExpressionStatement(node) &&
+      isArrayExpression(node.expression) &&
+      isGlimmerCallExpression(node.expression.elements[0])
+    );
   });
+}
+
+function isExpressionStatement(value: unknown): value is ExpressionStatement {
+  return isRecord(value) && value.type === 'ExpressionStatement';
 }
 
 function isArrayExpression(value: unknown): value is ArrayExpression {

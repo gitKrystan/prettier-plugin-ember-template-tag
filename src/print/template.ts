@@ -4,8 +4,8 @@ import { doc } from 'prettier';
 
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
 import type {
-  TemplateInvocationExpression,
-  TemplateInvocationProperty
+  GlimmerExpressionStatement,
+  GlimmerClassProperty
 } from '../types';
 import { isTemplateLiteral } from '../types';
 import { assert } from '../utils';
@@ -15,20 +15,20 @@ const {
 } = doc;
 
 export const printTemplateTagForExpression: Required<
-  Printer<TemplateInvocationExpression>
+  Printer<GlimmerExpressionStatement>
 >['embed'] = (
   path,
   _print, // By not calling print we are replacing this node and all of its children
   textToDoc,
   options
 ) => {
-  const templateNode = path.getValue().elements[0].arguments[0];
+  const templateNode = path.getValue().expression.elements[0].arguments[0];
   assert('expected TemplateLiteral node', isTemplateLiteral(templateNode));
   return printTemplateTag(templateNode, textToDoc, options);
 };
 
 export const printTemplateTagForProperty: Required<
-  Printer<TemplateInvocationProperty>
+  Printer<GlimmerClassProperty>
 >['embed'] = (
   path,
   _print, // By not calling print we are replacing this node and all of its children
