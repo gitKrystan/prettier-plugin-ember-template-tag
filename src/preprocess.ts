@@ -1,15 +1,13 @@
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { BaseNode } from 'estree';
 import type { Parser } from 'prettier';
-import { parsers as babelParsers } from 'prettier/parser-babel';
 
 import { TEMPLATE_TAG_NAME, TEMPLATE_TAG_PLACEHOLDER } from './config';
 
-export const parse: Parser<BaseNode>['parse'] = (
+export const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
   text,
-  parsers,
   options
-): BaseNode => {
+) => {
   const js = preprocessEmbeddedTemplates(text, {
     // FIXME: Need to figure this out for ESLint but probably OK not to do it
     // for prettier support?
@@ -30,5 +28,5 @@ export const parse: Parser<BaseNode>['parse'] = (
 
   console.info('preprocess', `\n${js}`);
 
-  return babelParsers.babel.parse(js, parsers, options) as BaseNode;
+  return js;
 };

@@ -1,5 +1,7 @@
 import Component from '@glimmer/component';
 
+          // comment before file
+
   <template>
 
   <h1>   Hello World 1 Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1Hello World 1  </h1>
@@ -8,6 +10,8 @@ import Component from '@glimmer/component';
 
 
 </template>
+
+//        comment between templates
 
 const multiline = <template>
 
@@ -28,5 +32,5 @@ export default class MyComponent
   what = `template literal that is not a template`
 
 
-        // just a lil comment
+        // comment in the class
 }

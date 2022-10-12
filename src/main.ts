@@ -2,7 +2,7 @@ import type { BaseNode } from 'estree';
 import type { Parser, ParserOptions, Printer, SupportLanguage } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
 
-import { parse } from './parse';
+import { preprocess } from './preprocess';
 import { definePrinter, printer } from './print/index';
 
 const PARSER_NAME = 'gjs-parse';
@@ -19,12 +19,12 @@ export const languages: SupportLanguage[] = [
 export const parsers: Record<string, Parser<BaseNode>> = {
   [PARSER_NAME]: {
     ...babelParsers.babel,
-    parse,
     astFormat: PRINTER_NAME,
 
     preprocess(text: string, options: ParserOptions<BaseNode>): string {
       definePrinter(options);
-      return babelParsers.babel.preprocess?.(text, options) ?? text;
+      let js = preprocess(text, options);
+      return babelParsers.babel.preprocess?.(js, options) ?? js;
     }
   }
 };

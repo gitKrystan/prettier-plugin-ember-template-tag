@@ -4,11 +4,13 @@
 
 vite v3.1.6 building for production...
 transforming...
-✓ 462 modules transformed.
+✓ 464 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1800.64 KiB / gzip: 390.32 KiB
+dist/ember-template-tag-prettier.cjs   1800.14 KiB / gzip: 390.25 KiB
 preprocess 
 import Component from '@glimmer/component';
+
+          // comment before file
 
   [__GLIMMER_TEMPLATE(`
 
@@ -18,6 +20,8 @@ import Component from '@glimmer/component';
 
 
 `, { strictMode: true })]
+
+//        comment between templates
 
 const multiline = [__GLIMMER_TEMPLATE(`
 
@@ -38,10 +42,12 @@ export default class MyComponent
   what = `template literal that is not a template`
 
 
-        // just a lil comment
+        // comment in the class
 }
 
 import Component from "@glimmer/component";
+
+// comment before file
 
 <template>
   <h1>
@@ -49,13 +55,18 @@ import Component from "@glimmer/component";
     World 1Hello World 1Hello World 1Hello World 1
   </h1>
 </template>;
+
+//        comment between templates
+
 const multiline = <template>
   <h1>
     Hello World 2 Hello World 2Hello World 2Hello World 2Hello World 2Hello
     World 2Hello World 2Hello World 2
   </h1>
 </template>;
+
 const oneline = <template> Hello World 4 {{true}}</template>;
+
 /**
  * An example GJS file on which we can run the Prettier for GJS plugin.
  */
@@ -66,5 +77,8 @@ export default class MyComponent extends Component {
       World 3Hello World 3Hello World 3
     </h1>
   </template>
+
   what = `template literal that is not a template`;
+
+  // comment in the class
 }
