@@ -1,4 +1,4 @@
-import type { BaseNode } from 'estree';
+import type { BaseNode, SourceLocation } from 'estree';
 import type { ParserOptions, Plugin, Printer } from 'prettier';
 
 import {
@@ -12,13 +12,35 @@ import {
 } from './template';
 
 // @ts-expect-error
-export const estreePrinter: Printer<BaseNode> = {};
+export let printer: Printer<BaseNode> = {};
+
+// FIXME: This should be in Prettier types instead of `any`
+interface CommentContext<T> {
+  ast: T;
+  comment: {
+    type: 'CommentLine'; // FIXME: This is probably not complete
+    placement: 'remaining'; // FIXME: This is probably not complete
+    value: string;
+    loc: SourceLocation;
+    start: number;
+    end: number;
+  };
+  precedingNode: T;
+  enclosingNode: T;
+  followingNode: T;
+  isLastComment: boolean;
+  options: ParserOptions<T>;
+  /**
+   * This appears to be the full text of the file, not the text of the comment.
+   */
+  text: string;
+}
 
 // FIXME: HACK because estree printer isn't exported
 // see https://github.com/prettier/prettier/issues/10259 and
 // https://github.com/prettier/prettier/issues/4424
 // Need to find another solution if we want to be listed in community plugins
-export function mergePrinters(options: ParserOptions<BaseNode>) {
+export function definePrinter(options: ParserOptions<BaseNode>) {
   let isEstreePlugin = (
     plugin: string | Plugin<BaseNode>
   ): plugin is Plugin<BaseNode> & {
@@ -32,19 +54,17 @@ export function mergePrinters(options: ParserOptions<BaseNode>) {
     'expected to find estree printer',
     estreePlugin && isEstreePlugin(estreePlugin)
   );
+  const estreePrinter = estreePlugin.printers.estree;
 
-  Reflect.setPrototypeOf(
-    estreePrinter,
-    Object.create(estreePlugin.printers.estree)
-  );
+  Reflect.setPrototypeOf(printer, Object.create(estreePrinter));
 
-  estreePrinter.embed = (path, print, textToDoc, options) => {
+  printer.embed = (path, print, textToDoc, options) => {
     if (isTemplateInvocationExpressionPath(path)) {
       return printTemplateTagForExpression(path, print, textToDoc, options);
     } else if (isTemplateInvocationPropertyPath(path)) {
       return printTemplateTagForProperty(path, print, textToDoc, options);
     } else {
-      return estreePrinter.embed?.(path, print, textToDoc, options) ?? null;
+      return printer.embed?.(path, print, textToDoc, options) ?? null;
     }
   };
 }
