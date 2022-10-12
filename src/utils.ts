@@ -13,3 +13,14 @@ export function assert(
     throw new Error(message);
   }
 }
+
+/**
+ * Asserts that the given item is not undefined.
+ */
+export function assertExists<T>(
+  item: T | undefined,
+  message = 'assertExists failed'
+): T {
+  assert(message, item !== undefined);
+  return item;
+}
