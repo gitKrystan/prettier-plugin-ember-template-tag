@@ -13,9 +13,3 @@
    ```
 
 Unfortunately, this will likely involve either monkey-patching or re-implementing the estree printer due to this issue: https://github.com/prettier/prettier/issues/10259
-
-## To do
-
-- tests
-- what happens w/ arguments?
-- what if `<template>` is prefaced by prettier-ignore?

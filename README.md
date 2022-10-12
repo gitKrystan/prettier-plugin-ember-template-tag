@@ -23,8 +23,11 @@ https://prettier.io/playground/#N4Igxg9gdgLgprEAuEBLAtgBwgJxgAgGEItoECAzHE-AcgAE
 
 https://github.com/prettier/prettier/blob/main/commands.md
 
-## TODOs
+## TODOs and known issues
 
 - [ ] Extraneous `;` after `</template>`
 - [ ] Whitespace handling after `</template>`
 - [ ] Fix HAX
+- [ ] Add tests
+- [ ] What happens w/ arguments?
+- [ ] What if `<template>` is prefaced by prettier-ignore?
