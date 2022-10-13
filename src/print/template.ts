@@ -1,61 +1,73 @@
-import type { TemplateLiteral } from 'estree';
-import type { ParserOptions, Printer } from 'prettier';
+import { BaseNode } from 'estree';
+import type { AstPath, ParserOptions } from 'prettier';
 import { doc } from 'prettier';
 
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
 import type {
-  GlimmerExpressionStatement,
-  GlimmerClassProperty
-} from '../types';
-import { isTemplateLiteral } from '../types';
-import { assert } from '../utils';
+  GlimmerArrayExpression,
+  GlimmerCallExpression,
+  GlimmerClassProperty,
+  GlimmerExportDefaultDeclaration,
+  GlimmerExpressionStatement
+} from '../types/glimmer';
 
 const {
   builders: { group, indent, softline }
 } = doc;
 
-export const printTemplateTagForExpression: Required<
-  Printer<GlimmerExpressionStatement>
->['embed'] = (
-  path,
-  _print, // By not calling print we are replacing this node and all of its children
-  textToDoc,
-  options
-) => {
-  const templateNode = path.getValue().expression.elements[0].arguments[0];
-  assert('expected TemplateLiteral node', isTemplateLiteral(templateNode));
-  return printTemplateTag(templateNode, textToDoc, options);
-};
+export function printGlimmerClassProperty(
+  path: AstPath<GlimmerClassProperty>,
+  textToDoc: (
+    text: string,
+    options: ParserOptions<BaseNode>
+  ) => doc.builders.Doc,
+  options: ParserOptions<BaseNode>
+): doc.builders.Group {
+  return printTemplateTag(
+    path.getValue().key,
+    textToDoc,
+    options,
+    'CLASS_PROPERTY'
+  );
+}
 
-export const printTemplateTagForProperty: Required<
-  Printer<GlimmerClassProperty>
->['embed'] = (
-  path,
-  _print, // By not calling print we are replacing this node and all of its children
-  textToDoc,
-  options
-) => {
-  const templateNode = path.getValue().key.arguments[0];
-  assert('expected TemplateLiteral node', isTemplateLiteral(templateNode));
-  return printTemplateTag(templateNode, textToDoc, options);
-};
+export function printGlimmerArrayExpression(
+  path: AstPath<GlimmerArrayExpression>,
+  textToDoc: (
+    text: string,
+    options: ParserOptions<BaseNode>
+  ) => doc.builders.Doc,
+  options: ParserOptions<BaseNode>
+): doc.builders.Group {
+  return printTemplateTag(
+    path.getValue().elements[0],
+    textToDoc,
+    options,
+    'ARRAY_EXPRESSION'
+  );
+}
 
-function printTemplateTag<T>(
-  node: TemplateLiteral,
-  textToDoc: (text: string, options: ParserOptions<T>) => doc.builders.Doc,
-  options: ParserOptions<T>
-) {
-  const text = node.quasis.map(quasi => quasi.value.raw).join();
+function printTemplateTag(
+  node: GlimmerCallExpression,
+  textToDoc: (
+    text: string,
+    options: ParserOptions<BaseNode>
+  ) => doc.builders.Doc,
+  options: ParserOptions<BaseNode>,
+  debug?: string // FIXME: REMOVE
+): doc.builders.Group {
+  const text = node.arguments[0].quasis.map(quasi => quasi.value.raw).join();
 
   const contents = textToDoc(text, {
     ...options,
     parser: 'glimmer',
-    // @ts-expect-error FIXME
+    // @ts-expect-error FIXME:
     singleQuote: options.hbsSingleQuote
   });
 
   return group([
     TEMPLATE_TAG_OPEN,
+    debug ?? '',
     indent([softline, group(contents)]),
     softline,
     TEMPLATE_TAG_CLOSE

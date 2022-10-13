@@ -25,7 +25,6 @@ https://github.com/prettier/prettier/blob/main/commands.md
 
 ## TODOs and known issues
 
-- [ ] Extraneous `;` after `</template>`
 - [ ] Whitespace handling after `</template>`
 - [ ] Fix HAX
 - [ ] Add tests
