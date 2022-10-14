@@ -2,6 +2,9 @@
 // @ts-expect-error
 import * as util from 'ember-template-imports/src/util';
 
+export const PARSER_NAME = 'ember-template-tag';
+export const PRINTER_NAME = 'ember-template-tag-estree';
+
 export const TEMPLATE_TAG_NAME: string = util.TEMPLATE_TAG_NAME;
 export const TEMPLATE_TAG_PLACEHOLDER: string = util.TEMPLATE_TAG_PLACEHOLDER;
 
