@@ -43,7 +43,10 @@ function printTemplateTag(
   ) => doc.builders.Doc,
   options: ParserOptions<BaseNode>
 ): doc.builders.Group {
-  const text = node.arguments[0].quasis.map(quasi => quasi.value.raw).join();
+  const text = node.arguments[0].quasis
+    .map(quasi => quasi.value.raw)
+    .join()
+    .trim();
 
   const contents = textToDoc(text, {
     ...options,

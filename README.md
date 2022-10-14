@@ -28,3 +28,4 @@ https://github.com/prettier/prettier/blob/main/commands.md
 - [ ] Fix HAX
 - [ ] Add tests
 - [ ] What if `<template>` is prefaced by prettier-ignore?
+- [ ] Verify quotes configuration works properly

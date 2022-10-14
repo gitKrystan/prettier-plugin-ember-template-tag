@@ -6,7 +6,7 @@ vite v3.1.6 building for production...
 transforming...
 ✓ 463 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1801.03 KiB / gzip: 390.54 KiB
+dist/ember-template-tag-prettier.cjs   1801.04 KiB / gzip: 390.54 KiB
 preprocess 
 import Component from '@glimmer/component';
 
@@ -81,10 +81,9 @@ const num2 = 1;
   </h1>
 </template>
 
-const Oneline = <template> Module variable template (one line).</template>
+const Oneline = <template>Module variable template (one line).</template>
 
 export const Exported = <template>
-
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
@@ -99,10 +98,7 @@ const ModVar1 = <template>
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar2 = <template>
-
-    Second module variable template.
-  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
   num = 1;
 
 // Just testing some edge cases. This declaration should NOT have a semicolon!
@@ -115,10 +111,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>
-
-    Second module variable template.
-  </template>
+  ModVar4 = <template>Second module variable template.</template>
 
 /**
  * An example GJS file on which we can run the Prettier for GJS plugin.
@@ -137,7 +130,6 @@ class MyComponent extends Component {
 }
 
 export default <template>
-
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit

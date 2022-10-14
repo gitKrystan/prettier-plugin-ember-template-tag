@@ -6,9 +6,9 @@ vite v3.1.6 building for production...
 transforming...
 ✓ 463 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1801.03 KiB / gzip: 390.54 KiB
+dist/ember-template-tag-prettier.cjs   1801.04 KiB / gzip: 390.54 KiB
 preprocess 
-import type { TemplateOnlyComponent } from '@ember/component/template-only';
+import type { TOC, TemplateOnlyComponent } from '@ember/component/template-only';
 import Component from '@glimmer/component';
 
 export interface Signature {
@@ -37,7 +37,7 @@ const num2: number = 1;
 
 `, { strictMode: true })] as TemplateOnlyComponent<Signature>
 
-const Oneline: TemplateOnlyComponent<Signature> = [__GLIMMER_TEMPLATE(`      Module variable template (one line). `, { strictMode: true })]
+const Oneline: TOC<Signature> = [__GLIMMER_TEMPLATE(`      One line `, { strictMode: true })]
 
 export const Exported: TemplateOnlyComponent<Signature> = [__GLIMMER_TEMPLATE(`       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. `, { strictMode: true })]
 
@@ -88,7 +88,10 @@ declare module '@glint/environment-ember-loose/registry' {
   }
 }
 
-import type { TemplateOnlyComponent } from "@ember/component/template-only";
+import type {
+  TOC,
+  TemplateOnlyComponent,
+} from "@ember/component/template-only";
 import Component from "@glimmer/component";
 
 export interface Signature {
@@ -117,12 +120,9 @@ const num2: number = 1;
   </h1>
 </template> as TemplateOnlyComponent<Signature>;
 
-const Oneline: TemplateOnlyComponent<Signature> = <template>
-   Module variable template (one line).
-</template>
+const Oneline: TOC<Signature> = <template>One line</template>
 
 export const Exported: TemplateOnlyComponent<Signature> = <template>
-
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
@@ -138,7 +138,6 @@ const ModVar1: TemplateOnlyComponent<Signature> = <template>
     </h1>
   </template>,
   ModVar2: TemplateOnlyComponent<Signature> = <template>
-
     Second module variable template.
   </template>,
   num: number = 1;
@@ -154,7 +153,6 @@ const bool: boolean = false,
     </h1>
   </template>,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
-
     Second module variable template.
   </template>
 
@@ -175,7 +173,6 @@ class MyComponent extends Component<Signature> {
 }
 
 export default <template>
-
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit

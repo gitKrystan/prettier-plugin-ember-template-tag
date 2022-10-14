@@ -1,4 +1,4 @@
-import type { TemplateOnlyComponent } from '@ember/component/template-only';
+import type { TOC, TemplateOnlyComponent } from '@ember/component/template-only';
 import Component from '@glimmer/component';
 
 export interface Signature {
@@ -27,7 +27,7 @@ const num2: number = 1;
 
 </template> as TemplateOnlyComponent<Signature>
 
-const Oneline: TemplateOnlyComponent<Signature> = <template>      Module variable template (one line). </template>
+const Oneline: TOC<Signature> = <template>      One line </template>
 
 export const Exported: TemplateOnlyComponent<Signature> = <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
 
