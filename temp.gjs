@@ -1,12 +1,12 @@
 
 > ember-template-tag-prettier@0.0.0 example /Users/krystanhuffmenne/Code/ember-template-tag-prettier
-> vite build && ./node_modules/.bin/prettier --loglevel debug --plugin . example.gjs
+> vite build && ./node_modules/.bin/prettier --plugin . example.gjs
 
-vite v3.1.6 building for production...
+vite v3.1.4 building for production...
 transforming...
-✓ 463 modules transformed.
+✓ 458 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1800.99 KiB / gzip: 390.51 KiB
+dist/ember-template-tag-prettier.cjs   1747.52 KiB / gzip: 378.75 KiB
 import Component from "@glimmer/component";
 
 const num2 = 1;

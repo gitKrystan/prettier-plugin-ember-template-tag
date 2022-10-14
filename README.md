@@ -3,7 +3,7 @@
 ## Try it out
 
 1. Edit `example.gjs` or `example.gts` to make the ugliest component file you can think of.
-2. Run `pnpm run example` or `pnpm run example-ts`
+1. Run `pnpm run example > temp.gjs` or `pnpm run example-ts > temp.gts`
 
 ## Prior art and useful links
 
