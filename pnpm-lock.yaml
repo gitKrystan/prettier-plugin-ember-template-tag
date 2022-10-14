@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/estree': ^1.0.0
   '@types/prettier': ^2.7.1
   '@vitest/ui': ^0.23.4
   ember-cli-htmlbars: ^6.1.1
@@ -16,6 +17,7 @@ dependencies:
   prettier: 2.7.1
 
 devDependencies:
+  '@types/estree': 1.0.0
   '@types/prettier': 2.7.1
   '@vitest/ui': 0.23.4
   typescript: 4.8.4
@@ -58,6 +60,10 @@ packages:
 
   /@types/chai/4.3.3:
     resolution: {integrity: sha512-hC7OMnszpxhZPduX+m+nrx+uFoLkWOMiR4oa/AZF3MuSETYTZmFfJAHqZEM8MVlvfG7BEUcgvtwoCTxBp6hm3g==}
+    dev: true
+
+  /@types/estree/1.0.0:
+    resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
   /@types/minimatch/3.0.5:
