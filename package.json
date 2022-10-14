@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "example": "vite build && ./node_modules/.bin/prettier --loglevel debug --plugin . example.gjs"
+    "example": "vite build && ./node_modules/.bin/prettier --loglevel debug --plugin . example.gjs",
+    "example-ts": "vite build && ./node_modules/.bin/prettier --loglevel debug --plugin . example.gts"
   },
   "devDependencies": {
     "@types/estree": "^1.0.0",

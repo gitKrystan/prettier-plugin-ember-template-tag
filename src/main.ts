@@ -10,7 +10,7 @@ const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
 
 export const languages: SupportLanguage[] = [
   {
-    extensions: ['.gjs'],
+    extensions: ['.gjs', '.gts'],
     name: 'Ember Template Tag',
     parsers: [PARSER_NAME]
   }

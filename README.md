@@ -2,8 +2,8 @@
 
 ## Try it out
 
-1. Edit `example.gjs` to make the ugliest component file you can think of.
-2. Run `pnpm run example`
+1. Edit `example.gjs` or `example.gts` to make the ugliest component file you can think of.
+2. Run `pnpm run example` or `pnpm run example-ts`
 
 ## Prior art and useful links
 
@@ -28,6 +28,4 @@ https://github.com/prettier/prettier/blob/main/commands.md
 - [ ] Whitespace handling after `</template>`
 - [ ] Fix HAX
 - [ ] Add tests
-- [ ] What happens w/ arguments?
 - [ ] What if `<template>` is prefaced by prettier-ignore?
-- [ ] TypeScript support
