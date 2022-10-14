@@ -5,8 +5,10 @@ import { parsers as babelParsers } from 'prettier/parser-babel';
 import { preprocess } from './preprocess';
 import { definePrinter, printer } from './print/index';
 
-const PARSER_NAME = 'gjs-parse';
-const PRINTER_NAME = 'gjs-ast';
+const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
+
+const PARSER_NAME = 'ember-template-tag';
+const PRINTER_NAME = 'ember-template-tag-estree';
 
 export const languages: SupportLanguage[] = [
   {
@@ -18,13 +20,13 @@ export const languages: SupportLanguage[] = [
 
 export const parsers: Record<string, Parser<BaseNode>> = {
   [PARSER_NAME]: {
-    ...babelParsers.babel,
+    ...typescript,
     astFormat: PRINTER_NAME,
 
     preprocess(text: string, options: ParserOptions<BaseNode>): string {
       definePrinter(options);
       let js = preprocess(text, options);
-      return babelParsers.babel.preprocess?.(js, options) ?? js;
+      return typescript.preprocess?.(js, options) ?? js;
     }
   }
 };

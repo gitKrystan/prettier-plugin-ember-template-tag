@@ -6,9 +6,7 @@ import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
 import type {
   GlimmerArrayExpression,
   GlimmerCallExpression,
-  GlimmerClassProperty,
-  GlimmerExportDefaultDeclaration,
-  GlimmerExpressionStatement
+  GlimmerClassProperty
 } from '../types/glimmer';
 
 const {
