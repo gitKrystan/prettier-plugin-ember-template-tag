@@ -4,11 +4,11 @@
 
 vite v3.1.6 building for production...
 transforming...
-✓ 465 modules transformed.
+✓ 463 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1800.69 KiB / gzip: 390.54 KiB
+dist/ember-template-tag-prettier.cjs   1801.03 KiB / gzip: 390.54 KiB
 preprocess 
-import { TemplateOnlyComponent } from '@ember/component/template-only';
+import type { TemplateOnlyComponent } from '@ember/component/template-only';
 import Component from '@glimmer/component';
 
 export interface Signature {
@@ -88,7 +88,7 @@ declare module '@glint/environment-ember-loose/registry' {
   }
 }
 
-import { TemplateOnlyComponent } from "@ember/component/template-only";
+import type { TemplateOnlyComponent } from "@ember/component/template-only";
 import Component from "@glimmer/component";
 
 export interface Signature {
@@ -108,7 +108,7 @@ const num2: number = 1;
 
 // comment before file
 
-<template>ARRAY_EXPRESSION
+<template>
   <h1>
     {{@message}}
     Module top level template. Module top level template. Module top level
@@ -117,28 +117,27 @@ const num2: number = 1;
   </h1>
 </template> as TemplateOnlyComponent<Signature>;
 
-const Oneline: TemplateOnlyComponent<Signature> = <template>ARRAY_EXPRESSION
+const Oneline: TemplateOnlyComponent<Signature> = <template>
    Module variable template (one line).
 </template>
 
-export const Exported: TemplateOnlyComponent<Signature> =
-  <template>ARRAY_EXPRESSION
+export const Exported: TemplateOnlyComponent<Signature> = <template>
 
-    Exported variable template. Exported variable template. Exported variable
-    template. Exported variable template. Exported variable template. Exported
-    variable template. Exported variable template.
-  </template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
 
 // Just testing some edge cases. This declaration should have a semicolon!
 
-const ModVar1: TemplateOnlyComponent<Signature> = <template>ARRAY_EXPRESSION
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
     <h1>
       Module variable template. Module variable template. Module variable
       template. Module variable template. Module variable template. Module
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar2: TemplateOnlyComponent<Signature> = <template>ARRAY_EXPRESSION
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
 
     Second module variable template.
   </template>,
@@ -147,14 +146,14 @@ const ModVar1: TemplateOnlyComponent<Signature> = <template>ARRAY_EXPRESSION
 // Just testing some edge cases. This declaration should NOT have a semicolon!
 
 const bool: boolean = false,
-  ModVar3: TemplateOnlyComponent<Signature> = <template>ARRAY_EXPRESSION
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
     <h1>
       Module variable template. Module variable template. Module variable
       template. Module variable template. Module variable template. Module
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4: TemplateOnlyComponent<Signature> = <template>ARRAY_EXPRESSION
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
 
     Second module variable template.
   </template>
@@ -163,7 +162,7 @@ const bool: boolean = false,
  * An example GJS file on which we can run the Prettier for GJS plugin.
  */
 class MyComponent extends Component<Signature> {
-  <template>CLASS_PROPERTY
+  <template>
     <h1>
       Class top level template. Class top level template. Class top level
       template. Class top level template. Class top level template.
@@ -175,7 +174,7 @@ class MyComponent extends Component<Signature> {
   // comment in the class
 }
 
-export default <template>ARRAY_EXPRESSION
+export default <template>
 
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level

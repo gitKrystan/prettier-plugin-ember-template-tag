@@ -21,12 +21,7 @@ export function printGlimmerClassProperty(
   ) => doc.builders.Doc,
   options: ParserOptions<BaseNode>
 ): doc.builders.Group {
-  return printTemplateTag(
-    path.getValue().key,
-    textToDoc,
-    options,
-    'CLASS_PROPERTY'
-  );
+  return printTemplateTag(path.getValue().key, textToDoc, options);
 }
 
 export function printGlimmerArrayExpression(
@@ -37,12 +32,7 @@ export function printGlimmerArrayExpression(
   ) => doc.builders.Doc,
   options: ParserOptions<BaseNode>
 ): doc.builders.Group {
-  return printTemplateTag(
-    path.getValue().elements[0],
-    textToDoc,
-    options,
-    'ARRAY_EXPRESSION'
-  );
+  return printTemplateTag(path.getValue().elements[0], textToDoc, options);
 }
 
 function printTemplateTag(
@@ -51,8 +41,7 @@ function printTemplateTag(
     text: string,
     options: ParserOptions<BaseNode>
   ) => doc.builders.Doc,
-  options: ParserOptions<BaseNode>,
-  debug?: string // FIXME: REMOVE
+  options: ParserOptions<BaseNode>
 ): doc.builders.Group {
   const text = node.arguments[0].quasis.map(quasi => quasi.value.raw).join();
 
@@ -65,7 +54,6 @@ function printTemplateTag(
 
   return group([
     TEMPLATE_TAG_OPEN,
-    debug ?? '',
     indent([softline, group(contents)]),
     softline,
     TEMPLATE_TAG_CLOSE

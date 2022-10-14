@@ -25,7 +25,6 @@ https://github.com/prettier/prettier/blob/main/commands.md
 
 ## TODOs and known issues
 
-- [ ] Whitespace handling after `</template>`
 - [ ] Fix HAX
 - [ ] Add tests
 - [ ] What if `<template>` is prefaced by prettier-ignore?
