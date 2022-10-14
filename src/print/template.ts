@@ -19,9 +19,15 @@ export function printGlimmerClassProperty(
     text: string,
     options: ParserOptions<BaseNode>
   ) => doc.builders.Doc,
-  options: ParserOptions<BaseNode>
+  options: ParserOptions<BaseNode>,
+  hasPrettierIgnore: boolean
 ): doc.builders.Group {
-  return printTemplateTag(path.getValue().key, textToDoc, options);
+  return printTemplateTag(
+    path.getValue().key,
+    textToDoc,
+    options,
+    hasPrettierIgnore
+  );
 }
 
 export function printGlimmerArrayExpression(
@@ -30,9 +36,16 @@ export function printGlimmerArrayExpression(
     text: string,
     options: ParserOptions<BaseNode>
   ) => doc.builders.Doc,
-  options: ParserOptions<BaseNode>
+  options: ParserOptions<BaseNode>,
+  hasPrettierIgnore: boolean
 ): doc.builders.Group {
-  return printTemplateTag(path.getValue().elements[0], textToDoc, options);
+  const node = path.getValue();
+  return printTemplateTag(
+    node.elements[0],
+    textToDoc,
+    options,
+    node.hasPrettierIgnore ?? hasPrettierIgnore
+  );
 }
 
 function printTemplateTag(
@@ -41,24 +54,25 @@ function printTemplateTag(
     text: string,
     options: ParserOptions<BaseNode>
   ) => doc.builders.Doc,
-  options: ParserOptions<BaseNode>
+  options: ParserOptions<BaseNode>,
+  hasPrettierIgnore: boolean
 ): doc.builders.Group {
-  const text = node.arguments[0].quasis
-    .map(quasi => quasi.value.raw)
-    .join()
-    .trim();
+  const text = node.arguments[0].quasis.map(quasi => quasi.value.raw).join();
 
-  const contents = textToDoc(text, {
-    ...options,
-    parser: 'glimmer',
-    // @ts-expect-error FIXME:
-    singleQuote: options.hbsSingleQuote
-  });
-
-  return group([
-    TEMPLATE_TAG_OPEN,
-    indent([softline, group(contents)]),
-    softline,
-    TEMPLATE_TAG_CLOSE
-  ]);
+  if (hasPrettierIgnore) {
+    return group([TEMPLATE_TAG_OPEN, text, TEMPLATE_TAG_CLOSE]);
+  } else {
+    const contents = textToDoc(text.trim(), {
+      ...options,
+      parser: 'glimmer',
+      // @ts-expect-error FIXME:
+      singleQuote: options.hbsSingleQuote
+    });
+    return group([
+      TEMPLATE_TAG_OPEN,
+      indent([softline, group(contents)]),
+      softline,
+      TEMPLATE_TAG_CLOSE
+    ]);
+  }
 }

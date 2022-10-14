@@ -5,6 +5,7 @@ import {
   isGlimmerArrayExpressionPath,
   isGlimmerClassPropertyPath,
   isGlimmerExportDefaultDeclarationPath,
+  isGlimmerExportNamedDeclaration,
   isGlimmerExpressionStatementPath,
   isGlimmerVariableDeclarationPath,
   isGlimmerVariableDeclarator
@@ -29,6 +30,11 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
   const estreePlugin = assertExists(options.plugins.find(isEstreePlugin));
   const estreePrinter = estreePlugin.printers.estree;
 
+  const defaultEmbed = assertExists(estreePrinter.embed);
+  const defaultHasPrettierIgnore = assertExists(
+    estreePrinter.hasPrettierIgnore
+  );
+
   Reflect.setPrototypeOf(printer, Object.create(estreePrinter));
 
   /**
@@ -38,11 +44,31 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
    * up with `</template>;`.
    */
   printer.embed = (path, print, textToDoc, embedOptions) => {
-    if (
-      isGlimmerExportDefaultDeclarationPath(path) ||
-      isGlimmerExpressionStatementPath(path)
-    ) {
+    let hasPrettierIgnore = defaultHasPrettierIgnore(path);
+
+    if (isGlimmerExportDefaultDeclarationPath(path)) {
       embedOptions.semi = false;
+      if (hasPrettierIgnore) {
+        path.getValue().declaration.hasPrettierIgnore = true;
+      }
+      // FIXME: Should call printer.embed here but it adds an extraneous ;
+      return printer.print(path, embedOptions, print);
+    } else if (isGlimmerExportNamedDeclaration(path)) {
+      embedOptions.semi = false;
+      if (hasPrettierIgnore) {
+        path
+          .getValue()
+          .declaration.declarations.filter(isGlimmerVariableDeclarator)
+          .forEach(d => (d.init.hasPrettierIgnore = true));
+      }
+      // FIXME: Should call printer.embed here but it adds an extraneous ;
+      return printer.print(path, embedOptions, print);
+    } else if (isGlimmerExpressionStatementPath(path)) {
+      embedOptions.semi = false;
+      if (hasPrettierIgnore) {
+        path.getValue().expression.hasPrettierIgnore = true;
+      }
+      // FIXME: Should call printer.embed here but it adds an extraneous ;
       return printer.print(path, embedOptions, print);
     } else if (isGlimmerVariableDeclarationPath(path)) {
       const node = path.getValue();
@@ -50,16 +76,49 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
       if (isGlimmerVariableDeclarator(lastDeclarator)) {
         embedOptions.semi = false;
       }
-      return printer.print(path, embedOptions, print);
+      if (hasPrettierIgnore) {
+        node.declarations
+          .filter(isGlimmerVariableDeclarator)
+          .forEach(d => (d.init.hasPrettierIgnore = true));
+      }
+      return assertExists(printer.embed)(path, print, textToDoc, embedOptions);
     }
 
     if (isGlimmerArrayExpressionPath(path)) {
-      return printGlimmerArrayExpression(path, textToDoc, embedOptions);
+      return printGlimmerArrayExpression(
+        path,
+        textToDoc,
+        embedOptions,
+        hasPrettierIgnore
+      );
     } else if (isGlimmerClassPropertyPath(path)) {
-      return printGlimmerClassProperty(path, textToDoc, embedOptions);
+      return printGlimmerClassProperty(
+        path,
+        textToDoc,
+        embedOptions,
+        hasPrettierIgnore
+      );
     } else {
       embedOptions.semi = originalOptions.semi;
-      return printer.embed?.(path, print, textToDoc, embedOptions) ?? null;
+      return defaultEmbed(path, print, textToDoc, embedOptions);
+    }
+  };
+
+  printer.hasPrettierIgnore = (path): boolean => {
+    if (
+      isGlimmerArrayExpressionPath(path) ||
+      isGlimmerClassPropertyPath(path) ||
+      isGlimmerExportDefaultDeclarationPath(path) ||
+      isGlimmerExportNamedDeclaration(path) ||
+      isGlimmerExpressionStatementPath(path) ||
+      isGlimmerVariableDeclarationPath(path)
+    ) {
+      // On the first pass, ignore prettier-ignore comments on Glimmer embed
+      // paths. We need to handle them specially to ensure they are transformed
+      // back to `<template>`.
+      return false;
+    } else {
+      return defaultHasPrettierIgnore(path);
     }
   };
 }

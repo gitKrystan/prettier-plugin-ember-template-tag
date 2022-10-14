@@ -2,6 +2,7 @@ import type {
   ArrayExpression,
   BaseNode,
   ExportDefaultDeclaration,
+  ExportNamedDeclaration,
   Expression,
   ExpressionStatement,
   Identifier,
@@ -38,6 +39,12 @@ export function isExportDefaultDeclaration(
   value: unknown
 ): value is ExportDefaultDeclaration {
   return isRecord(value) && value.type === 'ExportDefaultDeclaration';
+}
+
+export function isExportNamedDeclaration(
+  value: unknown
+): value is ExportNamedDeclaration {
+  return isRecord(value) && value.type === 'ExportNamedDeclaration';
 }
 
 export function isExpressionStatement(

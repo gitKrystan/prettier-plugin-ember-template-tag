@@ -2,6 +2,7 @@ import type {
   ArrayExpression,
   BaseNode,
   ExportDefaultDeclaration,
+  ExportNamedDeclaration,
   ExpressionStatement,
   Identifier,
   SimpleCallExpression,
@@ -18,6 +19,7 @@ import {
   isArrayExpression,
   isClassProperty,
   isExportDefaultDeclaration,
+  isExportNamedDeclaration,
   isExpressionStatement,
   isIdentifier,
   isSimpleCallExpression,
@@ -76,15 +78,37 @@ export function isGlimmerVariableDeclarationPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerVariableDeclaration> {
   return path.match((node: BaseNode | null) => {
+    return isGlimmerVariableDeclaration(node);
+  });
+}
+
+function isGlimmerVariableDeclaration(
+  value: unknown
+): value is GlimmerVariableDeclaration {
+  return (
+    isVariableDeclaration(value) &&
+    value.declarations.some(isGlimmerVariableDeclarator)
+  );
+}
+
+export interface GlimmerExportNamedDeclaration extends ExportNamedDeclaration {
+  declaration: GlimmerVariableDeclaration;
+}
+
+export function isGlimmerExportNamedDeclaration(
+  path: AstPath<BaseNode>
+): path is AstPath<GlimmerExportNamedDeclaration> {
+  return path.match((node: BaseNode | null) => {
     return (
-      isVariableDeclaration(node) &&
-      node.declarations.some(isGlimmerVariableDeclarator)
+      isExportNamedDeclaration(node) &&
+      isGlimmerVariableDeclaration(node.declaration)
     );
   });
 }
 
 export interface GlimmerArrayExpression extends ArrayExpression {
   elements: [GlimmerCallExpression];
+  hasPrettierIgnore?: true;
 }
 
 export function isGlimmerArrayExpressionPath(

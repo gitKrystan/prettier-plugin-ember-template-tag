@@ -4,64 +4,55 @@
 
 vite v3.1.4 building for production...
 transforming...
-✓ 458 modules transformed.
+✓ 456 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1747.52 KiB / gzip: 378.75 KiB
+dist/ember-template-tag-prettier.cjs   1750.08 KiB / gzip: 379.05 KiB
 import Component from "@glimmer/component";
 
 const num2 = 1;
 
-// comment before file
+// prettier-ignore
+const Oneline = <template>      Module variable template (one line). </template>
 
-<template>
-  <h1>
-    Module top level template. Module top level template. Module top level
-    template. Module top level template. Module top level template. Module top
-    level template.
-  </h1>
-</template>
-
-const Oneline = <template>Module variable template (one line).</template>
-
-export const Exported = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>
+// prettier-ignore
+export const Exported =
+  <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
 
 // Just testing some edge cases. This declaration should have a semicolon!
 
-const ModVar1 = <template>
-    <h1>
-      Module variable template. Module variable template. Module variable
-      template. Module variable template. Module variable template. Module
-      variable template. Module variable template. Module variable template.
-    </h1>
-  </template>,
-  ModVar2 = <template>Second module variable template.</template>,
+// prettier-ignore
+const ModVar1 =
+    <template>
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+</template>,
+  ModVar2 = <template>
+  Second module variable template.
+</template>,
   num = 1;
 
 // Just testing some edge cases. This declaration should NOT have a semicolon!
 
+// prettier-ignore
 const bool = false,
-  ModVar3 = <template>
-    <h1>
-      Module variable template. Module variable template. Module variable
-      template. Module variable template. Module variable template. Module
-      variable template. Module variable template. Module variable template.
-    </h1>
-  </template>,
-  ModVar4 = <template>Second module variable template.</template>
+  ModVar3 =
+    <template>
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+</template>,
+  ModVar4 = <template>
+  Second module variable template.
+</template>
 
 /**
  * An example GJS file on which we can run the Prettier for GJS plugin.
  */
 class MyComponent extends Component {
+  // prettier-ignore
   <template>
-    <h1>
-      Class top level template. Class top level template. Class top level
-      template. Class top level template. Class top level template.
-    </h1>
+
+
+    <h1>   Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
   </template>
 
   what = `template literal that is not a template`;
@@ -69,9 +60,5 @@ class MyComponent extends Component {
   // comment in the class
 }
 
-export default <template>
-  Explicit default export module top level component. Explicit default export
-  module top level component. Explicit default export module top level
-  component. Explicit default export module top level component. Explicit
-  default export module top level component.
-</template>
+// prettier-ignore
+export default <template>     Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. </template>
