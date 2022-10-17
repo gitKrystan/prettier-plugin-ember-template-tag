@@ -1,11 +1,11 @@
 import type { BaseNode } from 'estree';
-import type { Parser, Printer, SupportLanguage } from 'prettier';
+import type { Parser, Plugin, Printer, SupportLanguage } from 'prettier';
 
 import { PARSER_NAME, PRINTER_NAME } from './config';
 import { parser } from './parse';
 import { printer } from './print/index';
 
-export const languages: SupportLanguage[] = [
+const languages: SupportLanguage[] = [
   {
     extensions: ['.gjs', '.gts'],
     name: 'Ember Template Tag',
@@ -13,10 +13,18 @@ export const languages: SupportLanguage[] = [
   }
 ];
 
-export const parsers: Record<string, Parser<BaseNode>> = {
+const parsers: Record<string, Parser<BaseNode>> = {
   [PARSER_NAME]: parser
 };
 
-export const printers: Record<string, Printer<BaseNode>> = {
+const printers: Record<string, Printer<BaseNode>> = {
   [PRINTER_NAME]: printer
 };
+
+const plugin: Plugin<BaseNode> = {
+  languages,
+  parsers,
+  printers
+};
+
+export default plugin;
