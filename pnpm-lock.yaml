@@ -3,26 +3,26 @@ lockfileVersion: 5.4
 specifiers:
   '@types/estree': ^1.0.0
   '@types/prettier': ^2.7.1
-  '@vitest/ui': ^0.23.4
+  '@vitest/ui': ^0.24.3
   ember-cli-htmlbars: ^6.1.1
-  ember-template-imports: ^3.1.1
+  ember-template-imports: ^3.1.2
   prettier: ^2.7.1
-  typescript: ^4.6.4
-  vite: ^3.1.0
-  vitest: ^0.23.4
+  typescript: ^4.8.4
+  vite: ^3.1.8
+  vitest: ^0.24.3
 
 dependencies:
   ember-cli-htmlbars: 6.1.1
-  ember-template-imports: 3.1.1_ember-cli-htmlbars@6.1.1
+  ember-template-imports: 3.1.2_ember-cli-htmlbars@6.1.1
   prettier: 2.7.1
 
 devDependencies:
   '@types/estree': 1.0.0
   '@types/prettier': 2.7.1
-  '@vitest/ui': 0.23.4
+  '@vitest/ui': 0.24.3
   typescript: 4.8.4
-  vite: 3.1.4
-  vitest: 0.23.4_@vitest+ui@0.23.4
+  vite: 3.1.8
+  vitest: 0.24.3_@vitest+ui@0.24.3
 
 packages:
 
@@ -82,8 +82,8 @@ packages:
     resolution: {integrity: sha512-Lja2xYuuf2B3knEsga8ShbOdsfNOtzT73GyJmZyY7eGl2+ajOqrs8yM5ze0fsSoYwvA6bw7/Qr7OZ7PEEmYwWg==}
     dev: false
 
-  /@vitest/ui/0.23.4:
-    resolution: {integrity: sha512-lNZVTTrkHThGAwNQ1ah1qCNnm70r7OLB5LCUdSqboStve/1eKTrtt27QfDSSUTG8AVJQzU0eaN/j8UocH+CqfA==}
+  /@vitest/ui/0.24.3:
+    resolution: {integrity: sha512-f5agYA/sdkiipq42TZayJoeUGjWx+opDjIVeNnb1SG2BNxqObFqh6GuJlzpGHerg4a2+ZSoVo4f4p2+dEyXPmg==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -529,8 +529,8 @@ packages:
     resolution: {integrity: sha512-EVzTTKqxv9FZbEh6Ktw56YyWRAA0MijKvl7H8C06wVF+8f/cRRz3dXxa4nkwjzyVwx4rzKGuIGq77hxJAQhWWw==}
     dev: false
 
-  /ember-template-imports/3.1.1_ember-cli-htmlbars@6.1.1:
-    resolution: {integrity: sha512-ZsujuOwaF6lWDDeKC0NleCUAC8f06CfxWQPmejNnxg5gUdqHFTfW9L++X9RLLV/pJZ6eCtax7L94XkXQJ1LfBA==}
+  /ember-template-imports/3.1.2_ember-cli-htmlbars@6.1.1:
+    resolution: {integrity: sha512-8ocUuIxXeY7S5FQQf9hcLBCyGKNvSxXz9cV/dkUUMvGcnfh8NblrglqPggXmCbBcv4eDAoEzDmOfiGccD5kEJQ==}
     engines: {node: 12.* || >= 14}
     peerDependencies:
       ember-cli-htmlbars: ^6.0.0
@@ -1645,8 +1645,8 @@ packages:
       semver: 7.3.8
     dev: false
 
-  /vite/3.1.4:
-    resolution: {integrity: sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==}
+  /vite/3.1.8:
+    resolution: {integrity: sha512-m7jJe3nufUbuOfotkntGFupinL/fmuTNuQmiVE7cH2IZMuf4UbfbGYMUT3jVWgGYuRVLY9j8NnrRqgw5rr5QTg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -1672,8 +1672,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.23.4_@vitest+ui@0.23.4:
-    resolution: {integrity: sha512-iukBNWqQAv8EKDBUNntspLp9SfpaVFbmzmM0sNcnTxASQZMzRw3PsM6DMlsHiI+I6GeO5/sYDg3ecpC+SNFLrQ==}
+  /vitest/0.24.3_@vitest+ui@0.24.3:
+    resolution: {integrity: sha512-aM0auuPPgMSstWvr851hB74g/LKaKBzSxcG3da7ejfZbx08Y21JpZmbmDYrMTCGhVZKqTGwzcnLMwyfz2WzkhQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -1697,7 +1697,7 @@ packages:
       '@types/chai': 4.3.3
       '@types/chai-subset': 1.3.3
       '@types/node': 18.8.2
-      '@vitest/ui': 0.23.4
+      '@vitest/ui': 0.24.3
       chai: 4.3.6
       debug: 4.3.4
       local-pkg: 0.4.2
@@ -1705,7 +1705,7 @@ packages:
       tinybench: 2.3.0
       tinypool: 0.3.0
       tinyspy: 1.0.2
-      vite: 3.1.4
+      vite: 3.1.8
     transitivePeerDependencies:
       - less
       - sass
