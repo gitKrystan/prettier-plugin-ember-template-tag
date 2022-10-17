@@ -1,12 +1,9 @@
 import type { BaseNode } from 'estree';
-import type { Parser, ParserOptions, Printer, SupportLanguage } from 'prettier';
-import { parsers as babelParsers } from 'prettier/parser-babel';
+import type { Parser, Printer, SupportLanguage } from 'prettier';
 
 import { PARSER_NAME, PRINTER_NAME } from './config';
-import { preprocess } from './preprocess';
-import { definePrinter, printer } from './print/index';
-
-const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
+import { parser } from './parse';
+import { printer } from './print/index';
 
 export const languages: SupportLanguage[] = [
   {
@@ -17,16 +14,7 @@ export const languages: SupportLanguage[] = [
 ];
 
 export const parsers: Record<string, Parser<BaseNode>> = {
-  [PARSER_NAME]: {
-    ...typescript,
-    astFormat: PRINTER_NAME,
-
-    preprocess(text: string, options: ParserOptions<BaseNode>): string {
-      definePrinter(options);
-      let js = preprocess(text, options);
-      return typescript.preprocess?.(js, options) ?? js;
-    }
-  }
+  [PARSER_NAME]: parser
 };
 
 export const printers: Record<string, Printer<BaseNode>> = {
