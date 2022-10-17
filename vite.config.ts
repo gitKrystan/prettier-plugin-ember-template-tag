@@ -6,9 +6,6 @@ export default defineConfig({
     lib: {
       entry: 'src/main.ts',
       formats: ['cjs']
-    },
-    commonjsOptions: {
-      dynamicRequireTargets: ['node_modules/ember-cli-htmlbars']
     }
   }
 });
