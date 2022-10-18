@@ -27,12 +27,7 @@ describe('format', () => {
 
   for (let testCase of cases) {
     test(`it formats ${testCase.name}`, () => {
-      const code = `
-        <template>
-                what
-              </template>
-      `;
-      let result = format(code, formatOptions);
+      let result = format(testCase.code, formatOptions);
       expect(result).toMatchSnapshot();
     });
   }

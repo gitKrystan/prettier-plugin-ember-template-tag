@@ -1,11 +1,8 @@
 import Component from '@glimmer/component';
 
-/**
- * An example GJS file on which we can run the Prettier for GJS plugin.
- */
+/** It's a component */
 class MyComponent
   extends Component {
-
         <template>
 
 
