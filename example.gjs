@@ -41,7 +41,7 @@ ModVar4 = <template>
 class MyComponent
   extends Component {
     // prettier-ignore
-  <template>
+        <template>
 
 
     <h1>   Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>

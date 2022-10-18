@@ -107,8 +107,8 @@ export function isGlimmerExportNamedDeclaration(
 }
 
 export interface GlimmerArrayExpression extends ArrayExpression {
+  type: 'ArrayExpression';
   elements: [GlimmerCallExpression];
-  hasPrettierIgnore?: true;
 }
 
 export function isGlimmerArrayExpressionPath(
@@ -123,6 +123,39 @@ function isGlimmerArrayExpression(
   value: unknown
 ): value is GlimmerArrayExpression {
   return isArrayExpression(value) && isGlimmerCallExpression(value.elements[0]);
+}
+
+export function tagGlimmerArrayExpression(
+  value: GlimmerArrayExpression,
+  hasPrettierIgnore: boolean
+): void {
+  let tagged = value as unknown as TaggedGlimmerArrayExpression;
+  tagged.type = 'GlimmerArrayExpression';
+  tagged.hasPrettierIgnore = hasPrettierIgnore;
+}
+
+export type TaggedGlimmerArrayExpression = Omit<
+  GlimmerArrayExpression,
+  'type'
+> & {
+  // HACK: We need to change the type to avoid Prettier mistakenly adding a
+  // semi-colon to prevent ASI issues.
+  type: 'GlimmerArrayExpression';
+  hasPrettierIgnore: boolean;
+};
+
+export function isTaggedGlimmerArrayExpressionPath(
+  path: AstPath<BaseNode>
+): path is AstPath<TaggedGlimmerArrayExpression> {
+  return path.match((node: BaseNode | null) => {
+    return isTaggedGlimmerArrayExpression(node);
+  });
+}
+
+function isTaggedGlimmerArrayExpression(
+  value: unknown
+): value is TaggedGlimmerArrayExpression {
+  return isRecord(value) && value.type === 'GlimmerArrayExpression';
 }
 
 export interface GlimmerVariableDeclarator extends VariableDeclarator {

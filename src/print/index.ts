@@ -1,5 +1,5 @@
 import type { BaseNode } from 'estree';
-import type { ParserOptions, Plugin, Printer } from 'prettier';
+import { Doc, ParserOptions, Plugin, Printer } from 'prettier';
 
 import {
   isGlimmerArrayExpressionPath,
@@ -8,7 +8,9 @@ import {
   isGlimmerExportNamedDeclaration,
   isGlimmerExpressionStatementPath,
   isGlimmerVariableDeclarationPath,
-  isGlimmerVariableDeclarator
+  isGlimmerVariableDeclarator,
+  isTaggedGlimmerArrayExpressionPath,
+  tagGlimmerArrayExpression
 } from '../types/glimmer';
 import { assertExists } from '../utils';
 import {
@@ -34,6 +36,7 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
   const defaultHasPrettierIgnore = assertExists(
     estreePrinter.hasPrettierIgnore
   );
+  const defaultPrint = estreePrinter.print;
 
   Reflect.setPrototypeOf(printer, Object.create(estreePrinter));
 
@@ -48,43 +51,35 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
 
     if (isGlimmerExportDefaultDeclarationPath(path)) {
       embedOptions.semi = false;
-      if (hasPrettierIgnore) {
-        path.getValue().declaration.hasPrettierIgnore = true;
-      }
-      // FIXME: Should call printer.embed here but it adds an extraneous ;
-      return printer.print(path, embedOptions, print);
+      const node = path.getValue();
+      tagGlimmerArrayExpression(node.declaration, hasPrettierIgnore);
+      return defaultPrint(path, embedOptions, print);
     } else if (isGlimmerExportNamedDeclaration(path)) {
       embedOptions.semi = false;
-      if (hasPrettierIgnore) {
-        path
-          .getValue()
-          .declaration.declarations.filter(isGlimmerVariableDeclarator)
-          .forEach(d => (d.init.hasPrettierIgnore = true));
-      }
-      // FIXME: Should call printer.embed here but it adds an extraneous ;
-      return printer.print(path, embedOptions, print);
+      path
+        .getValue()
+        .declaration.declarations.filter(isGlimmerVariableDeclarator)
+        .forEach(d => {
+          tagGlimmerArrayExpression(d.init, hasPrettierIgnore);
+        });
+      return defaultPrint(path, embedOptions, print);
     } else if (isGlimmerExpressionStatementPath(path)) {
       embedOptions.semi = false;
-      if (hasPrettierIgnore) {
-        path.getValue().expression.hasPrettierIgnore = true;
-      }
-      // FIXME: Should call printer.embed here but it adds an extraneous ;
-      return printer.print(path, embedOptions, print);
+      tagGlimmerArrayExpression(path.getValue().expression, hasPrettierIgnore);
+      return defaultPrint(path, embedOptions, print);
     } else if (isGlimmerVariableDeclarationPath(path)) {
       const node = path.getValue();
       const lastDeclarator = node.declarations[node.declarations.length - 1];
       if (isGlimmerVariableDeclarator(lastDeclarator)) {
         embedOptions.semi = false;
       }
-      if (hasPrettierIgnore) {
-        node.declarations
-          .filter(isGlimmerVariableDeclarator)
-          .forEach(d => (d.init.hasPrettierIgnore = true));
-      }
-      return assertExists(printer.embed)(path, print, textToDoc, embedOptions);
+      node.declarations.filter(isGlimmerVariableDeclarator).forEach(d => {
+        tagGlimmerArrayExpression(d.init, hasPrettierIgnore);
+      });
+      return defaultPrint(path, embedOptions, print);
     }
 
-    if (isGlimmerArrayExpressionPath(path)) {
+    if (isTaggedGlimmerArrayExpressionPath(path)) {
       return printGlimmerArrayExpression(
         path,
         textToDoc,
@@ -99,8 +94,9 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
         hasPrettierIgnore
       );
     } else {
+      let ret = defaultPrint(path, embedOptions, print);
       embedOptions.semi = originalOptions.semi;
-      return defaultEmbed(path, print, textToDoc, embedOptions);
+      return ret;
     }
   };
 
