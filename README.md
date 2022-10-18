@@ -23,6 +23,10 @@ https://prettier.io/playground/#N4Igxg9gdgLgprEAuEBLAtgBwgJxgAgGEItoECAzHE-AcgAE
 
 https://github.com/prettier/prettier/blob/main/commands.md
 
+## Tests
+
+`pnpm test`
+
 ## TODOs and known issues
 
 - [ ] Fix HAX

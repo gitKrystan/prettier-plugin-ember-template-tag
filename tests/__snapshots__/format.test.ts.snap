@@ -1,0 +1,6 @@
+// Vitest Snapshot v1
+
+exports[`format > it formats simple.gjs 1`] = `
+"<template>what</template>
+"
+`;
