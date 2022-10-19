@@ -137,4 +137,65 @@ type GlimmerExportDefaultDeclaration = {
     ];
   };
 };
+
+type GlimmerExportDefaultDeclarationWithTSAsExpression = {
+  type: 'ExportDefaultDeclaration';
+  declaration: {
+    type: 'TSAsExpression';
+    expression: {
+      type: 'ArrayExpression';
+      elements: [
+        {
+          type: 'CallExpression';
+          callee: {
+            type: 'Identifier';
+            name: '__GLIMMER_TEMPLATE';
+          };
+          arguments: [
+            {
+              type: 'TemplateLiteral';
+              quasis: [
+                {
+                  type: 'TemplateElement';
+                  value: {
+                    /** Raw template text */
+                    raw: string;
+                  };
+                }
+              ];
+            },
+            // We don't really care what happens here, but I've included it for completeness
+            {
+              type: 'ObjectExpression';
+            }
+          ];
+        }
+      ];
+    };
+    typeAnnotation: {
+      type: 'TSTypeReference';
+      typeName: {
+        type: 'Identifier';
+        // e.g. TemplateOnlyComponent
+        name: string;
+      };
+      typeParameters: {
+        type: 'TSTypeParameterInstantiation';
+        params: [
+          {
+            type: 'TSTypeReference';
+            typeName: {
+              type: 'Identifier';
+                // e.g. Signature
+                identifierName: string;
+              };
+              // e.g. Signature
+              name: string;
+            };
+          }
+        ];
+      };
+    };
+  };
+};
 ```

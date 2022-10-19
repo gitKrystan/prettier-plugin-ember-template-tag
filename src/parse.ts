@@ -1,10 +1,10 @@
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
-import type { BaseNode } from 'estree';
 import type { Parser, ParserOptions } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
 
 import { PRINTER_NAME } from './config';
 import { definePrinter } from './print/index';
+import type { BaseNode } from './types/estree';
 
 const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
 

@@ -1,21 +1,15 @@
-import type {
-  ArrayExpression,
-  BaseNode,
-  ExportDefaultDeclaration,
-  ExportNamedDeclaration,
-  ExpressionStatement,
-  Identifier,
-  SimpleCallExpression,
-  TemplateLiteral,
-  VariableDeclaration,
-  VariableDeclarator
-} from 'estree';
 import type { AstPath } from 'prettier';
 
 import { TEMPLATE_TAG_PLACEHOLDER } from '../config';
 import { isRecord } from '../utils';
 import {
+  ArrayExpression,
+  BaseNode,
   ClassProperty,
+  ExportDefaultDeclaration,
+  ExportNamedDeclaration,
+  ExpressionStatement,
+  Identifier,
   isArrayExpression,
   isClassProperty,
   isExportDefaultDeclaration,
@@ -24,7 +18,13 @@ import {
   isIdentifier,
   isSimpleCallExpression,
   isTemplateLiteral,
-  isVariableDeclaration
+  isTSAsExpression,
+  isVariableDeclaration,
+  SimpleCallExpression,
+  TemplateLiteral,
+  TSAsExpression,
+  VariableDeclaration,
+  VariableDeclarator
 } from './estree';
 
 export interface GlimmerClassProperty extends ClassProperty {
@@ -52,6 +52,22 @@ export function isGlimmerExportDefaultDeclarationPath(
     return (
       isExportDefaultDeclaration(node) &&
       isGlimmerArrayExpression(node.declaration)
+    );
+  });
+}
+
+export interface GlimmerExportDefaultDeclarationTS
+  extends ExportDefaultDeclaration {
+  declaration: GlimmerTSAsExpression;
+}
+
+export function isGlimmerExportDefaultDeclarationTSPath(
+  path: AstPath<BaseNode>
+): path is AstPath<GlimmerExportDefaultDeclarationTS> {
+  return path.match((node: BaseNode | null) => {
+    return (
+      isExportDefaultDeclaration(node) &&
+      isGlimmerTSAsExpression(node.declaration)
     );
   });
 }
@@ -191,4 +207,14 @@ function isGlimmerCallExpression(
 
 export interface GlimmerIdentifier extends Identifier {
   name: typeof TEMPLATE_TAG_PLACEHOLDER; // This is just `string` so not SUPER useful lolol
+}
+
+export interface GlimmerTSAsExpression extends TSAsExpression {
+  expression: GlimmerArrayExpression;
+}
+
+function isGlimmerTSAsExpression(
+  value: unknown
+): value is GlimmerTSAsExpression {
+  return isTSAsExpression(value) && isGlimmerArrayExpression(value.expression);
 }

@@ -1,10 +1,11 @@
-import type { BaseNode } from 'estree';
-import { Doc, ParserOptions, Plugin, Printer } from 'prettier';
+import { ParserOptions, Plugin, Printer } from 'prettier';
 
+import type { BaseNode } from '../types/estree';
 import {
   isGlimmerArrayExpressionPath,
   isGlimmerClassPropertyPath,
   isGlimmerExportDefaultDeclarationPath,
+  isGlimmerExportDefaultDeclarationTSPath,
   isGlimmerExportNamedDeclaration,
   isGlimmerExpressionStatementPath,
   isGlimmerVariableDeclarationPath,
@@ -32,7 +33,6 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
   const estreePlugin = assertExists(options.plugins.find(isEstreePlugin));
   const estreePrinter = estreePlugin.printers.estree;
 
-  const defaultEmbed = assertExists(estreePrinter.embed);
   const defaultHasPrettierIgnore = assertExists(
     estreePrinter.hasPrettierIgnore
   );
@@ -54,6 +54,25 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
       const node = path.getValue();
       tagGlimmerArrayExpression(node.declaration, hasPrettierIgnore);
       return defaultPrint(path, embedOptions, print);
+    } else if (isGlimmerExportNamedDeclaration(path)) {
+      embedOptions.semi = false;
+      path
+        .getValue()
+        .declaration.declarations.filter(isGlimmerVariableDeclarator)
+        .forEach(d => {
+          tagGlimmerArrayExpression(d.init, hasPrettierIgnore);
+        });
+      return defaultPrint(path, embedOptions, print);
+    } else if (isGlimmerExportDefaultDeclarationTSPath(path)) {
+      embedOptions.semi = false;
+      const node = path.getValue();
+      tagGlimmerArrayExpression(node.declaration.expression, hasPrettierIgnore);
+      let printed = defaultPrint(path, embedOptions, print);
+      // HACK: Prettier hardcodes a semicolon here
+      if (Array.isArray(printed) && printed[printed.length - 1] === ';') {
+        printed.pop();
+      }
+      return printed;
     } else if (isGlimmerExportNamedDeclaration(path)) {
       embedOptions.semi = false;
       path

@@ -1,7 +1,7 @@
 import type {
   ArrayExpression,
   BaseNode,
-  ExportDefaultDeclaration,
+  Declaration,
   ExportNamedDeclaration,
   Expression,
   ExpressionStatement,
@@ -13,9 +13,21 @@ import type {
   VariableDeclaration
 } from 'estree';
 
+export type {
+  ArrayExpression,
+  BaseNode,
+  ExportNamedDeclaration,
+  ExpressionStatement,
+  Identifier,
+  SimpleCallExpression,
+  TemplateLiteral,
+  VariableDeclaration,
+  VariableDeclarator
+} from 'estree';
+
 import { isRecord } from '../utils';
 
-// FIXME: Type might not be accurate...derive from Prettier estree types?
+// NOTE: Type is likely incomplete
 export interface ClassProperty extends BaseNode {
   type: 'ClassProperty';
   start?: number;
@@ -25,6 +37,17 @@ export interface ClassProperty extends BaseNode {
   static: boolean;
   variance: unknown;
   computed: boolean;
+}
+
+// NOTE: Type is likely incomplete
+export interface TSAsExpression extends BaseNode {
+  type: 'TSAsExpression';
+  expression: Expression;
+}
+
+export interface ExportDefaultDeclaration extends BaseNode {
+  type: 'ExportDefaultDeclaration';
+  declaration: Declaration | Expression | TSAsExpression;
 }
 
 export function isArrayExpression(value: unknown): value is ArrayExpression {
@@ -65,6 +88,10 @@ export function isSimpleCallExpression(
 
 export function isTemplateLiteral(value: unknown): value is TemplateLiteral {
   return isRecord(value) && value.type === 'TemplateLiteral';
+}
+
+export function isTSAsExpression(value: unknown): value is TSAsExpression {
+  return isRecord(value) && value.type === 'TSAsExpression';
 }
 
 export function isVariableDeclaration(

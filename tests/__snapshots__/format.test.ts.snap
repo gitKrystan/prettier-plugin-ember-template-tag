@@ -243,12 +243,12 @@ export interface Signature {
   Yields: [];
 }
 
-export default [
-  __GLIMMER_TEMPLATE(
-    \`     Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. \`,
-    { strictMode: true }
-  ),
-] as TemplateOnlyComponent<Signature>;
+export default <template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
 "
 `;
 
