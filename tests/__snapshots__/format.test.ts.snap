@@ -503,13 +503,6 @@ export interface Signature {
   Yields: [];
 }
 
-[
-  __GLIMMER_TEMPLATE(
-    \`
-              what
-            \`,
-    { strictMode: true }
-  ),
-] as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>
 "
 `;

@@ -8,6 +8,7 @@ import {
   isGlimmerExportDefaultDeclarationTSPath,
   isGlimmerExportNamedDeclaration,
   isGlimmerExpressionStatementPath,
+  isGlimmerExpressionStatementTSPath,
   isGlimmerVariableDeclarationPath,
   isGlimmerVariableDeclarator,
   isGlimmerVariableDeclaratorTS,
@@ -81,6 +82,13 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
     } else if (isGlimmerExpressionStatementPath(path)) {
       embedOptions.semi = false;
       tagGlimmerArrayExpression(path.getValue().expression, hasPrettierIgnore);
+      return defaultPrint(path, embedOptions, print);
+    } else if (isGlimmerExpressionStatementTSPath(path)) {
+      embedOptions.semi = false;
+      tagGlimmerArrayExpression(
+        path.getValue().expression.expression,
+        hasPrettierIgnore
+      );
       return defaultPrint(path, embedOptions, print);
     } else if (isGlimmerVariableDeclarationPath(path)) {
       const node = path.getValue();

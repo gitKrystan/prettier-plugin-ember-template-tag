@@ -89,6 +89,21 @@ export function isGlimmerExpressionStatementPath(
   });
 }
 
+export interface GlimmerExpressionStatementTS
+  extends Omit<ExpressionStatement, 'expression'> {
+  expression: GlimmerTSAsExpression;
+}
+
+export function isGlimmerExpressionStatementTSPath(
+  path: AstPath<BaseNode>
+): path is AstPath<GlimmerExpressionStatementTS> {
+  return path.match((node: BaseNode | null) => {
+    return (
+      isExpressionStatement(node) && isGlimmerTSAsExpression(node.expression)
+    );
+  });
+}
+
 export type GlimmerVariableDeclaration = Omit<
   VariableDeclaration,
   'declarations'
