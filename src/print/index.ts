@@ -10,6 +10,7 @@ import {
   isGlimmerExpressionStatementPath,
   isGlimmerVariableDeclarationPath,
   isGlimmerVariableDeclarator,
+  isGlimmerVariableDeclaratorTS,
   isTaggedGlimmerArrayExpressionPath,
   tagGlimmerArrayExpression
 } from '../types/glimmer';
@@ -56,12 +57,16 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
       return defaultPrint(path, embedOptions, print);
     } else if (isGlimmerExportNamedDeclaration(path)) {
       embedOptions.semi = false;
-      path
-        .getValue()
-        .declaration.declarations.filter(isGlimmerVariableDeclarator)
-        .forEach(d => {
-          tagGlimmerArrayExpression(d.init, hasPrettierIgnore);
-        });
+      for (let declarator of path.getValue().declaration.declarations) {
+        if (isGlimmerVariableDeclarator(declarator)) {
+          tagGlimmerArrayExpression(declarator.init, hasPrettierIgnore);
+        } else if (isGlimmerVariableDeclaratorTS(declarator)) {
+          tagGlimmerArrayExpression(
+            declarator.init.expression,
+            hasPrettierIgnore
+          );
+        }
+      }
       return defaultPrint(path, embedOptions, print);
     } else if (isGlimmerExportDefaultDeclarationTSPath(path)) {
       embedOptions.semi = false;
@@ -73,15 +78,6 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
         printed.pop();
       }
       return printed;
-    } else if (isGlimmerExportNamedDeclaration(path)) {
-      embedOptions.semi = false;
-      path
-        .getValue()
-        .declaration.declarations.filter(isGlimmerVariableDeclarator)
-        .forEach(d => {
-          tagGlimmerArrayExpression(d.init, hasPrettierIgnore);
-        });
-      return defaultPrint(path, embedOptions, print);
     } else if (isGlimmerExpressionStatementPath(path)) {
       embedOptions.semi = false;
       tagGlimmerArrayExpression(path.getValue().expression, hasPrettierIgnore);
@@ -89,12 +85,22 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
     } else if (isGlimmerVariableDeclarationPath(path)) {
       const node = path.getValue();
       const lastDeclarator = node.declarations[node.declarations.length - 1];
-      if (isGlimmerVariableDeclarator(lastDeclarator)) {
+      if (
+        isGlimmerVariableDeclarator(lastDeclarator) ||
+        isGlimmerVariableDeclaratorTS(lastDeclarator)
+      ) {
         embedOptions.semi = false;
       }
-      node.declarations.filter(isGlimmerVariableDeclarator).forEach(d => {
-        tagGlimmerArrayExpression(d.init, hasPrettierIgnore);
-      });
+      for (let declarator of node.declarations) {
+        if (isGlimmerVariableDeclarator(declarator)) {
+          tagGlimmerArrayExpression(declarator.init, hasPrettierIgnore);
+        } else if (isGlimmerVariableDeclaratorTS(declarator)) {
+          tagGlimmerArrayExpression(
+            declarator.init.expression,
+            hasPrettierIgnore
+          );
+        }
+      }
       return defaultPrint(path, embedOptions, print);
     }
 

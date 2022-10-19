@@ -2,7 +2,7 @@ import type { AstPath } from 'prettier';
 
 import { TEMPLATE_TAG_PLACEHOLDER } from '../config';
 import { isRecord } from '../utils';
-import {
+import type {
   ArrayExpression,
   BaseNode,
   ClassProperty,
@@ -10,6 +10,13 @@ import {
   ExportNamedDeclaration,
   ExpressionStatement,
   Identifier,
+  SimpleCallExpression,
+  TemplateLiteral,
+  TSAsExpression,
+  VariableDeclaration,
+  VariableDeclarator
+} from './estree';
+import {
   isArrayExpression,
   isClassProperty,
   isExportDefaultDeclaration,
@@ -20,11 +27,7 @@ import {
   isTemplateLiteral,
   isTSAsExpression,
   isVariableDeclaration,
-  SimpleCallExpression,
-  TemplateLiteral,
-  TSAsExpression,
-  VariableDeclaration,
-  VariableDeclarator
+  isVariableDeclarator
 } from './estree';
 
 export interface GlimmerClassProperty extends ClassProperty {
@@ -86,9 +89,14 @@ export function isGlimmerExpressionStatementPath(
   });
 }
 
-export interface GlimmerVariableDeclaration extends VariableDeclaration {
-  declarations: Array<GlimmerVariableDeclarator | VariableDeclarator>;
-}
+export type GlimmerVariableDeclaration = Omit<
+  VariableDeclaration,
+  'declarations'
+> & {
+  declarations: Array<
+    GlimmerVariableDeclarator | GlimmerVariableDeclaratorTS | VariableDeclarator
+  >;
+};
 
 export function isGlimmerVariableDeclarationPath(
   path: AstPath<BaseNode>
@@ -103,13 +111,17 @@ function isGlimmerVariableDeclaration(
 ): value is GlimmerVariableDeclaration {
   return (
     isVariableDeclaration(value) &&
-    value.declarations.some(isGlimmerVariableDeclarator)
+    (value.declarations.some(isGlimmerVariableDeclarator) ||
+      value.declarations.some(isGlimmerVariableDeclaratorTS))
   );
 }
 
-export interface GlimmerExportNamedDeclaration extends ExportNamedDeclaration {
+export type GlimmerExportNamedDeclaration = Omit<
+  ExportNamedDeclaration,
+  'declaration'
+> & {
   declaration: GlimmerVariableDeclaration;
-}
+};
 
 export function isGlimmerExportNamedDeclaration(
   path: AstPath<BaseNode>
@@ -181,11 +193,17 @@ export interface GlimmerVariableDeclarator extends VariableDeclarator {
 export function isGlimmerVariableDeclarator(
   value: unknown
 ): value is GlimmerVariableDeclarator {
-  return (
-    isRecord(value) &&
-    value.type === 'VariableDeclarator' &&
-    isGlimmerArrayExpression(value.init)
-  );
+  return isVariableDeclarator(value) && isGlimmerArrayExpression(value.init);
+}
+
+export type GlimmerVariableDeclaratorTS = Omit<VariableDeclarator, 'init'> & {
+  init: GlimmerTSAsExpression;
+};
+
+export function isGlimmerVariableDeclaratorTS(
+  value: unknown
+): value is GlimmerVariableDeclaratorTS {
+  return isVariableDeclarator(value) && isGlimmerTSAsExpression(value.init);
 }
 
 export interface GlimmerCallExpression extends SimpleCallExpression {

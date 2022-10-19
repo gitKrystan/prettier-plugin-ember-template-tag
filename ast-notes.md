@@ -1,177 +1,40 @@
 # AST nodes corresponding to the various template invocation methods
 
 ```ts
-type GlimmerExpressionStatement = {
-  type: 'ExpressionStatement';
-  expression: {
-    type: 'ArrayExpression';
-    elements: [
-      {
-        type: 'CallExpression';
-        callee: {
-          type: 'Identifier';
-          name: '__GLIMMER_TEMPLATE';
-        };
-        arguments: [
-          {
-            type: 'TemplateLiteral';
-            quasis: [
-              {
-                type: 'TemplateElement';
-                value: {
-                  /** Raw template text */
-                  raw: string;
-                };
-              }
-            ];
-          }
-        ];
-      }
-    ];
+type GlimmerCallExpression = {
+  type: 'CallExpression';
+  callee: {
+    type: 'Identifier';
+    name: '__GLIMMER_TEMPLATE';
   };
-};
-
-type GlimmerVariableDeclaration = {
-  type: 'VariableDeclaration';
-  declarations: Array<{
-    type: 'VariableDeclarator';
-    id: {
-      type: 'Identifier';
-      /** Variable name */
-      name: string;
-    };
-    init: {
-      type: 'ArrayExpression';
-      elements: [
+  arguments: [
+    {
+      type: 'TemplateLiteral';
+      quasis: [
         {
-          type: 'CallExpression';
-          callee: {
-            type: 'Identifier';
-            name: '__GLIMMER_TEMPLATE';
+          type: 'TemplateElement';
+          value: {
+            /** Raw template text */
+            raw: string;
           };
-          arguments: [
-            {
-              type: 'TemplateLiteral';
-              quasis: [
-                {
-                  type: 'TemplateElement';
-                  value: {
-                    /** Raw template text */
-                    raw: string;
-                  };
-                }
-              ];
-            },
-            // We don't really care what happens here, but I've included it for completeness
-            {
-              type: 'ObjectExpression';
-            }
-          ];
         }
       ];
-    };
-  }>;
-  kind: 'const' | 'let' | 'var';
+    },
+    // We don't really care what happens here, but I've included it for completeness
+    {
+      type: 'ObjectExpression';
+    }
+  ];
 };
 
-type GlimmerClassProperty = {
-  type: 'ClassProperty';
-  key: {
-    type: 'CallExpression';
-    callee: {
-      type: 'Identifier';
-      name: '__GLIMMER_TEMPLATE';
-    };
-    arguments: [
-      {
-        type: 'TemplateLiteral';
-        quasis: [
-          {
-            type: 'TemplateElement';
-            value: {
-              /** Raw template text */
-              raw: string;
-            };
-          }
-        ];
-      },
-      // We don't really care what happens here, but I've included it for completeness
-      {
-        type: 'ObjectExpression';
-      }
-    ];
-  };
-  value: null;
+type GlimmerArrayExpression = {
+  type: 'ArrayExpression';
+  elements: [GlimmerCallExpression];
 };
 
-type GlimmerExportDefaultDeclaration = {
-  type: 'ExportDefaultDeclaration';
-  declaration: {
-    type: 'ArrayExpression';
-    elements: [
-      {
-        type: 'CallExpression';
-        callee: {
-          type: 'Identifier';
-          name: '__GLIMMER_TEMPLATE';
-        };
-        arguments: [
-          {
-            type: 'TemplateLiteral';
-            quasis: [
-              {
-                type: 'TemplateElement';
-                value: {
-                  /** Raw template text */
-                  raw: string;
-                };
-              }
-            ];
-          },
-          // We don't really care what happens here, but I've included it for completeness
-          {
-            type: 'ObjectExpression';
-          }
-        ];
-      }
-    ];
-  };
-};
-
-type GlimmerExportDefaultDeclarationWithTSAsExpression = {
-  type: 'ExportDefaultDeclaration';
-  declaration: {
+type GlimmerTSAsExpression = {
     type: 'TSAsExpression';
-    expression: {
-      type: 'ArrayExpression';
-      elements: [
-        {
-          type: 'CallExpression';
-          callee: {
-            type: 'Identifier';
-            name: '__GLIMMER_TEMPLATE';
-          };
-          arguments: [
-            {
-              type: 'TemplateLiteral';
-              quasis: [
-                {
-                  type: 'TemplateElement';
-                  value: {
-                    /** Raw template text */
-                    raw: string;
-                  };
-                }
-              ];
-            },
-            // We don't really care what happens here, but I've included it for completeness
-            {
-              type: 'ObjectExpression';
-            }
-          ];
-        }
-      ];
-    };
+    expression: GlimmerArrayExpression;
     typeAnnotation: {
       type: 'TSTypeReference';
       typeName: {
@@ -186,9 +49,7 @@ type GlimmerExportDefaultDeclarationWithTSAsExpression = {
             type: 'TSTypeReference';
             typeName: {
               type: 'Identifier';
-                // e.g. Signature
-                identifierName: string;
-              };
+
               // e.g. Signature
               name: string;
             };
@@ -196,6 +57,83 @@ type GlimmerExportDefaultDeclarationWithTSAsExpression = {
         ];
       };
     };
+  }{
+    type: 'TSAsExpression';
+    expression: GlimmerArrayExpression;
+    typeAnnotation: {
+      type: 'TSTypeReference';
+      typeName: {
+        type: 'Identifier';
+        // e.g. TemplateOnlyComponent
+        name: string;
+      };
+      typeParameters: {
+        type: 'TSTypeParameterInstantiation';
+        params: [
+          {
+            type: 'TSTypeReference';
+            typeName: {
+              type: 'Identifier';
+
+              // e.g. Signature
+              name: string;
+            };
+          }
+        ];
+      };
+    };
+  }
+
+type GlimmerExpressionStatement = {
+  type: 'ExpressionStatement';
+  expression: GlimmerArrayExpression;
+};
+
+type GlimmerVariableDeclaration = {
+  type: 'VariableDeclaration';
+  declarations: Array<{
+    type: 'VariableDeclarator';
+    id: {
+      type: 'Identifier';
+      /** Variable name */
+      name: string;
+    };
+    init: GlimmerArrayExpression;
+  }>;
+  kind: 'const' | 'let' | 'var';
+};
+
+type GlimmerClassProperty = {
+  type: 'ClassProperty';
+  key: GlimmerCallExpression;
+  value: null;
+};
+
+type GlimmerExportDefaultDeclaration = {
+  type: 'ExportDefaultDeclaration';
+  declaration: GlimmerArrayExpression;
+};
+
+type GlimmerExportDefaultDeclarationWithTSAsExpression = {
+  type: 'ExportDefaultDeclaration';
+  declaration: GlimmerTSAsExpression;
+};
+
+type GlimmerExportNamedDeclarationTS = {
+  type: 'ExportNamedDeclaration';
+  declaration: {
+    type: 'VariableDeclaration';
+    declarations: [
+      {
+        type: 'VariableDeclarator';
+        id: {
+          type: 'Identifier';
+          name: string;
+        };
+        init: GlimmerTSAsExpression;
+      }
+    ];
+    kind: 'const';
   };
 };
 ```

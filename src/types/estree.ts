@@ -10,7 +10,8 @@ import type {
   PrivateIdentifier,
   SimpleCallExpression,
   TemplateLiteral,
-  VariableDeclaration
+  VariableDeclaration,
+  VariableDeclarator
 } from 'estree';
 
 export type {
@@ -98,4 +99,10 @@ export function isVariableDeclaration(
   value: unknown
 ): value is VariableDeclaration {
   return isRecord(value) && value.type === 'VariableDeclaration';
+}
+
+export function isVariableDeclarator(
+  value: unknown
+): value is VariableDeclarator {
+  return isRecord(value) && value.type === 'VariableDeclarator';
 }
