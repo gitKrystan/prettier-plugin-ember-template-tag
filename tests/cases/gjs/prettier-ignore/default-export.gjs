@@ -1,0 +1,2 @@
+// prettier-ignore
+export default <template>     Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. </template>
