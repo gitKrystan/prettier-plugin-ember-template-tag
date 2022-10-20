@@ -135,12 +135,17 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
 
   printer.hasPrettierIgnore = (path): boolean => {
     if (
-      isGlimmerArrayExpressionPath(path) ||
-      isGlimmerClassPropertyPath(path) ||
-      isGlimmerExportDefaultDeclarationPath(path) ||
-      isGlimmerExportNamedDeclaration(path) ||
-      isGlimmerExpressionStatementPath(path) ||
-      isGlimmerVariableDeclarationPath(path)
+      [
+        isGlimmerArrayExpressionPath,
+        isGlimmerClassPropertyPath,
+        isGlimmerExportDefaultDeclarationPath,
+        isGlimmerExportDefaultDeclarationTSPath,
+        isGlimmerExportNamedDeclaration,
+        isGlimmerExpressionStatementPath,
+        isGlimmerExpressionStatementTSPath,
+        isGlimmerVariableDeclarationPath,
+        isTaggedGlimmerArrayExpressionPath
+      ].some(test => test(path))
     ) {
       // On the first pass, ignore prettier-ignore comments on Glimmer embed
       // paths. We need to handle them specially to ensure they are transformed
