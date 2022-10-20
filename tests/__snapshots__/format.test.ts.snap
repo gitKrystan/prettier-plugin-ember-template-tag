@@ -261,6 +261,23 @@ export interface Signature {
   Yields: [];
 }
 
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+"
+`;
+
+exports[`format > it formats cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
 export const Exported = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
@@ -297,6 +314,29 @@ const bool: boolean = false,
 "
 `;
 
+exports[`format > it formats cases/gts/multiple-declarations-no-semi-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+"
+`;
+
 exports[`format > it formats cases/gts/multiple-declarations-with-semi.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
@@ -316,6 +356,29 @@ const ModVar1: TemplateOnlyComponent<Signature> = <template>
   ModVar2: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
   </template>,
+  num = 1;
+"
+`;
+
+exports[`format > it formats cases/gts/multiple-declarations-with-semi-and-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
   num = 1;
 "
 `;
@@ -406,6 +469,21 @@ export interface Signature {
 }
 
 // prettier-ignore
+export const Exported: TemplateOnlyComponent<Signature> =
+  <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
+"
+`;
+
+exports[`format > it formats cases/gts/prettier-ignore/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
 export const Exported =
   <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template> as TemplateOnlyComponent<Signature>
 "
@@ -440,6 +518,29 @@ const bool: boolean = false,
 "
 `;
 
+exports[`format > it formats cases/gts/prettier-ignore/multiple-declarations-no-semi-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
+const bool: boolean = false,
+  ModVar3 =
+    <template>
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+</template> as TemplateOnlyComponent<Signature>,
+  ModVar4 =
+    <template>
+  Second module variable template.
+</template> as TemplateOnlyComponent<Signature>
+"
+`;
+
 exports[`format > it formats cases/gts/prettier-ignore/multiple-declarations-with-semi.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
@@ -459,6 +560,29 @@ const ModVar1: TemplateOnlyComponent<Signature> =
     <template>
   Second module variable template.
 </template>,
+  num = 1;
+"
+`;
+
+exports[`format > it formats cases/gts/prettier-ignore/multiple-declarations-with-semi-and-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
+const ModVar1 =
+    <template>
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+</template> as TemplateOnlyComponent<Signature>,
+  ModVar2 =
+    <template>
+  Second module variable template.
+</template> as TemplateOnlyComponent<Signature>,
   num = 1;
 "
 `;
