@@ -1,9 +1,9 @@
 {
-  "name": "ember-template-tag-prettier",
+  "name": "prettier-plugin-ember-template-tag",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/ember-template-tag-prettier.cjs",
+  "main": "dist/prettier-plugin-ember-template-tag.cjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

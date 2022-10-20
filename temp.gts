@@ -1,94 +1,18 @@
 
-> ember-template-tag-prettier@0.0.0 example-ts /Users/krystanhuffmenne/Code/ember-template-tag-prettier
-> vite build && ./node_modules/.bin/prettier --loglevel debug --plugin . example.gts
+> prettier-plugin-ember-template-tag@0.0.0 example-ts /Users/krystanhuffmenne/Code/prettier-plugin-ember-template-tag
+> vite build && ./node_modules/.bin/prettier --plugin . example.gts
 
-vite v3.1.6 building for production...
+vite v3.1.8 building for production...
 transforming...
-✓ 463 modules transformed.
+✓ 200 modules transformed.
 rendering chunks...
-dist/ember-template-tag-prettier.cjs   1800.99 KiB / gzip: 390.51 KiB
-import type {
-  TOC,
-  TemplateOnlyComponent,
-} from "@ember/component/template-only";
-import Component from "@glimmer/component";
+dist/prettier-plugin-ember-template-tag.cjs   1240.35 KiB / gzip: 274.98 KiB
+import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
-  Args: {
-    Named: {
-      message: string;
-      target?: string;
-    };
-    Positional: [extraSpecialPreamble: string];
-  };
-  Blocks: {
-    default: [greeting: string];
-  };
-}
-
-const num2: number = 1;
-
-// comment before file
-
-<template>
-  <h1>
-    {{@message}}
-    Module top level template. Module top level template. Module top level
-    template. Module top level template. Module top level template. Module top
-    level template.
-  </h1>
-</template> as TemplateOnlyComponent<Signature>;
-
-const Oneline: TOC<Signature> = <template>One line</template>
-
-export const Exported: TemplateOnlyComponent<Signature> = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>
-
-// Just testing some edge cases. This declaration should have a semicolon!
-
-const ModVar1: TemplateOnlyComponent<Signature> = <template>
-    <h1>
-      Module variable template. Module variable template. Module variable
-      template. Module variable template. Module variable template. Module
-      variable template. Module variable template. Module variable template.
-    </h1>
-  </template>,
-  ModVar2: TemplateOnlyComponent<Signature> = <template>
-    Second module variable template.
-  </template>,
-  num: number = 1;
-
-// Just testing some edge cases. This declaration should NOT have a semicolon!
-
-const bool: boolean = false,
-  ModVar3: TemplateOnlyComponent<Signature> = <template>
-    <h1>
-      Module variable template. Module variable template. Module variable
-      template. Module variable template. Module variable template. Module
-      variable template. Module variable template. Module variable template.
-    </h1>
-  </template>,
-  ModVar4: TemplateOnlyComponent<Signature> = <template>
-    Second module variable template.
-  </template>
-
-/**
- * An example GJS file on which we can run the Prettier for GJS plugin.
- */
-class MyComponent extends Component<Signature> {
-  <template>
-    <h1>
-      Class top level template. Class top level template. Class top level
-      template. Class top level template. Class top level template.
-    </h1>
-  </template>
-
-  what = `template literal that is not a template`;
-
-  // comment in the class
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
 }
 
 export default <template>
@@ -96,10 +20,4 @@ export default <template>
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
-
-declare module "@glint/environment-ember-loose/registry" {
-  export default interface Registry {
-    MyComponent: typeof MyComponent;
-  }
-}
+</template> as TemplateOnlyComponent<Signature>
