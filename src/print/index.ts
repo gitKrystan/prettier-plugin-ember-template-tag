@@ -6,7 +6,7 @@ import {
   isGlimmerClassPropertyPath,
   isGlimmerExportDefaultDeclarationPath,
   isGlimmerExportDefaultDeclarationTSPath,
-  isGlimmerExportNamedDeclaration,
+  isGlimmerExportNamedDeclarationPath,
   isGlimmerExpressionStatementPath,
   isGlimmerExpressionStatementTSPath,
   isGlimmerVariableDeclarationPath,
@@ -56,7 +56,7 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
       const node = path.getValue();
       tagGlimmerArrayExpression(node.declaration, hasPrettierIgnore);
       return defaultPrint(path, embedOptions, print);
-    } else if (isGlimmerExportNamedDeclaration(path)) {
+    } else if (isGlimmerExportNamedDeclarationPath(path)) {
       embedOptions.semi = false;
       for (let declarator of path.getValue().declaration.declarations) {
         if (isGlimmerVariableDeclarator(declarator)) {
@@ -126,6 +126,15 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
         embedOptions,
         hasPrettierIgnore
       );
+    } else if (isGlimmerArrayExpressionPath(path)) {
+      // FIXME: Should we throw in DEBUG mode?
+      console.error('Found untagged GlimmerArrayExpression', path.getValue());
+      return printGlimmerArrayExpression(
+        path,
+        textToDoc,
+        embedOptions,
+        hasPrettierIgnore
+      );
     } else {
       let ret = defaultPrint(path, embedOptions, print);
       embedOptions.semi = originalOptions.semi;
@@ -140,7 +149,7 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
         isGlimmerClassPropertyPath,
         isGlimmerExportDefaultDeclarationPath,
         isGlimmerExportDefaultDeclarationTSPath,
-        isGlimmerExportNamedDeclaration,
+        isGlimmerExportNamedDeclarationPath,
         isGlimmerExpressionStatementPath,
         isGlimmerExpressionStatementTSPath,
         isGlimmerVariableDeclarationPath,

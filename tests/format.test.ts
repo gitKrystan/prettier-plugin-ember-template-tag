@@ -41,7 +41,6 @@ async function getCases(
         const filename = path.join(dir.toString(), entry.name);
         const code = fs.readFileSync(filename, 'utf8');
         const name = path.relative(baseDir.toString(), filename);
-        console.info(name);
 
         return {
           name,

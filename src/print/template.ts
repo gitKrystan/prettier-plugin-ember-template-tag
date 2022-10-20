@@ -4,6 +4,7 @@ import { doc } from 'prettier';
 
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
 import type {
+  GlimmerArrayExpression,
   GlimmerCallExpression,
   GlimmerClassProperty,
   TaggedGlimmerArrayExpression
@@ -31,7 +32,7 @@ export function printGlimmerClassProperty(
 }
 
 export function printGlimmerArrayExpression(
-  path: AstPath<TaggedGlimmerArrayExpression>,
+  path: AstPath<TaggedGlimmerArrayExpression | GlimmerArrayExpression>,
   textToDoc: (
     text: string,
     options: ParserOptions<BaseNode>
@@ -44,7 +45,7 @@ export function printGlimmerArrayExpression(
     node.elements[0],
     textToDoc,
     options,
-    node.hasPrettierIgnore || hasPrettierIgnore
+    ('hasPrettierIgnore' in node && node.hasPrettierIgnore) || hasPrettierIgnore
   );
 }
 
