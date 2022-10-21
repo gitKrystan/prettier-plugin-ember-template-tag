@@ -1,91 +1,102 @@
-import type { AstPath } from 'prettier';
-
-import { TEMPLATE_TAG_PLACEHOLDER } from '../config';
-import { isRecord } from '../utils';
 import type {
-  ArrayExpression,
-  BaseNode,
-  ClassProperty,
   ExportDefaultDeclaration,
   ExportNamedDeclaration,
   ExpressionStatement,
-  Identifier,
-  SimpleCallExpression,
   TemplateLiteral,
   TSAsExpression,
   VariableDeclaration,
   VariableDeclarator
-} from './estree';
+} from '@babel/types';
 import {
-  isArrayExpression,
-  isClassProperty,
   isExportDefaultDeclaration,
   isExportNamedDeclaration,
   isExpressionStatement,
-  isIdentifier,
-  isSimpleCallExpression,
-  isTemplateLiteral,
   isTSAsExpression,
   isVariableDeclaration,
   isVariableDeclarator
-} from './estree';
+} from '@babel/types';
+import type { AstPath } from 'prettier';
+
+import { GLIMMER_EXPRESSION_TYPE } from '../config';
+import { isRecord } from '../utils';
+import type { BaseNode } from './ast';
 
 /**
- * Before preprocess:
- * @example
- * ```gts
- * class MyComponent {
- *   <template>hello</template>
- * }
+ * Extracts a `GlimmerExpression` node from the given parent node.
  *
- * class MyComponent extends Component<MySignature> {
- *   <template>hello</template>
- * }
- * ```
- *
- * After preprocess:
- * @example
- * ```ts
- * class MyComponent {
- *   // Note, this is NOT an array! This is a computed property name
- *   [__GLIMMER_TEMPLATE(...)]
- * }
- *
- * class MyComponent extends Component<MySignature> {
- *   // Note, this is NOT an array! This is a computed property name
- *   [__GLIMMER_TEMPLATE(...)]
- * }
- * ```
+ * @param templateLiteral The `TemplateLiteral` node associated with the parent.
+ * @param parentNode The parent node.
+ * @param hasPrettierIgnore Whether the `GlimmerExpression` node should be prettier-ignored.
  */
-export interface GlimmerClassProperty extends ClassProperty {
-  key: GlimmerCallExpression;
-  value: null;
+export function extractGlimmerExpression(
+  templateLiteral: TemplateLiteral,
+  {
+    start,
+    end,
+    range,
+    loc,
+    leadingComments,
+    trailingComments,
+    innerComments,
+    extra
+  }: BaseNode,
+  hasPrettierIgnore: boolean
+): GlimmerExpression {
+  return {
+    ...templateLiteral,
+    type: GLIMMER_EXPRESSION_TYPE,
+    start,
+    end,
+    range,
+    loc,
+    leadingComments,
+    trailingComments,
+    innerComments,
+    extra: {
+      ...extra,
+      ...templateLiteral.extra,
+      hasPrettierIgnore
+    }
+  };
 }
 
-export function isGlimmerClassPropertyPath(
+/**
+ * A custom node similar to a `TemplateLiteral` that contains the template's
+ * content and also tracks if its parent has a prettier-ignore comment so that
+ * we can transform the pre-processed expression back into an unformatted
+ * `<template>` tag in those cases.
+ */
+export interface GlimmerExpression extends Omit<TemplateLiteral, 'type'> {
+  type: typeof GLIMMER_EXPRESSION_TYPE;
+  extra: {
+    hasPrettierIgnore: boolean;
+    [key: string]: unknown;
+  };
+}
+
+export function isGlimmerExpressionPath(
   path: AstPath<BaseNode>
-): path is AstPath<GlimmerClassProperty> {
+): path is AstPath<GlimmerExpression> {
   return path.match((node: BaseNode | null) => {
-    return isClassProperty(node) && isGlimmerCallExpression(node.key);
+    return isGlimmerExpression(node);
   });
 }
 
+function isGlimmerExpression(
+  value: BaseNode | null | undefined
+): value is GlimmerExpression {
+  return isRecord(value) && value.type === GLIMMER_EXPRESSION_TYPE;
+}
+
 /**
- * Before preprocess:
  * @example
  * ```gts
  * export default <template>hello</template>
  * ```
- *
- * After preprocess:
- * @example
- * ```ts
- * export default [__GLIMMER_TEMPLATE(...)]
- * ```
  */
 export interface GlimmerExportDefaultDeclaration
-  extends ExportDefaultDeclaration {
-  declaration: GlimmerArrayExpression;
+  extends Omit<ExportDefaultDeclaration, 'declaration'> {
+  declaration: GlimmerExpression;
 }
 
 export function isGlimmerExportDefaultDeclarationPath(
@@ -93,27 +104,19 @@ export function isGlimmerExportDefaultDeclarationPath(
 ): path is AstPath<GlimmerExportDefaultDeclaration> {
   return path.match((node: BaseNode | null) => {
     return (
-      isExportDefaultDeclaration(node) &&
-      isGlimmerArrayExpression(node.declaration)
+      isExportDefaultDeclaration(node) && isGlimmerExpression(node.declaration)
     );
   });
 }
 
 /**
- * Before preprocess:
  * @example
  * ```gts
  * export default <template>hello</template> as Component<MySignature>
  * ```
- *
- * After preprocess:
- * @example
- * ```ts
- * export default [__GLIMMER_TEMPLATE(...)] as Component<MySignature>
- * ```
  */
 export interface GlimmerExportDefaultDeclarationTS
-  extends ExportDefaultDeclaration {
+  extends Omit<ExportDefaultDeclaration, 'declaration'> {
   declaration: GlimmerTSAsExpression;
 }
 
@@ -129,43 +132,88 @@ export function isGlimmerExportDefaultDeclarationTSPath(
 }
 
 /**
- * Before preprocess:
+ * This is the TypeScript `as` expression used in many of the other TS nodes, e.g.
+ * ```ts
+ * export default <template>Hello</template> as Component<MySignature>
+ *                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * ```
+ */
+export interface GlimmerTSAsExpression
+  extends Omit<TSAsExpression, 'expression'> {
+  expression: GlimmerExpression;
+}
+
+function isGlimmerTSAsExpression(
+  value: BaseNode | null | undefined
+): value is GlimmerTSAsExpression {
+  return isTSAsExpression(value) && isGlimmerExpression(value.expression);
+}
+
+/**
+ * @example
+ * ```gts
+ * export const MyComponent = <template>hello</template>;
+ *
+ * export const MyComponent = <template>hello</template> as Component<MySignature>;
+ * ```
+ */
+export interface GlimmerExportNamedDeclaration
+  extends Omit<ExportNamedDeclaration, 'declaration'> {
+  declaration: GlimmerVariableDeclaration;
+}
+
+export function isGlimmerExportNamedDeclarationPath(
+  path: AstPath<BaseNode>
+): path is AstPath<GlimmerExportNamedDeclaration> {
+  return path.match((node: BaseNode | null) => {
+    return (
+      isExportNamedDeclaration(node) &&
+      isGlimmerVariableDeclaration(node.declaration)
+    );
+  });
+}
+
+export function isGlimmerVariableDeclarationPath(
+  path: AstPath<BaseNode>
+): path is AstPath<GlimmerVariableDeclaration> {
+  return path.match((node: BaseNode | null) => {
+    return isGlimmerVariableDeclaration(node);
+  });
+}
+
+function isGlimmerVariableDeclaration(
+  value: BaseNode | null | undefined
+): value is GlimmerVariableDeclaration {
+  return (
+    isVariableDeclaration(value) &&
+    (value.declarations.some(isGlimmerVariableDeclarator) ||
+      value.declarations.some(isGlimmerVariableDeclaratorTS))
+  );
+}
+
+/**
  * @example
  * ```gts
  * <template>hello</template>
  * ```
- *
- * After preprocess (and de-sugaring):
- * @example
- * ```ts
- * export default [__GLIMMER_TEMPLATE(...)]
- * ```
  */
-export interface GlimmerExpressionStatement extends ExpressionStatement {
-  expression: GlimmerArrayExpression;
+export interface GlimmerExpressionStatement
+  extends Omit<ExpressionStatement, 'expression'> {
+  expression: GlimmerExpression;
 }
 
 export function isGlimmerExpressionStatementPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerExpressionStatement> {
   return path.match((node: BaseNode | null) => {
-    return (
-      isExpressionStatement(node) && isGlimmerArrayExpression(node.expression)
-    );
+    return isExpressionStatement(node) && isGlimmerExpression(node.expression);
   });
 }
 
 /**
- * Before preprocess:
  * @example
  * ```gts
  * <template>hello</template> as Component<MySignature>
- * ```
- *
- * After preprocess (and desugaring):
- * @example
- * ```ts
- * export default [__GLIMMER_TEMPLATE(...)] as Component<MySignature>
  * ```
  */
 export interface GlimmerExpressionStatementTS
@@ -184,20 +232,11 @@ export function isGlimmerExpressionStatementTSPath(
 }
 
 /**
- * Before preprocess:
  * @example
  * ```gts
- * const MyComponent = <template>hello</template>
+ * const MyComponent = <template>hello</template>;
  *
- * const MyComponent = <template>hello</template> as Component<MySignature>
- * ```
- *
- * After preprocess:
- * @example
- * ```ts
- * const MyComponent = [__GLIMMER_TEMPLATE(...)]
- *
- * const MyComponent = [__GLIMMER_TEMPLATE(...)] as Component<MySignature>
+ * const MyComponent = <template>hello</template> as Component<MySignature>;
  * ```
  */
 export interface GlimmerVariableDeclaration
@@ -207,145 +246,29 @@ export interface GlimmerVariableDeclaration
   >;
 }
 
-export function isGlimmerVariableDeclarationPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerVariableDeclaration> {
-  return path.match((node: BaseNode | null) => {
-    return isGlimmerVariableDeclaration(node);
-  });
-}
-
-function isGlimmerVariableDeclaration(
-  value: unknown
-): value is GlimmerVariableDeclaration {
-  return (
-    isVariableDeclaration(value) &&
-    (value.declarations.some(isGlimmerVariableDeclarator) ||
-      value.declarations.some(isGlimmerVariableDeclaratorTS))
-  );
-}
-
-export interface GlimmerExportNamedDeclaration
-  extends Omit<ExportNamedDeclaration, 'declaration'> {
-  declaration: GlimmerVariableDeclaration;
-}
-
 /**
- * Before preprocess:
- * @example
+ * Represents the declarator in a declaration statement:
  * ```gts
- * export const MyComponent = <template>hello</template>
- *
- * export const MyComponent = <template>hello</template> as Component<MySignature>
- * ```
- *
- * After preprocess:
- * @example
- * ```ts
- * export const MyComponent = [__GLIMMER_TEMPLATE(...)]
- *
- * export const MyComponent = [__GLIMMER_TEMPLATE(...)] as Component<MySignature>
+ * const MyComponent = <template>Hello</template>
+ *                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
  * ```
  */
-export function isGlimmerExportNamedDeclarationPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerExportNamedDeclaration> {
-  return path.match((node: BaseNode | null) => {
-    return (
-      isExportNamedDeclaration(node) &&
-      isGlimmerVariableDeclaration(node.declaration)
-    );
-  });
-}
-
-/**
- * Before preprocess: n/a
- *
- * After preprocess:
- * The array expression is the `[__GLIMMER_TEMPLATE(...)]` portion of many of
- * the top-level nodes (except `GlimmerClassProperty`).
- */
-export interface GlimmerArrayExpression extends ArrayExpression {
-  type: 'ArrayExpression';
-  elements: [GlimmerCallExpression];
-}
-
-export function isGlimmerArrayExpressionPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerArrayExpression> {
-  return path.match((node: BaseNode | null) => {
-    return isGlimmerArrayExpression(node);
-  });
-}
-
-function isGlimmerArrayExpression(
-  value: unknown
-): value is GlimmerArrayExpression {
-  return isArrayExpression(value) && isGlimmerCallExpression(value.elements[0]);
-}
-
-export function tagGlimmerArrayExpression(
-  value: GlimmerArrayExpression,
-  hasPrettierIgnore: boolean
-): void {
-  let tagged = value as unknown as TaggedGlimmerArrayExpression;
-  tagged.type = 'GlimmerArrayExpression';
-  tagged.hasPrettierIgnore = hasPrettierIgnore;
-}
-
-/**
- * A tagged version of `GlimmerArrayExpression` that tracks if its parent
- * has a prettier-ignore comment so that we can transform the pre-processed
- * expression back into an unformatted `<template>` tag in those cases.
- */
-export interface TaggedGlimmerArrayExpression
-  extends Omit<GlimmerArrayExpression, 'type'> {
-  // HACK: We need to change the type to avoid Prettier mistakenly adding a
-  // semi-colon to prevent ASI issues.
-  type: 'GlimmerArrayExpression';
-  hasPrettierIgnore: boolean;
-}
-
-export function isTaggedGlimmerArrayExpressionPath(
-  path: AstPath<BaseNode>
-): path is AstPath<TaggedGlimmerArrayExpression> {
-  return path.match((node: BaseNode | null) => {
-    return isTaggedGlimmerArrayExpression(node);
-  });
-}
-
-function isTaggedGlimmerArrayExpression(
-  value: unknown
-): value is TaggedGlimmerArrayExpression {
-  return isRecord(value) && value.type === 'GlimmerArrayExpression';
-}
-
-/**
- * Before preprocess: n/a
- *
- * After preprocess, this represents the declarator in a declaration statement:
- * ```gts
- * const MyComponent = [__GLIMMER_TEMPLATE(...)]
- *                     ^^^^^^^^^^^^^^^^^^^^^^^^^
- * ```
- */
-export interface GlimmerVariableDeclarator extends VariableDeclarator {
-  init: GlimmerArrayExpression;
+export interface GlimmerVariableDeclarator
+  extends Omit<VariableDeclarator, 'init'> {
+  init: GlimmerExpression;
 }
 
 export function isGlimmerVariableDeclarator(
-  value: unknown
+  value: BaseNode | null | undefined
 ): value is GlimmerVariableDeclarator {
-  return isVariableDeclarator(value) && isGlimmerArrayExpression(value.init);
+  return isVariableDeclarator(value) && isGlimmerExpression(value.init);
 }
 
 /**
- * Before preprocess: n/a
- *
- * After preprocess, this represents the declarator in a declaration statement:
+ * Represents the declarator in a declaration statement:
  * ```gts
- * const MyComponent = [__GLIMMER_TEMPLATE(...)] as Component<MySignature>
- *                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * const MyComponent = <template>Hello</template> as Component<MySignature>
+ *                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * ```
  */
 export interface GlimmerVariableDeclaratorTS
@@ -354,66 +277,7 @@ export interface GlimmerVariableDeclaratorTS
 }
 
 export function isGlimmerVariableDeclaratorTS(
-  value: unknown
+  value: BaseNode | null | undefined
 ): value is GlimmerVariableDeclaratorTS {
   return isVariableDeclarator(value) && isGlimmerTSAsExpression(value.init);
-}
-
-/**
- * Before preprocess: n/a
- *
- * After preprocess:
- * ```ts
- * __GLIMMER_TEMPLATE(...)
- * ```
- */
-export interface GlimmerCallExpression extends SimpleCallExpression {
-  callee: GlimmerIdentifier;
-  arguments: [TemplateLiteral];
-}
-
-function isGlimmerCallExpression(
-  value: unknown
-): value is GlimmerCallExpression {
-  return (
-    isSimpleCallExpression(value) &&
-    isIdentifier(value.callee) &&
-    value.callee.name === TEMPLATE_TAG_PLACEHOLDER &&
-    Array.isArray(value.arguments) &&
-    isTemplateLiteral(value.arguments[0])
-  );
-}
-
-/**
- * Before preprocess: n/a
- *
- * After preprocess, this is the Identifier portion of the
- * `GlimmerCallExpression`:
- * ```ts
- * __GLIMMER_TEMPLATE(...)
- * ^^^^^^^^^^^^^^^^^^
- * ```
- */
-export interface GlimmerIdentifier extends Identifier {
-  name: typeof TEMPLATE_TAG_PLACEHOLDER; // This is just `string` so not SUPER useful, just documentation
-}
-
-/**
- * Before preprocess: n/a
- *
- * After preprocess, this is the TypeScript `as` expression used in many of the
- * other TS nodes, e.g.
- * ```ts
- * export default [__GLIMMER_TEMPLATE(...)] as Component<MySignature>
- *                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * ```
- */
-export interface GlimmerTSAsExpression extends TSAsExpression {
-  expression: GlimmerArrayExpression;
-}
-
-function isGlimmerTSAsExpression(
-  value: unknown
-): value is GlimmerTSAsExpression {
-  return isTSAsExpression(value) && isGlimmerArrayExpression(value.expression);
 }

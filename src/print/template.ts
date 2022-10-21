@@ -1,21 +1,17 @@
-import { BaseNode } from 'estree';
-import type { AstPath, ParserOptions } from 'prettier';
+import { TemplateLiteral } from '@babel/types';
+import type { ParserOptions } from 'prettier';
 import { doc } from 'prettier';
 
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
-import type {
-  GlimmerArrayExpression,
-  GlimmerCallExpression,
-  GlimmerClassProperty,
-  TaggedGlimmerArrayExpression
-} from '../types/glimmer';
+import type { BaseNode } from '../types/ast';
+import type { GlimmerExpression } from '../types/glimmer';
 
 const {
   builders: { group, indent, softline }
 } = doc;
 
-export function printGlimmerClassProperty(
-  path: AstPath<GlimmerClassProperty>,
+export function printTemplateTag(
+  node: TemplateLiteral | GlimmerExpression,
   textToDoc: (
     text: string,
     options: ParserOptions<BaseNode>
@@ -23,44 +19,9 @@ export function printGlimmerClassProperty(
   options: ParserOptions<BaseNode>,
   hasPrettierIgnore: boolean
 ): doc.builders.Group {
-  return printTemplateTag(
-    path.getValue().key,
-    textToDoc,
-    options,
-    hasPrettierIgnore
-  );
-}
+  const text = node.quasis.map(quasi => quasi.value.raw).join();
 
-export function printGlimmerArrayExpression(
-  path: AstPath<TaggedGlimmerArrayExpression | GlimmerArrayExpression>,
-  textToDoc: (
-    text: string,
-    options: ParserOptions<BaseNode>
-  ) => doc.builders.Doc,
-  options: ParserOptions<BaseNode>,
-  hasPrettierIgnore: boolean
-): doc.builders.Group {
-  const node = path.getValue();
-  return printTemplateTag(
-    node.elements[0],
-    textToDoc,
-    options,
-    ('hasPrettierIgnore' in node && node.hasPrettierIgnore) || hasPrettierIgnore
-  );
-}
-
-function printTemplateTag(
-  node: GlimmerCallExpression,
-  textToDoc: (
-    text: string,
-    options: ParserOptions<BaseNode>
-  ) => doc.builders.Doc,
-  options: ParserOptions<BaseNode>,
-  hasPrettierIgnore: boolean
-): doc.builders.Group {
-  const text = node.arguments[0].quasis.map(quasi => quasi.value.raw).join();
-
-  if (hasPrettierIgnore) {
+  if (hasPrettierIgnore || node.extra?.hasPrettierIgnore) {
     return group([TEMPLATE_TAG_OPEN, text, TEMPLATE_TAG_CLOSE]);
   } else {
     const contents = textToDoc(text.trim(), {

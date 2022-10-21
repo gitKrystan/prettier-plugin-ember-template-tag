@@ -1,14 +1,26 @@
+import { NodePath, traverse } from '@babel/core';
+import type { Comment, Node } from '@babel/types';
+// @ts-expect-error FIXME: Is this a hack? IDK!
+import { defineAliasedType } from '@babel/types/lib/definitions/utils';
+
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser, ParserOptions } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
 
-import { PRINTER_NAME } from './config';
+import { GLIMMER_EXPRESSION_TYPE, PRINTER_NAME } from './config';
 import { definePrinter } from './print/index';
-import type { BaseNode } from './types/estree';
 
 const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
 
 import { TEMPLATE_TAG_NAME, TEMPLATE_TAG_PLACEHOLDER } from './config';
+import type { BaseNode } from './types/ast';
+import { extractGlimmerExpression } from './types/glimmer';
+import {
+  isRawGlimmerArrayExpression,
+  isRawGlimmerClassProperty
+} from './types/raw';
+
+const defineType = defineAliasedType('Glimmer');
 
 const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
   text,
@@ -37,7 +49,68 @@ export const parser: Parser<BaseNode> = {
 
   preprocess(text: string, options: ParserOptions<BaseNode>): string {
     definePrinter(options);
-    let js = preprocess(text, options);
+    const js = preprocess(text, options);
     return typescript.preprocess?.(js, options) ?? js;
+  },
+
+  parse(
+    text: string,
+    parsers: Record<string, Parser<unknown>>,
+    options: ParserOptions<BaseNode>
+  ): BaseNode {
+    const ast = typescript.parse(text, parsers, options);
+    defineType(GLIMMER_EXPRESSION_TYPE, {
+      inherits: 'TemplateExpression',
+      aliases: ['Expression']
+    });
+    traverse(ast as Node, {
+      ArrayExpression(path) {
+        const node = path.node;
+        if (isRawGlimmerArrayExpression(node)) {
+          const newNode = extractGlimmerExpression(
+            node.elements[0].arguments[0],
+            node,
+            hasPrettierIgnoreParent(path)
+          );
+          // HACK: Babel types don't allow this
+          path.replaceWith(newNode as unknown as Node);
+        }
+      },
+      ClassProperty(path) {
+        const node = path.node;
+        if (isRawGlimmerClassProperty(node)) {
+          const newNode = extractGlimmerExpression(
+            node.key.arguments[0],
+            node,
+            hasPrettierIgnoreParent(path)
+          );
+          // HACK: Babel types don't allow this
+          path.replaceWith(newNode as unknown as Node);
+        }
+      }
+    });
+    return ast;
   }
 };
+
+function hasPrettierIgnoreParent(path: NodePath): boolean {
+  const parent = path.parentPath;
+  return (
+    parent !== null &&
+    (hasPrettierIgnore(parent) || hasPrettierIgnoreParent(parent))
+  );
+}
+
+function hasPrettierIgnore(path: NodePath): boolean {
+  const node = path.node;
+  // FIXME: Should we check `innerComments` here? I can't figure out what they are...
+  return (
+    node.leadingComments?.some(isPrettierIgnore) ||
+    node.trailingComments?.some(isPrettierIgnore) ||
+    false
+  );
+}
+
+function isPrettierIgnore(comment: Comment): boolean {
+  return comment.value.trim() === 'prettier-ignore';
+}
