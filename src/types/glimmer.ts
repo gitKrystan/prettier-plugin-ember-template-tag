@@ -47,10 +47,12 @@ import {
  * @example
  * ```ts
  * class MyComponent {
+ *   // Note, this is NOT an array! This is a computed property name
  *   [__GLIMMER_TEMPLATE(...)]
  * }
  *
  * class MyComponent extends Component<MySignature> {
+ *   // Note, this is NOT an array! This is a computed property name
  *   [__GLIMMER_TEMPLATE(...)]
  * }
  * ```
@@ -133,10 +135,10 @@ export function isGlimmerExportDefaultDeclarationTSPath(
  * <template>hello</template>
  * ```
  *
- * After preprocess:
+ * After preprocess (and de-sugaring):
  * @example
  * ```ts
- * [__GLIMMER_TEMPLATE(...)]
+ * export default [__GLIMMER_TEMPLATE(...)]
  * ```
  */
 export interface GlimmerExpressionStatement extends ExpressionStatement {
@@ -160,10 +162,10 @@ export function isGlimmerExpressionStatementPath(
  * <template>hello</template> as Component<MySignature>
  * ```
  *
- * After preprocess:
+ * After preprocess (and desugaring):
  * @example
  * ```ts
- * [__GLIMMER_TEMPLATE(...)] as Component<MySignature>
+ * export default [__GLIMMER_TEMPLATE(...)] as Component<MySignature>
  * ```
  */
 export interface GlimmerExpressionStatementTS
