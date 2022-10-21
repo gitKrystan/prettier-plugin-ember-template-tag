@@ -11,3 +11,4 @@ export interface Signature {
 
 
 export const Exported:    TemplateOnlyComponent<Signature> = <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
+/*AMBIGUOUS*/

@@ -1,4 +1,4 @@
-import { isRecord } from '../utils';
+import { isRecord } from '../utils/index';
 import type { doc } from 'prettier';
 
 export function isDocGroup(value: unknown): value is doc.builders.Group {

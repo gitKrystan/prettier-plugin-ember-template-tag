@@ -7,6 +7,7 @@ import {
 } from '../config';
 import type { BaseNode } from '../types/ast';
 import {
+  getGlimmerExpression,
   isGlimmerExportDefaultDeclarationPath,
   isGlimmerExportDefaultDeclarationTSPath,
   isGlimmerExpressionPath,
@@ -17,7 +18,7 @@ import {
   isRawGlimmerArrayExpressionPath,
   isRawGlimmerClassPropertyPath
 } from '../types/raw';
-import { assert, assertExists } from '../utils';
+import { assert, assertExists } from '../utils/index';
 import { printTemplateTag } from './template';
 
 // @ts-expect-error
@@ -54,10 +55,28 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
         return printRawText(path, options);
       } else {
         options.semi = false;
-        let printed = defaultPrint(path, options, print, args);
-        // HACK: Prettier hardcodes a semicolon for GlimmerExportDefaultDeclarationTSPath
-        if (Array.isArray(printed) && printed[printed.length - 1] === ';') {
-          printed.pop();
+        const printed = defaultPrint(path, options, print, args);
+        const glimmerExpression = getGlimmerExpression(path);
+
+        if (Array.isArray(printed)) {
+          const { semi } = options;
+          const { forceSemi } = glimmerExpression.extra;
+          const hasSemi = printed[printed.length - 1] === ';';
+          if (semi && forceSemi && !hasSemi) {
+            // We only need to push the semi-colon in semi: true mode because
+            // in semi: false mode, the ambiguous statement will get a prefixing
+            // semicolon
+            printed.push(';');
+          } else if ((!semi || !forceSemi) && hasSemi) {
+            // HACK: Prettier hardcodes a semicolon for GlimmerExportDefaultDeclarationTSPath
+            printed.pop();
+          }
+        } else {
+          // FIXME: Should we throw in DEBUG mode?
+          console.error(
+            'Expected GlimmerExpression to be printed within an array',
+            path.getValue()
+          );
         }
         return printed;
       }

@@ -9,4 +9,4 @@ export interface Sig {
   Yields: []
 }
 
-const Oneline = <template>      Module variable template (one line). </template> as TOC<Sig>
+const Oneline = <template>      One line. </template> as TOC<Sig>
