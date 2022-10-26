@@ -1,19 +1,13 @@
 import type {
   ExportDefaultDeclaration,
-  ExportNamedDeclaration,
   ExpressionStatement,
   TemplateLiteral,
-  TSAsExpression,
-  VariableDeclaration,
-  VariableDeclarator
+  TSAsExpression
 } from '@babel/types';
 import {
   isExportDefaultDeclaration,
-  isExportNamedDeclaration,
   isExpressionStatement,
-  isTSAsExpression,
-  isVariableDeclaration,
-  isVariableDeclarator
+  isTSAsExpression
 } from '@babel/types';
 import type { AstPath } from 'prettier';
 
@@ -145,48 +139,6 @@ function isGlimmerTSAsExpression(
 /**
  * @example
  * ```gts
- * export const MyComponent = <template>hello</template>;
- *
- * export const MyComponent = <template>hello</template> as Component<MySignature>;
- * ```
- */
-export interface GlimmerExportNamedDeclaration
-  extends Omit<ExportNamedDeclaration, 'declaration'> {
-  declaration: GlimmerVariableDeclaration;
-}
-
-export function isGlimmerExportNamedDeclarationPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerExportNamedDeclaration> {
-  return path.match((node: BaseNode | null) => {
-    return (
-      isExportNamedDeclaration(node) &&
-      isGlimmerVariableDeclaration(node.declaration)
-    );
-  });
-}
-
-export function isGlimmerVariableDeclarationPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerVariableDeclaration> {
-  return path.match((node: BaseNode | null) => {
-    return isGlimmerVariableDeclaration(node);
-  });
-}
-
-function isGlimmerVariableDeclaration(
-  value: BaseNode | null | undefined
-): value is GlimmerVariableDeclaration {
-  return (
-    isVariableDeclaration(value) &&
-    (value.declarations.some(isGlimmerVariableDeclarator) ||
-      value.declarations.some(isGlimmerVariableDeclaratorTS))
-  );
-}
-
-/**
- * @example
- * ```gts
  * <template>hello</template>
  * ```
  */
@@ -222,55 +174,4 @@ export function isGlimmerExpressionStatementTSPath(
       isExpressionStatement(node) && isGlimmerTSAsExpression(node.expression)
     );
   });
-}
-
-/**
- * @example
- * ```gts
- * const MyComponent = <template>hello</template>;
- *
- * const MyComponent = <template>hello</template> as Component<MySignature>;
- * ```
- */
-export interface GlimmerVariableDeclaration
-  extends Omit<VariableDeclaration, 'declarations'> {
-  declarations: Array<
-    GlimmerVariableDeclarator | GlimmerVariableDeclaratorTS | VariableDeclarator
-  >;
-}
-
-/**
- * Represents the declarator in a declaration statement:
- * ```gts
- * const MyComponent = <template>Hello</template>
- *                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
- * ```
- */
-export interface GlimmerVariableDeclarator
-  extends Omit<VariableDeclarator, 'init'> {
-  init: GlimmerExpression;
-}
-
-export function isGlimmerVariableDeclarator(
-  value: BaseNode | null | undefined
-): value is GlimmerVariableDeclarator {
-  return isVariableDeclarator(value) && isGlimmerExpression(value.init);
-}
-
-/**
- * Represents the declarator in a declaration statement:
- * ```gts
- * const MyComponent = <template>Hello</template> as Component<MySignature>
- *                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * ```
- */
-export interface GlimmerVariableDeclaratorTS
-  extends Omit<VariableDeclarator, 'init'> {
-  init: GlimmerTSAsExpression;
-}
-
-export function isGlimmerVariableDeclaratorTS(
-  value: BaseNode | null | undefined
-): value is GlimmerVariableDeclaratorTS {
-  return isVariableDeclarator(value) && isGlimmerTSAsExpression(value.init);
 }
