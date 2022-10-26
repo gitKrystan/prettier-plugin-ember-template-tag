@@ -3,7 +3,7 @@ import type { Parser, Plugin, Printer, SupportLanguage } from 'prettier';
 import { PARSER_NAME, PRINTER_NAME } from './config';
 import { parser } from './parse';
 import { printer } from './print/index';
-import type { BaseNode } from './types/estree';
+import type { BaseNode } from './types/ast';
 
 const languages: SupportLanguage[] = [
   {

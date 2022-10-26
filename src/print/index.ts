@@ -1,25 +1,23 @@
 import { ParserOptions, Plugin, Printer } from 'prettier';
 
-import type { BaseNode } from '../types/estree';
+import type { BaseNode } from '../types/ast';
 import {
-  isGlimmerArrayExpressionPath,
-  isGlimmerClassPropertyPath,
   isGlimmerExportDefaultDeclarationPath,
   isGlimmerExportDefaultDeclarationTSPath,
   isGlimmerExportNamedDeclarationPath,
+  isGlimmerExpressionPath,
   isGlimmerExpressionStatementPath,
   isGlimmerExpressionStatementTSPath,
   isGlimmerVariableDeclarationPath,
   isGlimmerVariableDeclarator,
-  isGlimmerVariableDeclaratorTS,
-  isTaggedGlimmerArrayExpressionPath,
-  tagGlimmerArrayExpression
+  isGlimmerVariableDeclaratorTS
 } from '../types/glimmer';
-import { assertExists } from '../utils';
 import {
-  printGlimmerArrayExpression,
-  printGlimmerClassProperty
-} from './template';
+  isRawGlimmerArrayExpressionPath,
+  isRawGlimmerClassPropertyPath
+} from '../types/raw';
+import { assertExists } from '../utils';
+import { printTemplateTag } from './template';
 
 // @ts-expect-error
 export let printer: Printer<BaseNode> = {};
@@ -50,46 +48,20 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
    */
   printer.embed = (path, print, textToDoc, embedOptions) => {
     let hasPrettierIgnore = defaultHasPrettierIgnore(path);
-
-    if (isGlimmerExportDefaultDeclarationPath(path)) {
+    if (
+      isGlimmerExportDefaultDeclarationPath(path) ||
+      isGlimmerExportDefaultDeclarationTSPath(path) ||
+      isGlimmerExportNamedDeclarationPath(path) ||
+      isGlimmerExpressionStatementPath(path) ||
+      isGlimmerExpressionStatementTSPath(path)
+    ) {
       embedOptions.semi = false;
-      const node = path.getValue();
-      tagGlimmerArrayExpression(node.declaration, hasPrettierIgnore);
-      return defaultPrint(path, embedOptions, print);
-    } else if (isGlimmerExportNamedDeclarationPath(path)) {
-      embedOptions.semi = false;
-      for (let declarator of path.getValue().declaration.declarations) {
-        if (isGlimmerVariableDeclarator(declarator)) {
-          tagGlimmerArrayExpression(declarator.init, hasPrettierIgnore);
-        } else if (isGlimmerVariableDeclaratorTS(declarator)) {
-          tagGlimmerArrayExpression(
-            declarator.init.expression,
-            hasPrettierIgnore
-          );
-        }
-      }
-      return defaultPrint(path, embedOptions, print);
-    } else if (isGlimmerExportDefaultDeclarationTSPath(path)) {
-      embedOptions.semi = false;
-      const node = path.getValue();
-      tagGlimmerArrayExpression(node.declaration.expression, hasPrettierIgnore);
       let printed = defaultPrint(path, embedOptions, print);
-      // HACK: Prettier hardcodes a semicolon here
+      // HACK: Prettier hardcodes a semicolon for GlimmerExportDefaultDeclarationTSPath
       if (Array.isArray(printed) && printed[printed.length - 1] === ';') {
         printed.pop();
       }
       return printed;
-    } else if (isGlimmerExpressionStatementPath(path)) {
-      embedOptions.semi = false;
-      tagGlimmerArrayExpression(path.getValue().expression, hasPrettierIgnore);
-      return defaultPrint(path, embedOptions, print);
-    } else if (isGlimmerExpressionStatementTSPath(path)) {
-      embedOptions.semi = false;
-      tagGlimmerArrayExpression(
-        path.getValue().expression.expression,
-        hasPrettierIgnore
-      );
-      return defaultPrint(path, embedOptions, print);
     } else if (isGlimmerVariableDeclarationPath(path)) {
       const node = path.getValue();
       const lastDeclarator = node.declarations[node.declarations.length - 1];
@@ -99,38 +71,30 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
       ) {
         embedOptions.semi = false;
       }
-      for (let declarator of node.declarations) {
-        if (isGlimmerVariableDeclarator(declarator)) {
-          tagGlimmerArrayExpression(declarator.init, hasPrettierIgnore);
-        } else if (isGlimmerVariableDeclaratorTS(declarator)) {
-          tagGlimmerArrayExpression(
-            declarator.init.expression,
-            hasPrettierIgnore
-          );
-        }
-      }
       return defaultPrint(path, embedOptions, print);
     }
 
-    if (isTaggedGlimmerArrayExpressionPath(path)) {
-      return printGlimmerArrayExpression(
-        path,
+    if (isGlimmerExpressionPath(path)) {
+      return printTemplateTag(
+        path.getValue(),
         textToDoc,
         embedOptions,
         hasPrettierIgnore
       );
-    } else if (isGlimmerClassPropertyPath(path)) {
-      return printGlimmerClassProperty(
-        path,
+    } else if (isRawGlimmerClassPropertyPath(path)) {
+      // FIXME: Should we throw in DEBUG mode?
+      console.error('Found untagged GlimmerClassProperty', path.getValue());
+      return printTemplateTag(
+        path.getValue().key.arguments[0],
         textToDoc,
         embedOptions,
         hasPrettierIgnore
       );
-    } else if (isGlimmerArrayExpressionPath(path)) {
+    } else if (isRawGlimmerArrayExpressionPath(path)) {
       // FIXME: Should we throw in DEBUG mode?
       console.error('Found untagged GlimmerArrayExpression', path.getValue());
-      return printGlimmerArrayExpression(
-        path,
+      return printTemplateTag(
+        path.getValue().elements[0].arguments[0],
         textToDoc,
         embedOptions,
         hasPrettierIgnore
@@ -145,15 +109,15 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
   printer.hasPrettierIgnore = (path): boolean => {
     if (
       [
-        isGlimmerArrayExpressionPath,
-        isGlimmerClassPropertyPath,
         isGlimmerExportDefaultDeclarationPath,
         isGlimmerExportDefaultDeclarationTSPath,
         isGlimmerExportNamedDeclarationPath,
         isGlimmerExpressionStatementPath,
         isGlimmerExpressionStatementTSPath,
         isGlimmerVariableDeclarationPath,
-        isTaggedGlimmerArrayExpressionPath
+        isGlimmerExpressionPath,
+        isRawGlimmerArrayExpressionPath,
+        isRawGlimmerClassPropertyPath
       ].some(test => test(path))
     ) {
       // On the first pass, ignore prettier-ignore comments on Glimmer embed
