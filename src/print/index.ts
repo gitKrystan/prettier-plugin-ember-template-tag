@@ -9,13 +9,9 @@ import type { BaseNode } from '../types/ast';
 import {
   isGlimmerExportDefaultDeclarationPath,
   isGlimmerExportDefaultDeclarationTSPath,
-  isGlimmerExportNamedDeclarationPath,
   isGlimmerExpressionPath,
   isGlimmerExpressionStatementPath,
-  isGlimmerExpressionStatementTSPath,
-  isGlimmerVariableDeclarationPath,
-  isGlimmerVariableDeclarator,
-  isGlimmerVariableDeclaratorTS
+  isGlimmerExpressionStatementTSPath
 } from '../types/glimmer';
 import {
   isRawGlimmerArrayExpressionPath,
@@ -51,12 +47,11 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
     if (
       isGlimmerExportDefaultDeclarationPath(path) ||
       isGlimmerExportDefaultDeclarationTSPath(path) ||
-      isGlimmerExportNamedDeclarationPath(path) ||
       isGlimmerExpressionStatementPath(path) ||
       isGlimmerExpressionStatementTSPath(path)
     ) {
       if (hasPrettierIgnore) {
-        return printRawText(path, options, true);
+        return printRawText(path, options);
       } else {
         options.semi = false;
         let printed = defaultPrint(path, options, print, args);
@@ -65,20 +60,6 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
           printed.pop();
         }
         return printed;
-      }
-    } else if (isGlimmerVariableDeclarationPath(path)) {
-      const node = path.getValue();
-      const lastDeclarator = node.declarations[node.declarations.length - 1];
-      if (
-        isGlimmerVariableDeclarator(lastDeclarator) ||
-        isGlimmerVariableDeclaratorTS(lastDeclarator)
-      ) {
-        options.semi = false;
-      }
-      if (hasPrettierIgnore) {
-        return printRawText(path, options, true);
-      } else {
-        return defaultPrint(path, options, print, args);
       }
     } else {
       options.semi = originalOptions.semi;
@@ -147,18 +128,15 @@ function isEstreePlugin(
 
 function printRawText(
   path: AstPath<BaseNode>,
-  options: ParserOptions<BaseNode>,
-  replaceGlimmer = false
+  options: ParserOptions<BaseNode>
 ): string {
   const node = path.getValue();
   assert('expected start', node.start);
   assert('expected end', node.end);
   let raw = options.originalText.slice(node.start, node.end);
   // HACK: We don't have access to the original raw text :-(
-  if (replaceGlimmer) {
-    raw = raw.replaceAll(`[${TEMPLATE_TAG_PLACEHOLDER}(\``, TEMPLATE_TAG_OPEN);
-    raw = raw.replaceAll('`, { strictMode: true })]', TEMPLATE_TAG_CLOSE);
-  }
+  raw = raw.replaceAll(`[${TEMPLATE_TAG_PLACEHOLDER}(\``, TEMPLATE_TAG_OPEN);
+  raw = raw.replaceAll('`, { strictMode: true })]', TEMPLATE_TAG_CLOSE);
   return raw;
 }
 
