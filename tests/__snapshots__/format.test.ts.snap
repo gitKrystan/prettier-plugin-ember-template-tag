@@ -127,8 +127,7 @@ export default <template>     Explicit default export module top level component
 
 exports[`format > it formats cases/gjs/prettier-ignore/exported-mod-var.gjs 1`] = `
 "// prettier-ignore
-export const Exported =
-  <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
+export const Exported = <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
 "
 `;
 
@@ -140,29 +139,26 @@ const num = 1;
 
 exports[`format > it formats cases/gjs/prettier-ignore/multiple-declarations-no-semi.gjs 1`] = `
 "// prettier-ignore
-const bool = false,
-  ModVar3 =
-    <template>
+const bool = false, ModVar3 =<template>
 
   <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
 </template>,
-  ModVar4 = <template>
+ModVar4 = <template>
   Second module variable template.
-</template>
+</template>;
 "
 `;
 
 exports[`format > it formats cases/gjs/prettier-ignore/multiple-declarations-with-semi.gjs 1`] = `
 "// prettier-ignore
-const ModVar1 =
-    <template>
+const ModVar1 = <template>
 
   <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
 </template>,
-  ModVar2 = <template>
+ModVar2 = <template>
   Second module variable template.
 </template>,
-  num = 1;
+    num = 1;
 "
 `;
 
@@ -469,8 +465,7 @@ export interface Signature {
 }
 
 // prettier-ignore
-export const Exported: TemplateOnlyComponent<Signature> =
-  <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
+export const Exported: TemplateOnlyComponent<Signature>     = <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template>
 "
 `;
 
@@ -484,8 +479,7 @@ export interface Signature {
 }
 
 // prettier-ignore
-export const Exported =
-  <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template> as TemplateOnlyComponent<Signature>
+export const Exported = <template>       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. </template> as TemplateOnlyComponent<Signature>
 "
 `;
 
@@ -505,16 +499,13 @@ export interface Signature {
 }
 
 // prettier-ignore
-const bool: boolean = false,
-  ModVar3: TemplateOnlyComponent<Signature> =
-    <template>
+const bool: boolean = false, ModVar3: TemplateOnlyComponent<Signature>  = <template>
 
   <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
 </template>,
-  ModVar4: TemplateOnlyComponent<Signature> =
-    <template>
+ModVar4: TemplateOnlyComponent<Signature> = <template>
   Second module variable template.
-</template>
+</template>;
 "
 `;
 
@@ -528,16 +519,13 @@ export interface Signature {
 }
 
 // prettier-ignore
-const bool: boolean = false,
-  ModVar3 =
-    <template>
+const bool: boolean = false, ModVar3  = <template>
 
   <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
 </template> as TemplateOnlyComponent<Signature>,
-  ModVar4 =
-    <template>
+ModVar4 = <template>
   Second module variable template.
-</template> as TemplateOnlyComponent<Signature>
+</template> as TemplateOnlyComponent<Signature>;
 "
 `;
 
@@ -551,16 +539,14 @@ export interface Signature {
 }
 
 // prettier-ignore
-const ModVar1: TemplateOnlyComponent<Signature> =
-    <template>
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
 
   <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
 </template>,
-  ModVar2: TemplateOnlyComponent<Signature> =
-    <template>
+ModVar2 : TemplateOnlyComponent<Signature>= <template>
   Second module variable template.
 </template>,
-  num = 1;
+    num = 1;
 "
 `;
 
@@ -574,16 +560,14 @@ export interface Signature {
 }
 
 // prettier-ignore
-const ModVar1 =
-    <template>
+const ModVar1 = <template>
 
   <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
 </template> as TemplateOnlyComponent<Signature>,
-  ModVar2 =
-    <template>
+ModVar2 = <template>
   Second module variable template.
 </template> as TemplateOnlyComponent<Signature>,
-  num = 1;
+    num = 1;
 "
 `;
 
@@ -597,8 +581,7 @@ export interface Sig {
 }
 
 // prettier-ignore
-const Oneline =
-  <template>      Module variable template (one line). </template> as TOC<Sig>
+const Oneline = <template>      Module variable template (one line). </template> as TOC<Sig>
 "
 `;
 

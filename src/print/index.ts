@@ -1,5 +1,10 @@
-import { ParserOptions, Plugin, Printer } from 'prettier';
+import { AstPath, ParserOptions, Plugin, Printer } from 'prettier';
 
+import {
+  TEMPLATE_TAG_CLOSE,
+  TEMPLATE_TAG_OPEN,
+  TEMPLATE_TAG_PLACEHOLDER
+} from '../config';
 import type { BaseNode } from '../types/ast';
 import {
   isGlimmerExportDefaultDeclarationPath,
@@ -16,7 +21,7 @@ import {
   isRawGlimmerArrayExpressionPath,
   isRawGlimmerClassPropertyPath
 } from '../types/raw';
-import { assertExists } from '../utils';
+import { assert, assertExists } from '../utils';
 import { printTemplateTag } from './template';
 
 // @ts-expect-error
@@ -40,14 +45,9 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
 
   Reflect.setPrototypeOf(printer, Object.create(estreePrinter));
 
-  /**
-   * We really only need to `embed` Glimmer Array Expressions and Glimmer Class
-   * Properties. Otherwise, we can rely on the built-in estree printer, but we
-   * need to conditionally turn off semi-colon printing to ensure we don't end
-   * up with `</template>;`.
-   */
-  printer.embed = (path, print, textToDoc, embedOptions) => {
-    let hasPrettierIgnore = defaultHasPrettierIgnore(path);
+  printer.print = (path, options, print, args) => {
+    let hasPrettierIgnore = checkPrettierIgnore(path, defaultHasPrettierIgnore);
+
     if (
       isGlimmerExportDefaultDeclarationPath(path) ||
       isGlimmerExportDefaultDeclarationTSPath(path) ||
@@ -55,13 +55,17 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
       isGlimmerExpressionStatementPath(path) ||
       isGlimmerExpressionStatementTSPath(path)
     ) {
-      embedOptions.semi = false;
-      let printed = defaultPrint(path, embedOptions, print);
-      // HACK: Prettier hardcodes a semicolon for GlimmerExportDefaultDeclarationTSPath
-      if (Array.isArray(printed) && printed[printed.length - 1] === ';') {
-        printed.pop();
+      if (hasPrettierIgnore) {
+        return printRawText(path, options, true);
+      } else {
+        options.semi = false;
+        let printed = defaultPrint(path, options, print, args);
+        // HACK: Prettier hardcodes a semicolon for GlimmerExportDefaultDeclarationTSPath
+        if (Array.isArray(printed) && printed[printed.length - 1] === ';') {
+          printed.pop();
+        }
+        return printed;
       }
-      return printed;
     } else if (isGlimmerVariableDeclarationPath(path)) {
       const node = path.getValue();
       const lastDeclarator = node.declarations[node.declarations.length - 1];
@@ -69,10 +73,26 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
         isGlimmerVariableDeclarator(lastDeclarator) ||
         isGlimmerVariableDeclaratorTS(lastDeclarator)
       ) {
-        embedOptions.semi = false;
+        options.semi = false;
       }
-      return defaultPrint(path, embedOptions, print);
+      if (hasPrettierIgnore) {
+        return printRawText(path, options, true);
+      } else {
+        return defaultPrint(path, options, print, args);
+      }
+    } else {
+      options.semi = originalOptions.semi;
+      if (hasPrettierIgnore) {
+        return printRawText(path, options);
+      } else {
+        return defaultPrint(path, options, print, args);
+      }
     }
+  };
+
+  /** Prints embedded GlimmerExpressions. */
+  printer.embed = (path, _print, textToDoc, embedOptions) => {
+    let hasPrettierIgnore = checkPrettierIgnore(path, defaultHasPrettierIgnore);
 
     if (isGlimmerExpressionPath(path)) {
       return printTemplateTag(
@@ -100,33 +120,18 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
         hasPrettierIgnore
       );
     } else {
-      let ret = defaultPrint(path, embedOptions, print);
-      embedOptions.semi = originalOptions.semi;
-      return ret;
+      // Nothing to embed, so move on to the regular printer.
+      return null;
     }
   };
 
-  printer.hasPrettierIgnore = (path): boolean => {
-    if (
-      [
-        isGlimmerExportDefaultDeclarationPath,
-        isGlimmerExportDefaultDeclarationTSPath,
-        isGlimmerExportNamedDeclarationPath,
-        isGlimmerExpressionStatementPath,
-        isGlimmerExpressionStatementTSPath,
-        isGlimmerVariableDeclarationPath,
-        isGlimmerExpressionPath,
-        isRawGlimmerArrayExpressionPath,
-        isRawGlimmerClassPropertyPath
-      ].some(test => test(path))
-    ) {
-      // On the first pass, ignore prettier-ignore comments on Glimmer embed
-      // paths. We need to handle them specially to ensure they are transformed
-      // back to `<template>`.
-      return false;
-    } else {
-      return defaultHasPrettierIgnore(path);
-    }
+  /**
+   * Turn off built-in prettier-ignore handling because it will skip embedding,
+   * which will print `[__GLIMMER_TEMPLATE(...)]` instead of
+   * `<template>...</template>`.
+   */
+  printer.hasPrettierIgnore = (_path): boolean => {
+    return false;
   };
 }
 
@@ -137,5 +142,33 @@ function isEstreePlugin(
 } {
   return Boolean(
     typeof plugin !== 'string' && plugin.printers && plugin.printers.estree
+  );
+}
+
+function printRawText(
+  path: AstPath<BaseNode>,
+  options: ParserOptions<BaseNode>,
+  replaceGlimmer = false
+): string {
+  const node = path.getValue();
+  assert('expected start', node.start);
+  assert('expected end', node.end);
+  let raw = options.originalText.slice(node.start, node.end);
+  // HACK: We don't have access to the original raw text :-(
+  if (replaceGlimmer) {
+    raw = raw.replaceAll(`[${TEMPLATE_TAG_PLACEHOLDER}(\``, TEMPLATE_TAG_OPEN);
+    raw = raw.replaceAll('`, { strictMode: true })]', TEMPLATE_TAG_CLOSE);
+  }
+  return raw;
+}
+
+function checkPrettierIgnore(
+  path: AstPath<BaseNode>,
+  hasPrettierIgnore: (path: AstPath<BaseNode>) => boolean
+): boolean {
+  return (
+    hasPrettierIgnore(path) ||
+    (!!path.getParentNode() &&
+      path.callParent(parent => checkPrettierIgnore(parent, hasPrettierIgnore)))
   );
 }
