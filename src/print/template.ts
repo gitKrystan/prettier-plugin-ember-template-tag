@@ -18,12 +18,15 @@ export function printTemplateTag(
   ) => doc.builders.Doc,
   options: ParserOptions<BaseNode>,
   hasPrettierIgnore: boolean
-): doc.builders.Group {
+): doc.builders.Doc {
   const text = node.quasis.map(quasi => quasi.value.raw).join();
 
-  if (hasPrettierIgnore || node.extra?.hasPrettierIgnore) {
-    return group([TEMPLATE_TAG_OPEN, text, TEMPLATE_TAG_CLOSE]);
+  if (hasPrettierIgnore) {
+    return `${TEMPLATE_TAG_OPEN}${node.quasis
+      .map(quasi => quasi.value.raw)
+      .join()}${TEMPLATE_TAG_CLOSE}`;
   } else {
+    // FIXME: Maybe could just concat tags before parse and allow glimmer printer to format it
     const contents = textToDoc(text.trim(), {
       ...options,
       parser: 'glimmer',

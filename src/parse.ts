@@ -1,5 +1,5 @@
-import { NodePath, traverse } from '@babel/core';
-import type { Comment, Node } from '@babel/types';
+import { traverse } from '@babel/core';
+import type { Node } from '@babel/types';
 // @ts-expect-error FIXME: Is this a hack? IDK!
 import { defineAliasedType } from '@babel/types/lib/definitions/utils';
 
@@ -69,8 +69,7 @@ export const parser: Parser<BaseNode> = {
         if (isRawGlimmerArrayExpression(node)) {
           const newNode = extractGlimmerExpression(
             node.elements[0].arguments[0],
-            node,
-            hasPrettierIgnoreParent(path)
+            node
           );
           // HACK: Babel types don't allow this
           path.replaceWith(newNode as unknown as Node);
@@ -79,11 +78,7 @@ export const parser: Parser<BaseNode> = {
       ClassProperty(path) {
         const node = path.node;
         if (isRawGlimmerClassProperty(node)) {
-          const newNode = extractGlimmerExpression(
-            node.key.arguments[0],
-            node,
-            hasPrettierIgnoreParent(path)
-          );
+          const newNode = extractGlimmerExpression(node.key.arguments[0], node);
           // HACK: Babel types don't allow this
           path.replaceWith(newNode as unknown as Node);
         }
@@ -92,25 +87,3 @@ export const parser: Parser<BaseNode> = {
     return ast;
   }
 };
-
-function hasPrettierIgnoreParent(path: NodePath): boolean {
-  const parent = path.parentPath;
-  return (
-    parent !== null &&
-    (hasPrettierIgnore(parent) || hasPrettierIgnoreParent(parent))
-  );
-}
-
-function hasPrettierIgnore(path: NodePath): boolean {
-  const node = path.node;
-  // FIXME: Should we check `innerComments` here? I can't figure out what they are...
-  return (
-    node.leadingComments?.some(isPrettierIgnore) ||
-    node.trailingComments?.some(isPrettierIgnore) ||
-    false
-  );
-}
-
-function isPrettierIgnore(comment: Comment): boolean {
-  return comment.value.trim() === 'prettier-ignore';
-}

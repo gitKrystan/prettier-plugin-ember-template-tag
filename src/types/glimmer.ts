@@ -26,7 +26,6 @@ import type { BaseNode } from './ast';
  *
  * @param templateLiteral The `TemplateLiteral` node associated with the parent.
  * @param parentNode The parent node.
- * @param hasPrettierIgnore Whether the `GlimmerExpression` node should be prettier-ignored.
  */
 export function extractGlimmerExpression(
   templateLiteral: TemplateLiteral,
@@ -39,8 +38,7 @@ export function extractGlimmerExpression(
     trailingComments,
     innerComments,
     extra
-  }: BaseNode,
-  hasPrettierIgnore: boolean
+  }: BaseNode
 ): GlimmerExpression {
   return {
     ...templateLiteral,
@@ -54,8 +52,7 @@ export function extractGlimmerExpression(
     innerComments,
     extra: {
       ...extra,
-      ...templateLiteral.extra,
-      hasPrettierIgnore
+      ...templateLiteral.extra
     }
   };
 }
@@ -68,10 +65,6 @@ export function extractGlimmerExpression(
  */
 export interface GlimmerExpression extends Omit<TemplateLiteral, 'type'> {
   type: typeof GLIMMER_EXPRESSION_TYPE;
-  extra: {
-    hasPrettierIgnore: boolean;
-    [key: string]: unknown;
-  };
 }
 
 export function isGlimmerExpressionPath(
