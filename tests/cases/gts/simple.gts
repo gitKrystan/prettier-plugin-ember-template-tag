@@ -12,3 +12,4 @@ export interface Signature {
 <template>
               what
             </template> as TemplateOnlyComponent<Signature>
+            /*AMBIGUOUS*/

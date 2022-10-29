@@ -12,7 +12,7 @@ import {
 import type { AstPath } from 'prettier';
 
 import { GLIMMER_EXPRESSION_TYPE } from '../config';
-import { isRecord } from '../utils';
+import { isRecord } from '../utils/index';
 import type { BaseNode } from './ast';
 
 /**
@@ -32,7 +32,8 @@ export function extractGlimmerExpression(
     trailingComments,
     innerComments,
     extra
-  }: BaseNode
+  }: BaseNode,
+  forceSemi = false
 ): GlimmerExpression {
   return {
     ...templateLiteral,
@@ -46,7 +47,8 @@ export function extractGlimmerExpression(
     innerComments,
     extra: {
       ...extra,
-      ...templateLiteral.extra
+      ...templateLiteral.extra,
+      forceSemi
     }
   };
 }
@@ -59,6 +61,10 @@ export function extractGlimmerExpression(
  */
 export interface GlimmerExpression extends Omit<TemplateLiteral, 'type'> {
   type: typeof GLIMMER_EXPRESSION_TYPE;
+  extra: {
+    forceSemi: boolean;
+    [key: string]: unknown;
+  };
 }
 
 export function isGlimmerExpressionPath(
@@ -69,10 +75,10 @@ export function isGlimmerExpressionPath(
   });
 }
 
-function isGlimmerExpression(
-  value: BaseNode | null | undefined
-): value is GlimmerExpression {
-  return isRecord(value) && value.type === GLIMMER_EXPRESSION_TYPE;
+export function isGlimmerExpression(
+  node: BaseNode | null | undefined
+): node is GlimmerExpression {
+  return isRecord(node) && node.type === GLIMMER_EXPRESSION_TYPE;
 }
 
 /**
@@ -130,10 +136,10 @@ export interface GlimmerTSAsExpression
   expression: GlimmerExpression;
 }
 
-function isGlimmerTSAsExpression(
-  value: BaseNode | null | undefined
-): value is GlimmerTSAsExpression {
-  return isTSAsExpression(value) && isGlimmerExpression(value.expression);
+export function isGlimmerTSAsExpression(
+  node: BaseNode | null | undefined
+): node is GlimmerTSAsExpression {
+  return isTSAsExpression(node) && isGlimmerExpression(node.expression);
 }
 
 /**
@@ -174,4 +180,30 @@ export function isGlimmerExpressionStatementTSPath(
       isExpressionStatement(node) && isGlimmerTSAsExpression(node.expression)
     );
   });
+}
+
+export function getGlimmerExpression(
+  path: AstPath<
+    | GlimmerExportDefaultDeclaration
+    | GlimmerExportDefaultDeclarationTS
+    | GlimmerExpressionStatement
+    | GlimmerExpressionStatementTS
+  >
+): GlimmerExpression {
+  const node = path.getValue();
+
+  switch (node.type) {
+    case 'ExportDefaultDeclaration':
+      if ('expression' in node.declaration) {
+        return node.declaration.expression;
+      } else {
+        return node.declaration;
+      }
+    case 'ExpressionStatement':
+      if ('expression' in node.expression) {
+        return node.expression.expression;
+      } else {
+        return node.expression;
+      }
+  }
 }

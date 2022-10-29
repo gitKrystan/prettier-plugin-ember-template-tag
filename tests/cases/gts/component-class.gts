@@ -17,4 +17,5 @@ class MyComponent
 
     <h1>   Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
   </template>
+  /*AMBIGUOUS*/
 }

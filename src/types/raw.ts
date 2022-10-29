@@ -104,7 +104,7 @@ export interface RawGlimmerCallExpression extends CallExpression {
   arguments: [TemplateLiteral];
 }
 
-function isRawGlimmerCallExpression(
+export function isRawGlimmerCallExpression(
   value: BaseNode | null | undefined
 ): value is RawGlimmerCallExpression {
   return (

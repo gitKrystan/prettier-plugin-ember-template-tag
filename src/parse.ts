@@ -2,23 +2,27 @@ import { traverse } from '@babel/core';
 import type { Node } from '@babel/types';
 // @ts-expect-error FIXME: Is this a hack? IDK!
 import { defineAliasedType } from '@babel/types/lib/definitions/utils';
-
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser, ParserOptions } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
 
-import { GLIMMER_EXPRESSION_TYPE, PRINTER_NAME } from './config';
+import {
+  GLIMMER_EXPRESSION_TYPE,
+  PRINTER_NAME,
+  TEMPLATE_TAG_NAME,
+  TEMPLATE_TAG_PLACEHOLDER
+} from './config';
 import { definePrinter } from './print/index';
-
-const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
-
-import { TEMPLATE_TAG_NAME, TEMPLATE_TAG_PLACEHOLDER } from './config';
 import type { BaseNode } from './types/ast';
 import { extractGlimmerExpression } from './types/glimmer';
 import {
   isRawGlimmerArrayExpression,
+  isRawGlimmerCallExpression,
   isRawGlimmerClassProperty
 } from './types/raw';
+import { hasAmbiguousNextLine } from './utils/ambiguity';
+
+const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
 
 const defineType = defineAliasedType('Glimmer');
 
@@ -69,7 +73,8 @@ export const parser: Parser<BaseNode> = {
         if (isRawGlimmerArrayExpression(node)) {
           const newNode = extractGlimmerExpression(
             node.elements[0].arguments[0],
-            node
+            node,
+            hasAmbiguousNextLine(path, options)
           );
           // HACK: Babel types don't allow this
           path.replaceWith(newNode as unknown as Node);
@@ -81,6 +86,12 @@ export const parser: Parser<BaseNode> = {
           const newNode = extractGlimmerExpression(node.key.arguments[0], node);
           // HACK: Babel types don't allow this
           path.replaceWith(newNode as unknown as Node);
+        }
+      },
+      CallExpression(path) {
+        const node = path.node;
+        if (isRawGlimmerCallExpression(node)) {
+          throw new SyntaxError('Found unhandled RawGlimmerCallExpression');
         }
       }
     });

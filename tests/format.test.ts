@@ -11,21 +11,87 @@ interface TestCase {
   code: string;
 }
 
-const formatOptions: Options = {
+const DEFAULT_OPTIONS: Options = {
   parser: PARSER_NAME,
   plugins: [plugin]
 };
+
+const AMBIGUOUS_EXPRESSIONS = [
+  '(oops) => {}',
+  '(oh, no) => {}',
+  '["oops"]',
+  '`oops`',
+  '/oops/',
+  '+"oops"',
+  '-"oops"',
+  '<template>oops</template>'
+];
+
+const AMBIGUOUS_PLACEHOLDER = '/*AMBIGUOUS*/';
 
 describe('format', async () => {
   const caseDir = path.join(__dirname, './cases');
   const cases = await getCases(__dirname, caseDir);
 
-  for (let testCase of cases) {
-    test(`it formats ${testCase.name}`, () => {
-      let result = format(testCase.code, formatOptions);
-      expect(result).toMatchSnapshot();
+  for (let config of [
+    { name: 'default', options: DEFAULT_OPTIONS },
+    {
+      name: 'semi: false',
+      options: { ...DEFAULT_OPTIONS, semi: false }
+    }
+  ]) {
+    describe(`with config \`${config.name}\``, () => {
+      for (let testCase of cases) {
+        test(`it formats ${testCase.name}`, () => {
+          const code = testCase.code.replaceAll(AMBIGUOUS_PLACEHOLDER, '');
+          let result = format(code, DEFAULT_OPTIONS);
+          expect(result).toMatchSnapshot();
+        });
+      }
     });
   }
+
+  describe('ambiguous', () => {
+    for (let ambiguousExpression of AMBIGUOUS_EXPRESSIONS) {
+      describe(`\`${ambiguousExpression}\``, () => {
+        for (let config of [
+          { name: 'default', options: DEFAULT_OPTIONS },
+          {
+            name: 'arrowParens: "avoid"',
+            options: { ...DEFAULT_OPTIONS, arrowParens: 'avoid' as const }
+          },
+          {
+            name: 'semi: false',
+            options: { ...DEFAULT_OPTIONS, semi: false }
+          }
+        ]) {
+          describe(`with config \`${config.name}\``, () => {
+            for (let testCase of cases.filter(c =>
+              c.code.includes(AMBIGUOUS_PLACEHOLDER)
+            )) {
+              describe('without semi', () => {
+                test(`it formats ${testCase.name}`, () => {
+                  const code = testCase.code
+                    .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
+                    .replaceAll(';', '');
+                  behavesLikeFormattedAmbiguousCase(code, config.options);
+                });
+              });
+              describe('with semi', () => {
+                test(`it formats ${testCase.name}`, () => {
+                  const code = testCase.code
+                    .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
+                    .replaceAll(/<\/template>\n/g, '</template>;')
+                    .replaceAll(/<Signature>\n/g, '<Signature>;');
+                  behavesLikeFormattedAmbiguousCase(code, config.options);
+                });
+              });
+            }
+          });
+        }
+      });
+    }
+  });
 });
 
 async function getCases(
@@ -51,4 +117,22 @@ async function getCases(
   );
 
   return ([] as TestCase[]).concat(...cases);
+}
+
+function behavesLikeFormattedAmbiguousCase(
+  code: string,
+  formatOptions: Options
+) {
+  try {
+    let result = format(code, formatOptions);
+    expect(result).toMatchSnapshot();
+  } catch (e: unknown) {
+    // Some of the ambiguous cases are Syntax Errors when parsed
+    const isSyntaxError =
+      e instanceof SyntaxError || String(e).startsWith('SyntaxError');
+    if (!isSyntaxError) {
+      throw e;
+    }
+    expect(isSyntaxError, 'Expected SyntaxError').toBeTruthy();
+  }
 }
