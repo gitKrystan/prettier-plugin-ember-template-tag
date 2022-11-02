@@ -1,4 +1,4 @@
-import { TemplateLiteral } from '@babel/types';
+import type { TemplateLiteral } from '@babel/types';
 import type { ParserOptions } from 'prettier';
 import { doc } from 'prettier';
 
@@ -10,6 +10,10 @@ const {
   builders: { group, indent, softline },
 } = doc;
 
+/**
+ * Returns a Prettier `Doc` for the given `TemplateLiteral | GlimmerExpression`
+ * that is formatted using Prettier's built-in glimmer parser.
+ */
 export function printTemplateTag(
   node: TemplateLiteral | GlimmerExpression,
   textToDoc: (
@@ -30,8 +34,8 @@ export function printTemplateTag(
     const contents = textToDoc(text.trim(), {
       ...options,
       parser: 'glimmer',
-      // @ts-expect-error FIXME:
-      singleQuote: options.hbsSingleQuote,
+      // TODO: Support glimmerTemplateSingleQuote option
+      // singleQuote: options.hbsSingleQuote,
     });
     return group([
       TEMPLATE_TAG_OPEN,

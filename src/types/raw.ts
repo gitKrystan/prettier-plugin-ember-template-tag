@@ -20,15 +20,15 @@ import type { BaseNode } from './ast';
 /**
  * Before preprocess: n/a
  *
- * After preprocess:
- * The array expression is the `[__GLIMMER_TEMPLATE(...)]` portion of many of
- * the raw top-level nodes (except `GlimmerClassProperty`).
+ * After preprocess: The array expression is the `[__GLIMMER_TEMPLATE(...)]`
+ * portion of many of the raw top-level nodes (except `GlimmerClassProperty`).
  */
 export interface RawGlimmerArrayExpression extends ArrayExpression {
   type: 'ArrayExpression';
   elements: [RawGlimmerCallExpression];
 }
 
+/** Type predicate */
 export function isRawGlimmerArrayExpressionPath(
   path: AstPath<BaseNode>
 ): path is AstPath<RawGlimmerArrayExpression> {
@@ -37,6 +37,7 @@ export function isRawGlimmerArrayExpressionPath(
   });
 }
 
+/** Type predicate */
 export function isRawGlimmerArrayExpression(
   value: BaseNode | null | undefined
 ): value is RawGlimmerArrayExpression {
@@ -47,7 +48,9 @@ export function isRawGlimmerArrayExpression(
 
 /**
  * Before preprocess:
+ *
  * @example
+ *
  * ```gts
  * class MyComponent {
  *   <template>hello</template>
@@ -59,7 +62,9 @@ export function isRawGlimmerArrayExpression(
  * ```
  *
  * After preprocess:
+ *
  * @example
+ *
  * ```ts
  * class MyComponent {
  *   // Note, this is NOT an array! This is a computed property name
@@ -77,6 +82,7 @@ export interface RawGlimmerClassProperty extends ClassProperty {
   value: null;
 }
 
+/** Type predicate */
 export function isRawGlimmerClassPropertyPath(
   path: AstPath<BaseNode>
 ): path is AstPath<RawGlimmerClassProperty> {
@@ -85,6 +91,7 @@ export function isRawGlimmerClassPropertyPath(
   });
 }
 
+/** Type predicate */
 export function isRawGlimmerClassProperty(
   value: BaseNode | null | undefined
 ): value is RawGlimmerClassProperty {
@@ -95,6 +102,7 @@ export function isRawGlimmerClassProperty(
  * Before preprocess: n/a
  *
  * After preprocess:
+ *
  * ```ts
  * __GLIMMER_TEMPLATE(...)
  * ```
@@ -104,6 +112,7 @@ export interface RawGlimmerCallExpression extends CallExpression {
   arguments: [TemplateLiteral];
 }
 
+/** Type predicate */
 export function isRawGlimmerCallExpression(
   value: BaseNode | null | undefined
 ): value is RawGlimmerCallExpression {
@@ -121,6 +130,7 @@ export function isRawGlimmerCallExpression(
  *
  * After preprocess, this is the Identifier portion of the
  * `GlimmerCallExpression`:
+ *
  * ```ts
  * __GLIMMER_TEMPLATE(...)
  * ^^^^^^^^^^^^^^^^^^

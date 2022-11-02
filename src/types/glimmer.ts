@@ -67,6 +67,7 @@ export interface GlimmerExpression extends Omit<TemplateLiteral, 'type'> {
   };
 }
 
+/** Type predicate */
 export function isGlimmerExpressionPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerExpression> {
@@ -75,6 +76,7 @@ export function isGlimmerExpressionPath(
   });
 }
 
+/** Type predicate */
 export function isGlimmerExpression(
   node: BaseNode | null | undefined
 ): node is GlimmerExpression {
@@ -83,8 +85,9 @@ export function isGlimmerExpression(
 
 /**
  * @example
+ *
  * ```gts
- * export default <template>hello</template>
+ * export default <template>hello</template>;
  * ```
  */
 export interface GlimmerExportDefaultDeclaration
@@ -92,6 +95,7 @@ export interface GlimmerExportDefaultDeclaration
   declaration: GlimmerExpression;
 }
 
+/** Type predicate */
 export function isGlimmerExportDefaultDeclarationPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerExportDefaultDeclaration> {
@@ -104,6 +108,7 @@ export function isGlimmerExportDefaultDeclarationPath(
 
 /**
  * @example
+ *
  * ```gts
  * export default <template>hello</template> as Component<MySignature>
  * ```
@@ -113,6 +118,7 @@ export interface GlimmerExportDefaultDeclarationTS
   declaration: GlimmerTSAsExpression;
 }
 
+/** Type predicate */
 export function isGlimmerExportDefaultDeclarationTSPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerExportDefaultDeclarationTS> {
@@ -125,7 +131,9 @@ export function isGlimmerExportDefaultDeclarationTSPath(
 }
 
 /**
- * This is the TypeScript `as` expression used in many of the other TS nodes, e.g.
+ * This is the TypeScript `as` expression used in many of the other TS nodes,
+ * e.g.
+ *
  * ```ts
  * export default <template>Hello</template> as Component<MySignature>
  *                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -136,6 +144,7 @@ export interface GlimmerTSAsExpression
   expression: GlimmerExpression;
 }
 
+/** Type predicate */
 export function isGlimmerTSAsExpression(
   node: BaseNode | null | undefined
 ): node is GlimmerTSAsExpression {
@@ -144,8 +153,9 @@ export function isGlimmerTSAsExpression(
 
 /**
  * @example
+ *
  * ```gts
- * <template>hello</template>
+ * <template>hello</template>;
  * ```
  */
 export interface GlimmerExpressionStatement
@@ -153,6 +163,7 @@ export interface GlimmerExpressionStatement
   expression: GlimmerExpression;
 }
 
+/** Type predicate */
 export function isGlimmerExpressionStatementPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerExpressionStatement> {
@@ -163,6 +174,7 @@ export function isGlimmerExpressionStatementPath(
 
 /**
  * @example
+ *
  * ```gts
  * <template>hello</template> as Component<MySignature>
  * ```
@@ -172,6 +184,7 @@ export interface GlimmerExpressionStatementTS
   expression: GlimmerTSAsExpression;
 }
 
+/** Type predicate */
 export function isGlimmerExpressionStatementTSPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerExpressionStatementTS> {
@@ -182,6 +195,7 @@ export function isGlimmerExpressionStatementTSPath(
   });
 }
 
+/** Returns the `GlimmerExpression` within the given `path`. */
 export function getGlimmerExpression(
   path: AstPath<
     | GlimmerExportDefaultDeclaration

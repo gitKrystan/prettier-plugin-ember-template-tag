@@ -1,4 +1,4 @@
-# Specific to prettierignore
+# Specific to eslintignore
 pnpm-lock.yaml
 **/*/pnpm-lock.yaml
 tests/__snapshots__

@@ -1,5 +1,6 @@
-import { Comment, Node, SourceLocation } from '@babel/types';
-import { GLIMMER_EXPRESSION_TYPE } from '../config';
+import type { Comment, Node, SourceLocation } from '@babel/types';
+
+import type { GLIMMER_EXPRESSION_TYPE } from '../config';
 
 export interface BaseNode {
   type: Node['type'] | typeof GLIMMER_EXPRESSION_TYPE;

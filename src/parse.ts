@@ -1,6 +1,6 @@
 import { traverse } from '@babel/core';
 import type { Node } from '@babel/types';
-// @ts-expect-error FIXME: Is this a hack? IDK!
+// @ts-expect-error FIXME: TS7016 Is this a hack? IDK!
 import { defineAliasedType } from '@babel/types/lib/definitions/utils';
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser, ParserOptions } from 'prettier';
@@ -24,6 +24,9 @@ import { hasAmbiguousNextLine } from './utils/ambiguity';
 
 const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
 
+// FIXME: This is necessary for babel to not freak out with the custom type.
+// If we keep this code long-term we should augment the babel types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 const defineType = defineAliasedType('Glimmer');
 
 const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
@@ -63,6 +66,9 @@ export const parser: Parser<BaseNode> = {
     options: ParserOptions<BaseNode>
   ): BaseNode {
     const ast = typescript.parse(text, parsers, options);
+    // FIXME: This is necessary for babel to not freak out with the custom type.
+    // If we keep this code long-term we should augment the babel types
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     defineType(GLIMMER_EXPRESSION_TYPE, {
       inherits: 'TemplateExpression',
       aliases: ['Expression'],
