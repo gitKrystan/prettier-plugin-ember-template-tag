@@ -13,6 +13,7 @@
     "lint:eslint:fix": "eslint . --fix",
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
+    "lint:ts": "tsc --project tsconfig.lint.json",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
