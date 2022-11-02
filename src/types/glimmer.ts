@@ -132,7 +132,8 @@ export function isGlimmerExportDefaultDeclarationTSPath(
 
 /**
  * This is the TypeScript `as` expression used in many of the other TS nodes,
- * e.g.
+ *
+ * @example
  *
  * ```ts
  * export default <template>Hello</template> as Component<MySignature>
