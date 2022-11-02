@@ -14,18 +14,18 @@
     "test:run": "vitest run"
   },
   "devDependencies": {
-    "@babel/types": "^7.19.4",
+    "@babel/types": "^7.20.0",
     "@types/babel__core": "^7.1.19",
     "@types/prettier": "^2.7.1",
-    "@vitest/ui": "^0.24.3",
+    "@vitest/ui": "^0.24.5",
     "typescript": "^4.8.4",
-    "vite": "^3.2.0",
-    "vitest": "^0.24.3"
+    "vite": "^3.2.2",
+    "vitest": "^0.24.5"
   },
   "dependencies": {
     "@babel/core": "^7.19.6",
     "ember-cli-htmlbars": "^6.1.1",
-    "ember-template-imports": "^3.2.0",
+    "ember-template-imports": "^3.3.1",
     "prettier": "^2.7.1"
   }
 }
