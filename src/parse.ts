@@ -10,7 +10,7 @@ import {
   GLIMMER_EXPRESSION_TYPE,
   PRINTER_NAME,
   TEMPLATE_TAG_NAME,
-  TEMPLATE_TAG_PLACEHOLDER
+  TEMPLATE_TAG_PLACEHOLDER,
 } from './config';
 import { definePrinter } from './print/index';
 import type { BaseNode } from './types/ast';
@@ -18,7 +18,7 @@ import { extractGlimmerExpression } from './types/glimmer';
 import {
   isRawGlimmerArrayExpression,
   isRawGlimmerCallExpression,
-  isRawGlimmerClassProperty
+  isRawGlimmerClassProperty,
 } from './types/raw';
 import { hasAmbiguousNextLine } from './utils/ambiguity';
 
@@ -43,7 +43,7 @@ const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
     includeSourceMaps: false,
     includeTemplateTokens: false,
 
-    relativePath: options.filepath
+    relativePath: options.filepath,
   }).output;
 };
 
@@ -65,7 +65,7 @@ export const parser: Parser<BaseNode> = {
     const ast = typescript.parse(text, parsers, options);
     defineType(GLIMMER_EXPRESSION_TYPE, {
       inherits: 'TemplateExpression',
-      aliases: ['Expression']
+      aliases: ['Expression'],
     });
     traverse(ast as Node, {
       ArrayExpression(path) {
@@ -93,8 +93,8 @@ export const parser: Parser<BaseNode> = {
         if (isRawGlimmerCallExpression(node)) {
           throw new SyntaxError('Found unhandled RawGlimmerCallExpression');
         }
-      }
+      },
     });
     return ast;
-  }
+  },
 };

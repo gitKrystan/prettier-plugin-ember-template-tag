@@ -9,22 +9,22 @@ const languages: SupportLanguage[] = [
   {
     extensions: ['.gjs', '.gts'],
     name: 'Ember Template Tag',
-    parsers: [PARSER_NAME]
-  }
+    parsers: [PARSER_NAME],
+  },
 ];
 
 const parsers: Record<string, Parser<BaseNode>> = {
-  [PARSER_NAME]: parser
+  [PARSER_NAME]: parser,
 };
 
 const printers: Record<string, Printer<BaseNode>> = {
-  [PRINTER_NAME]: printer
+  [PRINTER_NAME]: printer,
 };
 
 const plugin: Plugin<BaseNode> = {
   languages,
   parsers,
-  printers
+  printers,
 };
 
 export default plugin;

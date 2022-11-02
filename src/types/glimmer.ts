@@ -2,12 +2,12 @@ import type {
   ExportDefaultDeclaration,
   ExpressionStatement,
   TemplateLiteral,
-  TSAsExpression
+  TSAsExpression,
 } from '@babel/types';
 import {
   isExportDefaultDeclaration,
   isExpressionStatement,
-  isTSAsExpression
+  isTSAsExpression,
 } from '@babel/types';
 import type { AstPath } from 'prettier';
 
@@ -31,7 +31,7 @@ export function extractGlimmerExpression(
     leadingComments,
     trailingComments,
     innerComments,
-    extra
+    extra,
   }: BaseNode,
   forceSemi = false
 ): GlimmerExpression {
@@ -48,8 +48,8 @@ export function extractGlimmerExpression(
     extra: {
       ...extra,
       ...templateLiteral.extra,
-      forceSemi
-    }
+      forceSemi,
+    },
   };
 }
 

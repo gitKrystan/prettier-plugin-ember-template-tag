@@ -13,7 +13,7 @@ interface TestCase {
 
 const DEFAULT_OPTIONS: Options = {
   parser: PARSER_NAME,
-  plugins: [plugin]
+  plugins: [plugin],
 };
 
 const AMBIGUOUS_EXPRESSIONS = [
@@ -24,7 +24,7 @@ const AMBIGUOUS_EXPRESSIONS = [
   '/oops/',
   '+"oops"',
   '-"oops"',
-  '<template>oops</template>'
+  '<template>oops</template>',
 ];
 
 const AMBIGUOUS_PLACEHOLDER = '/*AMBIGUOUS*/';
@@ -37,8 +37,8 @@ describe('format', async () => {
     { name: 'default', options: DEFAULT_OPTIONS },
     {
       name: 'semi: false',
-      options: { ...DEFAULT_OPTIONS, semi: false }
-    }
+      options: { ...DEFAULT_OPTIONS, semi: false },
+    },
   ]) {
     describe(`with config \`${config.name}\``, () => {
       for (let testCase of cases) {
@@ -58,15 +58,15 @@ describe('format', async () => {
           { name: 'default', options: DEFAULT_OPTIONS },
           {
             name: 'arrowParens: "avoid"',
-            options: { ...DEFAULT_OPTIONS, arrowParens: 'avoid' as const }
+            options: { ...DEFAULT_OPTIONS, arrowParens: 'avoid' as const },
           },
           {
             name: 'semi: false',
-            options: { ...DEFAULT_OPTIONS, semi: false }
-          }
+            options: { ...DEFAULT_OPTIONS, semi: false },
+          },
         ]) {
           describe(`with config \`${config.name}\``, () => {
-            for (let testCase of cases.filter(c =>
+            for (let testCase of cases.filter((c) =>
               c.code.includes(AMBIGUOUS_PLACEHOLDER)
             )) {
               describe('without semi', () => {
@@ -100,7 +100,7 @@ async function getCases(
 ): Promise<TestCase[]> {
   const entries = await fs.promises.readdir(dir, { withFileTypes: true });
   const cases = await Promise.all(
-    entries.map(async entry => {
+    entries.map(async (entry) => {
       if (entry.isDirectory()) {
         return getCases(baseDir, path.join(dir.toString(), entry.name));
       } else {
@@ -110,7 +110,7 @@ async function getCases(
 
         return {
           name,
-          code
+          code,
         };
       }
     })

@@ -3,7 +3,7 @@ import { AstPath, ParserOptions, Plugin, Printer } from 'prettier';
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
-  TEMPLATE_TAG_PLACEHOLDER
+  TEMPLATE_TAG_PLACEHOLDER,
 } from '../config';
 import type { BaseNode } from '../types/ast';
 import {
@@ -12,11 +12,11 @@ import {
   isGlimmerExportDefaultDeclarationTSPath,
   isGlimmerExpressionPath,
   isGlimmerExpressionStatementPath,
-  isGlimmerExpressionStatementTSPath
+  isGlimmerExpressionStatementTSPath,
 } from '../types/glimmer';
 import {
   isRawGlimmerArrayExpressionPath,
-  isRawGlimmerClassPropertyPath
+  isRawGlimmerClassPropertyPath,
 } from '../types/raw';
 import { assert, assertExists } from '../utils/index';
 import { printTemplateTag } from './template';
@@ -166,6 +166,8 @@ function checkPrettierIgnore(
   return (
     hasPrettierIgnore(path) ||
     (!!path.getParentNode() &&
-      path.callParent(parent => checkPrettierIgnore(parent, hasPrettierIgnore)))
+      path.callParent((parent) =>
+        checkPrettierIgnore(parent, hasPrettierIgnore)
+      ))
   );
 }

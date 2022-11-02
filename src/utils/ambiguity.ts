@@ -6,7 +6,7 @@ import {
   isExpressionStatement,
   isParenthesizedExpression,
   isRegExpLiteral,
-  isUnaryExpression
+  isUnaryExpression,
 } from '@babel/types';
 import type { ParserOptions } from 'prettier';
 

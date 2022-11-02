@@ -5,7 +5,7 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: 'src/main.ts',
-      formats: ['cjs']
-    }
-  }
+      formats: ['cjs'],
+    },
+  },
 });

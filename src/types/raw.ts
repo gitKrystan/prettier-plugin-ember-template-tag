@@ -3,14 +3,14 @@ import type {
   CallExpression,
   ClassProperty,
   Identifier,
-  TemplateLiteral
+  TemplateLiteral,
 } from '@babel/types';
 import {
   isArrayExpression,
   isCallExpression,
   isClassProperty,
   isIdentifier,
-  isTemplateLiteral
+  isTemplateLiteral,
 } from '@babel/types';
 import type { AstPath } from 'prettier';
 

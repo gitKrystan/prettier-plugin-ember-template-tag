@@ -9,6 +9,8 @@
     "build": "tsc && vite build",
     "example": "vite build && ./node_modules/.bin/prettier --plugin . example.gjs > temp.gjs",
     "example-ts": "vite build && ./node_modules/.bin/prettier --plugin . example.gts",
+    "lint:prettier": "prettier --check .",
+    "lint:prettier:fix": "prettier --write .",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
