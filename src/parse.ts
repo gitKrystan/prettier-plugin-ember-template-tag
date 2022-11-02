@@ -1,6 +1,6 @@
 import { traverse } from '@babel/core';
 import type { Node } from '@babel/types';
-// @ts-expect-error FIXME: Is this a hack? IDK!
+// @ts-expect-error FIXME: TS7016 Is this a hack? IDK!
 import { defineAliasedType } from '@babel/types/lib/definitions/utils';
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser, ParserOptions } from 'prettier';
@@ -10,7 +10,7 @@ import {
   GLIMMER_EXPRESSION_TYPE,
   PRINTER_NAME,
   TEMPLATE_TAG_NAME,
-  TEMPLATE_TAG_PLACEHOLDER
+  TEMPLATE_TAG_PLACEHOLDER,
 } from './config';
 import { definePrinter } from './print/index';
 import type { BaseNode } from './types/ast';
@@ -18,12 +18,15 @@ import { extractGlimmerExpression } from './types/glimmer';
 import {
   isRawGlimmerArrayExpression,
   isRawGlimmerCallExpression,
-  isRawGlimmerClassProperty
+  isRawGlimmerClassProperty,
 } from './types/raw';
 import { hasAmbiguousNextLine } from './utils/ambiguity';
 
 const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
 
+// FIXME: This is necessary for babel to not freak out with the custom type.
+// If we keep this code long-term we should augment the babel types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 const defineType = defineAliasedType('Glimmer');
 
 const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
@@ -43,7 +46,7 @@ const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
     includeSourceMaps: false,
     includeTemplateTokens: false,
 
-    relativePath: options.filepath
+    relativePath: options.filepath,
   }).output;
 };
 
@@ -63,9 +66,12 @@ export const parser: Parser<BaseNode> = {
     options: ParserOptions<BaseNode>
   ): BaseNode {
     const ast = typescript.parse(text, parsers, options);
+    // FIXME: This is necessary for babel to not freak out with the custom type.
+    // If we keep this code long-term we should augment the babel types
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     defineType(GLIMMER_EXPRESSION_TYPE, {
       inherits: 'TemplateExpression',
-      aliases: ['Expression']
+      aliases: ['Expression'],
     });
     traverse(ast as Node, {
       ArrayExpression(path) {
@@ -93,8 +99,8 @@ export const parser: Parser<BaseNode> = {
         if (isRawGlimmerCallExpression(node)) {
           throw new SyntaxError('Found unhandled RawGlimmerCallExpression');
         }
-      }
+      },
     });
     return ast;
-  }
+  },
 };

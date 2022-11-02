@@ -1,3 +1,11 @@
+# Specific to prettierignore
+pnpm-lock.yaml
+**/*/pnpm-lock.yaml
+tests/__snapshots__
+tests/cases
+
+# Everything below this point should match gitignore
+
 # Logs
 logs
 *.log

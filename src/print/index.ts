@@ -1,9 +1,9 @@
-import { AstPath, ParserOptions, Plugin, Printer } from 'prettier';
+import type { AstPath, ParserOptions, Plugin, Printer } from 'prettier';
 
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
-  TEMPLATE_TAG_PLACEHOLDER
+  TEMPLATE_TAG_PLACEHOLDER,
 } from '../config';
 import type { BaseNode } from '../types/ast';
 import {
@@ -12,25 +12,27 @@ import {
   isGlimmerExportDefaultDeclarationTSPath,
   isGlimmerExpressionPath,
   isGlimmerExpressionStatementPath,
-  isGlimmerExpressionStatementTSPath
+  isGlimmerExpressionStatementTSPath,
 } from '../types/glimmer';
 import {
   isRawGlimmerArrayExpressionPath,
-  isRawGlimmerClassPropertyPath
+  isRawGlimmerClassPropertyPath,
 } from '../types/raw';
 import { assert, assertExists } from '../utils/index';
 import { printTemplateTag } from './template';
 
-// @ts-expect-error
-export let printer: Printer<BaseNode> = {};
+// @ts-expect-error FIXME: HACK because estree printer isn't exported. See below.
+export const printer: Printer<BaseNode> = {};
 
 let originalOptions: ParserOptions<BaseNode>;
 
-// FIXME: HACK because estree printer isn't exported
-// see https://github.com/prettier/prettier/issues/10259 and
-// https://github.com/prettier/prettier/issues/4424
-// Need to find another solution if we want to be listed in community plugins
-export function definePrinter(options: ParserOptions<BaseNode>) {
+/**
+ * FIXME: HACK because estree printer isn't exported.
+ *
+ * @see https://github.com/prettier/prettier/issues/10259
+ * @see https://github.com/prettier/prettier/issues/4424
+ */
+export function definePrinter(options: ParserOptions<BaseNode>): void {
   originalOptions = { ...options };
   const estreePlugin = assertExists(options.plugins.find(isEstreePlugin));
   const estreePrinter = estreePlugin.printers.estree;
@@ -38,12 +40,21 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
   const defaultHasPrettierIgnore = assertExists(
     estreePrinter.hasPrettierIgnore
   );
+
+  // Part of the HACK described above
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const defaultPrint = estreePrinter.print;
 
-  Reflect.setPrototypeOf(printer, Object.create(estreePrinter));
+  Reflect.setPrototypeOf(
+    printer,
+    Object.create(estreePrinter) as Printer<BaseNode>
+  );
 
   printer.print = (path, options, print, args) => {
-    let hasPrettierIgnore = checkPrettierIgnore(path, defaultHasPrettierIgnore);
+    const hasPrettierIgnore = checkPrettierIgnore(
+      path,
+      defaultHasPrettierIgnore
+    );
 
     if (
       isGlimmerExportDefaultDeclarationPath(path) ||
@@ -62,6 +73,9 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
           const { semi } = options;
           const { forceSemi } = glimmerExpression.extra;
           const hasSemi = printed[printed.length - 1] === ';';
+          // I think prettier is mutating the options somewhere, making the semi
+          // check necessary
+          /* eslint-disable @typescript-eslint/no-unnecessary-condition */
           if (semi && forceSemi && !hasSemi) {
             // We only need to push the semi-colon in semi: true mode because
             // in semi: false mode, the ambiguous statement will get a prefixing
@@ -71,6 +85,7 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
             // HACK: Prettier hardcodes a semicolon for GlimmerExportDefaultDeclarationTSPath
             printed.pop();
           }
+          /* eslint-enable @typescript-eslint/no-unnecessary-condition */
         } else {
           // FIXME: Should we throw in DEBUG mode?
           console.error(
@@ -92,7 +107,10 @@ export function definePrinter(options: ParserOptions<BaseNode>) {
 
   /** Prints embedded GlimmerExpressions. */
   printer.embed = (path, _print, textToDoc, embedOptions) => {
-    let hasPrettierIgnore = checkPrettierIgnore(path, defaultHasPrettierIgnore);
+    const hasPrettierIgnore = checkPrettierIgnore(
+      path,
+      defaultHasPrettierIgnore
+    );
 
     if (isGlimmerExpressionPath(path)) {
       return printTemplateTag(
@@ -166,6 +184,8 @@ function checkPrettierIgnore(
   return (
     hasPrettierIgnore(path) ||
     (!!path.getParentNode() &&
-      path.callParent(parent => checkPrettierIgnore(parent, hasPrettierIgnore)))
+      path.callParent((parent) =>
+        checkPrettierIgnore(parent, hasPrettierIgnore)
+      ))
   );
 }

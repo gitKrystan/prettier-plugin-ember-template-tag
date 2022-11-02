@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { format, Options } from 'prettier';
+import type { Options } from 'prettier';
+import { format } from 'prettier';
 import { describe, expect, test } from 'vitest';
 
 import { PARSER_NAME } from '../src/config';
@@ -13,7 +14,7 @@ interface TestCase {
 
 const DEFAULT_OPTIONS: Options = {
   parser: PARSER_NAME,
-  plugins: [plugin]
+  plugins: [plugin],
 };
 
 const AMBIGUOUS_EXPRESSIONS = [
@@ -24,7 +25,7 @@ const AMBIGUOUS_EXPRESSIONS = [
   '/oops/',
   '+"oops"',
   '-"oops"',
-  '<template>oops</template>'
+  '<template>oops</template>',
 ];
 
 const AMBIGUOUS_PLACEHOLDER = '/*AMBIGUOUS*/';
@@ -33,18 +34,18 @@ describe('format', async () => {
   const caseDir = path.join(__dirname, './cases');
   const cases = await getCases(__dirname, caseDir);
 
-  for (let config of [
+  for (const config of [
     { name: 'default', options: DEFAULT_OPTIONS },
     {
       name: 'semi: false',
-      options: { ...DEFAULT_OPTIONS, semi: false }
-    }
+      options: { ...DEFAULT_OPTIONS, semi: false },
+    },
   ]) {
     describe(`with config \`${config.name}\``, () => {
-      for (let testCase of cases) {
+      for (const testCase of cases) {
         test(`it formats ${testCase.name}`, () => {
           const code = testCase.code.replaceAll(AMBIGUOUS_PLACEHOLDER, '');
-          let result = format(code, DEFAULT_OPTIONS);
+          const result = format(code, DEFAULT_OPTIONS);
           expect(result).toMatchSnapshot();
         });
       }
@@ -52,21 +53,21 @@ describe('format', async () => {
   }
 
   describe('ambiguous', () => {
-    for (let ambiguousExpression of AMBIGUOUS_EXPRESSIONS) {
+    for (const ambiguousExpression of AMBIGUOUS_EXPRESSIONS) {
       describe(`\`${ambiguousExpression}\``, () => {
-        for (let config of [
+        for (const config of [
           { name: 'default', options: DEFAULT_OPTIONS },
           {
             name: 'arrowParens: "avoid"',
-            options: { ...DEFAULT_OPTIONS, arrowParens: 'avoid' as const }
+            options: { ...DEFAULT_OPTIONS, arrowParens: 'avoid' as const },
           },
           {
             name: 'semi: false',
-            options: { ...DEFAULT_OPTIONS, semi: false }
-          }
+            options: { ...DEFAULT_OPTIONS, semi: false },
+          },
         ]) {
           describe(`with config \`${config.name}\``, () => {
-            for (let testCase of cases.filter(c =>
+            for (const testCase of cases.filter((c) =>
               c.code.includes(AMBIGUOUS_PLACEHOLDER)
             )) {
               describe('without semi', () => {
@@ -100,7 +101,7 @@ async function getCases(
 ): Promise<TestCase[]> {
   const entries = await fs.promises.readdir(dir, { withFileTypes: true });
   const cases = await Promise.all(
-    entries.map(async entry => {
+    entries.map(async (entry) => {
       if (entry.isDirectory()) {
         return getCases(baseDir, path.join(dir.toString(), entry.name));
       } else {
@@ -110,7 +111,7 @@ async function getCases(
 
         return {
           name,
-          code
+          code,
         };
       }
     })
@@ -122,9 +123,9 @@ async function getCases(
 function behavesLikeFormattedAmbiguousCase(
   code: string,
   formatOptions: Options
-) {
+): void {
   try {
-    let result = format(code, formatOptions);
+    const result = format(code, formatOptions);
     expect(result).toMatchSnapshot();
   } catch (e: unknown) {
     // Some of the ambiguous cases are Syntax Errors when parsed
