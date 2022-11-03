@@ -40,6 +40,7 @@
     "lint:prettier:fix": "prettier --write .",
     "lint:ts": "tsc --project tsconfig.lint.json",
     "release": "release-it",
+    "release:ci": "release-it --ci",
     "release:debug": "release-it --verbose --dry-run",
     "test": "vitest",
     "test:ui": "vitest --ui",
