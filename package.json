@@ -14,7 +14,7 @@
     "name": "Krystan HuffMenne"
   },
   "type": "commonjs",
-  "main": "dist/prettier-plugin-ember-template-tag.cjs",
+  "main": "dist/prettier-plugin-ember-template-tag.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -30,8 +30,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "example": "vite build && ./node_modules/.bin/prettier --plugin . example.gjs > temp.gjs",
-    "example-ts": "vite build && ./node_modules/.bin/prettier --plugin . example.gts",
+    "example": "vite build && ./node_modules/.bin/prettier --plugin . --write examples/example.gjs",
+    "example-ts": "vite build && ./node_modules/.bin/prettier --plugin . --write examples/example.gts",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:eslint": "eslint . --cache",

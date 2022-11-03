@@ -23,22 +23,26 @@ When reviewing merged PR's the labels to be used are:
 
 ## Release
 
-Once the prep work is completed, the actual release is straight forward:
+### CI
 
-- First, ensure that you have obtained a [GitHub personal access token][generate-token] with the `repo` scope (no other permissions are needed). Make sure the token is available as the `GITHUB_TOKEN` environment variable.
+Click "Run workflow" [here](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/actions/workflows/release.yml).
+
+### Manual
+
+- First, ensure that you have obtained a [GitHub personal access token][generate-token] with the `repo` scope (no other permissions are needed). Make sure the token is available as the `GITHUB_AUTH` environment variable.
 
   For instance:
 
   ```bash
-  export GITHUB_TOKEN=abc123def456
+  export GITHUB_AUTH=abc123def456
   ```
 
-[generate-token]: https://github.com/settings/tokens/new?scopes=repo&description=GITHUB_TOKEN+env+variable
+[generate-token]: https://github.com/settings/tokens/new?scopes=repo&description=GITHUB_AUTH+env+variable
 
 - Then do your release. If you're nervous, try `pnpm release:debug` first.
 
-```sh
-pnpm release
-```
+  ```bash
+  pnpm release
+  ```
 
 [release-it](https://github.com/release-it/release-it/) manages the actual release process. It will prompt you to to choose the version number after which you will have the chance to hand tweak the changelog to be used (for the `CHANGELOG.md` and GitHub release), then `release-it` continues on to tagging, pushing the tag and commits, deploying the docs, etc.

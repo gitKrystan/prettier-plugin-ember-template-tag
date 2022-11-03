@@ -1,34 +1,103 @@
-# Very WIP Prettier Support for Ember template tags
+# prettier-plugin-ember-template-tag
 
-## Try it out
+[![CI](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/actions/workflows/ci.yml/badge.svg)](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/prettier-plugin-ember-template-tag.svg)](https://www.npmjs.com/package/prettier-plugin-ember-template-tag)
+[![license](https://img.shields.io/npm/l/prettier-plugin-ember-template-tag.svg)](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/blob/main/LICENSE.md)
 
-1. Edit `example.gjs` or `example.gts` to make the ugliest component file you can think of.
-1. Run `pnpm run example > temp.gjs` or `pnpm run example-ts > temp.gts`
+A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](https://rfcs.emberjs.com/id/0779-first-class-component-templates/).
 
-## Prior art and useful links
+## Usage
 
-https://prettier.io/docs/en/plugins.html#developing-plugins
+1. Install:
 
-https://medium.com/@fvictorio/how-to-write-a-plugin-for-prettier-a0d98c845e70
+   NPM:
 
-https://github.com/ember-template-imports/ember-template-imports/blob/master/src/preprocess-embedded-templates.ts#L180
+   ```bash
+   npm install --save-dev prettier prettier-plugin-ember-template-tag
+   ```
 
-https://github.com/ember-template-imports/ember-template-imports/blob/master/src/parse-templates.ts
+   Yarn:
 
-https://github.com/glimmerjs/glimmer-experimental/tree/master/packages/%40glimmerx/prettier-plugin-component-templates
+   ```bash
+   yarn add --save-dev prettier prettier-plugin-ember-template-tag
+   ```
 
-https://github.com/ember-template-lint/ember-template-lint/pull/2483/files
+   PNPM:
 
-https://prettier.io/playground/#N4Igxg9gdgLgprEAuEBLAtgBwgJxgAgGEItoECAzHE-AcgAEBzAGw3ThwHpJSpzaA3AB0oI-PgDaAfSkBxADIBJALLKAogCUpAFTXKACvICCugBQADEWPwAeABYBGAHzj8ACTjNmEfAHVczAAm+A7unt5+AcEOHl4+-jhBIbERCUkx4fFRyZmRidEpWfk5cXnphWXR4jacjk4i5gA0+MD4AM4wOKhgMMoQgXBI+J0ArnD4AL4AlAC6VlCQUB346CPMMKisfPgAvJIyCirqWroGxmaWolDVda4VacEATGGlD-iP99kfuW-fr1+fYp-VIAn5faq1ZwNZqtDpdHp9AZDUbjaZzK6cABUmLEmPwRmucAAHgBDLDMcayABSAGV8BRNuNoPgAO52bp2VnjMAk644EbXGB2cb6HBwGAbDj03D4al0zDMEaMVBQAB0uM4ImJ2Dw+AGFBJawIYGYJLabXwygAnsReORrMT4FBAhbbdg+LAWtZpHIlKpNDo9IYTGoLNYbs47mDigBmF4g2OApIxpPBFPR5Op-Dp-6JjNpiF1axNFrtTrdXr9QbDfmo2bzcRskkEPbmeDk5vjVjwHAk5jDOzN-CoC1QCAEEnDOAd+CXBuuBecTj4ABWI2Wk9Y-Z47FgIgmIEaIAgmA20DayFAJJw1BZ+mvCAvKD7LJJVovR4ARr2wABrcU0mScDyCqcDIAazBtHAX4-v+MA0pgJJgCqjDICiR7Tp+cCBAMgTyLyjAjCSjBwAAYrg6DNhsUCoc+IwwBAh4gHYMDoMwvjsvAbSIWAcA0o+qAbAAboJVrIOA5pMSqUF4KKxGUeBfZQUeK5tESNIoRSACKIzjmBSAQcpICITgMniZ+JJYcwTGYF0sC+KggRCsgAAcAAMR62RAUG+L2mDibZcAyUJYFHgAjrp8CiieT4gGaAC0fDYdhTFihFqBinJjAKQZSnQSAUHoKgaG1kebSaXAOl6YpkH5TAlkOU5djII8R6dCSmwobaOUgEFACsTHrnA2iWU+hn5UJYyKM65A0mAXSngSgQ0jAVoUjVUETBMQA
+   ```bash
+   pnpm add --save-dev prettier prettier-plugin-ember-template-tag
+   ```
 
-https://github.com/prettier/prettier/blob/main/commands.md
+1. Configure with [prettierrc](https://prettier.io/docs/en/configuration.html):
 
-## Tests
+   ```js
+   // .prettierrc.js
+   module.exports = {
+     // ...
+     plugins: ['prettier-plugin-ember-template-tag'],
+   };
+   ```
 
-`pnpm test`
+1. Run `npm prettier --write .`
 
-## TODOs and known issues
+## Ignoring code
 
-- [ ] Fix HAX
-- [ ] Add tests
-- [ ] Verify quotes configuration works properly
+Because gts/gjs files include both JavaScript and Glimmer template code, you'll need to use the appropriate prettier-ignore comment for the code you are ignoring:
+
+```js
+export default class MyComponent extends Component {
+  // prettier-ignore
+  cells = matrix(
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1
+  )
+
+  <template>
+    {{! prettier-ignore }}
+    {{#each cells as |cell|}}{{cell.contents}}{{/each}}
+  </template>
+}
+```
+
+To ignore the entire template, use a JavaScript `//prettier-ignore` comment before the opening `<template>` tag:
+
+```js
+export default class MyComponent extends Component {
+  // prettier-ignore
+  <template>
+    This whole template is ignored
+    <MyUglyComponent     "shall"     be="preserved">
+      <ThisPart
+        is  =  "also preserved as is"
+      />
+    </MyUglyComponent>
+  </template>
+}
+```
+
+## Bugs
+
+If there are errors, please file a bug report so that they can be fixed.
+
+TODO: Process
+
+## Opinions
+
+TODO: link to RFC
+
+<!-- TODO: ### Configuration
+
+These configuration options are available in addition to [Prettier's standard
+config for JavaScript files](https://prettier.io/docs/en/configuration.html).
+
+| Name                  | Default | Description                                                                                                  |
+| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| `templatePrintWidth`  | `80`    | [Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags |
+| `templateSingleQuote` | `false` | Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags  | -->
+
+<!-- ## Editor integration
+
+### VScode
+
+TODO -->
