@@ -3,6 +3,7 @@ pnpm-lock.yaml
 **/*/pnpm-lock.yaml
 tests/__snapshots__
 tests/cases
+CHANGELOG.md
 
 # Everything below this point should match gitignore
 
