@@ -20,6 +20,7 @@ dist
 dist-ssr
 *.local
 .eslintcache
+.npmrc
 
 # Editor directories and files
 .vscode/*
