@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/v/prettier-plugin-ember-template-tag.svg)](https://www.npmjs.com/package/prettier-plugin-ember-template-tag)
 [![license](https://img.shields.io/npm/l/prettier-plugin-ember-template-tag.svg)](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/blob/main/LICENSE.md)
 
-A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](https://rfcs.emberjs.com/id/0779-first-class-component-templates/).
+A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](https://rfcs.emberjs.com/id/0779-first-class-component-templates/) in both `.gjs` and `.gts` files. See also [Ember Template Imports](https://github.com/ember-template-imports/ember-template-imports).
 
 ## Usage
 
@@ -40,6 +40,29 @@ A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](h
 
 1. Run `npm prettier --write .`
 
+## Opinions
+
+This plugin works by weaving together Prettier's standard [babel-ts](https://prettier.io/playground/#N4Igxg9gdgLgprEAuEBLWcBOAzAhmOAAgFkBPASQx3yOAB0pDDsIIAKASiUIGcZN0AcwA0DJgCNcmbgEFMmXKQA8UAK4BbcVgB8oqAF8GDOAA8ADhEwxCucXwVhrYADa4ePQgDFWhVOrPOcOoIMB5klPDUBIT0jMysnDFiTCmpTAD06YQAKgDyACK53JhwMKqYjLiVjqq4zoQAbnWqRAAWWHDJaYQlZRWEAOTtzs4QA10phnGCpYSSmImxqb3ljADaTACMehNMAEzChADMeqkAuslTUwwwpGZEAEpwAI4tfNl3RAC8gwDiAKLZAaEAA+gwAEv8ZPlgWCBgAFXIAZSBoMG8IAqqi4bl4dlyLkAHJI2GDADCRMJ-zJ2MG+X+ABlAf9SQNsg8ZGSWSBhCAIGYYKhoDxkKApJgIAB3eFSBAilB1SWKEW88QOADWpSRuGCDPQcGQeGcPDgqo1WrM+CEyH4LV5QS0ABNHXBHQyqoJajNvJh1LgYIKoIJkCBcKoYBAeSBWjB1M4AOqtVDwHiWghIuXJ1ANZOkENgdxR9AmqzwhSCP2Guom3kAKx4JiRQkCAEVVBB4FXjaaQJbMCWQ5ItM4ALShKNmASweOoR0wVrIAAcAAZeZOICb4wozCHJ3ASw0DbzXh24GX+fLQzwR1A4K7XVGSq9UCUy7gK7guzWQCb1KgbZgdo-s2cBtqeX49jAtgznOC5IAcID8LgqDOEIZIQOolYoPuACsUaqCa2S2PKRrfg0LSUC6sBImAAgCjIUCOkityBBB+j6EAA) and [glimmer](https://prettier.io/playground/#N4Igxg9gdgLgprEAuEACVAeAJgSwG7qFgA2AhgM7kC8AOiAjAE4CedhqAfDVOhgBYBGDsGDoYOGMTjsAvjIwB6QVx6ZcBdCQrU6AIwhZWIFe1OERhfYbOE53Reo6YFjkABoQEAA7jo5ZKCkjIwQAO4ACkEI-iikxKGkzP4euoykYADWcDAAyqQAtnAAMjhQcMgAZnHkcClpmdk5XumlAObITACutfT5unBYWANFpFCtnaStcABiEIz5pDDiY8ggpJ0wEO4gfDD5xADqfBJw5M1gcDnREvgSzKtglNulNYww4WmtC5XVPQBW5AAHjk2lIAIqdCDwH7EGoeZqMV6rVrEHD5QqMbZeRilGAHHBYGB8ZAADgADPCQjUDmkvKtsac4Iw8OUPABHSHwD7eGJrcgAWjKAwG20YcA5ODFH0m3yQVVhPRq+RwHUY3Q85FBcAhUPKct+HhgpF0+MJxKQACZDWkcKixgBhCDo0irU4AVm2nRqABVjTF5XCQHhugBJKBDWA5MA4nwAQXDORgzCkMJqciAA) parsers, so it doesn't have many opinions of its own.
+
+With that said, I did have to make some decisions about when and where to include or omit semicolons. You can read more about and comment on my decision process [on this RFC](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/1).
+
+## Configuration
+
+The current version offers no configuration options but the plan is to allow the relevant [standard
+config options for JavaScript files](https://prettier.io/docs/en/configuration.html) to be separately configured for the `<template>` portion of the file.
+
+<!-- TODO: These configuration options are available in addition to [Prettier's standard
+config for JavaScript files](https://prettier.io/docs/en/configuration.html).
+
+| Name                  | Default | Description                                                                                                  |
+| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| `templatePrintWidth`  | `80`    | [Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags |
+| `templateSingleQuote` | `false` | Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags  | -->
+
+<!-- TODO: ## Editor integration
+
+### VScode -->
+
 ## Ignoring code
 
 Because gts/gjs files include both JavaScript and Glimmer template code, you'll need to use the appropriate prettier-ignore comment for the code you are ignoring:
@@ -55,7 +78,7 @@ export default class MyComponent extends Component {
 
   <template>
     {{! prettier-ignore }}
-    {{#each cells as |cell|}}{{cell.contents}}{{/each}}
+    {{#each this.cells as |cell|}}{{cell.contents}}{{/each}}
   </template>
 }
 ```
@@ -78,26 +101,4 @@ export default class MyComponent extends Component {
 
 ## Bugs
 
-If there are errors, please file a bug report so that they can be fixed.
-
-TODO: Process
-
-## Opinions
-
-TODO: link to RFC
-
-<!-- TODO: ### Configuration
-
-These configuration options are available in addition to [Prettier's standard
-config for JavaScript files](https://prettier.io/docs/en/configuration.html).
-
-| Name                  | Default | Description                                                                                                  |
-| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
-| `templatePrintWidth`  | `80`    | [Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags |
-| `templateSingleQuote` | `false` | Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags  | -->
-
-<!-- ## Editor integration
-
-### VScode
-
-TODO -->
+If you find a bug, please file a bug report! See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.

@@ -1,30 +1,114 @@
-## Try it out
+# Contributing to prettier-plugin-ember-template-tag
+
+Thank you so much for your contributions!
+
+## Bug Reports and Issues
+
+If you find a bug, please [open an issue](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/new/choose) to describe it. If you can also open a PR with a failing test, that would be awesome.
+
+Currently there are several `HACK`s and `FIXME`s in the code. If you happen to find a bug, it might be worthwhile to look through those to see if they might be the culprit.
+
+Find me on the [Ember Discord](https://discord.com/invite/emberjs) at `hm_krystan#0533` if I don't respond to your issue in a timely manner.
+
+## Development
+
+1. Ensure you have the following set up in your development environment:
+
+   - [node](https://nodejs.org/en/download/)
+   - [pnpm](https://pnpm.io/)
+
+1. [Fork this repo](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/fork) and pull.
+
+1. Install dependencies:
+
+   ```bash
+   pnpm install --recursive
+   ```
+
+1. Run the tests to ensure your development environment is working properly:
+
+   Watch mode:
+
+   ```bash
+   pnpm test
+   ```
+
+   Single run:
+
+   ```bash
+   pnpm test:run
+   ```
+
+   Watch mode with a cute UI in the browser:
+
+   ```bash
+   pnpm test:ui
+   ```
+
+## Pull Requests
+
+We love pull requests. Here's a quick guide:
+
+1. Follow the [Development](#development) guide above to set up your environment.
+
+1. Add a test for your change. Only refactoring and documentation changes require no new tests. If you are adding functionality or fixing a bug, we need a test! The best tests will fail without your code and pass with it. See the [Tests](#tests) section below for tips on writing tests.
+
+1. Make the test pass. See the [Examples](#examples) section below for a useful development workflow.
+
+1. Update the README, etc, as necessary if the documentation is affected by your change.
+
+1. Ensure that the linters and Prettier pass:
+
+   To lint:
+
+   ```bash
+   pnpm lint
+   ```
+
+   To run autofix:
+
+   ```bash
+   pnpm lint:fix
+   ```
+
+1. Commit your changes. Please include a [useful commit message](https://initialcommit.com/blog/git-commit-messages-best-practices). If your pull request fixes an issue, specify the issue number in the commit message (e.g. `FIXES #123`).
+
+1. Push to your fork and submit a pull request. Please provide us with some explanation of why you made the changes you made. For new features make sure to explain a standard use case to us.
+
+1. Find me on the [Ember Discord](https://discord.com/invite/emberjs) at `hm_krystan#0533` if I don't respond to your pull request in a timely manner.
+
+NOTE: Partially copied from https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md
+
+## Examples
+
+1. Follow the [Development](#development) guide above to set up your environment.
 
 1. Edit `example.gjs` or `example.gts` to make the ugliest component file you can think of.
-1. Run `pnpm run example` or `pnpm run example-ts`
 
-## Prior art and useful links
+1. Run `pnpm run example` or `pnpm run example-ts` to prettify your ugly file. 😍 (Note that `run example` will also build the project, so it may take a second.)
 
-https://prettier.io/docs/en/plugins.html#developing-plugins
-
-https://medium.com/@fvictorio/how-to-write-a-plugin-for-prettier-a0d98c845e70
-
-https://github.com/ember-template-imports/ember-template-imports/blob/master/src/preprocess-embedded-templates.ts#L180
-
-https://github.com/ember-template-imports/ember-template-imports/blob/master/src/parse-templates.ts
-
-https://github.com/glimmerjs/glimmer-experimental/tree/master/packages/%40glimmerx/prettier-plugin-component-templates
-
-https://github.com/ember-template-lint/ember-template-lint/pull/2483/files
-
-https://prettier.io/playground/#N4Igxg9gdgLgprEAuEBLAtgBwgJxgAgGEItoECAzHE-AcgAEBzAGw3ThwHpJSpzaA3AB0oI-PgDaAfSkBxADIBJALLKAogCUpAFTXKACvICCugBQADEWPwAeABYBGAHzj8ACTjNmEfAHVczAAm+A7unt5+AcEOHl4+-jhBIbERCUkx4fFRyZmRidEpWfk5cXnphWXR4jacjk4i5gA0+MD4AM4wOKhgMMoQgXBI+J0ArnD4AL4AlAC6VlCQUB346CPMMKisfPgAvJIyCirqWroGxmaWolDVda4VacEATGGlD-iP99kfuW-fr1+fYp-VIAn5faq1ZwNZqtDpdHp9AZDUbjaZzK6cABUmLEmPwRmucAAHgBDLDMcayABSAGV8BRNuNoPgAO52bp2VnjMAk644EbXGB2cb6HBwGAbDj03D4al0zDMEaMVBQAB0uM4ImJ2Dw+AGFBJawIYGYJLabXwygAnsReORrMT4FBAhbbdg+LAWtZpHIlKpNDo9IYTGoLNYbs47mDigBmF4g2OApIxpPBFPR5Op-Dp-6JjNpiF1axNFrtTrdXr9QbDfmo2bzcRskkEPbmeDk5vjVjwHAk5jDOzN-CoC1QCAEEnDOAd+CXBuuBecTj4ABWI2Wk9Y-Z47FgIgmIEaIAgmA20DayFAJJw1BZ+mvCAvKD7LJJVovR4ARr2wABrcU0mScDyCqcDIAazBtHAX4-v+MA0pgJJgCqjDICiR7Tp+cCBAMgTyLyjAjCSjBwAAYrg6DNhsUCoc+IwwBAh4gHYMDoMwvjsvAbSIWAcA0o+qAbAAboJVrIOA5pMSqUF4KKxGUeBfZQUeK5tESNIoRSACKIzjmBSAQcpICITgMniZ+JJYcwTGYF0sC+KggRCsgAAcAAMR62RAUG+L2mDibZcAyUJYFHgAjrp8CiieT4gGaAC0fDYdhTFihFqBinJjAKQZSnQSAUHoKgaG1kebSaXAOl6YpkH5TAlkOU5djII8R6dCSmwobaOUgEFACsTHrnA2iWU+hn5UJYyKM65A0mAXSngSgQ0jAVoUjVUETBMQA
-
-https://github.com/prettier/prettier/blob/main/commands.md
+1. Don't commit your changes to the example files.
 
 ## Tests
 
-`pnpm test`
+Most of the tests are generated by formatting example files from the `cases` directory and comparing the output to [Vitest snapshots](https://vitest.dev/guide/snapshot.html).
 
-## Bugs
+You can find the test file here: https://github.com/gitKrystan/prettier-plugin-ember-template-tag/blob/main/tests/format.test.ts
 
-HACKs and FIXMEs
+To add a new case, add your case file(s) in the appropriate place(s) here: https://github.com/gitKrystan/prettier-plugin-ember-template-tag/tree/main/tests/cases
+
+New cases will be tested against a variety of configs. If you also want to test against for "ambiguous expressions" issues as described [here](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/1), you can include the comment `/*AMBIGUOUS*/` anywhere in your test cases and it will be replaced by the ambiguous cases listed [here](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/blob/de5722b476d83671fdf199a6a8097978fe245a46/tests/format.test.ts#L20-L29) in a variety of generated tests. If you find a new ambiguous case, add it to that list.
+
+Once you make your changes and/or add new cases `pnpm test -u` to update the snapshots then carefully inspect the results to ensure the output matches your expecations.
+
+## Prior Art and Useful Resources
+
+[Prettier plugin development documentation](https://prettier.io/docs/en/plugins.html#developing-plugins)
+
+[Prettier printer doc commands](https://github.com/prettier/prettier/blob/main/commands.md)
+
+[Ember Template Imports method to preprocess embedded templates](https://github.com/ember-template-imports/ember-template-imports/blob/master/src/preprocess-embedded-templates.ts#L180)
+
+[Sample AST and Prettier doc for preprocessed embedded templates](https://prettier.io/playground/#N4Igxg9gdgLgprEAuEBLAtgBwgJxgAgGEItoECAzHE-AcgAEBzAGw3ThwHpJSpzaA3AB0oI-PgDaAfSkBxADIBJALLKAogCUpAFTXKACvICCugBQADEWPwAeABYBGAHzj8ACTjNmEfAHVczAAm+A7unt5+AcEOHl4+-jhBIbERCUkx4fFRyZmRidEpWfk5cXnphWXR4jacjk4i5gA0+MD4AM4wOKhgMMoQgXBI+J0ArnD4AL4AlAC6VlCQUB346CPMMKisfPgAvJIyCirqWroGxmaWolDVda4VacEATGGlD-iP99kfuW-fr1+fYp-VIAn5faq1ZwNZqtDpdHp9AZDUbjaZzK6cABUmLEmPwRmucAAHgBDLDMcayABSAGV8BRNuNoPgAO52bp2VnjMAk644EbXGB2cb6HBwGAbDj03D4al0zDMEaMVBQAB0uM4ImJ2Dw+AGFBJawIYGYJLabXwygAnsReORrMT4FBAhbbdg+LAWtZpHIlKpNDo9IYTGoLNYbs47mDigBmF4g2OApIxpPBFPR5Op-Dp-6JjNpiF1axNFrtTrdXr9QbDfmo2bzcRskkEPbmeDk5vjVjwHAk5jDOzN-CoC1QCAEEnDOAd+CXBuuBecTj4ABWI2Wk9Y-Z47FgIgmIEaIAgmA20DayFAJJw1BZ+mvCAvKD7LJJVovR4ARr2wABrcU0mScDyCqcDIAazBtHAX4-v+MA0pgJJgCqjDICiR7Tp+cCBAMgTyLyjAjCSjBwAAYrg6DNhsUCoc+IwwBAh4gHYMDoMwvjsvAbSIWAcA0o+qAbAAboJVrIOA5pMSqUF4KKxGUeBfZQUeK5tESNIoRSACKIzjmBSAQcpICITgMniZ+JJYcwAC0MAfsZXSwL4qCBEKyAABwAAxHpg1BQb4vaYOJvlwDJQlgUeACOunwKKJ5PiAZrWXw2HYUxYrRagYpyYwCkGUp0EgFB6CoGhtZHm0mlwDpemKZBhUwJZzmuXYyCPEenQkpsKG2nlIChQArEx65wNollPoZhVCWMijOuQNJgF0p4EoENIwFaFJ1VBEwTEAA)
+
+[Prettier plugin for experimental hbs tagged expressions](https://github.com/glimmerjs/glimmer-experimental/tree/master/packages/%40glimmerx/prettier-plugin-component-templates)
