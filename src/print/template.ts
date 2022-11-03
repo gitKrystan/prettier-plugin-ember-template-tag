@@ -34,8 +34,8 @@ export function printTemplateTag(
     const contents = textToDoc(text.trim(), {
       ...options,
       parser: 'glimmer',
-      // TODO: Support glimmerTemplateSingleQuote option
-      // singleQuote: options.hbsSingleQuote,
+      // TODO: Support templateSingleQuote option
+      // singleQuote: options.templateSingleQuote,
     });
     return group([
       TEMPLATE_TAG_OPEN,
