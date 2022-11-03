@@ -1,13 +1,14 @@
 {
   "name": "prettier-plugin-ember-template-tag",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A prettier plugin for formatting Ember template tags",
   "keywords": [
-    "prettier",
     "ember",
-    "template tag",
+    "ember template imports",
+    "gjs",
     "gts",
-    "gjs"
+    "prettier",
+    "template tag"
   ],
   "author": {
     "email": "kmenne@gmail.com",
@@ -28,7 +29,6 @@
     "registry": "https://registry.npmjs.org"
   },
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
     "example": "vite build && ./node_modules/.bin/prettier --plugin . --write examples/example.gjs",
     "example-ts": "vite build && ./node_modules/.bin/prettier --plugin . --write examples/example.gts",
