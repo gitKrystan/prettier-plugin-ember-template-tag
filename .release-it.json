@@ -10,6 +10,7 @@
     "commitMessage": "internal: release v${version}"
   },
   "github": {
-    "release": true
+    "release": true,
+    "tokenRef": "GITHUB_AUTH"
   }
 }
