@@ -45,7 +45,10 @@ describe('format', async () => {
       for (const testCase of cases) {
         test(`it formats ${testCase.name}`, () => {
           const code = testCase.code.replaceAll(AMBIGUOUS_PLACEHOLDER, '');
-          const result = format(code, DEFAULT_OPTIONS);
+          const result = format(code, {
+            ...DEFAULT_OPTIONS,
+            ...config.options,
+          });
           expect(result).toMatchSnapshot();
         });
       }

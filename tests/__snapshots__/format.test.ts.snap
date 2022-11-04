@@ -10659,7 +10659,7 @@ export interface Signature {
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gjs/component-class.gjs 1`] = `
-"import Component from \\"@glimmer/component\\";
+"import Component from \\"@glimmer/component\\"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -10674,7 +10674,7 @@ class MyComponent extends Component {
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gjs/component-class-with-template-literal.gjs 1`] = `
-"import Component from \\"@glimmer/component\\";
+"import Component from \\"@glimmer/component\\"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -10685,7 +10685,7 @@ class MyComponent extends Component {
     </h1>
   </template>
 
-  what = \`template literal that is not a template\`;
+  what = \`template literal that is not a template\`
 }
 "
 `;
@@ -10705,12 +10705,12 @@ exports[`format > with config \`semi: false\` > it formats cases/gjs/exported-mo
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
+</template>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gjs/js-only.gjs 1`] = `
-"const num = 1;
+"const num = 1
 "
 `;
 
@@ -10719,7 +10719,7 @@ exports[`format > with config \`semi: false\` > it formats cases/gjs/mod-var.gjs
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
+</template>
 "
 `;
 
@@ -10732,7 +10732,7 @@ exports[`format > with config \`semi: false\` > it formats cases/gjs/multiple-de
     </h1>
   </template>,
   ModVar2 = <template>Second module variable template.</template>,
-  num = 1;
+  num = 1
 
 const bool = false,
   ModVar3 = <template>
@@ -10742,17 +10742,17 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
+  ModVar4 = <template>Second module variable template.</template>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gjs/one-line.gjs 1`] = `
-"const Oneline = <template>Module variable template (one line).</template>;
+"const Oneline = <template>Module variable template (one line).</template>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gjs/prettier-ignore/component-class.gjs 1`] = `
-"import Component from \\"@glimmer/component\\";
+"import Component from \\"@glimmer/component\\"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -10767,7 +10767,7 @@ class MyComponent extends Component {
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gjs/prettier-ignore/component-class-with-template-literal.gjs 1`] = `
-"import Component from \\"@glimmer/component\\";
+"import Component from \\"@glimmer/component\\"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -10778,7 +10778,7 @@ class MyComponent extends Component {
     <h1>   Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
   </template>
 
-  what = \`template literal that is not a template\`;
+  what = \`template literal that is not a template\`
 }
 "
 `;
@@ -10843,14 +10843,14 @@ exports[`format > with config \`semi: false\` > it formats cases/gjs/simple.gjs 
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/component-class.gts 1`] = `
-"import Component from \\"@glimmer/component\\";
+"import Component from \\"@glimmer/component\\"
 
 export interface Signature {
-  Element: HTMLElement;
+  Element: HTMLElement
   Args: {
-    myArg: string;
-  };
-  Yields: [];
+    myArg: string
+  }
+  Yields: []
 }
 
 /** It's a component */
@@ -10866,14 +10866,14 @@ class MyComponent extends Component<Signature> {
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/component-class-with-template-literal.gts 1`] = `
-"import Component from \\"@glimmer/component\\";
+"import Component from \\"@glimmer/component\\"
 
 export interface Signature {
-  Element: HTMLElement;
+  Element: HTMLElement
   Args: {
-    myArg: string;
-  };
-  Yields: [];
+    myArg: string
+  }
+  Yields: []
 }
 
 /** It's a component */
@@ -10886,18 +10886,18 @@ class MyComponent extends Component<Signature> {
     </h1>
   </template>
 
-  what = \`template literal that is not a template\`;
+  what = \`template literal that is not a template\`
 }
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 export default <template>
@@ -10910,85 +10910,85 @@ export default <template>
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/exported-mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 export const Exported: TemplateOnlyComponent<Signature> = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
+</template>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 export const Exported = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/js-only.gts 1`] = `
-"const num: number = 1;
+"const num: number = 1
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 const Private: TemplateOnlyComponent<Signature> = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
+</template>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 const Private = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/multiple-declarations.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 const ModVar1: TemplateOnlyComponent<Signature> = <template>
@@ -11001,7 +11001,7 @@ const ModVar1: TemplateOnlyComponent<Signature> = <template>
   ModVar2: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
   </template>,
-  num = 1;
+  num = 1
 
 const bool: boolean = false,
   ModVar3: TemplateOnlyComponent<Signature> = <template>
@@ -11013,17 +11013,17 @@ const bool: boolean = false,
   </template>,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
-  </template>;
+  </template>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/multiple-declarations-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 const ModVar1 = <template>
@@ -11036,7 +11036,7 @@ const ModVar1 = <template>
   ModVar2 = <template>
     Second module variable template.
   </template> as TemplateOnlyComponent<Signature>,
-  num = 1;
+  num = 1
 
 const bool: boolean = false,
   ModVar3 = <template>
@@ -11048,32 +11048,32 @@ const bool: boolean = false,
   </template> as TemplateOnlyComponent<Signature>,
   ModVar4 = <template>
     Second module variable template.
-  </template> as TemplateOnlyComponent<Signature>;
+  </template> as TemplateOnlyComponent<Signature>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/one-line.gts 1`] = `
-"import type { TOC } from \\"@ember/component/template-only\\";
+"import type { TOC } from \\"@ember/component/template-only\\"
 
 export interface Sig {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
-const Oneline = <template>One line.</template> as TOC<Sig>;
+const Oneline = <template>One line.</template> as TOC<Sig>
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/component-class.gts 1`] = `
-"import Component from \\"@glimmer/component\\";
+"import Component from \\"@glimmer/component\\"
 
 export interface Signature {
-  Element: HTMLElement;
+  Element: HTMLElement
   Args: {
-    myArg: string;
-  };
-  Yields: [];
+    myArg: string
+  }
+  Yields: []
 }
 
 /** It's a component */
@@ -11089,14 +11089,14 @@ class MyComponent extends Component<Signature> {
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/component-class-with-template-literal.gts 1`] = `
-"import Component from \\"@glimmer/component\\";
+"import Component from \\"@glimmer/component\\"
 
 export interface Signature {
-  Element: HTMLElement;
+  Element: HTMLElement
   Args: {
-    myArg: string;
-  };
-  Yields: [];
+    myArg: string
+  }
+  Yields: []
 }
 
 /** It's a component */
@@ -11108,18 +11108,18 @@ class MyComponent extends Component<Signature> {
     <h1 ...attributes>   {{@myArg}} Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
   </template>
 
-  what = \`template literal that is not a template\`;
+  what = \`template literal that is not a template\`
 }
 "
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 // prettier-ignore
 export default <template>     Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. </template> as TemplateOnlyComponent<Signature>
@@ -11127,12 +11127,12 @@ export default <template>     Explicit default export module top level component
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/exported-mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 // prettier-ignore
@@ -11141,12 +11141,12 @@ export const Exported: TemplateOnlyComponent<Signature>     = <template>       E
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 // prettier-ignore
@@ -11161,12 +11161,12 @@ const num:   number = 1;
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/multiple-declarations.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 // prettier-ignore
@@ -11191,12 +11191,12 @@ ModVar4: TemplateOnlyComponent<Signature> = <template>
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/multiple-declarations-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 // prettier-ignore
@@ -11221,12 +11221,12 @@ ModVar4 = <template>
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/one-line.gts 1`] = `
-"import type { TOC } from \\"@ember/component/template-only\\";
+"import type { TOC } from \\"@ember/component/template-only\\"
 
 export interface Sig {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 // prettier-ignore
@@ -11235,12 +11235,12 @@ const Oneline = <template>      Module variable template (one line). </template>
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/prettier-ignore/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 // prettier-ignore
@@ -11251,12 +11251,12 @@ export interface Signature {
 `;
 
 exports[`format > with config \`semi: false\` > it formats cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
-  Element: HTMLElement;
-  Args: {};
-  Yields: [];
+  Element: HTMLElement
+  Args: {}
+  Yields: []
 }
 
 <template>what</template> as TemplateOnlyComponent<Signature>
