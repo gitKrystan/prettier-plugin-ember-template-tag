@@ -1,9 +1,10 @@
-import type { Options } from 'prettier';
 import { describe, expect, test } from 'vitest';
 
+import type { Options } from '../../src/options';
 import type { TestCase } from '../helpers/cases';
+import { getAllCases } from '../helpers/cases';
 import { format } from '../helpers/format';
-import type { Config } from './config';
+import type { Config } from './make-suite';
 
 /**
  * Add this comment to any test case and it will be replaced by the
@@ -23,9 +24,18 @@ const AMBIGUOUS_EXPRESSIONS = [
 ];
 
 /**
- * `testCallback` for `describeConfig` that tests the provided `config` and
- * `testCase` against each ambiguous expression from `AMBIGUOUS_EXPRESSIONS`,
- * with and without user-provided semicolons.
+ * `caseFilter` for `describeConfig` that will return only cases that include
+ * the `AMBIGUOUS_PLACEHOLDER`.
+ */
+export async function getAmbiguousCases(): Promise<TestCase[]> {
+  return (await getAllCases()).filter((c) =>
+    c.code.includes(AMBIGUOUS_PLACEHOLDER)
+  );
+}
+
+/**
+ * Tests the provided `config` and `testCase` against each ambiguous expression
+ * from `AMBIGUOUS_EXPRESSIONS`, with and without user-provided semicolons.
  *
  * @see https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/1 for more details
  */
@@ -58,7 +68,7 @@ export function ambiguousExpressionTest(
 
 function behavesLikeFormattedAmbiguousCase(
   code: string,
-  formatOptions: Options = {}
+  formatOptions: Partial<Options> = {}
 ): void {
   try {
     const result = format(code, formatOptions);
@@ -72,16 +82,4 @@ function behavesLikeFormattedAmbiguousCase(
     }
     expect(isSyntaxError, 'Expected SyntaxError').toBeTruthy();
   }
-}
-
-/**
- * `caseFilter` for `describeConfig` that will return only cases that include
- * the `AMBIGUOUS_PLACEHOLDER`.
- */
-export function ambiguousCases(
-  testCase: TestCase,
-  _index: number,
-  _cases: TestCase[]
-): boolean {
-  return testCase.code.includes(AMBIGUOUS_PLACEHOLDER);
 }

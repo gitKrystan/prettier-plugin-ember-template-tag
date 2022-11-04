@@ -1,10 +1,10 @@
-import type { Options } from 'prettier';
 import { format as prettierFormat } from 'prettier';
 
 import { PARSER_NAME } from '../../src/config';
 import plugin from '../../src/main';
+import type { Options } from '../../src/options';
 
-const DEFAULT_OPTIONS: Options = {
+const DEFAULT_OPTIONS: Partial<Options> = {
   parser: PARSER_NAME,
   plugins: [plugin],
 };
@@ -15,7 +15,7 @@ const DEFAULT_OPTIONS: Options = {
  * Optionally, provide Options overrides, which will be merged with the default
  * options.
  */
-export function format(code: string, overrides: Options = {}): string {
+export function format(code: string, overrides: Partial<Options> = {}): string {
   return prettierFormat(code, {
     ...DEFAULT_OPTIONS,
     ...overrides,

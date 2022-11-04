@@ -34,3 +34,9 @@ export async function getCases(
 
   return ([] as TestCase[]).concat(...cases);
 }
+
+/** Gets all of the Test Cases in the `cases` directory. */
+export async function getAllCases(): Promise<TestCase[]> {
+  const caseDir = path.join(__dirname, '../cases');
+  return await getCases(__dirname, caseDir);
+}

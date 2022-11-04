@@ -1,18 +1,9 @@
 import { describe } from 'vitest';
-
-import {
-  ambiguousCases,
-  ambiguousExpressionTest,
-} from '../../helpers/ambiguous';
-import { describeConfig } from '../../helpers/config';
+import { describeAmbiguitySuite } from '../../helpers/make-suite';
 
 describe('ambiguous', () => {
-  describeConfig(
-    {
-      name: 'semi: false',
-      options: { semi: false },
-    },
-    ambiguousExpressionTest,
-    ambiguousCases
-  );
+  describeAmbiguitySuite({
+    name: 'semi: false',
+    options: { semi: false },
+  });
 });

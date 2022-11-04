@@ -3,6 +3,8 @@ import type { ParserOptions } from 'prettier';
 import { doc } from 'prettier';
 
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
+import type { Options } from '../options';
+import { getTemplateSingleQuote } from '../options';
 import type { BaseNode } from '../types/ast';
 import type { GlimmerExpression } from '../types/glimmer';
 
@@ -18,9 +20,12 @@ export function printTemplateTag(
   node: TemplateLiteral | GlimmerExpression,
   textToDoc: (
     text: string,
+    // Don't use our `Options` here even though technically they are available
+    // because we don't want to accidentally pass them into `textToDoc`. We
+    // should normalize them into standard Prettier options at this point.
     options: ParserOptions<BaseNode>
   ) => doc.builders.Doc,
-  options: ParserOptions<BaseNode>,
+  options: Options,
   hasPrettierIgnore: boolean
 ): doc.builders.Doc {
   const text = node.quasis.map((quasi) => quasi.value.raw).join();
@@ -34,8 +39,7 @@ export function printTemplateTag(
     const contents = textToDoc(text.trim(), {
       ...options,
       parser: 'glimmer',
-      // TODO: Support templateSingleQuote option
-      // singleQuote: options.templateSingleQuote,
+      singleQuote: getTemplateSingleQuote(options),
     });
     return group([
       TEMPLATE_TAG_OPEN,

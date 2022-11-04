@@ -1,10 +1,11 @@
-import type { AstPath, ParserOptions, Plugin, Printer } from 'prettier';
+import type { AstPath, Plugin, Printer } from 'prettier';
 
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
   TEMPLATE_TAG_PLACEHOLDER,
 } from '../config';
+import type { Options } from '../options';
 import type { BaseNode } from '../types/ast';
 import {
   getGlimmerExpression,
@@ -24,7 +25,7 @@ import { printTemplateTag } from './template';
 // @ts-expect-error FIXME: HACK because estree printer isn't exported. See below.
 export const printer: Printer<BaseNode> = {};
 
-let originalOptions: ParserOptions<BaseNode>;
+let originalOptions: Options;
 
 /**
  * FIXME: HACK because estree printer isn't exported.
@@ -32,7 +33,7 @@ let originalOptions: ParserOptions<BaseNode>;
  * @see https://github.com/prettier/prettier/issues/10259
  * @see https://github.com/prettier/prettier/issues/4424
  */
-export function definePrinter(options: ParserOptions<BaseNode>): void {
+export function definePrinter(options: Options): void {
   originalOptions = { ...options };
   const estreePlugin = assertExists(options.plugins.find(isEstreePlugin));
   const estreePrinter = estreePlugin.printers.estree;
@@ -163,10 +164,7 @@ function isEstreePlugin(
   );
 }
 
-function printRawText(
-  path: AstPath<BaseNode>,
-  options: ParserOptions<BaseNode>
-): string {
+function printRawText(path: AstPath<BaseNode>, options: Options): string {
   const node = path.getValue();
   assert('expected start', node.start);
   assert('expected end', node.end);

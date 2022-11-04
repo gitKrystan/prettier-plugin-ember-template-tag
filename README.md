@@ -48,16 +48,13 @@ With that said, I did have to make some decisions about when and where to includ
 
 ## Configuration
 
-The current version offers no configuration options but the plan is to allow the relevant [standard
-config options for JavaScript files](https://prettier.io/docs/en/configuration.html) to be separately configured for the `<template>` portion of the file.
+These configuration options are available in addition to [Prettier's standard config for JavaScript and Handlebars files](https://prettier.io/docs/en/options.html).
 
-<!-- TODO: These configuration options are available in addition to [Prettier's standard
-config for JavaScript files](https://prettier.io/docs/en/configuration.html).
+| Name                  | Default | Description                                                                                             |
+| --------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `templateSingleQuote` | `false` | [Same as in Prettier](https://prettier.io/docs/en/options.html#quotes) but affecting only template tags |
 
-| Name                  | Default | Description                                                                                                  |
-| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
-| `templatePrintWidth`  | `80`    | [Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags |
-| `templateSingleQuote` | `false` | Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags  | -->
+<!-- TODO: | `templatePrintWidth`  | `80`    | [Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags | -->
 
 <!-- TODO: ## Editor integration
 
