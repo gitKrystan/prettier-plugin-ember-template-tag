@@ -8,4 +8,3 @@
 #### Committers: 1
 - Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
 
-# Changelog

@@ -19,7 +19,7 @@ A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](h
    Yarn:
 
    ```bash
-   yarn add --save-dev prettier prettier-plugin-ember-template-tag
+   yarn add --dev prettier prettier-plugin-ember-template-tag
    ```
 
    PNPM:
