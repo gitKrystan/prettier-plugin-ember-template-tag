@@ -56,9 +56,29 @@ These configuration options are available in addition to [Prettier's standard co
 
 <!-- TODO: | `templatePrintWidth`  | `80`    | [Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags | -->
 
-<!-- TODO: ## Editor integration
+## Editor integration
 
-### VScode -->
+### VSCode
+
+1. Install Prettier and this plugin as [shown above.](#usage)
+1. Install the [`Prettier - Code Formatter` VSCode Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
+1. Reload your VSCode window.
+1. The format command and format-on-save should now work for `.gjs` and `.gts` files. You might need to wait a few seconds for the Prettier extension to register the plugin. If this does not work, you can manually set Prettier as the default formatter for `.gjs` and `.gts` as shown below, like so, but please file an issue if you need to do this:
+
+   ```jsonc
+   // .vscode/settings.json
+   {
+     "[gjs]": {
+       // "editor.formatOnSave": true,
+       "editor.defaultFormatter": "esbenp.prettier-vscode"
+     },
+
+     "[gts]": {
+       // "editor.formatOnSave": true,
+       "editor.defaultFormatter": "esbenp.prettier-vscode"
+     }
+   }
+   ```
 
 ## Ignoring code
 
