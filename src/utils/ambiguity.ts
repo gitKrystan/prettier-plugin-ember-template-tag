@@ -8,8 +8,8 @@ import {
   isRegExpLiteral,
   isUnaryExpression,
 } from '@babel/types';
-import type { ParserOptions } from 'prettier';
 
+import type { Options } from '../options';
 import type { BaseNode } from '../types/ast';
 import { isGlimmerExpression, isGlimmerTSAsExpression } from '../types/glimmer';
 
@@ -31,7 +31,7 @@ import { isGlimmerExpression, isGlimmerTSAsExpression } from '../types/glimmer';
  */
 export function hasAmbiguousNextLine(
   path: NodePath<BaseNode>,
-  options: ParserOptions<BaseNode>
+  options: Options
 ): boolean {
   // Note: getNextSibling().node will be undefined if there is no sibling
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -63,7 +63,7 @@ function getNextLine(path: NodePath): Node | null {
 
 function isAmbiguousExpression(
   expression: Expression,
-  options: ParserOptions<BaseNode>
+  options: Options
 ): boolean {
   return (
     isGlimmerExpression(expression) ||
@@ -80,7 +80,7 @@ function isAmbiguousExpression(
 
 function startsWithParenthesis(
   expression: Expression,
-  options: ParserOptions<BaseNode>
+  options: Options
 ): boolean {
   return (
     isParenthesizedExpression(expression) ||

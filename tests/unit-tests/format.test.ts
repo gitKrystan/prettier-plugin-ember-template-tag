@@ -1,6 +1,6 @@
 import { describe } from 'vitest';
-import { describeConfig } from '../helpers/config';
+import { describeSuite } from '../helpers/make-suite';
 
 describe('format', () => {
-  describeConfig({ name: 'default' });
+  describeSuite({ name: 'default' });
 });

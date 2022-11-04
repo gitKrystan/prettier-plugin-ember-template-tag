@@ -1,3 +1,3 @@
-import { describeConfig } from '../../helpers/config';
+import { describeSuite } from '../../helpers/make-suite';
 
-describeConfig({ name: 'semi: false', options: { semi: false } });
+describeSuite({ name: 'semi: false', options: { semi: false } });

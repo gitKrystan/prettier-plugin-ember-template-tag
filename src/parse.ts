@@ -3,7 +3,7 @@ import type { Node } from '@babel/types';
 // @ts-expect-error FIXME: TS7016 Is this a hack? IDK!
 import { defineAliasedType } from '@babel/types/lib/definitions/utils';
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
-import type { Parser, ParserOptions } from 'prettier';
+import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
 
 import {
@@ -12,6 +12,7 @@ import {
   TEMPLATE_TAG_NAME,
   TEMPLATE_TAG_PLACEHOLDER,
 } from './config';
+import type { Options } from './options';
 import { definePrinter } from './print/index';
 import type { BaseNode } from './types/ast';
 import { extractGlimmerExpression } from './types/glimmer';
@@ -54,7 +55,7 @@ export const parser: Parser<BaseNode> = {
   ...typescript,
   astFormat: PRINTER_NAME,
 
-  preprocess(text: string, options: ParserOptions<BaseNode>): string {
+  preprocess(text: string, options: Options): string {
     definePrinter(options);
     const js = preprocess(text, options);
     return typescript.preprocess?.(js, options) ?? js;
@@ -63,7 +64,7 @@ export const parser: Parser<BaseNode> = {
   parse(
     text: string,
     parsers: Record<string, Parser<unknown>>,
-    options: ParserOptions<BaseNode>
+    options: Options
   ): BaseNode {
     const ast = typescript.parse(text, parsers, options);
     // FIXME: This is necessary for babel to not freak out with the custom type.
