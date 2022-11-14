@@ -3,6 +3,7 @@ import type {
   CallExpression,
   ClassProperty,
   Identifier,
+  Node,
   TemplateLiteral,
 } from '@babel/types';
 import {
@@ -10,6 +11,7 @@ import {
   isCallExpression,
   isClassProperty,
   isIdentifier,
+  isNode,
   isTemplateLiteral,
 } from '@babel/types';
 import type { AstPath } from 'prettier';
@@ -39,7 +41,7 @@ export function isRawGlimmerArrayExpressionPath(
 
 /** Type predicate */
 export function isRawGlimmerArrayExpression(
-  value: BaseNode | null | undefined
+  value: Node | BaseNode | null | undefined
 ): value is RawGlimmerArrayExpression {
   return (
     isArrayExpression(value) && isRawGlimmerCallExpression(value.elements[0])
@@ -138,4 +140,14 @@ export function isRawGlimmerCallExpression(
  */
 export interface RawGlimmerIdentifier extends Identifier {
   name: typeof TEMPLATE_TAG_PLACEHOLDER; // This is just `string` so not SUPER useful, just documentation
+}
+
+/** Recursively checks if the node has a Glimmer Array Expression. */
+export function hasGlimmerArrayExpression(node: Node): boolean {
+  return (
+    isRawGlimmerArrayExpression(node) ||
+    ('expression' in node &&
+      isNode(node.expression) &&
+      hasGlimmerArrayExpression(node.expression))
+  );
 }

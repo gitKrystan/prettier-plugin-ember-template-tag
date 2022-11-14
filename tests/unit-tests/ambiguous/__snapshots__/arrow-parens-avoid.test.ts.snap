@@ -1,12 +1,12 @@
 // Vitest Snapshot v1
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gjs/default-export.gjs 1`] = `
-"export default <template>
+"<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>
+</template>;
 (oh, no) => {};
 "
 `;
@@ -63,7 +63,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>what</template>
+"<template>what</template>;
 (oh, no) => {};
 "
 `;
@@ -77,7 +77,7 @@ export interface Signature {
   Yields: [];
 }
 
-export default <template>
+<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -262,7 +262,7 @@ export interface Signature {
   Yields: [];
 }
 
-export default <template>
+<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -323,7 +323,7 @@ export interface Signature {
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gjs/default-export.gjs 1`] = `
-"export default <template>
+"<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -399,7 +399,7 @@ export interface Signature {
   Yields: [];
 }
 
-export default <template>
+<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -584,7 +584,7 @@ export interface Signature {
   Yields: [];
 }
 
-export default <template>
+<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit

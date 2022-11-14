@@ -1,4 +1,4 @@
-import type { AstPath, Plugin, Printer } from 'prettier';
+import type { AstPath, doc, Plugin, Printer } from 'prettier';
 
 import {
   TEMPLATE_TAG_CLOSE,
@@ -25,8 +25,6 @@ import { printTemplateTag } from './template';
 // @ts-expect-error FIXME: HACK because estree printer isn't exported. See below.
 export const printer: Printer<BaseNode> = {};
 
-let originalOptions: Options;
-
 /**
  * FIXME: HACK because estree printer isn't exported.
  *
@@ -34,7 +32,6 @@ let originalOptions: Options;
  * @see https://github.com/prettier/prettier/issues/4424
  */
 export function definePrinter(options: Options): void {
-  originalOptions = { ...options };
   const estreePlugin = assertExists(options.plugins.find(isEstreePlugin));
   const estreePrinter = estreePlugin.printers.estree;
 
@@ -51,7 +48,12 @@ export function definePrinter(options: Options): void {
     Object.create(estreePrinter) as Printer<BaseNode>
   );
 
-  printer.print = (path, options, print, args) => {
+  printer.print = (
+    path: AstPath<BaseNode>,
+    options: Options,
+    print: (path: AstPath<BaseNode>) => doc.builders.Doc,
+    args: unknown
+  ) => {
     const hasPrettierIgnore = checkPrettierIgnore(
       path,
       defaultHasPrettierIgnore
@@ -66,38 +68,41 @@ export function definePrinter(options: Options): void {
       if (hasPrettierIgnore) {
         return printRawText(path, options);
       } else {
-        options.semi = false;
         const printed = defaultPrint(path, options, print, args);
         const glimmerExpression = getGlimmerExpression(path);
 
-        if (Array.isArray(printed)) {
-          const { semi } = options;
-          const { forceSemi } = glimmerExpression.extra;
-          const hasSemi = printed[printed.length - 1] === ';';
-          // I think prettier is mutating the options somewhere, making the semi
-          // check necessary
-          /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-          if (semi && forceSemi && !hasSemi) {
-            // We only need to push the semi-colon in semi: true mode because
-            // in semi: false mode, the ambiguous statement will get a prefixing
-            // semicolon
-            printed.push(';');
-          } else if ((!semi || !forceSemi) && hasSemi) {
-            // HACK: Prettier hardcodes a semicolon for GlimmerExportDefaultDeclarationTSPath
-            printed.pop();
+        assert(
+          'Expected GlimmerExpression doc to be an array',
+          Array.isArray(printed)
+        );
+
+        // Remove the semicolons that Prettier added so we can manage them
+        let adjusted = printed.filter(
+          (doc) => typeof doc !== 'string' || doc !== ';'
+        );
+
+        // FIXME: Make configurable
+        if (
+          !options.templateExportDefault &&
+          docMatchesString(adjusted[0], 'export') &&
+          docMatchesString(adjusted[1], 'default')
+        ) {
+          adjusted = adjusted.slice(2);
+          if (docMatchesString(adjusted[0], '')) {
+            adjusted = adjusted.slice(1);
           }
-          /* eslint-enable @typescript-eslint/no-unnecessary-condition */
-        } else {
-          // FIXME: Should we throw in DEBUG mode?
-          console.error(
-            'Expected GlimmerExpression to be printed within an array',
-            path.getValue()
-          );
         }
-        return printed;
+
+        if (options.semi && glimmerExpression.extra.forceSemi) {
+          // We only need to push the semi-colon in semi: true mode because
+          // in semi: false mode, the ambiguous statement will get a prefixing
+          // semicolon
+          adjusted.push(';');
+        }
+
+        return adjusted;
       }
     } else {
-      options.semi = originalOptions.semi;
       if (hasPrettierIgnore) {
         return printRawText(path, options);
       } else {
@@ -186,4 +191,11 @@ function checkPrettierIgnore(
         checkPrettierIgnore(parent, hasPrettierIgnore)
       ))
   );
+}
+
+function docMatchesString(
+  doc: doc.builders.Doc | undefined,
+  string: string
+): doc is string {
+  return typeof doc === 'string' && doc.trim() === string;
 }
