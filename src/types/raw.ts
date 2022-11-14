@@ -29,7 +29,7 @@ export interface RawGlimmerArrayExpression extends ArrayExpression {
 }
 
 /** Type predicate */
-export function isRawGlimmerArrayExpressionPath(
+export function isGlimmerArrayExpressionPath(
   path: AstPath<BaseNode>
 ): path is AstPath<RawGlimmerArrayExpression> {
   return path.match((node: BaseNode | null) => {
@@ -83,7 +83,7 @@ export interface RawGlimmerClassProperty extends ClassProperty {
 }
 
 /** Type predicate */
-export function isRawGlimmerClassPropertyPath(
+export function isGlimmerClassPropertyPath(
   path: AstPath<BaseNode>
 ): path is AstPath<RawGlimmerClassProperty> {
   return path.match((node: BaseNode | null) => {

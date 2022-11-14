@@ -6,18 +6,17 @@ import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
 import type { Options } from '../options';
 import { getTemplateSingleQuote } from '../options';
 import type { BaseNode } from '../types/ast';
-import type { GlimmerExpression } from '../types/glimmer';
 
 const {
   builders: { group, indent, softline },
 } = doc;
 
 /**
- * Returns a Prettier `Doc` for the given `TemplateLiteral | GlimmerExpression`
- * that is formatted using Prettier's built-in glimmer parser.
+ * Returns a Prettier `Doc` for the given `TemplateLiteral` that is formatted
+ * using Prettier's built-in glimmer parser.
  */
 export function printTemplateTag(
-  node: TemplateLiteral | GlimmerExpression,
+  node: TemplateLiteral,
   textToDoc: (
     text: string,
     // Don't use our `Options` here even though technically they are available

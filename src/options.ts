@@ -7,8 +7,18 @@ import type {
 import type { BaseNode } from './types/ast';
 
 export interface Options extends ParserOptions<BaseNode> {
+  templateExportDefault?: boolean;
   templateSingleQuote?: boolean;
+  __inputWasPreprocessed?: boolean;
 }
+
+const templateExportDefault: BooleanSupportOption = {
+  since: '0.0.4',
+  category: 'Format',
+  type: 'boolean',
+  default: false,
+  description: 'Prepend default export template tags with "export default".',
+};
 
 /**
  * Extracts a valid `templateSingleQuote` option out of the provided options. If
@@ -30,6 +40,16 @@ const templateSingleQuote: BooleanSupportOption = {
     'Use single quotes instead of double quotes within template tags.',
 };
 
+const __inputWasPreprocessed: BooleanSupportOption = {
+  since: '0.0.4',
+  category: 'Format',
+  type: 'boolean',
+  description:
+    'Internal: If true, the template was preprocessed before being run through Prettier.',
+};
+
 export const options: SupportOptions = {
+  templateExportDefault,
   templateSingleQuote,
+  __inputWasPreprocessed,
 };

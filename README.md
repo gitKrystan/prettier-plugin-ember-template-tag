@@ -50,9 +50,10 @@ With that said, I did have to make some decisions about when and where to includ
 
 These configuration options are available in addition to [Prettier's standard config for JavaScript and Handlebars files](https://prettier.io/docs/en/options.html).
 
-| Name                  | Default | Description                                                                                             |
-| --------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
-| `templateSingleQuote` | `false` | [Same as in Prettier](https://prettier.io/docs/en/options.html#quotes) but affecting only template tags |
+| Name                    | Default   | Description                                                                                                                                                                                     |
+| ----------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `templateExportDefault` | `false`   | If `true`, default export template tags will be prepended with `export default`.                                                                                                                |
+| `templateSingleQuote`   | undefined | [Same as in Prettier](https://prettier.io/docs/en/options.html#quotes) but affecting only template tags. If `undefined`, will fall back to whatever is set for the global `singleQuote` config. |
 
 <!-- TODO: | `templatePrintWidth`  | `80`    | [Same as in Prettier](https://prettier.io/docs/en/options.html#print-width) but affecting only template tags | -->
 
