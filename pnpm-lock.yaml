@@ -4,7 +4,7 @@ specifiers:
   '@babel/core': ^7.20.2
   '@babel/types': ^7.20.2
   '@release-it-plugins/lerna-changelog': ^5.0.0
-  '@types/babel__core': ^7.1.19
+  '@types/babel__core': ^7.1.20
   '@types/prettier': ^2.7.1
   '@typescript-eslint/eslint-plugin': ^5.42.1
   '@typescript-eslint/parser': ^5.42.1
@@ -31,7 +31,7 @@ dependencies:
 devDependencies:
   '@babel/types': 7.20.2
   '@release-it-plugins/lerna-changelog': 5.0.0_release-it@15.5.0
-  '@types/babel__core': 7.1.19
+  '@types/babel__core': 7.1.20
   '@types/prettier': 2.7.1
   '@typescript-eslint/eslint-plugin': 5.42.1_2udltptbznfmezdozpdoa2aemq
   '@typescript-eslint/parser': 5.42.1_rmayb2veg2btbq6mbmnyivgasy
@@ -575,8 +575,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /@types/babel__core/7.1.19:
-    resolution: {integrity: sha512-WEOTgRsbYkvA/KCsDwVEGkd7WAr1e3g31VHQ8zy5gul/V1qKullU/BU5I68X5v7V3GnB9eotmom4v5a5gjxorw==}
+  /@types/babel__core/7.1.20:
+    resolution: {integrity: sha512-PVb6Bg2QuscZ30FvOU7z4guG6c926D9YRvOxEaelzndpMsvP+YM74Q/dAFASpg2l6+XLalxSGxcq/lrgYWZtyQ==}
     dependencies:
       '@babel/parser': 7.20.3
       '@babel/types': 7.20.2
