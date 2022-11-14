@@ -5,6 +5,7 @@ import { defineAliasedType } from '@babel/types/lib/definitions/utils';
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
+import { getTemplateLocals } from '@glimmer/syntax';
 
 import {
   GLIMMER_EXPRESSION_TYPE,
@@ -35,11 +36,7 @@ const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
   options
 ) => {
   return preprocessEmbeddedTemplates(text, {
-    // FIXME: Need to figure this out for ESLint but probably OK not to do it
-    // for prettier support?
-    getTemplateLocals(_template: string): string[] {
-      return [];
-    },
+    getTemplateLocals,
 
     templateTag: TEMPLATE_TAG_NAME,
     templateTagReplacement: TEMPLATE_TAG_PLACEHOLDER,
