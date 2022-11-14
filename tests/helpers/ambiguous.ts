@@ -39,31 +39,35 @@ export async function getAmbiguousCases(): Promise<TestCase[]> {
  *
  * @see https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/1 for more details
  */
-export function ambiguousExpressionTest(
-  config: Config,
-  testCase: TestCase
-): void {
-  for (const ambiguousExpression of AMBIGUOUS_EXPRESSIONS) {
-    describe(ambiguousExpression, () => {
-      describe('without semi', () => {
-        test(`it formats ${testCase.name}`, () => {
-          const code = testCase.code
-            .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
-            .replaceAll(';', '');
-          behavesLikeFormattedAmbiguousCase(code, config.options);
+export function makeAmbiguousExpressionTest(
+  ambiguousExpressions = AMBIGUOUS_EXPRESSIONS
+) {
+  return function ambiguousExpressionTest(
+    config: Config,
+    testCase: TestCase
+  ): void {
+    for (const ambiguousExpression of ambiguousExpressions) {
+      describe(ambiguousExpression, () => {
+        describe('without semi', () => {
+          test(`it formats ${testCase.name}`, () => {
+            const code = testCase.code
+              .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
+              .replaceAll(';', '');
+            behavesLikeFormattedAmbiguousCase(code, config.options);
+          });
+        });
+        describe('with semi', () => {
+          test(`it formats ${testCase.name}`, () => {
+            const code = testCase.code
+              .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
+              .replaceAll(/<\/template>\n/g, '</template>;')
+              .replaceAll(/<Signature>\n/g, '<Signature>;');
+            behavesLikeFormattedAmbiguousCase(code, config.options);
+          });
         });
       });
-      describe('with semi', () => {
-        test(`it formats ${testCase.name}`, () => {
-          const code = testCase.code
-            .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
-            .replaceAll(/<\/template>\n/g, '</template>;')
-            .replaceAll(/<Signature>\n/g, '<Signature>;');
-          behavesLikeFormattedAmbiguousCase(code, config.options);
-        });
-      });
-    });
-  }
+    }
+  };
 }
 
 function behavesLikeFormattedAmbiguousCase(

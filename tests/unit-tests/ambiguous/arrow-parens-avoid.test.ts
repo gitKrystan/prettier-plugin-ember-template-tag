@@ -1,9 +1,16 @@
 import { describe } from 'vitest';
 
-import { describeAmbiguitySuite } from '../../helpers/make-suite';
+import {
+  getAmbiguousCases,
+  makeAmbiguousExpressionTest,
+} from '../../helpers/ambiguous';
+import { makeSuite } from '../../helpers/make-suite';
 
 describe('ambiguous', () => {
-  describeAmbiguitySuite({
+  makeSuite(
+    getAmbiguousCases,
+    makeAmbiguousExpressionTest(['(oops) => {}', '(oh, no) => {}'])
+  )({
     name: 'arrowParens: "avoid"',
     options: { arrowParens: 'avoid' },
   });
