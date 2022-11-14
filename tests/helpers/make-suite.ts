@@ -2,9 +2,9 @@ import { describe, expect, test } from 'vitest';
 
 import type { Options } from '../../src/options';
 import {
-  ambiguousExpressionTest,
   AMBIGUOUS_PLACEHOLDER,
   getAmbiguousCases,
+  makeAmbiguousExpressionTest,
 } from './ambiguous';
 import type { TestCase } from './cases';
 import { getAllCases } from './cases';
@@ -48,7 +48,7 @@ export const describeSuite = makeSuite(getAllCases, simpleTest);
  */
 export const describeAmbiguitySuite = makeSuite(
   getAmbiguousCases,
-  ambiguousExpressionTest
+  makeAmbiguousExpressionTest()
 );
 
 /** Runs a simple `format` test for the given `config` and `testCase` */
