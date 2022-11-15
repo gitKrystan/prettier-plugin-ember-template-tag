@@ -7,8 +7,17 @@ import type {
 import type { BaseNode } from './types/ast';
 
 export interface Options extends ParserOptions<BaseNode> {
+  templateExportDefault?: boolean;
   templateSingleQuote?: boolean;
 }
+
+const templateExportDefault: BooleanSupportOption = {
+  since: '0.1.0',
+  category: 'Format',
+  type: 'boolean',
+  default: false,
+  description: 'Prepend default export template tags with "export default".',
+};
 
 /**
  * Extracts a valid `templateSingleQuote` option out of the provided options. If
@@ -31,5 +40,6 @@ const templateSingleQuote: BooleanSupportOption = {
 };
 
 export const options: SupportOptions = {
+  templateExportDefault,
   templateSingleQuote,
 };

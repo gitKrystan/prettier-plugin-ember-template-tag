@@ -33,7 +33,7 @@ class MyComponent extends Component {
 `;
 
 exports[`format > config > default > it formats ../cases/gjs/default-export.gjs 1`] = `
-"export default <template>
+"<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -242,7 +242,7 @@ export interface Signature {
   Yields: [];
 }
 
-export default <template>
+<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit

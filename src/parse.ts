@@ -1,11 +1,16 @@
 import { traverse } from '@babel/core';
 import type { Node } from '@babel/types';
+import {
+  isBinaryExpression,
+  isMemberExpression,
+  isTaggedTemplateExpression,
+} from '@babel/types';
 // @ts-expect-error FIXME: TS7016 Is this a hack? IDK!
 import { defineAliasedType } from '@babel/types/lib/definitions/utils';
+import { getTemplateLocals } from '@glimmer/syntax';
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
-import { getTemplateLocals } from '@glimmer/syntax';
 
 import {
   GLIMMER_EXPRESSION_TYPE,
@@ -18,6 +23,7 @@ import { definePrinter } from './print/index';
 import type { BaseNode } from './types/ast';
 import { extractGlimmerExpression } from './types/glimmer';
 import {
+  hasGlimmerArrayExpression,
   isRawGlimmerArrayExpression,
   isRawGlimmerCallExpression,
   isRawGlimmerClassProperty,
@@ -35,7 +41,7 @@ const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
   text,
   options
 ) => {
-  return preprocessEmbeddedTemplates(text, {
+  const preprocessed = preprocessEmbeddedTemplates(text, {
     getTemplateLocals,
 
     templateTag: TEMPLATE_TAG_NAME,
@@ -46,6 +52,25 @@ const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
 
     relativePath: options.filepath,
   }).output;
+
+  const placeholderOpen = `[${TEMPLATE_TAG_PLACEHOLDER}`; // intentionally missing ]
+  const sugaredDefaultExport = new RegExp(`^\\s*\\(?\\s*\\${placeholderOpen}`);
+  const desugaredDefaultExport = `export default ${placeholderOpen}`;
+  return preprocessed
+    .split(/\r?\n/)
+    .map((line, index, array) => {
+      const previousLine = findPreviousLine(index, array);
+      if (
+        previousLine &&
+        (previousLine.includes('prettier-ignore') ||
+          previousLine.trim().endsWith('{'))
+      ) {
+        return line;
+      } else {
+        return line.replace(sugaredDefaultExport, desugaredDefaultExport);
+      }
+    })
+    .join('\r\n');
 };
 
 export const parser: Parser<BaseNode> = {
@@ -72,6 +97,42 @@ export const parser: Parser<BaseNode> = {
       aliases: ['Expression'],
     });
     traverse(ast as Node, {
+      enter(path) {
+        const node = path.node;
+        const parentNode = path.parentPath?.node;
+
+        if (
+          parentNode &&
+          'property' in parentNode &&
+          isRawGlimmerCallExpression(parentNode.property)
+        ) {
+          throw new SyntaxError(
+            'Ember <template> tag used as an object property.'
+          );
+        } else if (
+          isBinaryExpression(node) &&
+          (hasGlimmerArrayExpression(node.left) ||
+            hasGlimmerArrayExpression(node.right))
+        ) {
+          throw new SyntaxError(
+            'Ember <template> tag used in binary expression.'
+          );
+        } else if (
+          isTaggedTemplateExpression(node) &&
+          hasGlimmerArrayExpression(node.tag)
+        ) {
+          throw new SyntaxError(
+            'Ember <template> tag used as tagged template expression.'
+          );
+        } else if (
+          isMemberExpression(node) &&
+          hasGlimmerArrayExpression(node.object)
+        ) {
+          throw new SyntaxError(
+            'Ember <template> tag used as member expression.'
+          );
+        }
+      },
       ArrayExpression(path) {
         const node = path.node;
         if (isRawGlimmerArrayExpression(node)) {
@@ -102,3 +163,16 @@ export const parser: Parser<BaseNode> = {
     return ast;
   },
 };
+
+function findPreviousLine(index: number, array: string[]): string | undefined {
+  const previousIndex = index - 1;
+  const previousLine = array[previousIndex];
+
+  if (previousLine === undefined) {
+    return undefined;
+  } else if (previousLine.length) {
+    return previousLine;
+  } else {
+    return findPreviousLine(previousIndex, array);
+  }
+}
