@@ -1,7 +1,6 @@
 import type {
   ExportDefaultDeclaration,
   ExpressionStatement,
-  TemplateLiteral,
   TSAsExpression,
 } from '@babel/types';
 import {
@@ -11,77 +10,38 @@ import {
 } from '@babel/types';
 import type { AstPath } from 'prettier';
 
-import { GLIMMER_EXPRESSION_TYPE } from '../config';
-import { assert, isRecord } from '../utils/index';
+import { isRecord } from '../utils/index';
 import type { BaseNode } from './ast';
+import type {
+  RawGlimmerArrayExpression,
+  RawGlimmerCallExpression,
+} from './raw';
 
-/**
- * Extracts a `GlimmerExpression` node from the given parent node.
- *
- * @param templateLiteral The `TemplateLiteral` node associated with the parent.
- * @param parentNode The parent node.
- */
-export function extractGlimmerExpression(
-  templateLiteral: TemplateLiteral,
-  {
-    start,
-    end,
-    range,
-    loc,
-    leadingComments,
-    trailingComments,
-    innerComments,
-    extra,
-  }: BaseNode,
-  forceSemi = false
-): GlimmerExpression {
-  assert('expected range', range);
-  return {
-    ...templateLiteral,
-    type: GLIMMER_EXPRESSION_TYPE,
-    start: start ?? null,
-    end: end ?? null,
-    range,
-    loc: loc ?? null,
-    leadingComments: leadingComments ?? null,
-    trailingComments: trailingComments ?? null,
-    innerComments: innerComments ?? null,
-    extra: {
-      ...extra,
-      ...templateLiteral.extra,
-      forceSemi,
-    },
-  };
+export interface GlimmerExpressionExtras {
+  forceSemi: boolean;
+  hasGlimmerExpression: true;
+  [key: string]: unknown;
 }
 
-/**
- * A custom node similar to a `TemplateLiteral` that contains the template's
- * content and also tracks if its parent has a prettier-ignore comment so that
- * we can transform the pre-processed expression back into an unformatted
- * `<template>` tag in those cases.
- */
-export interface GlimmerExpression extends Omit<TemplateLiteral, 'type'> {
-  type: typeof GLIMMER_EXPRESSION_TYPE;
-  extra: {
-    forceSemi: boolean;
-    [key: string]: unknown;
-  };
+export interface GlimmerArrayExpression extends RawGlimmerArrayExpression {
+  extra: GlimmerExpressionExtras;
 }
 
-/** Type predicate */
-export function isGlimmerExpressionPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerExpression> {
-  return path.match((node: BaseNode | null) => {
-    return isGlimmerExpression(node);
-  });
+export interface GlimmerCallExpression extends RawGlimmerCallExpression {
+  extra: GlimmerExpressionExtras;
 }
+
+export type GlimmerExpression = GlimmerArrayExpression | GlimmerCallExpression;
 
 /** Type predicate */
 export function isGlimmerExpression(
   node: BaseNode | null | undefined
 ): node is GlimmerExpression {
-  return isRecord(node) && node.type === GLIMMER_EXPRESSION_TYPE;
+  return (
+    isRecord(node) &&
+    isRecord(node.extra) &&
+    node.extra['hasGlimmerExpression'] === true
+  );
 }
 
 /**
@@ -101,10 +61,17 @@ export function isGlimmerExportDefaultDeclarationPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerExportDefaultDeclaration> {
   return path.match((node: BaseNode | null) => {
-    return (
-      isExportDefaultDeclaration(node) && isGlimmerExpression(node.declaration)
-    );
+    return isGlimmerExportDefaultDeclaration(node);
   });
+}
+
+/** Type predicate */
+export function isGlimmerExportDefaultDeclaration(
+  node: BaseNode | null | undefined
+): node is GlimmerExportDefaultDeclaration {
+  return (
+    isExportDefaultDeclaration(node) && isGlimmerExpression(node.declaration)
+  );
 }
 
 /**
@@ -124,11 +91,18 @@ export function isGlimmerExportDefaultDeclarationTSPath(
   path: AstPath<BaseNode>
 ): path is AstPath<GlimmerExportDefaultDeclarationTS> {
   return path.match((node: BaseNode | null) => {
-    return (
-      isExportDefaultDeclaration(node) &&
-      isGlimmerTSAsExpression(node.declaration)
-    );
+    return isGlimmerExportDefaultDeclarationTS(node);
   });
+}
+
+/** Type predicate */
+export function isGlimmerExportDefaultDeclarationTS(
+  node: BaseNode | null | undefined
+): node is GlimmerExportDefaultDeclarationTS {
+  return (
+    isExportDefaultDeclaration(node) &&
+    isGlimmerTSAsExpression(node.declaration)
+  );
 }
 
 /**

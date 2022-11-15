@@ -11,5 +11,3 @@ export const TEMPLATE_TAG_PLACEHOLDER = util.TEMPLATE_TAG_PLACEHOLDER as string;
 
 export const TEMPLATE_TAG_OPEN = `<${TEMPLATE_TAG_NAME}>`;
 export const TEMPLATE_TAG_CLOSE = `</${TEMPLATE_TAG_NAME}>`;
-
-export const GLIMMER_EXPRESSION_TYPE = 'GlimmerExpression';
