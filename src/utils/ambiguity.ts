@@ -1,17 +1,20 @@
 import type { NodePath } from '@babel/core';
-import type { Expression, Node } from '@babel/types';
+import type { Node } from '@babel/types';
 import {
   isArrayExpression,
   isArrowFunctionExpression,
-  isExpressionStatement,
   isParenthesizedExpression,
   isRegExpLiteral,
   isUnaryExpression,
 } from '@babel/types';
 
 import type { Options } from '../options';
-import type { BaseNode } from '../types/ast';
-import { isGlimmerExpression, isGlimmerTSAsExpression } from '../types/glimmer';
+import {
+  isGlimmerExportDefaultDeclaration,
+  isGlimmerExportDefaultDeclarationTS,
+  isGlimmerExpression,
+  isGlimmerTSAsExpression,
+} from '../types/glimmer';
 
 /**
  * Checks if the next expression will start with (, [, `, /, +, -
@@ -30,7 +33,7 @@ import { isGlimmerExpression, isGlimmerTSAsExpression } from '../types/glimmer';
  * If we have bugs re: unnecessary semicolons, this is a great place to look. :)
  */
 export function hasAmbiguousNextLine(
-  path: NodePath<BaseNode>,
+  path: NodePath,
   options: Options
 ): boolean {
   // Note: getNextSibling().node will be undefined if there is no sibling
@@ -41,12 +44,15 @@ export function hasAmbiguousNextLine(
     return false;
   }
 
-  const nextLine = getNextLine(path as NodePath);
+  const nextLine = getNextLine(path);
 
   return (
-    !!nextLine &&
-    isExpressionStatement(nextLine) &&
-    isAmbiguousExpression(nextLine.expression, options)
+    nextLine !== null &&
+    (isGlimmerExportDefaultDeclaration(nextLine) ||
+      isGlimmerExportDefaultDeclarationTS(nextLine) ||
+      ('expression' in nextLine &&
+        typeof nextLine.expression === 'object' &&
+        isAmbiguousExpression(nextLine.expression, options)))
   );
 }
 
@@ -61,10 +67,7 @@ function getNextLine(path: NodePath): Node | null {
   }
 }
 
-function isAmbiguousExpression(
-  expression: Expression,
-  options: Options
-): boolean {
+function isAmbiguousExpression(expression: Node, options: Options): boolean {
   return (
     isGlimmerExpression(expression) ||
     isGlimmerTSAsExpression(expression) ||
@@ -78,10 +81,7 @@ function isAmbiguousExpression(
   );
 }
 
-function startsWithParenthesis(
-  expression: Expression,
-  options: Options
-): boolean {
+function startsWithParenthesis(expression: Node, options: Options): boolean {
   return (
     isParenthesizedExpression(expression) ||
     (isArrowFunctionExpression(expression) &&
@@ -89,15 +89,15 @@ function startsWithParenthesis(
   );
 }
 
-function startsWithSquareBracket(expression: Expression): boolean {
+function startsWithSquareBracket(expression: Node): boolean {
   return isArrayExpression(expression);
 }
 
-function startsWithTick(expression: Expression): boolean {
+function startsWithTick(expression: Node): boolean {
   return isRegExpLiteral(expression);
 }
 
-function startsWithPlusOrMinus(expression: Expression): boolean {
+function startsWithPlusOrMinus(expression: Node): boolean {
   return (
     isUnaryExpression(expression) &&
     (expression.operator === '+' || expression.operator === '-')

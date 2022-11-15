@@ -11,13 +11,12 @@ import {
   getGlimmerExpression,
   isGlimmerExportDefaultDeclarationPath,
   isGlimmerExportDefaultDeclarationTSPath,
-  isGlimmerExpressionPath,
   isGlimmerExpressionStatementPath,
   isGlimmerExpressionStatementTSPath,
 } from '../types/glimmer';
 import {
-  isRawGlimmerArrayExpressionPath,
-  isRawGlimmerClassPropertyPath,
+  isGlimmerArrayExpressionPath,
+  isGlimmerClassPropertyPath,
 } from '../types/raw';
 import { assert, assertExists } from '../utils/index';
 import { printTemplateTag } from './template';
@@ -117,25 +116,14 @@ export function definePrinter(options: Options): void {
       defaultHasPrettierIgnore
     );
 
-    if (isGlimmerExpressionPath(path)) {
-      return printTemplateTag(
-        path.getValue(),
-        textToDoc,
-        embedOptions,
-        hasPrettierIgnore
-      );
-    } else if (isRawGlimmerClassPropertyPath(path)) {
-      // FIXME: Should we throw in DEBUG mode?
-      console.error('Found untagged GlimmerClassProperty', path.getValue());
+    if (isGlimmerClassPropertyPath(path)) {
       return printTemplateTag(
         path.getValue().key.arguments[0],
         textToDoc,
         embedOptions,
         hasPrettierIgnore
       );
-    } else if (isRawGlimmerArrayExpressionPath(path)) {
-      // FIXME: Should we throw in DEBUG mode?
-      console.error('Found untagged GlimmerArrayExpression', path.getValue());
+    } else if (isGlimmerArrayExpressionPath(path)) {
       return printTemplateTag(
         path.getValue().elements[0].arguments[0],
         textToDoc,

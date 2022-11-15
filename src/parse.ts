@@ -1,3 +1,4 @@
+import type { NodePath } from '@babel/core';
 import { traverse } from '@babel/core';
 import type { Node } from '@babel/types';
 import {
@@ -5,15 +6,12 @@ import {
   isMemberExpression,
   isTaggedTemplateExpression,
 } from '@babel/types';
-// @ts-expect-error FIXME: TS7016 Is this a hack? IDK!
-import { defineAliasedType } from '@babel/types/lib/definitions/utils';
 import { getTemplateLocals } from '@glimmer/syntax';
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
 
 import {
-  GLIMMER_EXPRESSION_TYPE,
   PRINTER_NAME,
   TEMPLATE_TAG_NAME,
   TEMPLATE_TAG_PLACEHOLDER,
@@ -21,7 +19,6 @@ import {
 import type { Options } from './options';
 import { definePrinter } from './print/index';
 import type { BaseNode } from './types/ast';
-import { extractGlimmerExpression } from './types/glimmer';
 import {
   hasGlimmerArrayExpression,
   isRawGlimmerArrayExpression,
@@ -32,11 +29,6 @@ import { hasAmbiguousNextLine } from './utils/ambiguity';
 import { assert } from './utils/index';
 
 const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
-
-// FIXME: This is necessary for babel to not freak out with the custom type.
-// If we keep this code long-term we should augment the babel types
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-const defineType = defineAliasedType('Glimmer');
 
 const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
   text,
@@ -73,80 +65,57 @@ export const parser: Parser<BaseNode> = {
     options: Options
   ): BaseNode {
     const ast = typescript.parse(text, parsers, options);
-    // FIXME: This is necessary for babel to not freak out with the custom type.
-    // If we keep this code long-term we should augment the babel types
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    defineType(GLIMMER_EXPRESSION_TYPE, {
-      inherits: 'TemplateExpression',
-      aliases: ['Expression'],
-    });
     traverse(ast as Node, {
-      enter(path) {
-        const node = path.node;
-        const parentNode = path.parentPath?.node;
-
-        if (
-          parentNode &&
-          'property' in parentNode &&
-          isRawGlimmerCallExpression(parentNode.property)
-        ) {
-          throw new SyntaxError(
-            'Ember <template> tag used as an object property.'
-          );
-        } else if (
-          isBinaryExpression(node) &&
-          (hasGlimmerArrayExpression(node.left) ||
-            hasGlimmerArrayExpression(node.right))
-        ) {
-          throw new SyntaxError(
-            'Ember <template> tag used in binary expression.'
-          );
-        } else if (
-          isTaggedTemplateExpression(node) &&
-          hasGlimmerArrayExpression(node.tag)
-        ) {
-          throw new SyntaxError(
-            'Ember <template> tag used as tagged template expression.'
-          );
-        } else if (
-          isMemberExpression(node) &&
-          hasGlimmerArrayExpression(node.object)
-        ) {
-          throw new SyntaxError(
-            'Ember <template> tag used as member expression.'
-          );
-        }
-      },
-      ArrayExpression(path) {
-        const node = path.node;
-        if (isRawGlimmerArrayExpression(node)) {
-          const newNode = extractGlimmerExpression(
-            node.elements[0].arguments[0],
-            node,
-            hasAmbiguousNextLine(path, options)
-          );
-          // HACK: Babel types don't allow this
-          path.replaceWith(newNode as unknown as Node);
-        }
-      },
-      ClassProperty(path) {
-        const node = path.node;
-        if (isRawGlimmerClassProperty(node)) {
-          const newNode = extractGlimmerExpression(node.key.arguments[0], node);
-          // HACK: Babel types don't allow this
-          path.replaceWith(newNode as unknown as Node);
-        }
-      },
-      CallExpression(path) {
-        const node = path.node;
-        if (isRawGlimmerCallExpression(node)) {
-          throw new SyntaxError('Found unhandled RawGlimmerCallExpression');
-        }
-      },
+      enter: makeEnter(options),
     });
     return ast;
   },
 };
+
+function makeEnter(options: Options) {
+  return (path: NodePath) => {
+    const node = path.node;
+    const parentNode = path.parentPath?.node;
+
+    if (
+      parentNode &&
+      'property' in parentNode &&
+      isRawGlimmerCallExpression(parentNode.property)
+    ) {
+      throw new SyntaxError('Ember <template> tag used as an object property.');
+    } else if (
+      isBinaryExpression(node) &&
+      (hasGlimmerArrayExpression(node.left) ||
+        hasGlimmerArrayExpression(node.right))
+    ) {
+      throw new SyntaxError('Ember <template> tag used in binary expression.');
+    } else if (
+      isTaggedTemplateExpression(node) &&
+      hasGlimmerArrayExpression(node.tag)
+    ) {
+      throw new SyntaxError(
+        'Ember <template> tag used as tagged template expression.'
+      );
+    } else if (
+      isMemberExpression(node) &&
+      hasGlimmerArrayExpression(node.object)
+    ) {
+      throw new SyntaxError('Ember <template> tag used as member expression.');
+    }
+
+    if (isRawGlimmerArrayExpression(node) || isRawGlimmerClassProperty(node)) {
+      const extra = {
+        hasGlimmerExpression: true,
+        forceSemi: hasAmbiguousNextLine(path, options),
+      };
+      if (typeof node.extra === 'object') {
+        node.extra = { ...node.extra, ...extra };
+      } else {
+        node.extra = extra;
+      }
+    }
+  };
+}
 
 /**
  * Desugar template tag default exports because they parse as
