@@ -81,7 +81,6 @@ export function definePrinter(options: Options): void {
           (doc) => typeof doc !== 'string' || doc !== ';'
         );
 
-        // FIXME: Make configurable
         if (
           !options.templateExportDefault &&
           docMatchesString(adjusted[0], 'export') &&

@@ -1176,6 +1176,24 @@ class MyComponent extends Component {
 "
 `;
 
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+/** It's a component */
+class MyComponent extends Component {
+  get whatever() {}
+
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>
+  <template>oops</template>
+}
+"
+`;
+
 exports[`ambiguous > config > semi: false > <template>oops</template> > with semi > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -1451,6 +1469,40 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > semi: false > <template>oops</template> > without semi > it formats ../cases/gjs/component-class.gjs 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+/** It's a component */
+class MyComponent extends Component {
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>
+  <template>oops</template>
+}
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > without semi > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+/** It's a component */
+class MyComponent extends Component {
+  get whatever() {}
+
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>
+  <template>oops</template>
+}
+"
+`;
+
 exports[`ambiguous > config > semi: false > <template>oops</template> > without semi > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -1516,6 +1568,30 @@ const bool = false,
 exports[`ambiguous > config > semi: false > <template>oops</template> > without semi > it formats ../cases/gjs/simple.gjs 1`] = `
 "<template>what</template>
 <template>oops</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > without semi > it formats ../cases/gts/component-class.gts 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {
+    myArg: string
+  }
+  Yields: []
+}
+
+/** It's a component */
+class MyComponent extends Component<Signature> {
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>
+  <template>oops</template>
+}
 "
 `;
 
@@ -1709,6 +1785,24 @@ exports[`ambiguous > config > semi: false > ["oops"] > with semi > it formats ..
 
 /** It's a component */
 class MyComponent extends Component {
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>
+  [\\"oops\\"]
+}
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+/** It's a component */
+class MyComponent extends Component {
+  get whatever() {}
+
   <template>
     <h1>
       Class top level template. Class top level template. Class top level
@@ -2002,6 +2096,24 @@ exports[`ambiguous > config > semi: false > ["oops"] > without semi > it formats
 
 /** It's a component */
 class MyComponent extends Component {
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>
+  [\\"oops\\"]
+}
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > without semi > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+/** It's a component */
+class MyComponent extends Component {
+  get whatever() {}
+
   <template>
     <h1>
       Class top level template. Class top level template. Class top level
