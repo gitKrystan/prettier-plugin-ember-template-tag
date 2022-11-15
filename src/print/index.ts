@@ -1,4 +1,5 @@
-import type { AstPath, doc, Plugin, Printer } from 'prettier';
+import type { AstPath, Plugin, Printer } from 'prettier';
+import { doc } from 'prettier';
 
 import {
   TEMPLATE_TAG_CLOSE,
@@ -9,20 +10,23 @@ import type { Options } from '../options';
 import type { BaseNode } from '../types/ast';
 import {
   getGlimmerExpression,
-  isGlimmerExportDefaultDeclarationPath,
-  isGlimmerExportDefaultDeclarationTSPath,
-  isGlimmerExpressionStatementPath,
-  isGlimmerExpressionStatementTSPath,
+  isGlimmerArrayExpression,
+  isGlimmerClassProperty,
+  isGlimmerExportDefaultDeclaration,
+  isGlimmerExportDefaultDeclarationTS,
+  isGlimmerExpressionStatement,
+  isGlimmerExpressionStatementTS,
+  isGlimmerTemplateLiteral,
 } from '../types/glimmer';
-import {
-  isGlimmerArrayExpressionPath,
-  isGlimmerClassPropertyPath,
-} from '../types/raw';
 import { assert, assertExists } from '../utils/index';
 import { printTemplateTag } from './template';
 
 // @ts-expect-error FIXME: HACK because estree printer isn't exported. See below.
-export const printer: Printer<BaseNode> = {};
+export const printer: Printer<BaseNode | undefined> = {};
+
+const {
+  builders: { group, indent, softline },
+} = doc;
 
 /**
  * FIXME: HACK because estree printer isn't exported.
@@ -44,92 +48,114 @@ export function definePrinter(options: Options): void {
 
   Reflect.setPrototypeOf(
     printer,
-    Object.create(estreePrinter) as Printer<BaseNode>
+    Object.create(estreePrinter) as Printer<BaseNode | undefined>
   );
 
   printer.print = (
-    path: AstPath<BaseNode>,
+    path: AstPath<BaseNode | undefined>,
     options: Options,
-    print: (path: AstPath<BaseNode>) => doc.builders.Doc,
+    print: (path: AstPath<BaseNode | undefined>) => doc.builders.Doc,
     args: unknown
   ) => {
+    const node = path.getValue();
     const hasPrettierIgnore = checkPrettierIgnore(
       path,
       defaultHasPrettierIgnore
     );
 
     if (
-      isGlimmerExportDefaultDeclarationPath(path) ||
-      isGlimmerExportDefaultDeclarationTSPath(path) ||
-      isGlimmerExpressionStatementPath(path) ||
-      isGlimmerExpressionStatementTSPath(path)
+      isGlimmerClassProperty(node) ||
+      isGlimmerExportDefaultDeclaration(node) ||
+      isGlimmerExportDefaultDeclarationTS(node) ||
+      isGlimmerExpressionStatement(node) ||
+      isGlimmerExpressionStatementTS(node)
     ) {
       if (hasPrettierIgnore) {
         return printRawText(path, options);
       } else {
-        const printed = defaultPrint(path, options, print, args);
-        const glimmerExpression = getGlimmerExpression(path);
+        let printed = defaultPrint(path, options, print, args);
 
-        assert(
-          'Expected GlimmerExpression doc to be an array',
-          Array.isArray(printed)
-        );
+        assert('Expected Glimmer doc to be an array', Array.isArray(printed));
 
         // Remove the semicolons that Prettier added so we can manage them
-        let adjusted = printed.filter(
-          (doc) => typeof doc !== 'string' || doc !== ';'
-        );
+        if (docMatchesString(printed[0], ';')) {
+          printed.shift();
+        }
+
+        if (docMatchesString(printed[printed.length - 1], ';')) {
+          printed.pop();
+        }
 
         if (
           !options.templateExportDefault &&
-          docMatchesString(adjusted[0], 'export') &&
-          docMatchesString(adjusted[1], 'default')
+          docMatchesString(printed[0], 'export') &&
+          docMatchesString(printed[1], 'default')
         ) {
-          adjusted = adjusted.slice(2);
-          if (docMatchesString(adjusted[0], '')) {
-            adjusted = adjusted.slice(1);
+          printed = printed.slice(2);
+          if (docMatchesString(printed[0], '')) {
+            printed.shift();
           }
         }
 
-        if (options.semi && glimmerExpression.extra.forceSemi) {
+        if (options.semi && getGlimmerExpression(node).extra.forceSemi) {
           // We only need to push the semi-colon in semi: true mode because
           // in semi: false mode, the ambiguous statement will get a prefixing
           // semicolon
-          adjusted.push(';');
+          printed.push(';');
         }
 
-        return adjusted;
+        return printed;
       }
+    } else if (hasPrettierIgnore) {
+      return printRawText(path, options);
     } else {
-      if (hasPrettierIgnore) {
-        return printRawText(path, options);
-      } else {
-        return defaultPrint(path, options, print, args);
-      }
+      return defaultPrint(path, options, print, args);
     }
   };
 
-  /** Prints embedded GlimmerExpressions. */
-  printer.embed = (path, _print, textToDoc, embedOptions) => {
+  /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
+  printer.embed = (
+    path: AstPath<BaseNode | undefined>,
+    _print: (path: AstPath<BaseNode | undefined>) => doc.builders.Doc,
+    textToDoc: (text: string, options: Options) => doc.builders.Doc,
+    embedOptions: Options
+  ) => {
+    const wasPreprocessed = options.__inputWasPreprocessed;
+    const node = path.getValue();
     const hasPrettierIgnore = checkPrettierIgnore(
       path,
       defaultHasPrettierIgnore
     );
 
-    if (isGlimmerClassPropertyPath(path)) {
-      return printTemplateTag(
-        path.getValue().key.arguments[0],
+    if (hasPrettierIgnore) {
+      return printRawText(path, embedOptions);
+    } else if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
+      const contents = printTemplateTag(node, textToDoc, embedOptions);
+      return group(['`', contents, '`']);
+    } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
+      const contents = printTemplateTag(
+        node.key.arguments[0],
         textToDoc,
-        embedOptions,
-        hasPrettierIgnore
+        embedOptions
       );
-    } else if (isGlimmerArrayExpressionPath(path)) {
-      return printTemplateTag(
-        path.getValue().elements[0].arguments[0],
+      return group([
+        TEMPLATE_TAG_OPEN,
+        indent([softline, group(contents)]),
+        softline,
+        TEMPLATE_TAG_CLOSE,
+      ]);
+    } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
+      const contents = printTemplateTag(
+        node.elements[0].arguments[0],
         textToDoc,
-        embedOptions,
-        hasPrettierIgnore
+        embedOptions
       );
+      return group([
+        TEMPLATE_TAG_OPEN,
+        indent([softline, group(contents)]),
+        softline,
+        TEMPLATE_TAG_CLOSE,
+      ]);
     } else {
       // Nothing to embed, so move on to the regular printer.
       return null;
@@ -147,29 +173,39 @@ export function definePrinter(options: Options): void {
 }
 
 function isEstreePlugin(
-  plugin: string | Plugin<BaseNode>
-): plugin is Plugin<BaseNode> & {
-  printers: { estree: Printer<BaseNode> };
+  plugin: string | Plugin<BaseNode | undefined>
+): plugin is Plugin<BaseNode | undefined> & {
+  printers: { estree: Printer<BaseNode | undefined> };
 } {
   return Boolean(
     typeof plugin !== 'string' && plugin.printers && plugin.printers['estree']
   );
 }
 
-function printRawText(path: AstPath<BaseNode>, options: Options): string {
+function printRawText(
+  path: AstPath<BaseNode | undefined>,
+  options: Options
+): string {
   const node = path.getValue();
+  if (!node) {
+    return '';
+  }
   assert('expected start', node.start);
   assert('expected end', node.end);
   let raw = options.originalText.slice(node.start, node.end);
-  // HACK: We don't have access to the original raw text :-(
-  raw = raw.replaceAll(`[${TEMPLATE_TAG_PLACEHOLDER}(\``, TEMPLATE_TAG_OPEN);
-  raw = raw.replaceAll('`, { strictMode: true })]', TEMPLATE_TAG_CLOSE);
+
+  if (!options.__inputWasPreprocessed) {
+    // HACK: We don't have access to the original raw text :-(
+    raw = raw.replaceAll(`[${TEMPLATE_TAG_PLACEHOLDER}(\``, TEMPLATE_TAG_OPEN);
+    raw = raw.replaceAll('`, { strictMode: true })]', TEMPLATE_TAG_CLOSE);
+  }
+
   return raw;
 }
 
 function checkPrettierIgnore(
-  path: AstPath<BaseNode>,
-  hasPrettierIgnore: (path: AstPath<BaseNode>) => boolean
+  path: AstPath<BaseNode | undefined>,
+  hasPrettierIgnore: (path: AstPath<BaseNode | undefined>) => boolean
 ): boolean {
   return (
     hasPrettierIgnore(path) ||

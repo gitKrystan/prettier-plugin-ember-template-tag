@@ -48,15 +48,32 @@ export function makeAmbiguousExpressionTest(
   ): void {
     for (const ambiguousExpression of ambiguousExpressions) {
       describe(ambiguousExpression, () => {
-        describe('without semi', () => {
+        describe('without semi, with newline', () => {
           test(`it formats ${testCase.name}`, () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
-              .replaceAll(';', '');
+              .replaceAll(';\n', '\n');
             behavesLikeFormattedAmbiguousCase(code, config.options);
           });
         });
-        describe('with semi', () => {
+        describe('with semi, with newline', () => {
+          test(`it formats ${testCase.name}`, () => {
+            const code = testCase.code
+              .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
+              .replaceAll(/<\/template>\n/g, '</template>;\n')
+              .replaceAll(/<Signature>\n/g, '<Signature>;\n');
+            behavesLikeFormattedAmbiguousCase(code, config.options);
+          });
+        });
+        describe('without semi, without newline', () => {
+          test(`it formats ${testCase.name}`, () => {
+            const code = testCase.code
+              .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
+              .replaceAll(';\n', '');
+            behavesLikeFormattedAmbiguousCase(code, config.options);
+          });
+        });
+        describe('with semi, with newline', () => {
           test(`it formats ${testCase.name}`, () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)

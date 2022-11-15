@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  prettier-plugin-ember-template-tag: workspace:^0.0.3
+  prettier-plugin-ember-template-tag: workspace:^
   typescript: ^4.8.4
   vite: ^3.2.3
 

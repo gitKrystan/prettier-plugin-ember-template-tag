@@ -14,15 +14,15 @@ const languages: SupportLanguage[] = [
   },
 ];
 
-const parsers: Record<string, Parser<BaseNode>> = {
+const parsers: Record<string, Parser<BaseNode | undefined>> = {
   [PARSER_NAME]: parser,
 };
 
-const printers: Record<string, Printer<BaseNode>> = {
+const printers: Record<string, Printer<BaseNode | undefined>> = {
   [PRINTER_NAME]: printer,
 };
 
-const plugin: Plugin<BaseNode> = {
+const plugin: Plugin<BaseNode | undefined> = {
   languages,
   parsers,
   printers,

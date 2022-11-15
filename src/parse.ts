@@ -1,6 +1,6 @@
 import type { NodePath } from '@babel/core';
 import { traverse } from '@babel/core';
-import type { Node } from '@babel/types';
+import type { Node, TemplateLiteral } from '@babel/types';
 import {
   isBinaryExpression,
   isMemberExpression,
@@ -19,37 +19,54 @@ import {
 import type { Options } from './options';
 import { definePrinter } from './print/index';
 import type { BaseNode } from './types/ast';
+import type {
+  GlimmerExpressionExtra,
+  GlimmerTemplateExtra,
+} from './types/glimmer';
+import type {
+  RawGlimmerArrayExpression,
+  RawGlimmerClassProperty,
+} from './types/raw';
 import {
-  hasGlimmerArrayExpression,
+  hasRawGlimmerArrayExpression,
   isRawGlimmerArrayExpression,
   isRawGlimmerCallExpression,
   isRawGlimmerClassProperty,
 } from './types/raw';
 import { hasAmbiguousNextLine } from './utils/ambiguity';
-import { assert } from './utils/index';
+import { assert, squish } from './utils/index';
 
-const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
+const typescript = babelParsers['babel-ts'] as Parser<BaseNode | undefined>;
 
-const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
-  text,
-  options
+const preprocess: Required<Parser<BaseNode | undefined>>['preprocess'] = (
+  text: string,
+  options: Options
 ) => {
-  const preprocessed = preprocessEmbeddedTemplates(text, {
-    getTemplateLocals,
+  let preprocessed: string;
+  if (text.includes(TEMPLATE_TAG_PLACEHOLDER)) {
+    // This happens when Prettier is being run via eslint + eslint-plugin-ember
+    // See https://github.com/ember-cli/eslint-plugin-ember/issues/1659
+    options.__inputWasPreprocessed = true;
+    preprocessed = text;
+  } else {
+    options.__inputWasPreprocessed = false;
+    preprocessed = preprocessEmbeddedTemplates(text, {
+      getTemplateLocals,
 
-    templateTag: TEMPLATE_TAG_NAME,
-    templateTagReplacement: TEMPLATE_TAG_PLACEHOLDER,
+      templateTag: TEMPLATE_TAG_NAME,
+      templateTagReplacement: TEMPLATE_TAG_PLACEHOLDER,
 
-    includeSourceMaps: false,
-    includeTemplateTokens: false,
+      includeSourceMaps: false,
+      includeTemplateTokens: false,
 
-    relativePath: options.filepath,
-  }).output;
+      relativePath: options.filepath,
+    }).output;
+  }
 
   return desugarDefaultExportTemplates(preprocessed);
 };
 
-export const parser: Parser<BaseNode> = {
+export const parser: Parser<BaseNode | undefined> = {
   ...typescript,
   astFormat: PRINTER_NAME,
 
@@ -68,11 +85,12 @@ export const parser: Parser<BaseNode> = {
     traverse(ast as Node, {
       enter: makeEnter(options),
     });
+    assert('expected ast', ast);
     return ast;
   },
 };
 
-function makeEnter(options: Options) {
+function makeEnter(options: Options): (path: NodePath) => void {
   return (path: NodePath) => {
     const node = path.node;
     const parentNode = path.parentPath?.node;
@@ -85,36 +103,58 @@ function makeEnter(options: Options) {
       throw new SyntaxError('Ember <template> tag used as an object property.');
     } else if (
       isBinaryExpression(node) &&
-      (hasGlimmerArrayExpression(node.left) ||
-        hasGlimmerArrayExpression(node.right))
+      (hasRawGlimmerArrayExpression(node.left) ||
+        hasRawGlimmerArrayExpression(node.right))
     ) {
       throw new SyntaxError('Ember <template> tag used in binary expression.');
     } else if (
       isTaggedTemplateExpression(node) &&
-      hasGlimmerArrayExpression(node.tag)
+      hasRawGlimmerArrayExpression(node.tag)
     ) {
       throw new SyntaxError(
         'Ember <template> tag used as tagged template expression.'
       );
     } else if (
       isMemberExpression(node) &&
-      hasGlimmerArrayExpression(node.object)
+      hasRawGlimmerArrayExpression(node.object)
     ) {
       throw new SyntaxError('Ember <template> tag used as member expression.');
     }
 
-    if (isRawGlimmerArrayExpression(node) || isRawGlimmerClassProperty(node)) {
-      const extra = {
-        hasGlimmerExpression: true,
-        forceSemi: hasAmbiguousNextLine(path, options),
-      };
-      if (typeof node.extra === 'object') {
-        node.extra = { ...node.extra, ...extra };
-      } else {
-        node.extra = extra;
-      }
+    if (isRawGlimmerArrayExpression(node)) {
+      tagGlimmerExpression(node, hasAmbiguousNextLine(path, options));
+      tagGlimmerTemplate(node.elements[0].arguments[0]);
+    } else if (isRawGlimmerClassProperty(node)) {
+      tagGlimmerExpression(node, hasAmbiguousNextLine(path, options));
+      tagGlimmerTemplate(node.key.arguments[0]);
     }
   };
+}
+
+function tagGlimmerExpression(
+  node: RawGlimmerArrayExpression | RawGlimmerClassProperty,
+  forceSemi: boolean
+): void {
+  const extra: GlimmerExpressionExtra = {
+    hasGlimmerExpression: true,
+    forceSemi,
+  };
+  if (typeof node.extra === 'object') {
+    node.extra = { ...node.extra, ...extra };
+  } else {
+    node.extra = extra;
+  }
+}
+
+function tagGlimmerTemplate(node: TemplateLiteral): void {
+  const extra: GlimmerTemplateExtra = {
+    isGlimmerTemplate: true,
+  };
+  if (typeof node.extra === 'object') {
+    node.extra = { ...node.extra, ...extra };
+  } else {
+    node.extra = extra;
+  }
 }
 
 /**
@@ -129,11 +169,11 @@ function makeEnter(options: Options) {
 function desugarDefaultExportTemplates(preprocessed: string): string {
   const placeholderOpen = `[${TEMPLATE_TAG_PLACEHOLDER}`; // intentionally missing ]
 
-  // ^\s*(\()?\s*\[__GLIMMER_TEMPLATE
+  // (^|;)\s*(\()?\s*\[__GLIMMER_TEMPLATE
   const sugaredDefaultExport = new RegExp(
-    `^\\s*(\\()?\\s*\\${placeholderOpen}`
+    `(^|;)\\s*(\\()?\\s*\\${placeholderOpen}`
   );
-  const desugaredDefaultExport = `export default $1${placeholderOpen}`;
+  const desugaredDefaultExport = `$1 export default $2${placeholderOpen}`;
 
   const lines = preprocessed.split(/\r?\n/);
   const desugaredLines: string[] = [];
@@ -151,7 +191,10 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
 
     assert('expected non-negative blockLevel', blockLevel > -1);
 
-    if (!previousLine?.includes('prettier-ignore') && blockLevel === 0) {
+    const previousLineIsPrettierIgnore =
+      previousLine && squish(previousLine) === '// prettier-ignore';
+
+    if (!previousLineIsPrettierIgnore && blockLevel === 0) {
       line = line.replace(sugaredDefaultExport, desugaredDefaultExport);
     }
 

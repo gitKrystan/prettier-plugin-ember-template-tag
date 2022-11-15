@@ -4,6 +4,7 @@ import path from 'path';
 export interface TestCase {
   name: string;
   code: string;
+  path: string;
 }
 
 /**
@@ -27,6 +28,7 @@ export async function getCases(
         return {
           name,
           code,
+          path: filename,
         };
       }
     })

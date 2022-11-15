@@ -6,9 +6,10 @@ import type {
 
 import type { BaseNode } from './types/ast';
 
-export interface Options extends ParserOptions<BaseNode> {
+export interface Options extends ParserOptions<BaseNode | undefined> {
   templateExportDefault?: boolean;
   templateSingleQuote?: boolean;
+  __inputWasPreprocessed?: boolean;
 }
 
 const templateExportDefault: BooleanSupportOption = {
@@ -39,7 +40,16 @@ const templateSingleQuote: BooleanSupportOption = {
     'Use single quotes instead of double quotes within template tags.',
 };
 
+const __inputWasPreprocessed: BooleanSupportOption = {
+  since: '0.1.0',
+  category: 'Format',
+  type: 'boolean',
+  description:
+    'Internal: If true, the template was preprocessed before being run through Prettier.',
+};
+
 export const options: SupportOptions = {
   templateExportDefault,
   templateSingleQuote,
+  __inputWasPreprocessed,
 };
