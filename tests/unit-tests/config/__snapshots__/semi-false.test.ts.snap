@@ -15,6 +15,23 @@ class MyComponent extends Component {
 "
 `;
 
+exports[`config > semi: false > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+/** It's a component */
+class MyComponent extends Component {
+  get whatever() {}
+
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>
+}
+"
+`;
+
 exports[`config > semi: false > it formats ../cases/gjs/component-class-with-template-literal.gjs 1`] = `
 "import Component from \\"@glimmer/component\\"
 

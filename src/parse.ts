@@ -29,6 +29,7 @@ import {
   isRawGlimmerClassProperty,
 } from './types/raw';
 import { hasAmbiguousNextLine } from './utils/ambiguity';
+import { assert } from './utils/index';
 
 const typescript = babelParsers['babel-ts'] as Parser<BaseNode>;
 
@@ -53,24 +54,7 @@ const preprocess: Required<Parser<BaseNode>>['preprocess'] = (
     relativePath: options.filepath,
   }).output;
 
-  const placeholderOpen = `[${TEMPLATE_TAG_PLACEHOLDER}`; // intentionally missing ]
-  const sugaredDefaultExport = new RegExp(`^\\s*\\(?\\s*\\${placeholderOpen}`);
-  const desugaredDefaultExport = `export default ${placeholderOpen}`;
-  return preprocessed
-    .split(/\r?\n/)
-    .map((line, index, array) => {
-      const previousLine = findPreviousLine(index, array);
-      if (
-        previousLine &&
-        (previousLine.includes('prettier-ignore') ||
-          previousLine.trim().endsWith('{'))
-      ) {
-        return line;
-      } else {
-        return line.replace(sugaredDefaultExport, desugaredDefaultExport);
-      }
-    })
-    .join('\r\n');
+  return desugarDefaultExportTemplates(preprocessed);
 };
 
 export const parser: Parser<BaseNode> = {
@@ -164,15 +148,50 @@ export const parser: Parser<BaseNode> = {
   },
 };
 
-function findPreviousLine(index: number, array: string[]): string | undefined {
-  const previousIndex = index - 1;
-  const previousLine = array[previousIndex];
+/**
+ * Desugar template tag default exports because they parse as
+ * ExpressionStatement, which has a bunch of irrelevant custom semicolon
+ * handling in Prettier that is very difficult to undo. We can optionally
+ * re-sugar on print. See `templateExportDefault` option.
+ *
+ * HACK: An attempt was made to do this via babel transforms but it destroyed
+ * Prettier's newline preservation logic.
+ */
+function desugarDefaultExportTemplates(preprocessed: string): string {
+  const placeholderOpen = `[${TEMPLATE_TAG_PLACEHOLDER}`; // intentionally missing ]
 
-  if (previousLine === undefined) {
-    return undefined;
-  } else if (previousLine.length) {
-    return previousLine;
-  } else {
-    return findPreviousLine(previousIndex, array);
+  // ^\s*(\()?\s*\[__GLIMMER_TEMPLATE
+  const sugaredDefaultExport = new RegExp(
+    `^\\s*(\\()?\\s*\\${placeholderOpen}`
+  );
+  const desugaredDefaultExport = `export default $1${placeholderOpen}`;
+
+  const lines = preprocessed.split(/\r?\n/);
+  const desugaredLines: string[] = [];
+  let previousLine: string | null = null;
+  let blockLevel = 0;
+
+  for (let line of lines) {
+    if (line.includes('{')) {
+      blockLevel++;
+    }
+
+    if (line.includes('}')) {
+      blockLevel--;
+    }
+
+    assert('expected non-negative blockLevel', blockLevel > -1);
+
+    if (!previousLine?.includes('prettier-ignore') && blockLevel === 0) {
+      line = line.replace(sugaredDefaultExport, desugaredDefaultExport);
+    }
+
+    desugaredLines.push(line);
+
+    if (line.trim().length) {
+      previousLine = line;
+    }
   }
+
+  return desugaredLines.join('\r\n');
 }
