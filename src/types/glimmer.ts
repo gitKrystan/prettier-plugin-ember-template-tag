@@ -12,7 +12,7 @@ import {
 import type { AstPath } from 'prettier';
 
 import { GLIMMER_EXPRESSION_TYPE } from '../config';
-import { isRecord } from '../utils/index';
+import { assert, isRecord } from '../utils/index';
 import type { BaseNode } from './ast';
 
 /**
@@ -35,16 +35,17 @@ export function extractGlimmerExpression(
   }: BaseNode,
   forceSemi = false
 ): GlimmerExpression {
+  assert('expected range', range);
   return {
     ...templateLiteral,
     type: GLIMMER_EXPRESSION_TYPE,
-    start,
-    end,
+    start: start ?? null,
+    end: end ?? null,
     range,
-    loc,
-    leadingComments,
-    trailingComments,
-    innerComments,
+    loc: loc ?? null,
+    leadingComments: leadingComments ?? null,
+    trailingComments: trailingComments ?? null,
+    innerComments: innerComments ?? null,
     extra: {
       ...extra,
       ...templateLiteral.extra,

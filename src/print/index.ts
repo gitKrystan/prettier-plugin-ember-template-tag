@@ -160,7 +160,7 @@ function isEstreePlugin(
   printers: { estree: Printer<BaseNode> };
 } {
   return Boolean(
-    typeof plugin !== 'string' && plugin.printers && plugin.printers.estree
+    typeof plugin !== 'string' && plugin.printers && plugin.printers['estree']
   );
 }
 
