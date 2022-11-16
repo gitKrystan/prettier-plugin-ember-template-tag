@@ -1,6 +1,16 @@
 
 
 
+
+## v0.1.1 (2022-11-16)
+
+#### :bug: Bug Fix
+* [#33](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/33) HOTFIX block level error message ([@gitKrystan](https://github.com/gitKrystan))
+* [#32](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/32) Move @glimmer/syntax to dependencies ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v0.1.0 (2022-11-16)
 
 #### :boom: Breaking Change
