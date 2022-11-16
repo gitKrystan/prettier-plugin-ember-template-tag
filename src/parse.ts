@@ -181,15 +181,13 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
   let blockLevel = 0;
 
   for (let line of lines) {
-    if (line.includes('{')) {
-      blockLevel++;
-    }
+    // HACK: This is pretty fragile as it will increment for, e.g., "{" which
+    // doesn't actually increment the block level IRL
+    const inc = (line.match(/\{/g) ?? []).length;
+    blockLevel += inc;
 
-    if (line.includes('}')) {
-      blockLevel--;
-    }
-
-    assert('expected non-negative blockLevel', blockLevel > -1);
+    const dec = (line.match(/\}/g) ?? []).length;
+    blockLevel -= dec;
 
     const previousLineIsPrettierIgnore =
       previousLine && squish(previousLine) === '// prettier-ignore';

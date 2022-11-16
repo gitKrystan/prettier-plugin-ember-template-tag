@@ -2328,41 +2328,7 @@ class MyComponent extends Component {
 "
 `;
 
-exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, with newline > it formats ../cases/gjs/component-class.gjs 2`] = `
-"import Component from \\"@glimmer/component\\"
-
-/** It's a component */
-class MyComponent extends Component {
-  <template>
-    <h1>
-      Class top level template. Class top level template. Class top level
-      template. Class top level template. Class top level template.
-    </h1>
-  </template>;
-  <template>oops</template>
-}
-"
-`;
-
 exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
-"import Component from \\"@glimmer/component\\"
-
-/** It's a component */
-class MyComponent extends Component {
-  get whatever() {}
-
-  <template>
-    <h1>
-      Class top level template. Class top level template. Class top level
-      template. Class top level template. Class top level template.
-    </h1>
-  </template>;
-  <template>oops</template>
-}
-"
-`;
-
-exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 2`] = `
 "import Component from \\"@glimmer/component\\"
 
 /** It's a component */
@@ -2516,30 +2482,6 @@ exports[`ambiguous > config > semi: false > <template>oops</template> > with sem
 `;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `
-"import Component from \\"@glimmer/component\\"
-
-export interface Signature {
-  Element: HTMLElement
-  Args: {
-    myArg: string
-  }
-  Yields: []
-}
-
-/** It's a component */
-class MyComponent extends Component<Signature> {
-  <template>
-    <h1>
-      Class top level template. Class top level template. Class top level
-      template. Class top level template. Class top level template.
-    </h1>
-  </template>;
-  <template>oops</template>
-}
-"
-`;
-
-exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, with newline > it formats ../cases/gts/component-class.gts 2`] = `
 "import Component from \\"@glimmer/component\\"
 
 export interface Signature {
