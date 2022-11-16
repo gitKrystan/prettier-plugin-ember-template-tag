@@ -1,0 +1,694 @@
+// Vitest Snapshot v1
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/component-class.gjs 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+/** It's a component */
+class MyComponent extends Component {
+  [__GLIMMER_TEMPLATE(
+    \`<h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>\`,
+    { strictMode: true }
+  )]
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+/** It's a component */
+class MyComponent extends Component {
+  get whatever() {}
+
+  [__GLIMMER_TEMPLATE(
+    \`<h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>\`,
+    { strictMode: true }
+  )]
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/component-class-with-template-literal.gjs 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+/** It's a component */
+class MyComponent extends Component {
+  [__GLIMMER_TEMPLATE(
+    \`<h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>\`,
+    { strictMode: true }
+  )]
+
+  what = \`template literal that is not a template\`;
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/default-export.gjs 1`] = `
+"[
+  __GLIMMER_TEMPLATE(
+    \`Explicit default export module top level component. Explicit default export
+    module top level component. Explicit default export module top level
+    component. Explicit default export module top level component. Explicit
+    default export module top level component.\`,
+    { strictMode: true }
+  ),
+]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = [
+  __GLIMMER_TEMPLATE(
+    \`Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.\`,
+    { strictMode: true }
+  ),
+];
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1;
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = [
+  __GLIMMER_TEMPLATE(
+    \`Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.\`,
+    { strictMode: true }
+  ),
+];
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = [
+    __GLIMMER_TEMPLATE(
+      \`<h1>
+        Module variable template. Module variable template. Module variable
+        template. Module variable template. Module variable template. Module
+        variable template. Module variable template. Module variable template.
+      </h1>\`,
+      { strictMode: true }
+    ),
+  ],
+  ModVar2 = [
+    __GLIMMER_TEMPLATE(\`Second module variable template.\`, {
+      strictMode: true,
+    }),
+  ],
+  num = 1;
+
+const bool = false,
+  ModVar3 = [
+    __GLIMMER_TEMPLATE(
+      \`<h1>
+        Module variable template. Module variable template. Module variable
+        template. Module variable template. Module variable template. Module
+        variable template. Module variable template. Module variable template.
+      </h1>\`,
+      { strictMode: true }
+    ),
+  ],
+  ModVar4 = [
+    __GLIMMER_TEMPLATE(\`Second module variable template.\`, {
+      strictMode: true,
+    }),
+  ];
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/one-line.gjs 1`] = `
+"const Oneline = [
+  __GLIMMER_TEMPLATE(\`Module variable template (one line).\`, {
+    strictMode: true,
+  }),
+];
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/prettier-ignore/component-class.gjs 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+/** It's a component */
+class MyComponent extends Component {
+  // prettier-ignore
+  [__GLIMMER_TEMPLATE(\`
+
+
+    <h1>   Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
+  \`, { strictMode: true })]
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/prettier-ignore/component-class-with-template-literal.gjs 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+/** It's a component */
+class MyComponent extends Component {
+  // prettier-ignore
+  [__GLIMMER_TEMPLATE(\`
+
+
+    <h1>   Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
+  \`, { strictMode: true })]
+
+  what = \`template literal that is not a template\`;
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/prettier-ignore/default-export.gjs 1`] = `
+"// prettier-ignore
+export default [__GLIMMER_TEMPLATE(\`     Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. \`, { strictMode: true })]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/prettier-ignore/exported-mod-var.gjs 1`] = `
+"// prettier-ignore
+export const Exported = [__GLIMMER_TEMPLATE(\`       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. \`, { strictMode: true })]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/prettier-ignore/js-only.gjs 1`] = `
+"// prettier-ignore
+const num = 1;
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/prettier-ignore/multiple-declarations.gjs 1`] = `
+"// prettier-ignore
+const ModVar1 = [__GLIMMER_TEMPLATE(\`
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+\`, { strictMode: true })],
+ModVar2 = [__GLIMMER_TEMPLATE(\`
+  Second module variable template.
+\`, { strictMode: true })],
+    num = 1;
+
+// prettier-ignore
+const bool = false, ModVar3 =[__GLIMMER_TEMPLATE(\`
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+\`, { strictMode: true })],
+ModVar4 = [__GLIMMER_TEMPLATE(\`
+  Second module variable template.
+\`, { strictMode: true })]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/prettier-ignore/one-line.gjs 1`] = `
+"// prettier-ignore
+const Oneline = [__GLIMMER_TEMPLATE(\`      Module variable template (one line). \`, { strictMode: true })]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/prettier-ignore/simple.gjs 1`] = `
+"// prettier-ignore
+[__GLIMMER_TEMPLATE(\`
+              what
+            \`, { strictMode: true })]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/simple.gjs 1`] = `
+"[__GLIMMER_TEMPLATE(\`what\`, { strictMode: true })]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/component-class.gts 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {
+    myArg: string;
+  };
+  Yields: [];
+}
+
+/** It's a component */
+class MyComponent extends Component<Signature> {
+  [__GLIMMER_TEMPLATE(
+    \`<h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>\`,
+    { strictMode: true }
+  )]
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/component-class-with-template-literal.gts 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {
+    myArg: string;
+  };
+  Yields: [];
+}
+
+/** It's a component */
+class MyComponent extends Component<Signature> {
+  [__GLIMMER_TEMPLATE(
+    \`<h1 ...attributes>
+      {{@myArg}}
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>\`,
+    { strictMode: true }
+  )]
+
+  what = \`template literal that is not a template\`;
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+[
+  __GLIMMER_TEMPLATE(
+    \`Explicit default export module top level component. Explicit default export
+    module top level component. Explicit default export module top level
+    component. Explicit default export module top level component. Explicit
+    default export module top level component.\`,
+    { strictMode: true }
+  ),
+] as TemplateOnlyComponent<Signature>
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = [
+  __GLIMMER_TEMPLATE(
+    \`Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.\`,
+    { strictMode: true }
+  ),
+];
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+export const Exported = [
+  __GLIMMER_TEMPLATE(
+    \`Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.\`,
+    { strictMode: true }
+  ),
+] as TemplateOnlyComponent<Signature>;
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1;
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Private: TemplateOnlyComponent<Signature> = [
+  __GLIMMER_TEMPLATE(
+    \`Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.\`,
+    { strictMode: true }
+  ),
+];
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Private = [
+  __GLIMMER_TEMPLATE(
+    \`Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.\`,
+    { strictMode: true }
+  ),
+] as TemplateOnlyComponent<Signature>;
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = [
+    __GLIMMER_TEMPLATE(
+      \`<h1>
+        Module variable template. Module variable template. Module variable
+        template. Module variable template. Module variable template. Module
+        variable template. Module variable template. Module variable template.
+      </h1>\`,
+      { strictMode: true }
+    ),
+  ],
+  ModVar2: TemplateOnlyComponent<Signature> = [
+    __GLIMMER_TEMPLATE(\`Second module variable template.\`, {
+      strictMode: true,
+    }),
+  ],
+  num = 1;
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = [
+    __GLIMMER_TEMPLATE(
+      \`<h1>
+        Module variable template. Module variable template. Module variable
+        template. Module variable template. Module variable template. Module
+        variable template. Module variable template. Module variable template.
+      </h1>\`,
+      { strictMode: true }
+    ),
+  ],
+  ModVar4: TemplateOnlyComponent<Signature> = [
+    __GLIMMER_TEMPLATE(\`Second module variable template.\`, {
+      strictMode: true,
+    }),
+  ];
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const ModVar1 = [
+    __GLIMMER_TEMPLATE(
+      \`<h1>
+        Module variable template. Module variable template. Module variable
+        template. Module variable template. Module variable template. Module
+        variable template. Module variable template. Module variable template.
+      </h1>\`,
+      { strictMode: true }
+    ),
+  ] as TemplateOnlyComponent<Signature>,
+  ModVar2 = [
+    __GLIMMER_TEMPLATE(\`Second module variable template.\`, {
+      strictMode: true,
+    }),
+  ] as TemplateOnlyComponent<Signature>,
+  num = 1;
+
+const bool: boolean = false,
+  ModVar3 = [
+    __GLIMMER_TEMPLATE(
+      \`<h1>
+        Module variable template. Module variable template. Module variable
+        template. Module variable template. Module variable template. Module
+        variable template. Module variable template. Module variable template.
+      </h1>\`,
+      { strictMode: true }
+    ),
+  ] as TemplateOnlyComponent<Signature>,
+  ModVar4 = [
+    __GLIMMER_TEMPLATE(\`Second module variable template.\`, {
+      strictMode: true,
+    }),
+  ] as TemplateOnlyComponent<Signature>;
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/one-line.gts 1`] = `
+"import type { TOC } from \\"@ember/component/template-only\\";
+
+export interface Sig {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Oneline = [
+  __GLIMMER_TEMPLATE(\`One line.\`, { strictMode: true }),
+] as TOC<Sig>;
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/component-class.gts 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {
+    myArg: string;
+  };
+  Yields: [];
+}
+
+/** It's a component */
+class MyComponent extends Component<Signature> {
+  // prettier-ignore
+  [__GLIMMER_TEMPLATE(\`
+
+
+    <h1>   Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
+  \`, { strictMode: true })]
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/component-class-with-template-literal.gts 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {
+    myArg: string;
+  };
+  Yields: [];
+}
+
+/** It's a component */
+class MyComponent extends Component<Signature> {
+  // prettier-ignore
+  [__GLIMMER_TEMPLATE(\`
+
+
+    <h1 ...attributes>   {{@myArg}} Class top level template. Class top level template. Class top level template. Class top level template. Class top level template. </h1>
+  \`, { strictMode: true })]
+
+  what = \`template literal that is not a template\`;
+}
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+// prettier-ignore
+export default [__GLIMMER_TEMPLATE(\`     Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. Explicit default export module top level component. \`, { strictMode: true })] as TemplateOnlyComponent<Signature>
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
+export const Exported: TemplateOnlyComponent<Signature>     = [__GLIMMER_TEMPLATE(\`       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. \`, { strictMode: true })]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
+export const Exported = [__GLIMMER_TEMPLATE(\`       Exported variable template. Exported variable template.  Exported variable template.  Exported variable template.  Exported variable template. Exported variable template. Exported variable template. \`, { strictMode: true })] as TemplateOnlyComponent<Signature>
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/js-only.gts 1`] = `
+"// prettier-ignore
+const num:   number = 1;
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
+const ModVar1: TemplateOnlyComponent<Signature> = [__GLIMMER_TEMPLATE(\`
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+\`, { strictMode: true })],
+ModVar2 : TemplateOnlyComponent<Signature>= [__GLIMMER_TEMPLATE(\`
+  Second module variable template.
+\`, { strictMode: true })],
+    num = 1;
+
+// prettier-ignore
+const bool: boolean = false, ModVar3: TemplateOnlyComponent<Signature>  = [__GLIMMER_TEMPLATE(\`
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+\`, { strictMode: true })],
+ModVar4: TemplateOnlyComponent<Signature> = [__GLIMMER_TEMPLATE(\`
+  Second module variable template.
+\`, { strictMode: true })]
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
+const ModVar1 = [__GLIMMER_TEMPLATE(\`
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+\`, { strictMode: true })] as TemplateOnlyComponent<Signature>,
+ModVar2 = [__GLIMMER_TEMPLATE(\`
+  Second module variable template.
+\`, { strictMode: true })] as TemplateOnlyComponent<Signature>,
+    num = 1;
+
+// prettier-ignore
+const bool: boolean = false, ModVar3  = [__GLIMMER_TEMPLATE(\`
+
+  <h1>   Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template. Module variable template.   </h1>
+\`, { strictMode: true })] as TemplateOnlyComponent<Signature>,
+ModVar4 = [__GLIMMER_TEMPLATE(\`
+  Second module variable template.
+\`, { strictMode: true })] as TemplateOnlyComponent<Signature>
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/one-line.gts 1`] = `
+"import type { TOC } from \\"@ember/component/template-only\\";
+
+export interface Sig {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
+const Oneline = [__GLIMMER_TEMPLATE(\`      Module variable template (one line). \`, { strictMode: true })] as TOC<Sig>
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/prettier-ignore/simple.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+// prettier-ignore
+[__GLIMMER_TEMPLATE(\`
+              what
+            \`, { strictMode: true })] as TemplateOnlyComponent<Signature>
+"
+`;
+
+exports[`format > config > with preprocessed code > it formats ../cases/gts/simple.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+[
+  __GLIMMER_TEMPLATE(\`what\`, { strictMode: true }),
+] as TemplateOnlyComponent<Signature>
+"
+`;

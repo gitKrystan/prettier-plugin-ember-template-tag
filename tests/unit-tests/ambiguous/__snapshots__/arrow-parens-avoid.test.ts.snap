@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gjs/default-export.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
@@ -11,7 +11,18 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi 
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/default-export.gjs 2`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
 "export const Exported = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
@@ -21,13 +32,29 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi 
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gjs/js-only.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 2`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1;
 (oh, no) => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gjs/mod-var.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/js-only.gjs 2`] = `
+"const num = 1;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
 "const Private = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
@@ -37,7 +64,17 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi 
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/mod-var.gjs 2`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
 "const ModVar1 = <template>
     <h1>
       Module variable template. Module variable template. Module variable
@@ -62,13 +99,44 @@ const bool = false,
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gjs/simple.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 2`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1;
+(oh, no) => {};
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
 "<template>what</template>;
 (oh, no) => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/default-export.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 2`] = `
+"<template>what</template>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -87,7 +155,26 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -105,7 +192,25 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -123,13 +228,37 @@ export const Exported = <template>
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/js-only.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `
 "const num: number = 1;
 (oh, no) => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/mod-var.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/js-only.gts 2`] = `
+"const num: number = 1;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -147,7 +276,25 @@ const Private: TemplateOnlyComponent<Signature> = <template>
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/mod-var.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -165,7 +312,25 @@ const Private = <template>
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -202,7 +367,44 @@ const bool: boolean = false,
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1;
+(oh, no) => {};
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -239,7 +441,44 @@ const bool: boolean = false,
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi > it formats ../cases/gts/simple.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1;
+(oh, no) => {};
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -253,7 +492,21 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi > it formats ../cases/gts/default-export.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/simple.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+<template>what</template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -272,7 +525,7 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -290,7 +543,7 @@ export const Exported = <template>
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -308,7 +561,7 @@ const Private = <template>
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi > it formats ../cases/gts/simple.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -322,7 +575,72 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gjs/default-export.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+<template>what</template> as TemplateOnlyComponent<Signature>;
+(oh, no) => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
@@ -333,7 +651,18 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/default-export.gjs 2`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
 "export const Exported = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
@@ -343,13 +672,29 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gjs/js-only.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 2`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1;
 oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gjs/mod-var.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/js-only.gjs 2`] = `
+"const num = 1;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
 "const Private = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
@@ -359,7 +704,17 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/mod-var.gjs 2`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
 "const ModVar1 = <template>
     <h1>
       Module variable template. Module variable template. Module variable
@@ -384,13 +739,44 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gjs/simple.gjs 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 2`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1;
+oops => {};
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
 "<template>what</template>
 oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/default-export.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 2`] = `
+"<template>what</template>
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -409,7 +795,26 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -427,7 +832,25 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -445,13 +868,37 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/js-only.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `
 "const num: number = 1;
 oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/mod-var.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/js-only.gts 2`] = `
+"const num: number = 1;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -469,7 +916,25 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/mod-var.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -487,7 +952,25 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -524,7 +1007,44 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1;
+oops => {};
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -561,7 +1081,44 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi > it formats ../cases/gts/simple.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1;
+oops => {};
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -575,7 +1132,21 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi > it formats ../cases/gts/default-export.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/simple.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+<template>what</template> as TemplateOnlyComponent<Signature>
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -594,7 +1165,7 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -612,7 +1183,7 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
 export interface Signature {
@@ -630,9 +1201,74 @@ oops => {};
 "
 `;
 
-exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi > it formats ../cases/gts/simple.gts 1`] = `
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+<template>what</template> as TemplateOnlyComponent<Signature>
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+export interface Signature {
+  Element: HTMLElement;
+  Args: {};
+  Yields: [];
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>;
+oops => {};
+"
+`;
+
+exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 export interface Signature {
   Element: HTMLElement;
   Args: {};

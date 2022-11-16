@@ -14,7 +14,6 @@ import {
   isNode,
   isTemplateLiteral,
 } from '@babel/types';
-import type { AstPath } from 'prettier';
 
 import { TEMPLATE_TAG_PLACEHOLDER } from '../config';
 import type { BaseNode } from './ast';
@@ -28,15 +27,6 @@ import type { BaseNode } from './ast';
 export interface RawGlimmerArrayExpression extends ArrayExpression {
   type: 'ArrayExpression';
   elements: [RawGlimmerCallExpression];
-}
-
-/** Type predicate */
-export function isGlimmerArrayExpressionPath(
-  path: AstPath<BaseNode>
-): path is AstPath<RawGlimmerArrayExpression> {
-  return path.match((node: BaseNode | null) => {
-    return isRawGlimmerArrayExpression(node);
-  });
 }
 
 /** Type predicate */
@@ -85,15 +75,6 @@ export interface RawGlimmerClassProperty extends ClassProperty {
 }
 
 /** Type predicate */
-export function isGlimmerClassPropertyPath(
-  path: AstPath<BaseNode>
-): path is AstPath<RawGlimmerClassProperty> {
-  return path.match((node: BaseNode | null) => {
-    return isRawGlimmerClassProperty(node);
-  });
-}
-
-/** Type predicate */
 export function isRawGlimmerClassProperty(
   value: BaseNode | null | undefined
 ): value is RawGlimmerClassProperty {
@@ -138,16 +119,16 @@ export function isRawGlimmerCallExpression(
  * ^^^^^^^^^^^^^^^^^^
  * ```
  */
-export interface RawGlimmerIdentifier extends Identifier {
+interface RawGlimmerIdentifier extends Identifier {
   name: typeof TEMPLATE_TAG_PLACEHOLDER; // This is just `string` so not SUPER useful, just documentation
 }
 
 /** Recursively checks if the node has a Glimmer Array Expression. */
-export function hasGlimmerArrayExpression(node: Node): boolean {
+export function hasRawGlimmerArrayExpression(node: Node): boolean {
   return (
     isRawGlimmerArrayExpression(node) ||
     ('expression' in node &&
       isNode(node.expression) &&
-      hasGlimmerArrayExpression(node.expression))
+      hasRawGlimmerArrayExpression(node.expression))
   );
 }

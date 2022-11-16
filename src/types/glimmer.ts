@@ -1,47 +1,76 @@
 import type {
   ExportDefaultDeclaration,
   ExpressionStatement,
+  TemplateLiteral,
   TSAsExpression,
 } from '@babel/types';
 import {
+  isArrayExpression,
+  isClassProperty,
   isExportDefaultDeclaration,
   isExpressionStatement,
+  isTemplateLiteral,
   isTSAsExpression,
 } from '@babel/types';
-import type { AstPath } from 'prettier';
 
-import { isRecord } from '../utils/index';
 import type { BaseNode } from './ast';
-import type {
-  RawGlimmerArrayExpression,
-  RawGlimmerCallExpression,
-} from './raw';
+import type { RawGlimmerArrayExpression, RawGlimmerClassProperty } from './raw';
 
-export interface GlimmerExpressionExtras {
+/**
+ * A Template Literal with a tag indicating that it is actually a Glimmer
+ * Template
+ */
+export interface GlimmerTemplateLiteral extends TemplateLiteral {
+  extra: GlimmerTemplateExtra;
+}
+
+export interface GlimmerTemplateExtra {
+  isGlimmerTemplate: true;
+  [key: string]: unknown;
+}
+
+/** Type predicate */
+export function isGlimmerTemplateLiteral(
+  node: BaseNode | null | undefined
+): node is GlimmerTemplateLiteral {
+  return isTemplateLiteral(node) && node.extra?.['isGlimmerTemplate'] === true;
+}
+
+export interface GlimmerExpressionExtra {
   forceSemi: boolean;
   hasGlimmerExpression: true;
   [key: string]: unknown;
 }
 
-export interface GlimmerArrayExpression extends RawGlimmerArrayExpression {
-  extra: GlimmerExpressionExtras;
-}
-
-export interface GlimmerCallExpression extends RawGlimmerCallExpression {
-  extra: GlimmerExpressionExtras;
-}
-
-export type GlimmerExpression = GlimmerArrayExpression | GlimmerCallExpression;
+export type GlimmerExpression = GlimmerArrayExpression | GlimmerClassProperty;
 
 /** Type predicate */
 export function isGlimmerExpression(
   node: BaseNode | null | undefined
 ): node is GlimmerExpression {
-  return (
-    isRecord(node) &&
-    isRecord(node.extra) &&
-    node.extra['hasGlimmerExpression'] === true
-  );
+  return node?.extra?.['hasGlimmerExpression'] === true;
+}
+
+export interface GlimmerArrayExpression extends RawGlimmerArrayExpression {
+  extra: GlimmerExpressionExtra;
+}
+
+/** Type predicate */
+export function isGlimmerArrayExpression(
+  node: BaseNode | null | undefined
+): node is GlimmerArrayExpression {
+  return isArrayExpression(node) && isGlimmerExpression(node);
+}
+
+export interface GlimmerClassProperty extends RawGlimmerClassProperty {
+  extra: GlimmerExpressionExtra;
+}
+
+/** Type predicate */
+export function isGlimmerClassProperty(
+  node: BaseNode | null | undefined
+): node is GlimmerClassProperty {
+  return isClassProperty(node) && isGlimmerExpression(node);
 }
 
 /**
@@ -54,15 +83,6 @@ export function isGlimmerExpression(
 export interface GlimmerExportDefaultDeclaration
   extends Omit<ExportDefaultDeclaration, 'declaration'> {
   declaration: GlimmerExpression;
-}
-
-/** Type predicate */
-export function isGlimmerExportDefaultDeclarationPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerExportDefaultDeclaration> {
-  return path.match((node: BaseNode | null) => {
-    return isGlimmerExportDefaultDeclaration(node);
-  });
 }
 
 /** Type predicate */
@@ -84,15 +104,6 @@ export function isGlimmerExportDefaultDeclaration(
 export interface GlimmerExportDefaultDeclarationTS
   extends Omit<ExportDefaultDeclaration, 'declaration'> {
   declaration: GlimmerTSAsExpression;
-}
-
-/** Type predicate */
-export function isGlimmerExportDefaultDeclarationTSPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerExportDefaultDeclarationTS> {
-  return path.match((node: BaseNode | null) => {
-    return isGlimmerExportDefaultDeclarationTS(node);
-  });
 }
 
 /** Type predicate */
@@ -140,12 +151,10 @@ export interface GlimmerExpressionStatement
 }
 
 /** Type predicate */
-export function isGlimmerExpressionStatementPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerExpressionStatement> {
-  return path.match((node: BaseNode | null) => {
-    return isExpressionStatement(node) && isGlimmerExpression(node.expression);
-  });
+export function isGlimmerExpressionStatement(
+  node: BaseNode | null | undefined
+): node is GlimmerExpressionStatement {
+  return isExpressionStatement(node) && isGlimmerExpression(node.expression);
 }
 
 /**
@@ -161,27 +170,24 @@ export interface GlimmerExpressionStatementTS
 }
 
 /** Type predicate */
-export function isGlimmerExpressionStatementTSPath(
-  path: AstPath<BaseNode>
-): path is AstPath<GlimmerExpressionStatementTS> {
-  return path.match((node: BaseNode | null) => {
-    return (
-      isExpressionStatement(node) && isGlimmerTSAsExpression(node.expression)
-    );
-  });
+export function isGlimmerExpressionStatementTS(
+  node: BaseNode | null | undefined
+): node is GlimmerExpressionStatementTS {
+  return (
+    isExpressionStatement(node) && isGlimmerTSAsExpression(node.expression)
+  );
 }
 
 /** Returns the `GlimmerExpression` within the given `path`. */
 export function getGlimmerExpression(
-  path: AstPath<
+  node:
     | GlimmerExportDefaultDeclaration
     | GlimmerExportDefaultDeclarationTS
     | GlimmerExpressionStatement
     | GlimmerExpressionStatementTS
-  >
+    | GlimmerClassProperty
+    | GlimmerArrayExpression
 ): GlimmerExpression {
-  const node = path.getValue();
-
   switch (node.type) {
     case 'ExportDefaultDeclaration':
       if ('expression' in node.declaration) {
@@ -195,5 +201,8 @@ export function getGlimmerExpression(
       } else {
         return node.expression;
       }
+    case 'ClassProperty':
+    case 'ArrayExpression':
+      return node;
   }
 }
