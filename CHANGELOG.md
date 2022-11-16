@@ -1,5 +1,34 @@
 
 
+
+## v0.1.0 (2022-11-16)
+
+#### :boom: Breaking Change
+* [#30](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/30) Don't convert back to <template> if text is pre-preprocessed ([@gitKrystan](https://github.com/gitKrystan))
+* [#27](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/27) Remove `export default` by default. Add `templateExportDefault` option to add it back. ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :rocket: Enhancement
+* [#30](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/30) Don't convert back to <template> if text is pre-preprocessed ([@gitKrystan](https://github.com/gitKrystan))
+* [#27](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/27) Remove `export default` by default. Add `templateExportDefault` option to add it back. ([@gitKrystan](https://github.com/gitKrystan))
+* [#24](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/24) Use @glimmer/syntax getTemplateLocals ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :bug: Bug Fix
+* [#28](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/28) Fix bug where preprocess caused syntax errors in component classes ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :memo: Documentation
+* [#19](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/19) Add VSCode integration docs ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :house: Internal
+* [#31](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/31) Depdendency Upgrades ([@gitKrystan](https://github.com/gitKrystan))
+* [#29](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/29) Remove babel hacks ([@gitKrystan](https://github.com/gitKrystan))
+* [#26](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/26) Increase typescript strictness ([@gitKrystan](https://github.com/gitKrystan))
+* [#25](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/25) Remove extraneous arrowParens: avoid tests ([@gitKrystan](https://github.com/gitKrystan))
+* [#23](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/23) Dependency Upgrades ([@gitKrystan](https://github.com/gitKrystan))
+* [#21](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/21) Dependency Upgrades ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v0.0.3 (2022-11-04)
 
 #### :rocket: Enhancement
