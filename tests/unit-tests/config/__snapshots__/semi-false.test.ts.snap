@@ -1,5 +1,54 @@
 // Vitest Snapshot v1
 
+exports[`config > semi: false > it formats ../cases/gjs/complex.gjs 1`] = `
+"import { on } from \\"@ember/modifier\\"
+import { service } from \\"@ember/service\\"
+import Component from \\"@glimmer/component\\"
+
+import { task } from \\"ember-concurrency\\"
+import perform from \\"ember-concurrency/helpers/perform\\"
+
+import Button from \\"okapi/components/button\\"
+import Icon from \\"okapi/components/icon\\"
+
+export default class ProjectStatusComponent extends Component {
+  <template>
+    <Button
+      data-test-project-status={{@project.id}}
+      class=\\"Button--theme-action\\"
+      {{on \\"click\\" (perform this.restartProject)}}
+    >
+      <Icon @type={{this.iconType}} @id={{this.iconId}} />
+      {{@project.status}}{{if this.restartProject.isRunning \\"...\\"}}
+    </Button>
+  </template>
+
+  @service server
+
+  private get iconType() {
+    return \\"mini\\"
+  }
+
+  private get iconId() {
+    switch (this.args.project.status) {
+      case \\"starting\\":
+      case \\"stopping\\":
+        return \\"ellipsis-horizontal-circle\\"
+
+      case \\"started\\":
+        return \\"play-circle\\"
+      case \\"stopped\\":
+        return \\"stop-circle\\"
+    }
+  }
+
+  restartProject = task({ drop: true }, async () => {
+    await this.server.restartProject(this.args.project)
+  })
+}
+"
+`;
+
 exports[`config > semi: false > it formats ../cases/gjs/component-class.gjs 1`] = `
 "import Component from \\"@glimmer/component\\"
 
@@ -198,6 +247,63 @@ exports[`config > semi: false > it formats ../cases/gjs/prettier-ignore/simple.g
 
 exports[`config > semi: false > it formats ../cases/gjs/simple.gjs 1`] = `
 "<template>what</template>
+"
+`;
+
+exports[`config > semi: false > it formats ../cases/gts/complex.gts 1`] = `
+"import { on } from \\"@ember/modifier\\"
+import { service } from \\"@ember/service\\"
+import Component from \\"@glimmer/component\\"
+
+import { task } from \\"ember-concurrency\\"
+import perform from \\"ember-concurrency/helpers/perform\\"
+
+import Button from \\"okapi/components/button\\"
+import Icon from \\"okapi/components/icon\\"
+import Project, { ProjectStatus } from \\"okapi/models/project\\"
+import ServerService from \\"okapi/services/server\\"
+
+export interface ProjectStatusSig {
+  Args: {
+    project: Project
+  }
+}
+
+export default class ProjectStatusComponent extends Component<ProjectStatusSig> {
+  <template>
+    <Button
+      data-test-project-status={{@project.id}}
+      class=\\"Button--theme-action\\"
+      {{on \\"click\\" (perform this.restartProject)}}
+    >
+      <Icon @type={{this.iconType}} @id={{this.iconId}} />
+      {{@project.status}}{{if this.restartProject.isRunning \\"...\\"}}
+    </Button>
+  </template>
+
+  @service private declare server: ServerService
+
+  private get iconType(): \\"mini\\" {
+    return \\"mini\\"
+  }
+
+  private get iconId(): string {
+    switch (this.args.project.status) {
+      case ProjectStatus.Starting:
+
+      case ProjectStatus.Stopping:
+        return \\"ellipsis-horizontal-circle\\"
+      case ProjectStatus.Started:
+        return \\"play-circle\\"
+      case ProjectStatus.Stopped:
+        return \\"stop-circle\\"
+    }
+  }
+
+  private restartProject = task({ drop: true }, async (): Promise<void> => {
+    await this.server.restartProject(this.args.project)
+  })
+}
 "
 `;
 
