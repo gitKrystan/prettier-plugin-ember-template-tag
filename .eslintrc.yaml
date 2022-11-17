@@ -1,5 +1,6 @@
 extends:
   - eslint:recommended
+  - plugin:eslint-comments/recommended
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/recommended-requiring-type-checking
   - plugin:@typescript-eslint/strict
@@ -57,6 +58,7 @@ rules:
   '@typescript-eslint/require-array-sort-compare': error
   '@typescript-eslint/switch-exhaustiveness-check': error
   '@typescript-eslint/unified-signatures': error
+  'eslint-comments/no-unused-disable': 'error'
   jsdoc/check-param-names: off
   jsdoc/newline-after-description: off
   jsdoc/require-jsdoc:

@@ -14,6 +14,7 @@ specifiers:
   ember-template-imports: ^3.4.0
   eslint: ^8.27.0
   eslint-config-prettier: ^8.5.0
+  eslint-plugin-eslint-comments: ^3.2.0
   eslint-plugin-jsdoc: ^39.6.2
   npm-run-all: ^4.1.5
   prettier: ^2.7.1
@@ -40,6 +41,7 @@ devDependencies:
   '@vitest/ui': 0.25.2
   eslint: 8.27.0
   eslint-config-prettier: 8.5.0_eslint@8.27.0
+  eslint-plugin-eslint-comments: 3.2.0_eslint@8.27.0
   eslint-plugin-jsdoc: 39.6.2_eslint@8.27.0
   npm-run-all: 4.1.5
   prettier-plugin-jsdoc: 0.4.2_prettier@2.7.1
@@ -299,11 +301,13 @@ packages:
 
   /@glimmer/env/0.1.7:
     resolution: {integrity: sha512-JKF/a9I9jw6fGoz8kA7LEQslrwJ5jms5CXhu/aqkBWk+PmZ6pTl8mlb/eJ/5ujBGTiQzBhy5AIWF712iA+4/mw==}
+    dev: false
 
   /@glimmer/interfaces/0.84.2:
     resolution: {integrity: sha512-tMZxQpOddUVmHEOuripkNqVR7ba0K4doiYnFd4WyswqoHPlxqpBujbIamQ+bWCWEF0U4yxsXKa31ekS/JHkiBQ==}
     dependencies:
       '@simple-dom/interface': 1.4.0
+    dev: false
 
   /@glimmer/syntax/0.84.2:
     resolution: {integrity: sha512-SPBd1tpIR9XeaXsXsMRCnKz63eLnIZ0d5G9QC4zIBFBC3pQdtG0F5kWeuRVCdfTIFuR+5WBMfk5jvg+3gbQhjg==}
@@ -320,9 +324,11 @@ packages:
       '@glimmer/env': 0.1.7
       '@glimmer/interfaces': 0.84.2
       '@simple-dom/interface': 1.4.0
+    dev: false
 
   /@handlebars/parser/2.0.0:
     resolution: {integrity: sha512-EP9uEDZv/L5Qh9IWuMUGJRfwhXJ4h1dqKTT4/3+tY0eu7sPis7xh23j61SYUnNF4vqCQvvUXpDo9Bh/+q1zASA==}
+    dev: false
 
   /@humanwhocodes/config-array/0.11.7:
     resolution: {integrity: sha512-kBbPWzN8oVMLb0hOUYXhmxggL/1cJE6ydvjDIGi9EnAGUyA7cLVKQg+d/Dsm+KZwx2czGHrCmMVLiyg8s5JPKw==}
@@ -589,6 +595,7 @@ packages:
 
   /@simple-dom/interface/1.4.0:
     resolution: {integrity: sha512-l5qumKFWU0S+4ZzMaLXFU8tQZsicHEMEyAxI5kDFGhJsRqDwe0a7/iPA/GdxlGyDKseQQAgIz5kzU7eXTrlSpA==}
+    dev: false
 
   /@sindresorhus/is/5.3.0:
     resolution: {integrity: sha512-CX6t4SYQ37lzxicAqsBtxA3OseeoVrh9cSJ5PFYam0GksYlupRfy1A+Q4aYD3zvcfECLc0zO2u+ZnR2UYKvCrw==}
@@ -2171,6 +2178,17 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.27.0
+    dev: true
+
+  /eslint-plugin-eslint-comments/3.2.0_eslint@8.27.0:
+    resolution: {integrity: sha512-0jkOl0hfojIHHmEHgmNdqv4fmh7300NdpA9FFpF7zaoLvB/QeXOGNLIo86oAveJFrfB1p05kC8hpEMHM8DwWVQ==}
+    engines: {node: '>=6.5.0'}
+    peerDependencies:
+      eslint: '>=4.19.1'
+    dependencies:
+      escape-string-regexp: 1.0.5
+      eslint: 8.27.0
+      ignore: 5.2.0
     dev: true
 
   /eslint-plugin-jsdoc/39.6.2_eslint@8.27.0:
@@ -4768,6 +4786,7 @@ packages:
 
   /simple-html-tokenizer/0.5.11:
     resolution: {integrity: sha512-C2WEK/Z3HoSFbYq8tI7ni3eOo/NneSPRoPpcM7WdLjFOArFuyXEjAoCdOC3DgMfRyziZQ1hCNR4mrNdWEvD0og==}
+    dev: false
 
   /sirv/2.0.2:
     resolution: {integrity: sha512-4Qog6aE29nIjAOKe/wowFTxOdmbEZKb+3tsLljaBRzJwtqto0BChD2zzH0LhgCSXiI+V7X+Y45v14wBZQ1TK3w==}
