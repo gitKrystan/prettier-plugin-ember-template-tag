@@ -20,7 +20,7 @@ export function printTemplateTag(
   ) => doc.builders.Doc,
   options: Options
 ): doc.builders.Doc {
-  const text = node.quasis.map((quasi) => quasi.value.raw).join();
+  const text = node.quasis.map((quasi) => quasi.value.raw).join(' ');
   return textToDoc(text.trim(), {
     ...options,
     parser: 'glimmer',

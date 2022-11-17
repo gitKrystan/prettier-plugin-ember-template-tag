@@ -189,20 +189,19 @@ export function getGlimmerExpression(
     | GlimmerArrayExpression
 ): GlimmerExpression {
   switch (node.type) {
-    case 'ExportDefaultDeclaration':
-      if ('expression' in node.declaration) {
-        return node.declaration.expression;
-      } else {
-        return node.declaration;
-      }
-    case 'ExpressionStatement':
-      if ('expression' in node.expression) {
-        return node.expression.expression;
-      } else {
-        return node.expression;
-      }
+    case 'ExportDefaultDeclaration': {
+      return 'expression' in node.declaration
+        ? node.declaration.expression
+        : node.declaration;
+    }
+    case 'ExpressionStatement': {
+      return 'expression' in node.expression
+        ? node.expression.expression
+        : node.expression;
+    }
     case 'ClassProperty':
-    case 'ArrayExpression':
+    case 'ArrayExpression': {
       return node;
+    }
   }
 }

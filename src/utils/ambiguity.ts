@@ -58,13 +58,11 @@ export function hasAmbiguousNextLine(
 
 function getNextLine(path: NodePath): Node | null {
   const parentPath = path.parentPath;
-  if (parentPath) {
-    // Note: getNextSibling().node will be undefined if there is no sibling
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    return parentPath.getNextSibling().node ?? getNextLine(parentPath);
-  } else {
-    return null;
-  }
+  return parentPath
+    ? // Note: getNextSibling().node will be undefined if there is no sibling
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      parentPath.getNextSibling().node ?? getNextLine(parentPath)
+    : null;
 }
 
 function isAmbiguousExpression(expression: Node, options: Options): boolean {

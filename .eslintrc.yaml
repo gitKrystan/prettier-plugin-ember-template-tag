@@ -1,12 +1,13 @@
 extends:
   - eslint:recommended
-  - plugin:eslint-comments/recommended
-  - plugin:import/recommended
-  - plugin:import/typescript
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/recommended-requiring-type-checking
   - plugin:@typescript-eslint/strict
+  - plugin:eslint-comments/recommended
+  - plugin:import/recommended
+  - plugin:import/typescript
   - plugin:jsdoc/recommended
+  - plugin:unicorn/recommended
   - prettier
 parser: '@typescript-eslint/parser'
 parserOptions:
@@ -15,8 +16,8 @@ parserOptions:
   allowAutomaticSingleRunInference: true
 plugins:
   - '@typescript-eslint'
-  - filenames
   - jsdoc
+  - unicorn
 settings:
   import/resolver:
     typescript:
@@ -66,9 +67,6 @@ rules:
   '@typescript-eslint/switch-exhaustiveness-check': error
   '@typescript-eslint/unified-signatures': error
   'eslint-comments/no-unused-disable': 'error'
-  'filenames/match-regex':
-    - 'error'
-    - '^[a-z0-9-.]+$' # Kebab-case.
   jsdoc/check-param-names: off
   jsdoc/newline-after-description: off
   jsdoc/require-jsdoc:
@@ -79,6 +77,23 @@ rules:
   jsdoc/require-param: off
   jsdoc/require-param-type: off
   jsdoc/tag-lines: off
+  unicorn/consistent-function-scoping:
+    - 'error'
+    - checkArrowFunctions: false
+  unicorn/custom-error-definition: error
+  unicorn/no-array-callback-reference: off
+  unicorn/no-null: off
+  unicorn/prefer-module: off
+  unicorn/prefer-ternary:
+    - error
+    - only-single-line
+  unicorn/prevent-abbreviations:
+    - error
+    - allowList:
+        'args': true
+        'doc': true
+        'Doc': true
+        'env': true
 overrides:
   - files: tests/**/*.test.{js,ts}
     plugins:
