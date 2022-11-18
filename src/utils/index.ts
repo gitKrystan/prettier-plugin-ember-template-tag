@@ -29,14 +29,14 @@ export function assertExists<T>(
 /**
  * Based on Rails' String#squish
  *
- * @param str String to squish
+ * @param string String to squish
  * @returns Squished string
  */
-export function squish<T extends string | null | undefined>(str: T): T {
-  if (str === null || str === undefined || str === '') {
-    return str;
+export function squish<T extends string | null | undefined>(string: T): T {
+  if (string === null || string === undefined || string === '') {
+    return string;
   } else {
-    return str
+    return string
       .trim()
       .replace(/\u200B/g, '') // remove zero-width spaces
       .replace(/\s+/g, ' ') as T; // squish multiple spaces into one

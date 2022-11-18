@@ -139,22 +139,16 @@ function tagGlimmerExpression(
     hasGlimmerExpression: true,
     forceSemi,
   };
-  if (typeof node.extra === 'object') {
-    node.extra = { ...node.extra, ...extra };
-  } else {
-    node.extra = extra;
-  }
+  node.extra =
+    typeof node.extra === 'object' ? { ...node.extra, ...extra } : extra;
 }
 
 function tagGlimmerTemplate(node: TemplateLiteral): void {
   const extra: GlimmerTemplateExtra = {
     isGlimmerTemplate: true,
   };
-  if (typeof node.extra === 'object') {
-    node.extra = { ...node.extra, ...extra };
-  } else {
-    node.extra = extra;
-  }
+  node.extra =
+    typeof node.extra === 'object' ? { ...node.extra, ...extra } : extra;
 }
 
 /**
@@ -183,10 +177,10 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
   for (let line of lines) {
     // HACK: This is pretty fragile as it will increment for, e.g., "{" which
     // doesn't actually increment the block level IRL
-    const inc = (line.match(/\{/g) ?? []).length;
+    const inc = (line.match(/{/g) ?? []).length;
     blockLevel += inc;
 
-    const dec = (line.match(/\}/g) ?? []).length;
+    const dec = (line.match(/}/g) ?? []).length;
     blockLevel -= dec;
 
     const previousLineIsPrettierIgnore =
@@ -198,7 +192,7 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
 
     desugaredLines.push(line);
 
-    if (line.trim().length) {
+    if (line.trim().length > 0) {
       previousLine = line;
     }
   }

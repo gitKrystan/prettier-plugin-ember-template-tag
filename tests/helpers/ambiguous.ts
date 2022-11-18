@@ -28,9 +28,8 @@ const AMBIGUOUS_EXPRESSIONS = [
  * the `AMBIGUOUS_PLACEHOLDER`.
  */
 export async function getAmbiguousCases(): Promise<TestCase[]> {
-  return (await getAllCases()).filter((c) =>
-    c.code.includes(AMBIGUOUS_PLACEHOLDER)
-  );
+  const cases = await getAllCases();
+  return cases.filter((c) => c.code.includes(AMBIGUOUS_PLACEHOLDER));
 }
 
 /**
@@ -94,12 +93,12 @@ function behavesLikeFormattedAmbiguousCase(
   try {
     const result = format(code, formatOptions);
     expect(result).toMatchSnapshot();
-  } catch (e: unknown) {
+  } catch (error: unknown) {
     // Some of the ambiguous cases are Syntax Errors when parsed
     const isSyntaxError =
-      e instanceof SyntaxError || String(e).startsWith('SyntaxError');
+      error instanceof SyntaxError || String(error).startsWith('SyntaxError');
     if (!isSyntaxError) {
-      throw e;
+      throw error;
     }
     expect(isSyntaxError, 'Expected SyntaxError').toBeTruthy();
   }

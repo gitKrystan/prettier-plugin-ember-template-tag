@@ -3,7 +3,11 @@ extends:
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/recommended-requiring-type-checking
   - plugin:@typescript-eslint/strict
+  - plugin:eslint-comments/recommended
+  - plugin:import/recommended
+  - plugin:import/typescript
   - plugin:jsdoc/recommended
+  - plugin:unicorn/recommended
   - prettier
 parser: '@typescript-eslint/parser'
 parserOptions:
@@ -13,6 +17,11 @@ parserOptions:
 plugins:
   - '@typescript-eslint'
   - jsdoc
+  - unicorn
+settings:
+  import/resolver:
+    typescript:
+      alwaysTryTypes: true
 root: true
 reportUnusedDisableDirectives: true
 rules:
@@ -57,6 +66,7 @@ rules:
   '@typescript-eslint/require-array-sort-compare': error
   '@typescript-eslint/switch-exhaustiveness-check': error
   '@typescript-eslint/unified-signatures': error
+  'eslint-comments/no-unused-disable': 'error'
   jsdoc/check-param-names: off
   jsdoc/newline-after-description: off
   jsdoc/require-jsdoc:
@@ -67,3 +77,29 @@ rules:
   jsdoc/require-param: off
   jsdoc/require-param-type: off
   jsdoc/tag-lines: off
+  unicorn/consistent-function-scoping:
+    - 'error'
+    - checkArrowFunctions: false
+  unicorn/custom-error-definition: error
+  unicorn/no-array-callback-reference: off
+  unicorn/no-null: off
+  unicorn/prefer-module: off
+  unicorn/prefer-ternary:
+    - error
+    - only-single-line
+  unicorn/prevent-abbreviations:
+    - error
+    - allowList:
+        'args': true
+        'doc': true
+        'Doc': true
+        'env': true
+overrides:
+  - files: tests/**/*.test.{js,ts}
+    plugins:
+      - vitest
+    rules:
+      'vitest/lower-case-title': error
+      'vitest/no-focused-tests': error
+      'vitest/no-identical-title': error
+      'vitest/no-skipped-tests': error

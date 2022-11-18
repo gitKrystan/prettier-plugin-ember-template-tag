@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 
 import type { TestCase } from '../../helpers/cases';
 import { getCases } from '../../helpers/cases';
@@ -27,6 +27,6 @@ describeTemplateSingleQuoteSuite({
 });
 
 async function getQuoteCases(): Promise<TestCase[]> {
-  const caseDir = path.join(__dirname, './quote-cases');
-  return await getCases(__dirname, caseDir);
+  const caseDirectory = path.join(__dirname, './quote-cases');
+  return await getCases(__dirname, caseDirectory);
 }
