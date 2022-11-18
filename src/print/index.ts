@@ -1,5 +1,4 @@
-import type { AstPath, Plugin, Printer } from 'prettier';
-import { doc } from 'prettier';
+import type { AstPath, doc, Plugin, Printer } from 'prettier';
 
 import {
   TEMPLATE_TAG_CLOSE,
@@ -19,14 +18,14 @@ import {
   isGlimmerTemplateLiteral,
 } from '../types/glimmer';
 import { assert, assertExists } from '../utils/index';
-import { printTemplateTag } from './template';
+import {
+  printTemplateContent,
+  printTemplateLiteral,
+  printTemplateTag,
+} from './template';
 
 // @ts-expect-error FIXME: HACK because estree printer isn't exported. See below.
 export const printer: Printer<BaseNode | undefined> = {};
-
-const {
-  builders: { group, indent, softline },
-} = doc;
 
 /**
  * FIXME: HACK because estree printer isn't exported.
@@ -130,32 +129,23 @@ export function definePrinter(options: Options): void {
     if (hasPrettierIgnore) {
       return printRawText(path, embedOptions);
     } else if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
-      const contents = printTemplateTag(node, textToDoc, embedOptions);
-      return group(['`', contents, '`']);
+      return printTemplateLiteral(
+        printTemplateContent(node, textToDoc, embedOptions)
+      );
     } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
-      const contents = printTemplateTag(
-        node.key.arguments[0],
-        textToDoc,
-        embedOptions
+      return printTemplateTag(
+        printTemplateContent(node.key.arguments[0], textToDoc, embedOptions),
+        node.extra.isDefaultTemplate ?? false
       );
-      return group([
-        TEMPLATE_TAG_OPEN,
-        indent([softline, group(contents)]),
-        softline,
-        TEMPLATE_TAG_CLOSE,
-      ]);
     } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
-      const contents = printTemplateTag(
-        node.elements[0].arguments[0],
-        textToDoc,
-        embedOptions
+      return printTemplateTag(
+        printTemplateContent(
+          node.elements[0].arguments[0],
+          textToDoc,
+          embedOptions
+        ),
+        node.extra.isDefaultTemplate ?? false
       );
-      return group([
-        TEMPLATE_TAG_OPEN,
-        indent([softline, group(contents)]),
-        softline,
-        TEMPLATE_TAG_CLOSE,
-      ]);
     } else {
       // Nothing to embed, so move on to the regular printer.
       return null;

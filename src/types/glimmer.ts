@@ -38,7 +38,8 @@ export function isGlimmerTemplateLiteral(
 
 export interface GlimmerExpressionExtra {
   forceSemi: boolean;
-  hasGlimmerExpression: true;
+  isGlimmerTemplate: true;
+  isDefaultTemplate?: boolean;
   [key: string]: unknown;
 }
 
@@ -48,7 +49,7 @@ export type GlimmerExpression = GlimmerArrayExpression | GlimmerClassProperty;
 export function isGlimmerExpression(
   node: BaseNode | null | undefined
 ): node is GlimmerExpression {
-  return node?.extra?.['hasGlimmerExpression'] === true;
+  return node?.extra?.['isGlimmerTemplate'] === true;
 }
 
 export interface GlimmerArrayExpression extends RawGlimmerArrayExpression {
