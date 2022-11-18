@@ -246,7 +246,9 @@ exports[`format > config > default > it formats ../cases/gjs/prettier-ignore/sim
 `;
 
 exports[`format > config > default > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>what</template>
+"<template>
+  what
+</template>
 "
 `;
 
@@ -724,6 +726,8 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
 "
 `;

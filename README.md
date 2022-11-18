@@ -42,9 +42,63 @@ A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](h
 
 ## Opinions
 
-This plugin works by weaving together Prettier's standard [babel-ts](https://prettier.io/playground/#N4Igxg9gdgLgprEAuEBLWcBOAzAhmOAAgFkBPASQx3yOAB0pDDsIIAKASiUIGcZN0AcwA0DJgCNcmbgEFMmXKQA8UAK4BbcVgB8oqAF8GDOAA8ADhEwxCucXwVhrYADa4ePQgDFWhVOrPOcOoIMB5klPDUBIT0jMysnDFiTCmpTAD06YQAKgDyACK53JhwMKqYjLiVjqq4zoQAbnWqRAAWWHDJaYQlZRWEAOTtzs4QA10phnGCpYSSmImxqb3ljADaTACMehNMAEzChADMeqkAuslTUwwwpGZEAEpwAI4tfNl3RAC8gwDiAKLZAaEAA+gwAEv8ZPlgWCBgAFXIAZSBoMG8IAqqi4bl4dlyLkAHJI2GDADCRMJ-zJ2MG+X+ABlAf9SQNsg8ZGSWSBhCAIGYYKhoDxkKApJgIAB3eFSBAilB1SWKEW88QOADWpSRuGCDPQcGQeGcPDgqo1WrM+CEyH4LV5QS0ABNHXBHQyqoJajNvJh1LgYIKoIJkCBcKoYBAeSBWjB1M4AOqtVDwHiWghIuXJ1ANZOkENgdxR9AmqzwhSCP2Guom3kAKx4JiRQkCAEVVBB4FXjaaQJbMCWQ5ItM4ALShKNmASweOoR0wVrIAAcAAZeZOICb4wozCHJ3ASw0DbzXh24GX+fLQzwR1A4K7XVGSq9UCUy7gK7guzWQCb1KgbZgdo-s2cBtqeX49jAtgznOC5IAcID8LgqDOEIZIQOolYoPuACsUaqCa2S2PKRrfg0LSUC6sBImAAgCjIUCOkityBBB+j6EAA) and [glimmer](https://prettier.io/playground/#N4Igxg9gdgLgprEAuEACVAeAJgSwG7qFgA2AhgM7kC8AOiAjAE4CedhqAfDVOhgBYBGDsGDoYOGMTjsAvjIwB6QVx6ZcBdCQrU6AIwhZWIFe1OERhfYbOE53Reo6YFjkABoQEAA7jo5ZKCkjIwQAO4ACkEI-iikxKGkzP4euoykYADWcDAAyqQAtnAAMjhQcMgAZnHkcClpmdk5XumlAObITACutfT5unBYWANFpFCtnaStcABiEIz5pDDiY8ggpJ0wEO4gfDD5xADqfBJw5M1gcDnREvgSzKtglNulNYww4WmtC5XVPQBW5AAHjk2lIAIqdCDwH7EGoeZqMV6rVrEHD5QqMbZeRilGAHHBYGB8ZAADgADPCQjUDmkvKtsac4Iw8OUPABHSHwD7eGJrcgAWjKAwG20YcA5ODFH0m3yQVVhPRq+RwHUY3Q85FBcAhUPKct+HhgpF0+MJxKQACZDWkcKixgBhCDo0irU4AVm2nRqABVjTF5XCQHhugBJKBDWA5MA4nwAQXDORgzCkMJqciAA) parsers, so it doesn't have many opinions of its own.
+This plugin works by weaving together Prettier's standard [babel-ts](https://prettier.io/playground/#N4Igxg9gdgLgprEAuEBLWcBOAzAhmOAAgFkBPASQx3yOAB0pDDsIIAKASiUIGcZN0AcwA0DJgCNcmbgEFMmXKQA8UAK4BbcVgB8oqAF8GDOAA8ADhEwxCucXwVhrYADa4ePQgDFWhVOrPOcOoIMB5klPDUBIT0jMysnDFiTCmpTAD06YQAKgDyACK53JhwMKqYjLiVjqq4zoQAbnWqRAAWWHDJaYQlZRWEAOTtzs4QA10phnGCpYSSmImxqb3ljADaTACMehNMAEzChADMeqkAuslTUwwwpGZEAEpwAI4tfNl3RAC8gwDiAKLZAaEAA+gwAEv8ZPlgWCBgAFXIAZSBoMG8IAqqi4bl4dlyLkAHJI2GDADCRMJ-zJ2MG+X+ABlAf9SQNsg8ZGSWSBhCAIGYYKhoDxkKApJgIAB3eFSBAilB1SWKEW88QOADWpSRuGCDPQcGQeGcPDgqo1WrM+CEyH4LV5QS0ABNHXBHQyqoJajNvJh1LgYIKoIJkCBcKoYBAeSBWjB1M4AOqtVDwHiWghIuXJ1ANZOkENgdxR9AmqzwhSCP2Guom3kAKx4JiRQkCAEVVBB4FXjaaQJbMCWQ5ItM4ALShKNmASweOoR0wVrIAAcAAZeZOICb4wozCHJ3ASw0DbzXh24GX+fLQzwR1A4K7XVGSq9UCUy7gK7guzWQCb1KgbZgdo-s2cBtqeX49jAtgznOC5IAcID8LgqDOEIZIQOolYoPuACsUaqCa2S2PKRrfg0LSUC6sBImAAgCjIUCOkityBBB+j6EAA) and [glimmer](https://prettier.io/playground/#N4Igxg9gdgLgprEAuEACVAeAJgSwG7qFgA2AhgM7kC8AOiAjAE4CedhqAfDVOhgBYBGDsGDoYOGMTjsAvjIwB6QVx6ZcBdCQrU6AIwhZWIFe1OERhfYbOE53Reo6YFjkABoQEAA7jo5ZKCkjIwQAO4ACkEI-iikxKGkzP4euoykYADWcDAAyqQAtnAAMjhQcMgAZnHkcClpmdk5XumlAObITACutfT5unBYWANFpFCtnaStcABiEIz5pDDiY8ggpJ0wEO4gfDD5xADqfBJw5M1gcDnREvgSzKtglNulNYww4WmtC5XVPQBW5AAHjk2lIAIqdCDwH7EGoeZqMV6rVrEHD5QqMbZeRilGAHHBYGB8ZAADgADPCQjUDmkvKtsac4Iw8OUPABHSHwD7eGJrcgAWjKAwG20YcA5ODFH0m3yQVVhPRq+RwHUY3Q85FBcAhUPKct+HhgpF0+MJxKQACZDWkcKixgBhCDo0irU4AVm2nRqABVjTF5XCQHhugBJKBDWA5MA4nwAQXDORgzCkMJqciAA) parsers, so it doesn't have many opinions of its own. With that said, I did have to make some opinionated decisions regarding how templates are printed within the JavaScript. In general, my strategy has been to ask "What would a function do?" since functions can be used in the same positions as the `<template>` tag.
 
-With that said, I did have to make some decisions about when and where to include or omit semicolons. You can read more about and comment on my decision process [on this RFC](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/1).
+### Semicolons
+
+Semicolons will be included or omitted as follows:
+
+```js
+export default class MyComponent extends Component {
+  <template>Hello</template> // omit
+}
+
+<template>Hello</template> // omit
+
+export default <template>Hello</template> // omit
+
+export const MyComponent = <template>Hello</template>; // include by default, omit in no-semi mode
+```
+
+You can read more about and comment on my semicolon decision process [on this RFC](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/1).
+
+### New Lines
+
+Template tags will always be printed on their own line for templates that are default exports or top-level class templates. Templates used as expressions will be allowed to collapse onto a single line if they fit:
+
+```js
+import Component from '@glimmer/component';
+
+const what = <template>Used as an expression</template>;
+
+export const who = <template>Used as an expression</template>;
+
+<template>
+  The default export
+</template>
+
+class MyComponent extends Component {
+  <template>
+    Top-level class template
+  </template>
+}
+```
+
+### `export default`
+
+The following `<template>` invocations both desugar to default exports:
+
+```js
+// template-only-component.js
+
+<template>Hello</template>;
+
+// or
+
+export default <template>Hello</template>;
+```
+
+By default, this plugin will remove `export default` to print the more concise "sugared" default export template. If you would prefer to always include `export default`, you can enable the `templateExportDefault` option described below.
 
 ## Configuration
 

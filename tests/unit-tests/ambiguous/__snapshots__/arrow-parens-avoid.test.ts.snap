@@ -125,13 +125,17 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>what</template>;
+"<template>
+  what
+</template>;
 (oh, no) => {};
 "
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 2`] = `
-"<template>what</template>;
+"<template>
+  what
+</template>;
 (oh, no) => {};
 "
 `;
@@ -487,7 +491,9 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>;
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -501,7 +507,9 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>;
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -570,7 +578,9 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>;
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -635,7 +645,9 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>;
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -765,13 +777,17 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>what</template>
+"<template>
+  what
+</template>
 oops => {};
 "
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 2`] = `
-"<template>what</template>
+"<template>
+  what
+</template>
 oops => {};
 "
 `;
@@ -1127,7 +1143,9 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1141,7 +1159,9 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1210,7 +1230,9 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1275,7 +1297,9 @@ export interface Signature {
   Yields: [];
 }
 
-<template>what</template> as TemplateOnlyComponent<Signature>
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;

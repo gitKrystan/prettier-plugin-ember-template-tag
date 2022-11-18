@@ -23,6 +23,12 @@ import type {
   GlimmerExpressionExtra,
   GlimmerTemplateExtra,
 } from './types/glimmer';
+import {
+  getGlimmerExpression,
+  isGlimmerClassProperty,
+  isGlimmerExportDefaultDeclaration,
+  isGlimmerExportDefaultDeclarationTS,
+} from './types/glimmer';
 import type {
   RawGlimmerArrayExpression,
   RawGlimmerClassProperty,
@@ -84,6 +90,7 @@ export const parser: Parser<BaseNode | undefined> = {
     const ast = typescript.parse(text, parsers, options);
     traverse(ast as Node, {
       enter: makeEnter(options),
+      exit: makeExit(),
     });
     assert('expected ast', ast);
     return ast;
@@ -131,12 +138,24 @@ function makeEnter(options: Options): (path: NodePath) => void {
   };
 }
 
+function makeExit(): (path: NodePath) => void {
+  return ({ node }: NodePath) => {
+    if (
+      isGlimmerExportDefaultDeclaration(node) ||
+      isGlimmerExportDefaultDeclarationTS(node) ||
+      isGlimmerClassProperty(node)
+    ) {
+      getGlimmerExpression(node).extra.isDefaultTemplate = true;
+    }
+  };
+}
+
 function tagGlimmerExpression(
   node: RawGlimmerArrayExpression | RawGlimmerClassProperty,
   forceSemi: boolean
 ): void {
   const extra: GlimmerExpressionExtra = {
-    hasGlimmerExpression: true,
+    isGlimmerTemplate: true,
     forceSemi,
   };
   node.extra =
