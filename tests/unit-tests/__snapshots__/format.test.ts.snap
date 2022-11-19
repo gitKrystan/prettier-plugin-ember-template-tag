@@ -128,6 +128,8 @@ exports[`format > config > default > it formats ../cases/gjs/mod-var.gjs 1`] = `
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>;
+
+const What = <template>Hi</template>;
 "
 `;
 
