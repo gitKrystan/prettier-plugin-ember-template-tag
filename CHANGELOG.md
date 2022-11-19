@@ -2,6 +2,24 @@
 
 
 
+
+## v0.2.0 (2022-11-19)
+
+#### :boom: Breaking Change
+* [#35](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/35) Print template tags on separate lines for "default" templates ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :rocket: Enhancement
+* [#35](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/35) Print template tags on separate lines for "default" templates ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :memo: Documentation
+* [#35](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/35) Print template tags on separate lines for "default" templates ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :house: Internal
+* [#34](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/34) Add More Linters ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v0.1.1 (2022-11-16)
 
 #### :bug: Bug Fix
