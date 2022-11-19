@@ -3,6 +3,15 @@
 
 
 
+
+## v0.2.1 (2022-11-19)
+
+#### :bug: Bug Fix
+* [#36](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/36) Fix bug where parsing template on newline caused syntax error ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v0.2.0 (2022-11-19)
 
 #### :boom: Breaking Change
