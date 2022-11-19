@@ -202,7 +202,7 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
     const dec = (line.match(/}/g) ?? []).length;
     blockLevel -= dec;
 
-    const squished = squish(line);
+    let squished = squish(line);
 
     if (
       !squished.endsWith('// prettier-ignore') &&
@@ -213,6 +213,7 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
       blockLevel === 0
     ) {
       line = line.replace(sugaredDefaultExport, desugaredDefaultExport);
+      squished = squish(line);
     }
 
     desugaredLines.push(line);
