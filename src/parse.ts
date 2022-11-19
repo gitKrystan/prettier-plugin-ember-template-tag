@@ -190,7 +190,7 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
 
   const lines = preprocessed.split(/\r?\n/);
   const desugaredLines: string[] = [];
-  let previousLine: string | null = null;
+  let previousLine = '';
   let blockLevel = 0;
 
   for (let line of lines) {
@@ -202,17 +202,23 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
     const dec = (line.match(/}/g) ?? []).length;
     blockLevel -= dec;
 
-    const previousLineIsPrettierIgnore =
-      previousLine && squish(previousLine) === '// prettier-ignore';
+    const squished = squish(line);
 
-    if (!previousLineIsPrettierIgnore && blockLevel === 0) {
+    if (
+      !squished.endsWith('// prettier-ignore') &&
+      !squished.endsWith('/* prettier-ignore */') &&
+      previousLine !== '// prettier-ignore' &&
+      previousLine !== '/* prettier-ignore */' &&
+      !previousLine.endsWith('=') &&
+      blockLevel === 0
+    ) {
       line = line.replace(sugaredDefaultExport, desugaredDefaultExport);
     }
 
     desugaredLines.push(line);
 
-    if (line.trim().length > 0) {
-      previousLine = line;
+    if (squished.length > 0) {
+      previousLine = squished;
     }
   }
 

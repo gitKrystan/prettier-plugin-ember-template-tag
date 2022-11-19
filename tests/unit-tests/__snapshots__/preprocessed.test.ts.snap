@@ -141,6 +141,8 @@ exports[`format > config > with preprocessed code > it formats ../cases/gjs/mod-
     { strictMode: true }
   ),
 ];
+
+const What = [__GLIMMER_TEMPLATE(\`Hi\`, { strictMode: true })];
 "
 `;
 

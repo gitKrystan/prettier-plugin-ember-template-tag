@@ -61,6 +61,9 @@ exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with new
   variable template. Private variable template.
 </template>
 ;(oh, no) => {}
+
+const What = <template>Hi</template>
+;(oh, no) => {}
 "
 `;
 
@@ -70,6 +73,9 @@ exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with new
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>
+;(oh, no) => {}
+
+const What = <template>Hi</template>
 ;(oh, no) => {}
 "
 `;
@@ -713,6 +719,9 @@ exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newli
   variable template. Private variable template.
 </template>
 ;(oops) => {}
+
+const What = <template>Hi</template>
+;(oops) => {}
 "
 `;
 
@@ -722,6 +731,9 @@ exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newli
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>
+;(oops) => {}
+
+const What = <template>Hi</template>
 ;(oops) => {}
 "
 `;
@@ -1365,6 +1377,9 @@ exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > 
   variable template. Private variable template.
 </template>
 ;+\\"oops\\"
+
+const What = <template>Hi</template>
+;+\\"oops\\"
 "
 `;
 
@@ -1374,6 +1389,9 @@ exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > 
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>
+;+\\"oops\\"
+
+const What = <template>Hi</template>
 ;+\\"oops\\"
 "
 `;
@@ -1899,6 +1917,9 @@ exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > i
   variable template. Private variable template.
 </template>
 ;/oops/
+
+const What = <template>Hi</template>
+;/oops/
 "
 `;
 
@@ -1908,6 +1929,9 @@ exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > i
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>
+;/oops/
+
+const What = <template>Hi</template>
 ;/oops/
 "
 `;
@@ -2465,6 +2489,11 @@ exports[`ambiguous > config > semi: false > <template>oops</template> > with sem
 <template>
   oops
 </template>
+
+const What = <template>Hi</template>
+<template>
+  oops
+</template>
 "
 `;
 
@@ -2477,6 +2506,8 @@ exports[`ambiguous > config > semi: false > <template>oops</template> > with sem
 <template>
   oops
 </template>
+const What = <template>Hi</template>
+;<template>oops</template>
 "
 `;
 
@@ -3080,6 +3111,11 @@ exports[`ambiguous > config > semi: false > <template>oops</template> > without 
 <template>
   oops
 </template>
+
+const What = <template>Hi</template>
+<template>
+  oops
+</template>
 "
 `;
 
@@ -3427,6 +3463,11 @@ exports[`ambiguous > config > semi: false > <template>oops</template> > without 
 <template>
   oops
 </template>
+
+const What = <template>Hi</template>
+<template>
+  oops
+</template>
 "
 `;
 
@@ -3707,6 +3748,9 @@ exports[`ambiguous > config > semi: false > ["oops"] > with semi, with newline >
   variable template. Private variable template.
 </template>
 ;[\\"oops\\"]
+
+const What = <template>Hi</template>
+;[\\"oops\\"]
 "
 `;
 
@@ -3716,6 +3760,9 @@ exports[`ambiguous > config > semi: false > ["oops"] > with semi, with newline >
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>
+;[\\"oops\\"]
+
+const What = <template>Hi</template>
 ;[\\"oops\\"]
 "
 `;
@@ -4611,6 +4658,9 @@ exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline >
   variable template. Private variable template.
 </template>
 ;\`oops\`
+
+const What = <template>Hi</template>
+;\`oops\`
 "
 `;
 
@@ -4620,6 +4670,9 @@ exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline >
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>
+;\`oops\`
+
+const What = <template>Hi</template>
 ;\`oops\`
 "
 `;
@@ -5354,6 +5407,9 @@ exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > 
   variable template. Private variable template.
 </template>
 ;-\\"oops\\"
+
+const What = <template>Hi</template>
+;-\\"oops\\"
 "
 `;
 
@@ -5363,6 +5419,9 @@ exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > 
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>
+;-\\"oops\\"
+
+const What = <template>Hi</template>
 ;-\\"oops\\"
 "
 `;

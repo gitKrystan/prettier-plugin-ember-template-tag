@@ -61,6 +61,9 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi,
   variable template. Private variable template.
 </template>;
 (oh, no) => {};
+
+const What = <template>Hi</template>;
+(oh, no) => {};
 "
 `;
 
@@ -70,6 +73,9 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi,
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>;
+(oh, no) => {};
+
+const What = <template>Hi</template>;
 (oh, no) => {};
 "
 `;
@@ -713,6 +719,9 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, w
   variable template. Private variable template.
 </template>;
 oops => {};
+
+const What = <template>Hi</template>;
+oops => {};
 "
 `;
 
@@ -722,6 +731,9 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, w
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>;
+oops => {};
+
+const What = <template>Hi</template>;
 oops => {};
 "
 `;
