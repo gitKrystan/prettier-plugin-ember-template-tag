@@ -4,6 +4,21 @@
 
 
 
+
+## v0.3.0 (2022-11-28)
+
+#### :rocket: Enhancement
+* [#39](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/39) Dependency Upgrades including Prettier 2.8 ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :bug: Bug Fix
+* [#41](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/41) Fix local releases ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :house: Internal
+* [#39](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/39) Dependency Upgrades including Prettier 2.8 ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v0.2.1 (2022-11-19)
 
 #### :bug: Bug Fix
