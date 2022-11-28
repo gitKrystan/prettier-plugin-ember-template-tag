@@ -22,12 +22,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm lint
-
-      - run: pnpm build
-
-      - run: pnpm test
-
       - name: git config
         run: |
           git config user.name "${GITHUB_ACTOR}"

@@ -12,5 +12,10 @@
   "github": {
     "release": true,
     "tokenRef": "GITHUB_AUTH"
+  },
+  "hooks": {
+    "before:init": ["pnpm lint", "pnpm test:run"],
+    "after:bump": "npm run build",
+    "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
   }
 }
