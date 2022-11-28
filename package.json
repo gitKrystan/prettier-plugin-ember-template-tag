@@ -47,33 +47,33 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@babel/core": "^7.20.2",
+    "@babel/core": "^7.20.5",
     "@glimmer/syntax": "^0.84.2",
     "ember-cli-htmlbars": "^6.1.1",
     "ember-template-imports": "^3.4.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.8.0"
   },
   "devDependencies": {
-    "@babel/types": "^7.20.2",
+    "@babel/types": "^7.20.5",
     "@release-it-plugins/lerna-changelog": "^5.0.0",
     "@types/babel__core": "^7.1.20",
     "@types/prettier": "^2.7.1",
-    "@typescript-eslint/eslint-plugin": "^5.43.0",
-    "@typescript-eslint/parser": "^5.43.0",
-    "@vitest/ui": "^0.25.2",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vitest/ui": "^0.25.3",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsdoc": "^39.6.2",
-    "eslint-plugin-unicorn": "^44.0.2",
-    "eslint-plugin-vitest": "^0.0.19",
+    "eslint-plugin-jsdoc": "^39.6.4",
+    "eslint-plugin-unicorn": "^45.0.1",
+    "eslint-plugin-vitest": "^0.0.20",
     "npm-run-all": "^4.1.5",
     "prettier-plugin-jsdoc": "^0.4.2",
     "release-it": "^15.5.0",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",
-    "vitest": "^0.25.2"
+    "vitest": "^0.25.3"
   }
 }
