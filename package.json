@@ -47,14 +47,14 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@babel/core": "^7.20.2",
+    "@babel/core": "^7.20.5",
     "@glimmer/syntax": "^0.84.2",
     "ember-cli-htmlbars": "^6.1.1",
     "ember-template-imports": "^3.4.0",
     "prettier": "^2.7.1"
   },
   "devDependencies": {
-    "@babel/types": "^7.20.2",
+    "@babel/types": "^7.20.5",
     "@release-it-plugins/lerna-changelog": "^5.0.0",
     "@types/babel__core": "^7.1.20",
     "@types/prettier": "^2.7.1",
