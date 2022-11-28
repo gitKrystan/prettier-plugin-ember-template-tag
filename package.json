@@ -51,7 +51,7 @@
     "@glimmer/syntax": "^0.84.2",
     "ember-cli-htmlbars": "^6.1.1",
     "ember-template-imports": "^3.4.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.8.0"
   },
   "devDependencies": {
     "@babel/types": "^7.20.5",
