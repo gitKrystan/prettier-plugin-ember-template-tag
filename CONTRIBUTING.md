@@ -97,7 +97,7 @@ To add a new case, add your case file(s) in the appropriate place(s) here: https
 
 New cases will be tested against a variety of configs. If you also want to test against for "ambiguous expressions" issues as described [here](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/1), you can include the comment `/*AMBIGUOUS*/` anywhere in your test cases and it will be replaced by the ambiguous cases listed [here](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/tree/main/tests/helpers/ambiguous.ts) in a variety of generated tests. If you find a new ambiguous case, add it to that list.
 
-Once you make your changes and/or add new cases `pnpm test -u` to update the snapshots then carefully inspect the results to ensure the output matches your expectations.
+Once you make your changes and/or add new cases `pnpm test:run -u` to update the snapshots then carefully inspect the results to ensure the output matches your expectations.
 
 ## Prior Art and Useful Resources
 
