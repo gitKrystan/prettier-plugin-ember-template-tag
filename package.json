@@ -49,8 +49,8 @@
   "dependencies": {
     "@babel/core": "^7.20.12",
     "@glimmer/syntax": "^0.84.2",
-    "ember-cli-htmlbars": "^6.1.1",
-    "ember-template-imports": "^3.4.0",
+    "ember-cli-htmlbars": "^6.2.0",
+    "ember-template-imports": "^3.4.1",
     "prettier": "^2.8.3"
   },
   "devDependencies": {
