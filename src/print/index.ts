@@ -128,28 +128,35 @@ export function definePrinter(options: Options): void {
 
     if (hasPrettierIgnore) {
       return printRawText(path, embedOptions);
-    } else if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
-      return printTemplateLiteral(
-        printTemplateContent(node, textToDoc, embedOptions)
-      );
-    } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
-      return printTemplateTag(
-        printTemplateContent(node.key.arguments[0], textToDoc, embedOptions),
-        node.extra.isDefaultTemplate ?? false
-      );
-    } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
-      return printTemplateTag(
-        printTemplateContent(
-          node.elements[0].arguments[0],
-          textToDoc,
-          embedOptions
-        ),
-        node.extra.isDefaultTemplate ?? false
-      );
-    } else {
-      // Nothing to embed, so move on to the regular printer.
-      return null;
     }
+
+    try {
+      if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
+        return printTemplateLiteral(
+          printTemplateContent(node, textToDoc, embedOptions)
+        );
+      } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
+        return printTemplateTag(
+          printTemplateContent(node.key.arguments[0], textToDoc, embedOptions),
+          node.extra.isDefaultTemplate ?? false
+        );
+      } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
+        return printTemplateTag(
+          printTemplateContent(
+            node.elements[0].arguments[0],
+            textToDoc,
+            embedOptions
+          ),
+          node.extra.isDefaultTemplate ?? false
+        );
+      }
+    } catch (error: unknown) {
+      console.error(error);
+      return printRawText(path, embedOptions);
+    }
+
+    // Nothing to embed, so move on to the regular printer.
+    return null;
   };
 
   /**

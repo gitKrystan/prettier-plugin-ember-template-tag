@@ -127,6 +127,17 @@ exports[`format > config > with preprocessed code > it formats ../cases/gjs/expo
 "
 `;
 
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/invalid-template.gjs 1`] = `
+"[
+  __GLIMMER_TEMPLATE(\`
+              {{#if oops}}
+            \`, {
+    strictMode: true,
+  }),
+]
+"
+`;
+
 exports[`format > config > with preprocessed code > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1;
 "
