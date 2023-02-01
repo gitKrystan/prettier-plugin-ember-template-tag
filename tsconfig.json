@@ -1,8 +1,8 @@
 {
   "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
   "compilerOptions": {
-    "lib": ["es2015"], // match prettier
-    "target": "es2015", // match prettier
+    "lib": ["ES2020"], // Node 14 https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+    "target": "ES2020", // Node 14
     "useDefineForClassFields": true,
     "sourceMap": true,
     "resolveJsonModule": true,

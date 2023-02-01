@@ -10,6 +10,7 @@ specifiers:
   '@release-it-plugins/lerna-changelog': ^5.0.0
   '@tsconfig/node-lts-strictest': ^18.12.1
   '@types/babel__core': ^7.20.0
+  '@types/node': ^18.11.18
   '@types/prettier': ^2.7.2
   '@typescript-eslint/eslint-plugin': ^5.50.0
   '@typescript-eslint/parser': ^5.50.0
@@ -28,6 +29,7 @@ specifiers:
   prettier: ^2.8.3
   prettier-plugin-jsdoc: ^0.4.2
   release-it: ^15.6.0
+  ts-replace-all: ^1.0.0
   typescript: ^4.9.5
   vite: ^4.0.4
   vitest: ^0.28.3
@@ -38,12 +40,14 @@ dependencies:
   ember-cli-htmlbars: 6.2.0
   ember-template-imports: 3.4.1
   prettier: 2.8.3
+  ts-replace-all: 1.0.0
 
 devDependencies:
   '@babel/types': 7.20.7
   '@release-it-plugins/lerna-changelog': 5.0.0_release-it@15.6.0
   '@tsconfig/node-lts-strictest': 18.12.1
   '@types/babel__core': 7.20.0
+  '@types/node': 18.11.18
   '@types/prettier': 2.7.2
   '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq
   '@typescript-eslint/parser': 5.50.0_4vsywjlpuriuw3tl5oq6zy5a64
@@ -60,7 +64,7 @@ devDependencies:
   prettier-plugin-jsdoc: 0.4.2_prettier@2.8.3
   release-it: 15.6.0
   typescript: 4.9.5
-  vite: 4.0.4
+  vite: 4.0.4_@types+node@18.11.18
   vitest: 0.28.3_@vitest+ui@0.28.3
 
 packages:
@@ -1866,6 +1870,11 @@ packages:
 
   /convert-source-map/1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
+    dev: false
+
+  /core-js/3.27.2:
+    resolution: {integrity: sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==}
+    requiresBuild: true
     dev: false
 
   /core-util-is/1.0.3:
@@ -5619,6 +5628,12 @@ packages:
       - supports-color
     dev: false
 
+  /ts-replace-all/1.0.0:
+    resolution: {integrity: sha512-6uBtdkw3jHXkPtx/e9xB/5vcngMm17CyJYsS2YZeQ+9FdRnt6Ev5g931Sg2p+dxbtMGoCm13m3ax/obicTZIkQ==}
+    dependencies:
+      core-js: 3.27.2
+    dev: false
+
   /tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}
     dependencies:
@@ -5874,39 +5889,6 @@ packages:
       - sugarss
       - supports-color
       - terser
-    dev: true
-
-  /vite/4.0.4:
-    resolution: {integrity: sha512-xevPU7M8FU0i/80DMR+YhgrzR5KS2ORy1B4xcX/cXLsvnUWvfHuqMmVU6N0YiJ4JWGRJJsLCgjEzKjG9/GKoSw==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.16.17
-      postcss: 8.4.21
-      resolve: 1.22.1
-      rollup: 3.12.0
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /vite/4.0.4_@types+node@18.11.18:
