@@ -117,6 +117,13 @@ exports[`format > config > default > it formats ../cases/gjs/exported-mod-var.gj
 "
 `;
 
+exports[`format > config > default > it formats ../cases/gjs/invalid-template.gjs 1`] = `
+"<template>
+              {{#if oops}}
+            </template>
+"
+`;
+
 exports[`format > config > default > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1;
 "

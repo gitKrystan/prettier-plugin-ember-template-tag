@@ -117,6 +117,13 @@ exports[`config > templateExportDefault: true > it formats ../cases/gjs/exported
 "
 `;
 
+exports[`config > templateExportDefault: true > it formats ../cases/gjs/invalid-template.gjs 1`] = `
+"export default <template>
+              {{#if oops}}
+            </template>
+"
+`;
+
 exports[`config > templateExportDefault: true > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1;
 "
