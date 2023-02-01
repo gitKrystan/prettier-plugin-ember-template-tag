@@ -99,7 +99,6 @@ overrides:
     plugins:
       - vitest
     rules:
-      'vitest/lower-case-title': error
       'vitest/no-focused-tests': error
       'vitest/no-identical-title': error
       'vitest/no-skipped-tests': error
