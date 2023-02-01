@@ -6,5 +6,9 @@ export default defineConfig({
       entry: 'src/main.ts',
       formats: ['cjs'],
     },
+    minify:
+      process.env['MINIFY'] && process.env['MINIFY'] === 'false'
+        ? false
+        : 'esbuild',
   },
 });
