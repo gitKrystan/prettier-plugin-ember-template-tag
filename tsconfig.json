@@ -1,29 +1,14 @@
 {
+  "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
+    "lib": ["ES2020"], // Node 14 https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+    "target": "ES2020", // Node 14
     "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "moduleResolution": "Node",
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "esModuleInterop": true,
     "noEmit": true,
-    "skipLibCheck": true,
-
-    // type checking
-    "strict": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "exactOptionalPropertyTypes": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "ignoreDeprecations": "5.0" // until @tsconfig/node-lts-strictest is updated
   },
   "include": ["src"]
 }
