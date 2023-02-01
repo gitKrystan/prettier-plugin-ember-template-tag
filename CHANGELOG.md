@@ -6,6 +6,18 @@
 
 
 
+
+## v0.3.2 (2023-02-01)
+
+#### :bug: Bug Fix
+* [#48](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/48) Fix build ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :house: Internal
+* [#48](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/48) Fix build ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v0.3.1 (2023-02-01)
 
 #### :bug: Bug Fix
