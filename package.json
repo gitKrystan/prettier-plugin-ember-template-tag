@@ -51,18 +51,18 @@
     "@glimmer/syntax": "^0.84.2",
     "ember-cli-htmlbars": "^6.1.1",
     "ember-template-imports": "^3.4.0",
-    "prettier": "^2.8.0"
+    "prettier": "^2.8.3"
   },
   "devDependencies": {
     "@babel/types": "^7.20.7",
     "@release-it-plugins/lerna-changelog": "^5.0.0",
     "@types/babel__core": "^7.20.0",
-    "@types/prettier": "^2.7.1",
+    "@types/prettier": "^2.7.2",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "@vitest/ui": "^0.28.3",
     "eslint": "^8.28.0",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.26.0",
