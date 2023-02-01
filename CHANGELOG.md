@@ -5,6 +5,18 @@
 
 
 
+
+## v0.3.1 (2023-02-01)
+
+#### :bug: Bug Fix
+* [#46](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/46) No-op for invalid hbs (Closes [#43](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/43)) ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :house: Internal
+* [#44](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/44) Dependency Upgrades ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v0.3.0 (2022-11-28)
 
 #### :rocket: Enhancement
