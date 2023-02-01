@@ -5,6 +5,7 @@ specifiers:
   '@babel/types': ^7.20.7
   '@glimmer/syntax': ^0.84.2
   '@release-it-plugins/lerna-changelog': ^5.0.0
+  '@tsconfig/node-lts-strictest': ^18.12.1
   '@types/babel__core': ^7.20.0
   '@types/prettier': ^2.7.2
   '@typescript-eslint/eslint-plugin': ^5.50.0
@@ -38,6 +39,7 @@ dependencies:
 devDependencies:
   '@babel/types': 7.20.7
   '@release-it-plugins/lerna-changelog': 5.0.0_release-it@15.6.0
+  '@tsconfig/node-lts-strictest': 18.12.1
   '@types/babel__core': 7.20.0
   '@types/prettier': 2.7.2
   '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq
@@ -823,6 +825,10 @@ packages:
   /@tootallnate/once/1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
+    dev: true
+
+  /@tsconfig/node-lts-strictest/18.12.1:
+    resolution: {integrity: sha512-pn6cefRFlBVSEo5lO82bJnGmaptr90Wu8zCROkMUYXEz0f4AgCD65Guhq4u3PIuIlsYImaOmdoiHajx1gVTiQw==}
     dev: true
 
   /@types/babel__core/7.20.0:
