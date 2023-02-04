@@ -66,6 +66,15 @@ class MyComponent extends Component {
 "
 `;
 
+exports[`format > config > with preprocessed code > it formats ../cases/gjs/component-class-one-line.gjs 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+export default class MyComponent extends Component {
+  [__GLIMMER_TEMPLATE(\`One line\`, { strictMode: true })]
+}
+"
+`;
+
 exports[`format > config > with preprocessed code > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
 "import Component from \\"@glimmer/component\\";
 

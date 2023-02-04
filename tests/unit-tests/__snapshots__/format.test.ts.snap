@@ -64,6 +64,15 @@ class MyComponent extends Component {
 "
 `;
 
+exports[`format > config > default > it formats ../cases/gjs/component-class-one-line.gjs 1`] = `
+"import Component from \\"@glimmer/component\\";
+
+export default class MyComponent extends Component {
+  <template>One line</template>
+}
+"
+`;
+
 exports[`format > config > default > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
 "import Component from \\"@glimmer/component\\";
 
