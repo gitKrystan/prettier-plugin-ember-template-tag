@@ -2387,9 +2387,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -2407,9 +2405,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -2607,9 +2603,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3042,9 +3036,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3062,9 +3054,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3177,9 +3167,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3403,9 +3391,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3422,9 +3408,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3499,9 +3483,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>;
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;

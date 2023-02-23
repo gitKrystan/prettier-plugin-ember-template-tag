@@ -138,7 +138,7 @@ export function definePrinter(options: Options): void {
       } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
         return printTemplateTag(
           printTemplateContent(node.key.arguments[0], textToDoc, embedOptions),
-          node.extra.isDefaultTemplate ?? false
+          false
         );
       } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
         return printTemplateTag(
