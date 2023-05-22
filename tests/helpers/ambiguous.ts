@@ -59,8 +59,8 @@ export function makeAmbiguousExpressionTest(
           test(`it formats ${testCase.name}`, () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
-              .replaceAll(/<\/template>\n/g, '</template>;\n')
-              .replaceAll(/<Signature>\n/g, '<Signature>;\n');
+              .replaceAll('</template>\n', '</template>;\n')
+              .replaceAll('<Signature>\n', '<Signature>;\n');
             behavesLikeFormattedAmbiguousCase(code, config.options);
           });
         });
@@ -76,8 +76,8 @@ export function makeAmbiguousExpressionTest(
           test(`it formats ${testCase.name}`, () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
-              .replaceAll(/<\/template>\n/g, '</template>;')
-              .replaceAll(/<Signature>\n/g, '<Signature>;');
+              .replaceAll('</template>\n', '</template>;')
+              .replaceAll('<Signature>\n', '<Signature>;');
             behavesLikeFormattedAmbiguousCase(code, config.options);
           });
         });

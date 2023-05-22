@@ -36,9 +36,11 @@ export function squish<T extends string | null | undefined>(string: T): T {
   if (string === null || string === undefined || string === '') {
     return string;
   } else {
+    /* eslint-disable unicorn/prefer-string-replace-all */
     return string
       .trim()
       .replace(/\u200B/g, '') // remove zero-width spaces
       .replace(/\s+/g, ' ') as T; // squish multiple spaces into one
+    /* eslint-enable unicorn/prefer-string-replace-all */
   }
 }

@@ -81,7 +81,7 @@ export function definePrinter(options: Options): void {
           printed.shift();
         }
 
-        if (docMatchesString(printed[printed.length - 1], ';')) {
+        if (docMatchesString(printed.at(-1), ';')) {
           printed.pop();
         }
 
