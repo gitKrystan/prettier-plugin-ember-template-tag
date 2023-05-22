@@ -48,7 +48,7 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@babel/core": "^7.20.12",
+    "@babel/core": "^7.21.8",
     "@glimmer/syntax": "^0.84.2",
     "ember-cli-htmlbars": "^6.2.0",
     "ember-template-imports": "^3.4.1",
@@ -56,7 +56,7 @@
     "ts-replace-all": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/types": "^7.20.7",
+    "@babel/types": "^7.21.5",
     "@release-it-plugins/lerna-changelog": "^5.0.0",
     "@tsconfig/node-lts-strictest": "^18.12.1",
     "@types/babel__core": "^7.20.0",
