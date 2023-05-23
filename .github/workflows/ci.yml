@@ -10,17 +10,21 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: ['16', '18', '20']
+
     steps:
       - uses: actions/checkout@v3
 
       - uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
           run_install: false
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
