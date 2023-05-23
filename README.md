@@ -36,13 +36,13 @@ A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](h
      // ...
      plugins: ['prettier-plugin-ember-template-tag'],
      overrides: [
-      {
-        files: '*.{js,ts,gjs,gts}',
-        options: {
-          singleQuote: true,
-        },
-      },
-    ],
+       {
+         files: '*.{js,ts,gjs,gts}',
+         options: {
+           singleQuote: true,
+         },
+       },
+     ],
    };
    ```
 
