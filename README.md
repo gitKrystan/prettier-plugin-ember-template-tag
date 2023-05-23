@@ -28,17 +28,26 @@ A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](h
    pnpm add --save-dev prettier prettier-plugin-ember-template-tag
    ```
 
-1. Configure with [prettierrc](https://prettier.io/docs/en/configuration.html):
+1. [Configure prettier](https://prettier.io/docs/en/configuration.html) using your preferred method. For example, with `.prettierrc.js`:
 
    ```js
    // .prettierrc.js
    module.exports = {
      // ...
      plugins: ['prettier-plugin-ember-template-tag'],
+     overrides: [
+       {
+         files: '*.{js,ts,gjs,gts}',
+         options: {
+           singleQuote: true,
+         },
+       },
+       // ...
+     ],
    };
    ```
 
-   _If you already have a `"prettier"` section in `package.json`, remember that takes precedence over the .prettierrc.js file!_
+   _If you already have a `"prettier"` section in `package.json`, remember that takes precedence over the `.prettierrc.js` file!_
 
 1. Run `npm prettier --write .`
 
@@ -136,6 +145,8 @@ These configuration options are available in addition to [Prettier's standard co
      }
    }
    ```
+
+1. If you're still having issues, check out [this issue](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/38) for troubleshooting ideas and comment there with what ends up working.
 
 ## Ignoring code
 
