@@ -38,7 +38,7 @@ A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](h
    };
    ```
 
-      *If you already have a `"prettier"` section in `package.json`, remember that takes precedence over the .prettierrc.js file!*
+   _If you already have a `"prettier"` section in `package.json`, remember that takes precedence over the .prettierrc.js file!_
 
 1. Run `npm prettier --write .`
 
