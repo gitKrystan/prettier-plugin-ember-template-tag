@@ -5,9 +5,6 @@ import { parser } from './parse';
 import { printer } from './print/index';
 import type { BaseNode } from './types/ast';
 
-// Can remove once we remove Node 14 from engines
-import 'ts-replace-all';
-
 const languages: SupportLanguage[] = [
   {
     extensions: ['.gjs', '.gts'],
