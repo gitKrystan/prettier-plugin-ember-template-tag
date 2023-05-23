@@ -16,9 +16,6 @@ dependencies:
   prettier:
     specifier: ^2.8.8
     version: 2.8.8
-  ts-replace-all:
-    specifier: ^1.0.0
-    version: 1.0.0
 
 devDependencies:
   '@babel/types':
@@ -27,9 +24,9 @@ devDependencies:
   '@release-it-plugins/lerna-changelog':
     specifier: ^5.0.0
     version: 5.0.0(release-it@15.10.3)
-  '@tsconfig/node-lts':
-    specifier: ^18.12.2
-    version: 18.12.2
+  '@tsconfig/node16':
+    specifier: ^1.0.4
+    version: 1.0.4
   '@tsconfig/strictest':
     specifier: ^2.0.1
     version: 2.0.1
@@ -863,8 +860,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /@tsconfig/node-lts@18.12.2:
-    resolution: {integrity: sha512-1zbWpsZkChnemJsRm+G2EyjuPueNPkjBEfp08ET1uCv0CUL/5AK1IZvFtEsw7ZyEqojIydye3mwt6k8isULj4A==}
+  /@tsconfig/node16@1.0.4:
+    resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
   /@tsconfig/strictest@2.0.1:
@@ -1964,11 +1961,6 @@ packages:
 
   /convert-source-map@1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
-    dev: false
-
-  /core-js@3.30.2:
-    resolution: {integrity: sha512-uBJiDmwqsbJCWHAwjrx3cvjbMXP7xD72Dmsn5LOJpiRmE3WbBbN5rCqQ2Qh6Ek6/eOrjlWngEynBWo4VxerQhg==}
-    requiresBuild: true
     dev: false
 
   /core-util-is@1.0.3:
@@ -5674,12 +5666,6 @@ packages:
       walk-sync: 0.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /ts-replace-all@1.0.0:
-    resolution: {integrity: sha512-6uBtdkw3jHXkPtx/e9xB/5vcngMm17CyJYsS2YZeQ+9FdRnt6Ev5g931Sg2p+dxbtMGoCm13m3ax/obicTZIkQ==}
-    dependencies:
-      core-js: 3.30.2
     dev: false
 
   /tslib@1.14.1:
