@@ -3,7 +3,6 @@ import type {
   ParserOptions,
   SupportOptions,
 } from 'prettier';
-
 import type { BaseNode } from './types/ast';
 
 export interface Options extends ParserOptions<BaseNode | undefined> {

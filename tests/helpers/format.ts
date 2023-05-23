@@ -1,5 +1,4 @@
 import { format as prettierFormat } from 'prettier';
-
 import { PARSER_NAME } from '../../src/config';
 import plugin from '../../src/main';
 import type { Options } from '../../src/options';

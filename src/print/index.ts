@@ -1,5 +1,4 @@
 import type { AstPath, doc, Plugin, Printer } from 'prettier';
-
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
