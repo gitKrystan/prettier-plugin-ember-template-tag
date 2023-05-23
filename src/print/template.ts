@@ -2,7 +2,6 @@ import type { TemplateLiteral } from '@babel/types';
 import type { ParserOptions } from 'prettier';
 import { doc } from 'prettier';
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
-
 import type { Options } from '../options';
 import { getTemplateSingleQuote } from '../options';
 import type { BaseNode } from '../types/ast';

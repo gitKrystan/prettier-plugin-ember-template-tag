@@ -1,5 +1,4 @@
 import path from 'node:path';
-
 import type { TestCase } from '../../helpers/cases';
 import { getCases } from '../../helpers/cases';
 import { makeSuite, simpleTest } from '../../helpers/make-suite';

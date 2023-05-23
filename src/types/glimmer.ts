@@ -12,7 +12,6 @@ import {
   isTemplateLiteral,
   isTSAsExpression,
 } from '@babel/types';
-
 import type { BaseNode } from './ast';
 import type { RawGlimmerArrayExpression, RawGlimmerClassProperty } from './raw';
 

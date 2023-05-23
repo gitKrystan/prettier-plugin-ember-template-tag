@@ -5,7 +5,6 @@ import {
   TEMPLATE_TAG_PLACEHOLDER,
 } from 'ember-template-imports/lib/util';
 import { describe, expect, test } from 'vitest';
-
 import { AMBIGUOUS_PLACEHOLDER } from '../helpers/ambiguous';
 import type { TestCase } from '../helpers/cases';
 import { getAllCases } from '../helpers/cases';

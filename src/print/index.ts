@@ -1,5 +1,4 @@
 import type { AstPath, doc, Plugin, Printer } from 'prettier';
-
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
@@ -81,7 +80,7 @@ export function definePrinter(options: Options): void {
           printed.shift();
         }
 
-        if (docMatchesString(printed[printed.length - 1], ';')) {
+        if (docMatchesString(printed.at(-1), ';')) {
           printed.pop();
         }
 

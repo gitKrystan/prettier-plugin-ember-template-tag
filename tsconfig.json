@@ -1,5 +1,8 @@
 {
-  "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
+  "extends": [
+    "@tsconfig/node-lts/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json"
+  ],
   "compilerOptions": {
     "lib": ["ES2020"], // Node 14 https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
     "target": "ES2020", // Node 14
@@ -7,8 +10,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "ignoreDeprecations": "5.0" // until @tsconfig/node-lts-strictest is updated
+    "noEmit": true
   },
   "include": ["src"]
 }

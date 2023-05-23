@@ -10,7 +10,6 @@ import { getTemplateLocals } from '@glimmer/syntax';
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/parser-babel';
-
 import {
   PRINTER_NAME,
   TEMPLATE_TAG_NAME,

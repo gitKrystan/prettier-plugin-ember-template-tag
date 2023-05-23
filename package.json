@@ -48,42 +48,38 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@babel/core": "^7.20.12",
-    "@glimmer/syntax": "^0.84.2",
+    "@babel/core": "^7.21.8",
+    "@glimmer/syntax": "^0.84.3",
     "ember-cli-htmlbars": "^6.2.0",
-    "ember-template-imports": "^3.4.1",
-    "prettier": "^2.8.3",
+    "ember-template-imports": "^3.4.2",
+    "prettier": "^2.8.8",
     "ts-replace-all": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/types": "^7.20.7",
+    "@babel/types": "^7.21.5",
     "@release-it-plugins/lerna-changelog": "^5.0.0",
-    "@tsconfig/node-lts-strictest": "^18.12.1",
+    "@tsconfig/node-lts": "^18.12.2",
+    "@tsconfig/strictest": "^2.0.1",
     "@types/babel__core": "^7.20.0",
-    "@types/node": "^18.11.18",
+    "@types/eslint": "^8.40.0",
+    "@types/node": "^20.2.3",
     "@types/prettier": "^2.7.2",
-    "@typescript-eslint/eslint-plugin": "^5.50.0",
-    "@typescript-eslint/parser": "^5.50.0",
-    "@vitest/ui": "^0.28.3",
-    "concurrently": "^7.6.0",
-    "eslint": "^8.33.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-import-resolver-typescript": "^3.5.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "@vitest/ui": "^0.31.1",
+    "concurrently": "^8.0.1",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsdoc": "^39.7.5",
-    "eslint-plugin-unicorn": "^45.0.2",
-    "eslint-plugin-vitest": "^0.0.32",
+    "eslint-plugin-jsdoc": "^44.2.5",
+    "eslint-plugin-n": "^16.0.0",
+    "eslint-plugin-unicorn": "^47.0.0",
+    "eslint-plugin-vitest": "^0.2.3",
     "prettier-plugin-jsdoc": "^0.4.2",
-    "release-it": "^15.6.0",
-    "typescript": "^4.9.5",
-    "vite": "^4.0.4",
-    "vitest": "^0.28.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "chalk": "<5.1.2"
-    }
+    "release-it": "^15.10.3",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.8",
+    "vitest": "^0.31.1"
   },
   "engines": {
     "node": "16.* || 18.* || >= 20"
