@@ -4,11 +4,17 @@
     "@tsconfig/strictest/tsconfig.json"
   ],
   "compilerOptions": {
+    "lib": [
+      "es2021", // Node 16 https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+      "DOM"
+    ],
     "useDefineForClassFields": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    // FIXME: Can re-enable once @glimmer/syntax types are fixed
+    "isolatedModules": false,
+    "noEmit": true,
+    "skipLibCheck": false
   },
   "include": ["src"]
 }
