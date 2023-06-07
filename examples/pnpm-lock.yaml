@@ -1,0 +1,10 @@
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  prettier-plugin-ember-template-tag:
+    specifier: workspace:^
+    version: link:..
