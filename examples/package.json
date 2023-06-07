@@ -1,0 +1,13 @@
+{
+  "name": "-examples",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "example": "pnpm exec prettier --write ./example.gjs",
+    "example-ts": "pnpm exec prettier --write ./example.gts"
+  },
+  "dependencies": {
+    "prettier": "^2.8.8",
+    "prettier-plugin-ember-template-tag": "workspace:^"
+  }
+}
