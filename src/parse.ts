@@ -75,8 +75,8 @@ export const parser: Parser<BaseNode | undefined> = {
   ...typescript,
   astFormat: PRINTER_NAME,
 
-  preprocess(text: string, options: Options): string {
-    definePrinter(options);
+  async preprocess(text: string, options: Options): Promise<string> {
+    await definePrinter(options);
     const js = preprocess(text, options);
     return typescript.preprocess?.(js, options) ?? js;
   },

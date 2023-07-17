@@ -32,9 +32,9 @@ export const printer: Printer<BaseNode | undefined> = {};
  * @see https://github.com/prettier/prettier/issues/10259
  * @see https://github.com/prettier/prettier/issues/4424
  */
-export function definePrinter(options: Options): void {
+export async function definePrinter(options: Options): Promise<void> {
   const estreePlugin = assertExists(options.plugins.find(isEstreePlugin));
-  const estreePrinter = estreePlugin.printers.estree;
+  const estreePrinter = await estreePlugin.printers.estree;
 
   const defaultHasPrettierIgnore = assertExists(
     estreePrinter.hasPrettierIgnore
