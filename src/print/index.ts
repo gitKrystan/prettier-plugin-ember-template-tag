@@ -148,7 +148,7 @@ export async function definePrinter(options: Options): Promise<void> {
       }
 
       // Nothing to embed, so move on to the regular printer.
-      return null;
+      return undefined;
     }
   }
 
