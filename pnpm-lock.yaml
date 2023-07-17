@@ -45,9 +45,6 @@ importers:
       '@types/node':
         specifier: ^20.2.3
         version: 20.2.3
-      '@types/prettier':
-        specifier: ^2.7.2
-        version: 2.7.2
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.59.7
         version: 5.59.7(@typescript-eslint/parser@5.59.7)(eslint@8.41.0)(typescript@5.0.4)
@@ -980,10 +977,6 @@ packages:
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
-    dev: true
-
-  /@types/prettier@2.7.2:
-    resolution: {integrity: sha512-KufADq8uQqo1pYKVIYzfKbJfBAc0sOeXqGbFaSpv8MRmC/zXgowNZmFcbngndGk922QDmOASEXUZCaY48gs4cg==}
     dev: true
 
   /@types/semver@7.5.0:
