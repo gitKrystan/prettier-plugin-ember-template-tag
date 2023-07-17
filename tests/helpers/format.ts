@@ -14,7 +14,7 @@ const DEFAULT_OPTIONS: Partial<Options> = {
  * Optionally, provide Options overrides, which will be merged with the default
  * options.
  */
-export function format(code: string, overrides: Partial<Options> = {}): string {
+export function format(code: string, overrides: Partial<Options> = {}): Promise<string> {
   return prettierFormat(code, {
     ...DEFAULT_OPTIONS,
     ...overrides,
