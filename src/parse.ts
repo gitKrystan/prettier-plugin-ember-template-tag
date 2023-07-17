@@ -75,18 +75,18 @@ export const parser: Parser<BaseNode | undefined> = {
   ...typescript,
   astFormat: PRINTER_NAME,
 
+  // @ts-expect-error - preprocess hook can be async, but prettier types do not reflect that yet
   async preprocess(text: string, options: Options): Promise<string> {
     await definePrinter(options);
     const js = preprocess(text, options);
     return typescript.preprocess?.(js, options) ?? js;
   },
 
-  parse(
+  async parse(
     text: string,
-    parsers: Record<string, Parser<unknown>>,
     options: Options
-  ): BaseNode {
-    const ast = typescript.parse(text, parsers, options);
+  ): Promise<BaseNode> {
+    const ast = await typescript.parse(text, options);
     traverse(ast as Node, {
       enter: makeEnter(options),
       exit: makeExit(),
