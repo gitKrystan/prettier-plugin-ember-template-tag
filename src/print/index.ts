@@ -114,49 +114,43 @@ export function definePrinter(options: Options): void {
   /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
   printer.embed = (
     path: AstPath<BaseNode | undefined>,
-    _print: (path: AstPath<BaseNode | undefined>) => doc.builders.Doc,
-    textToDoc: (text: string, options: Options) => doc.builders.Doc,
     embedOptions: Options
   ) => {
-    const wasPreprocessed = options.__inputWasPreprocessed;
-    const node = path.getValue();
-    const hasPrettierIgnore = checkPrettierIgnore(
-      path,
-      defaultHasPrettierIgnore
-    );
+    return async (
+      textToDoc: (text: string, options: Options) => Promise<doc.builders.Doc>,
+      _print: (path: AstPath<BaseNode | undefined>) => doc.builders.Doc,
+    ) => {
+      const wasPreprocessed = options.__inputWasPreprocessed;
+      const node = path.getValue();
+      const hasPrettierIgnore = checkPrettierIgnore(
+        path,
+        defaultHasPrettierIgnore
+      );
 
-    if (hasPrettierIgnore) {
-      return printRawText(path, embedOptions);
-    }
-
-    try {
-      if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
-        return printTemplateLiteral(
-          printTemplateContent(node, textToDoc, embedOptions)
-        );
-      } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
-        return printTemplateTag(
-          printTemplateContent(node.key.arguments[0], textToDoc, embedOptions),
-          node.extra.isDefaultTemplate ?? false
-        );
-      } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
-        return printTemplateTag(
-          printTemplateContent(
-            node.elements[0].arguments[0],
-            textToDoc,
-            embedOptions
-          ),
-          node.extra.isDefaultTemplate ?? false
-        );
+      if (hasPrettierIgnore) {
+        return printRawText(path, embedOptions);
       }
-    } catch (error: unknown) {
-      console.error(error);
-      return printRawText(path, embedOptions);
-    }
 
-    // Nothing to embed, so move on to the regular printer.
-    return null;
-  };
+      try {
+        if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
+          const content = await printTemplateContent(node, textToDoc, embedOptions);
+          return printTemplateLiteral(content);
+        } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
+          const content = await printTemplateContent(node.key.arguments[0], textToDoc, embedOptions);
+          return printTemplateTag(content, node.extra.isDefaultTemplate ?? false);
+        } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
+          const content = await printTemplateContent(node.elements[0].arguments[0], textToDoc, embedOptions);
+          return printTemplateTag(content, node.extra.isDefaultTemplate ?? false);
+        }
+      } catch (error: unknown) {
+        console.error(error);
+        return printRawText(path, embedOptions);
+      }
+
+      // Nothing to embed, so move on to the regular printer.
+      return null;
+    }
+  }
 
   /**
    * Turn off built-in prettier-ignore handling because it will skip embedding,
