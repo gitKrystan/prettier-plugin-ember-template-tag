@@ -112,6 +112,9 @@ export async function definePrinter(options: Options): Promise<void> {
   };
 
   /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
+  // @ts-expect-error - prettier has incorrect type for the Options arg. The "Options" type here extends ParserOptions,
+  // but the type that prettier defines for this arg is its own "Options" (that does not extend ParserOptions).
+  // See https://github.com/prettier/prettier/issues/15132
   printer.embed = (
     path: AstPath<BaseNode | undefined>,
     embedOptions: Options
