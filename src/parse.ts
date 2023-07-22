@@ -75,18 +75,20 @@ export const parser: Parser<BaseNode | undefined> = {
   ...typescript,
   astFormat: PRINTER_NAME,
 
-  // @ts-expect-error - preprocess hook can be async, but prettier types do not reflect that yet
-  async preprocess(text: string, options: Options): Promise<string> {
-    await definePrinter(options);
-    const js = preprocess(text, options);
-    return typescript.preprocess?.(js, options) ?? js;
-  },
-
   async parse(
     text: string,
     options: Options
   ): Promise<BaseNode> {
-    const ast = await typescript.parse(text, options);
+
+    // prettier preprocess method is likely to be removed, recommendation
+    // is to do any preprocessing in the parse method
+    // https://github.com/prettier/prettier/issues/15126#issuecomment-1646040274
+    await definePrinter(options);
+    const js = preprocess(text, options);
+    const preparsedText = typescript.preprocess?.(js, options) ?? js;
+
+    // normal parse
+    const ast = await typescript.parse(preparsedText, options);
     traverse(ast as Node, {
       enter: makeEnter(options),
       exit: makeExit(),
