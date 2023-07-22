@@ -52,9 +52,10 @@ export const describeAmbiguitySuite = makeSuite(
 
 /** Runs a simple `format` test for the given `config` and `testCase` */
 export function simpleTest(config: Config, testCase: TestCase): void {
-  test(`it formats ${testCase.name}`, () => {
+  test(`it formats ${testCase.name}`, async () => {
     const code = testCase.code.replaceAll(AMBIGUOUS_PLACEHOLDER, '');
-    const result = format(code, config.options);
+    const result = await format(code, config.options);
+
     expect(result).toMatchSnapshot();
   });
 }

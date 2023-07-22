@@ -24,7 +24,7 @@ import {
 } from './template';
 
 // @ts-expect-error FIXME: HACK because estree printer isn't exported. See below.
-export const printer: Printer<BaseNode | undefined> = {};
+export let printer: Printer<BaseNode | undefined> = {};
 
 /**
  * FIXME: HACK because estree printer isn't exported.
@@ -34,20 +34,17 @@ export const printer: Printer<BaseNode | undefined> = {};
  */
 export async function definePrinter(options: Options): Promise<void> {
   const estreePlugin = assertExists(options.plugins.find(isEstreePlugin));
-  const estreePrinter = await estreePlugin.printers.estree;
 
-  const defaultHasPrettierIgnore = assertExists(
-    estreePrinter.hasPrettierIgnore
-  );
+  const estreePrinter = typeof estreePlugin.printers.estree === 'function' ? (await estreePlugin.printers.estree()) : estreePlugin.printers.estree;
+
+
+  const defaultHasPrettierIgnore = (estreePrinter.hasPrettierIgnore === undefined) ?  () => false : estreePrinter.hasPrettierIgnore;
+
 
   // Part of the HACK described above
-  // eslint-disable-next-line @typescript-eslint/unbound-method
-  const defaultPrint = estreePrinter.print;
 
-  Reflect.setPrototypeOf(
-    printer,
-    Object.create(estreePrinter) as Printer<BaseNode | undefined>
-  );
+  const defaultPrint = estreePrinter.print.bind(estreePrinter);
+
 
   printer.print = (
     path: AstPath<BaseNode | undefined>,
@@ -124,7 +121,7 @@ export async function definePrinter(options: Options): Promise<void> {
       _print: (path: AstPath<BaseNode | undefined>) => doc.builders.Doc,
     ) => {
       const wasPreprocessed = options.__inputWasPreprocessed;
-      const node = path.getValue();
+      const node = path.getNode();
       const hasPrettierIgnore = checkPrettierIgnore(
         path,
         defaultHasPrettierIgnore
@@ -163,12 +160,15 @@ export async function definePrinter(options: Options): Promise<void> {
   printer.hasPrettierIgnore = (_path): boolean => {
     return false;
   };
+
+  printer = {  ...estreePrinter, ...printer };
+
 }
 
 function isEstreePlugin(
   plugin: string | Plugin<BaseNode | undefined>
 ): plugin is Plugin<BaseNode | undefined> & {
-  printers: { estree: Printer<BaseNode | undefined> };
+  printers: { estree: ()=> Promise<Printer<BaseNode | undefined>> };
 } {
   return Boolean(
     typeof plugin !== 'string' && plugin.printers && plugin.printers['estree']

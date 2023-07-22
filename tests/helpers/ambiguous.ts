@@ -47,37 +47,37 @@ export function makeAmbiguousExpressionTest(
     for (const ambiguousExpression of ambiguousExpressions) {
       describe(ambiguousExpression, () => {
         describe('without semi, with newline', () => {
-          test(`it formats ${testCase.name}`, () => {
+          test(`it formats ${testCase.name}`, async () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
               .replaceAll(';\n', '\n');
-            behavesLikeFormattedAmbiguousCase(code, config.options);
+            await behavesLikeFormattedAmbiguousCase(code, config.options);
           });
         });
         describe('with semi, with newline', () => {
-          test(`it formats ${testCase.name}`, () => {
+          test(`it formats ${testCase.name}`, async () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
               .replaceAll('</template>\n', '</template>;\n')
               .replaceAll('<Signature>\n', '<Signature>;\n');
-            behavesLikeFormattedAmbiguousCase(code, config.options);
+            await behavesLikeFormattedAmbiguousCase(code, config.options);
           });
         });
         describe('without semi, without newline', () => {
-          test(`it formats ${testCase.name}`, () => {
+          test(`it formats ${testCase.name}`, async () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
               .replaceAll(';\n', '');
-            behavesLikeFormattedAmbiguousCase(code, config.options);
+            await behavesLikeFormattedAmbiguousCase(code, config.options);
           });
         });
         describe('with semi, with newline', () => {
-          test(`it formats ${testCase.name}`, () => {
+          test(`it formats ${testCase.name}`, async () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)
               .replaceAll('</template>\n', '</template>;')
               .replaceAll('<Signature>\n', '<Signature>;');
-            behavesLikeFormattedAmbiguousCase(code, config.options);
+            await behavesLikeFormattedAmbiguousCase(code, config.options);
           });
         });
       });
@@ -85,12 +85,13 @@ export function makeAmbiguousExpressionTest(
   };
 }
 
-function behavesLikeFormattedAmbiguousCase(
+async function behavesLikeFormattedAmbiguousCase(
   code: string,
   formatOptions: Partial<Options> = {}
-): void {
+): Promise<void> {
   try {
-    const result = format(code, formatOptions);
+    const result = await format(code, formatOptions);
+    console.log(result);
     expect(result).toMatchSnapshot();
   } catch (error: unknown) {
     // Some of the ambiguous cases are Syntax Errors when parsed
