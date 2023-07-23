@@ -1,11 +1,11 @@
+import type { Node } from '@babel/types';
 import type {
   BooleanSupportOption,
   ParserOptions,
   SupportOptions,
 } from 'prettier';
-import type { BaseNode } from './types/ast';
 
-export interface Options extends ParserOptions<BaseNode | undefined> {
+export interface Options extends ParserOptions<Node | undefined> {
   templateExportDefault?: boolean;
   templateSingleQuote?: boolean;
   __inputWasPreprocessed?: boolean;
