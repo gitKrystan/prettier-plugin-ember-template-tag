@@ -80,12 +80,11 @@ export const parser: Parser<Node | undefined> = {
     return typescript.preprocess?.(js, options) ?? js;
   },
 
-  parse(
+  async parse(
     text: string,
-    parsers: Record<string, Parser<unknown>>,
     options: Options
-  ): Node {
-    const ast = typescript.parse(text, parsers, options);
+  ): Promise<Node> {
+    const ast = await typescript.parse(text, options);
     assert('expected ast', ast);
     traverse(ast, {
       enter: makeEnter(options),
