@@ -7,7 +7,7 @@
     "example-ts": "pnpm exec prettier --write ./example.gts"
   },
   "dependencies": {
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "prettier-plugin-ember-template-tag": "workspace:^"
   }
 }
