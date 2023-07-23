@@ -1,5 +1,5 @@
-import type { Node, TemplateLiteral } from '@babel/types';
-import type { ParserOptions } from 'prettier';
+import type { TemplateLiteral } from '@babel/types';
+import type { Options as PrettierOptions } from 'prettier';
 import { doc } from 'prettier';
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
 import type { Options } from '../options';
@@ -22,7 +22,7 @@ export async function printTemplateContent(
     // Don't use our `Options` here even though technically they are available
     // because we don't want to accidentally pass them into `textToDoc`. We
     // should normalize them into standard Prettier options at this point.
-    options: ParserOptions<Node | undefined>
+    options: PrettierOptions
   ) => Promise<doc.builders.Doc>,
   options: Options
 ): Promise<doc.builders.Doc> {

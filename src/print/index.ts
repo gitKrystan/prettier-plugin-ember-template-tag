@@ -1,5 +1,11 @@
 import type { Node } from '@babel/types';
-import type { AstPath, doc, Plugin, Printer } from 'prettier';
+import type {
+  AstPath,
+  Plugin,
+  Options as PrettierOptions,
+  Printer,
+  doc,
+} from 'prettier';
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
@@ -114,7 +120,7 @@ export function definePrinter(options: Options): void {
   /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
   printer.embed = (
     path: AstPath<Node | undefined>,
-    embedOptions: any // FIXME
+    embedOptions: PrettierOptions
   ) => {
     const wasPreprocessed = options.__inputWasPreprocessed;
     const node = path.getValue();
@@ -124,7 +130,7 @@ export function definePrinter(options: Options): void {
     );
 
     if (hasPrettierIgnore) {
-      return printRawText(path, embedOptions);
+      return printRawText(path, embedOptions as Options);
     }
 
     try {
@@ -133,7 +139,7 @@ export function definePrinter(options: Options): void {
           const content = await printTemplateContent(
             node,
             textToDoc,
-            embedOptions
+            embedOptions as Options
           );
           return printTemplateLiteral(content);
         };
@@ -142,7 +148,7 @@ export function definePrinter(options: Options): void {
           const content = await printTemplateContent(
             node.key.arguments[0],
             textToDoc,
-            embedOptions
+            embedOptions as Options
           );
           return printTemplateTag(
             content,
@@ -154,7 +160,7 @@ export function definePrinter(options: Options): void {
           const content = await printTemplateContent(
             node.elements[0].arguments[0],
             textToDoc,
-            embedOptions
+            embedOptions as Options
           );
           return printTemplateTag(
             content,
@@ -164,7 +170,7 @@ export function definePrinter(options: Options): void {
       }
     } catch (error: unknown) {
       console.error(error);
-      return printRawText(path, embedOptions);
+      return printRawText(path, embedOptions as Options);
     }
 
     // Nothing to embed, so move on to the regular printer.
