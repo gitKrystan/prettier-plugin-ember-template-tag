@@ -58,8 +58,8 @@ importers:
         specifier: ^0.33.0
         version: 0.33.0(vitest@0.33.0)
       concurrently:
-        specifier: ^8.0.1
-        version: 8.0.1
+        specifier: ^8.2.0
+        version: 8.2.0
       eslint:
         specifier: ^8.45.0
         version: 8.45.0
@@ -2061,8 +2061,8 @@ packages:
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
-  /concurrently@8.0.1:
-    resolution: {integrity: sha512-Sh8bGQMEL0TAmAm2meAXMjcASHZa7V0xXQVDBLknCPa9TPtkY9yYs+0cnGGgfdkW0SV1Mlg+hVGfXcoI8d3MJA==}
+  /concurrently@8.2.0:
+    resolution: {integrity: sha512-nnLMxO2LU492mTUj9qX/az/lESonSZu81UznYDoXtz1IQf996ixVqPAgHXwvHiHCAef/7S8HIK+fTFK7Ifk8YA==}
     engines: {node: ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -2071,7 +2071,7 @@ packages:
       lodash: 4.17.21
       rxjs: 7.8.1
       shell-quote: 1.8.1
-      spawn-command: 0.0.2-1
+      spawn-command: 0.0.2
       supports-color: 8.1.1
       tree-kill: 1.2.2
       yargs: 17.7.2
@@ -5426,8 +5426,8 @@ packages:
     deprecated: Please use @jridgewell/sourcemap-codec instead
     dev: false
 
-  /spawn-command@0.0.2-1:
-    resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==}
+  /spawn-command@0.0.2:
+    resolution: {integrity: sha512-zC8zGoGkmc8J9ndvml8Xksr1Amk9qBujgbF0JAIWO7kXr43w0h/0GJNM/Vustixu+YE8N/MTrQ7N31FvHUACxQ==}
     dev: true
 
   /spdx-correct@3.2.0:
