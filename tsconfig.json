@@ -1,14 +1,17 @@
 {
   "extends": [
-    "@tsconfig/node16/tsconfig.json",
-    "@tsconfig/strictest/tsconfig.json"
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/node16/tsconfig.json"
   ],
   "compilerOptions": {
     "useDefineForClassFields": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+
+    // TODO: We should remove this and fix the resulting errors
+    "moduleResolution": "node"
   },
   "include": ["src"]
 }
