@@ -1,18 +1,19 @@
 import type {
   ExportDefaultDeclaration,
   ExpressionStatement,
-  TemplateLiteral,
+  Node,
   TSAsExpression,
+  TemplateLiteral,
 } from '@babel/types';
 import {
   isArrayExpression,
   isClassProperty,
   isExportDefaultDeclaration,
   isExpressionStatement,
-  isTemplateLiteral,
+  isNode,
   isTSAsExpression,
+  isTemplateLiteral,
 } from '@babel/types';
-import type { BaseNode } from './ast';
 import type { RawGlimmerArrayExpression, RawGlimmerClassProperty } from './raw';
 
 /**
@@ -30,7 +31,7 @@ export interface GlimmerTemplateExtra {
 
 /** Type predicate */
 export function isGlimmerTemplateLiteral(
-  node: BaseNode | null | undefined
+  node: Node | null | undefined
 ): node is GlimmerTemplateLiteral {
   return isTemplateLiteral(node) && node.extra?.['isGlimmerTemplate'] === true;
 }
@@ -46,7 +47,7 @@ export type GlimmerExpression = GlimmerArrayExpression | GlimmerClassProperty;
 
 /** Type predicate */
 export function isGlimmerExpression(
-  node: BaseNode | null | undefined
+  node: Node | null | undefined
 ): node is GlimmerExpression {
   return node?.extra?.['isGlimmerTemplate'] === true;
 }
@@ -57,7 +58,7 @@ export interface GlimmerArrayExpression extends RawGlimmerArrayExpression {
 
 /** Type predicate */
 export function isGlimmerArrayExpression(
-  node: BaseNode | null | undefined
+  node: Node | null | undefined
 ): node is GlimmerArrayExpression {
   return isArrayExpression(node) && isGlimmerExpression(node);
 }
@@ -68,7 +69,7 @@ export interface GlimmerClassProperty extends RawGlimmerClassProperty {
 
 /** Type predicate */
 export function isGlimmerClassProperty(
-  node: BaseNode | null | undefined
+  node: Node | null | undefined
 ): node is GlimmerClassProperty {
   return isClassProperty(node) && isGlimmerExpression(node);
 }
@@ -87,10 +88,12 @@ export interface GlimmerExportDefaultDeclaration
 
 /** Type predicate */
 export function isGlimmerExportDefaultDeclaration(
-  node: BaseNode | null | undefined
+  node: unknown
 ): node is GlimmerExportDefaultDeclaration {
   return (
-    isExportDefaultDeclaration(node) && isGlimmerExpression(node.declaration)
+    isNode(node) &&
+    isExportDefaultDeclaration(node) &&
+    isGlimmerExpression(node.declaration)
   );
 }
 
@@ -108,9 +111,10 @@ export interface GlimmerExportDefaultDeclarationTS
 
 /** Type predicate */
 export function isGlimmerExportDefaultDeclarationTS(
-  node: BaseNode | null | undefined
+  node: unknown
 ): node is GlimmerExportDefaultDeclarationTS {
   return (
+    isNode(node) &&
     isExportDefaultDeclaration(node) &&
     isGlimmerTSAsExpression(node.declaration)
   );
@@ -133,9 +137,13 @@ export interface GlimmerTSAsExpression
 
 /** Type predicate */
 export function isGlimmerTSAsExpression(
-  node: BaseNode | null | undefined
+  node: unknown
 ): node is GlimmerTSAsExpression {
-  return isTSAsExpression(node) && isGlimmerExpression(node.expression);
+  return (
+    isNode(node) &&
+    isTSAsExpression(node) &&
+    isGlimmerExpression(node.expression)
+  );
 }
 
 /**
@@ -152,9 +160,13 @@ export interface GlimmerExpressionStatement
 
 /** Type predicate */
 export function isGlimmerExpressionStatement(
-  node: BaseNode | null | undefined
+  node: unknown
 ): node is GlimmerExpressionStatement {
-  return isExpressionStatement(node) && isGlimmerExpression(node.expression);
+  return (
+    isNode(node) &&
+    isExpressionStatement(node) &&
+    isGlimmerExpression(node.expression)
+  );
 }
 
 /**
@@ -171,10 +183,12 @@ export interface GlimmerExpressionStatementTS
 
 /** Type predicate */
 export function isGlimmerExpressionStatementTS(
-  node: BaseNode | null | undefined
+  node: unknown
 ): node is GlimmerExpressionStatementTS {
   return (
-    isExpressionStatement(node) && isGlimmerTSAsExpression(node.expression)
+    isNode(node) &&
+    isExpressionStatement(node) &&
+    isGlimmerTSAsExpression(node.expression)
   );
 }
 

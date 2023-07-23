@@ -1,10 +1,9 @@
-import type { TemplateLiteral } from '@babel/types';
+import type { Node, TemplateLiteral } from '@babel/types';
 import type { ParserOptions } from 'prettier';
 import { doc } from 'prettier';
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config';
 import type { Options } from '../options';
 import { getTemplateSingleQuote } from '../options';
-import type { BaseNode } from '../types/ast';
 
 const {
   builders: { group, hardline, indent, softline },
@@ -23,7 +22,7 @@ export function printTemplateContent(
     // Don't use our `Options` here even though technically they are available
     // because we don't want to accidentally pass them into `textToDoc`. We
     // should normalize them into standard Prettier options at this point.
-    options: ParserOptions<BaseNode | undefined>
+    options: ParserOptions<Node | undefined>
   ) => doc.builders.Doc,
   options: Options
 ): doc.builders.Doc {

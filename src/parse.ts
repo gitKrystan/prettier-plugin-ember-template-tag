@@ -17,7 +17,6 @@ import {
 } from './config';
 import type { Options } from './options';
 import { definePrinter } from './print/index';
-import type { BaseNode } from './types/ast';
 import type {
   GlimmerExpressionExtra,
   GlimmerTemplateExtra,
@@ -41,9 +40,9 @@ import {
 import { hasAmbiguousNextLine } from './utils/ambiguity';
 import { assert, squish } from './utils/index';
 
-const typescript = babelParsers['babel-ts'] as Parser<BaseNode | undefined>;
+const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 
-const preprocess: Required<Parser<BaseNode | undefined>>['preprocess'] = (
+const preprocess: Required<Parser<Node | undefined>>['preprocess'] = (
   text: string,
   options: Options
 ) => {
@@ -71,7 +70,7 @@ const preprocess: Required<Parser<BaseNode | undefined>>['preprocess'] = (
   return desugarDefaultExportTemplates(preprocessed);
 };
 
-export const parser: Parser<BaseNode | undefined> = {
+export const parser: Parser<Node | undefined> = {
   ...typescript,
   astFormat: PRINTER_NAME,
 
@@ -85,13 +84,13 @@ export const parser: Parser<BaseNode | undefined> = {
     text: string,
     parsers: Record<string, Parser<unknown>>,
     options: Options
-  ): BaseNode {
+  ): Node {
     const ast = typescript.parse(text, parsers, options);
-    traverse(ast as Node, {
+    assert('expected ast', ast);
+    traverse(ast, {
       enter: makeEnter(options),
       exit: makeExit(),
     });
-    assert('expected ast', ast);
     return ast;
   },
 };

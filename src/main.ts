@@ -1,9 +1,9 @@
+import type { Node } from '@babel/types';
 import type { Parser, Plugin, Printer, SupportLanguage } from 'prettier';
 import { PARSER_NAME, PRINTER_NAME } from './config';
 import { options } from './options';
 import { parser } from './parse';
 import { printer } from './print/index';
-import type { BaseNode } from './types/ast';
 
 const languages: SupportLanguage[] = [
   {
@@ -13,15 +13,15 @@ const languages: SupportLanguage[] = [
   },
 ];
 
-const parsers: Record<string, Parser<BaseNode | undefined>> = {
+const parsers: Record<string, Parser<Node | undefined>> = {
   [PARSER_NAME]: parser,
 };
 
-const printers: Record<string, Printer<BaseNode | undefined>> = {
+const printers: Record<string, Printer<Node | undefined>> = {
   [PRINTER_NAME]: printer,
 };
 
-const plugin: Plugin<BaseNode | undefined> = {
+const plugin: Plugin<Node | undefined> = {
   languages,
   parsers,
   printers,

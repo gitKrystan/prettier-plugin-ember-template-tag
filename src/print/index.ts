@@ -1,3 +1,4 @@
+import type { Node } from '@babel/types';
 import type { AstPath, doc, Plugin, Printer } from 'prettier';
 import {
   TEMPLATE_TAG_CLOSE,
@@ -5,7 +6,6 @@ import {
   TEMPLATE_TAG_PLACEHOLDER,
 } from '../config';
 import type { Options } from '../options';
-import type { BaseNode } from '../types/ast';
 import {
   getGlimmerExpression,
   isGlimmerArrayExpression,
@@ -24,7 +24,7 @@ import {
 } from './template';
 
 // @ts-expect-error FIXME: HACK because estree printer isn't exported. See below.
-export const printer: Printer<BaseNode | undefined> = {};
+export const printer: Printer<Node | undefined> = {};
 
 /**
  * FIXME: HACK because estree printer isn't exported.
@@ -46,13 +46,13 @@ export function definePrinter(options: Options): void {
 
   Reflect.setPrototypeOf(
     printer,
-    Object.create(estreePrinter) as Printer<BaseNode | undefined>
+    Object.create(estreePrinter) as Printer<Node | undefined>
   );
 
   printer.print = (
-    path: AstPath<BaseNode | undefined>,
+    path: AstPath<Node | undefined>,
     options: Options,
-    print: (path: AstPath<BaseNode | undefined>) => doc.builders.Doc,
+    print: (path: AstPath<Node | undefined>) => doc.builders.Doc,
     args: unknown
   ) => {
     const node = path.getValue();
@@ -113,8 +113,8 @@ export function definePrinter(options: Options): void {
 
   /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
   printer.embed = (
-    path: AstPath<BaseNode | undefined>,
-    _print: (path: AstPath<BaseNode | undefined>) => doc.builders.Doc,
+    path: AstPath<Node | undefined>,
+    _print: (path: AstPath<Node | undefined>) => doc.builders.Doc,
     textToDoc: (text: string, options: Options) => doc.builders.Doc,
     embedOptions: Options
   ) => {
@@ -169,9 +169,9 @@ export function definePrinter(options: Options): void {
 }
 
 function isEstreePlugin(
-  plugin: string | Plugin<BaseNode | undefined>
-): plugin is Plugin<BaseNode | undefined> & {
-  printers: { estree: Printer<BaseNode | undefined> };
+  plugin: string | Plugin<Node | undefined>
+): plugin is Plugin<Node | undefined> & {
+  printers: { estree: Printer<Node | undefined> };
 } {
   return Boolean(
     typeof plugin !== 'string' && plugin.printers && plugin.printers['estree']
@@ -179,7 +179,7 @@ function isEstreePlugin(
 }
 
 function printRawText(
-  path: AstPath<BaseNode | undefined>,
+  path: AstPath<Node | undefined>,
   options: Options
 ): string {
   const node = path.getValue();
@@ -200,8 +200,8 @@ function printRawText(
 }
 
 function checkPrettierIgnore(
-  path: AstPath<BaseNode | undefined>,
-  hasPrettierIgnore: (path: AstPath<BaseNode | undefined>) => boolean
+  path: AstPath<Node | undefined>,
+  hasPrettierIgnore: (path: AstPath<Node | undefined>) => boolean
 ): boolean {
   return (
     hasPrettierIgnore(path) ||
