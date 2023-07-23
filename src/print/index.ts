@@ -114,9 +114,7 @@ export function definePrinter(options: Options): void {
   /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
   printer.embed = (
     path: AstPath<Node | undefined>,
-    _print: (path: AstPath<Node | undefined>) => doc.builders.Doc,
-    textToDoc: (text: string, options: Options) => doc.builders.Doc,
-    embedOptions: Options
+    embedOptions: any // FIXME
   ) => {
     const wasPreprocessed = options.__inputWasPreprocessed;
     const node = path.getValue();
@@ -131,23 +129,38 @@ export function definePrinter(options: Options): void {
 
     try {
       if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
-        return printTemplateLiteral(
-          printTemplateContent(node, textToDoc, embedOptions)
-        );
+        return async (textToDoc) => {
+          const content = await printTemplateContent(
+            node,
+            textToDoc,
+            embedOptions
+          );
+          return printTemplateLiteral(content);
+        };
       } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
-        return printTemplateTag(
-          printTemplateContent(node.key.arguments[0], textToDoc, embedOptions),
-          node.extra.isDefaultTemplate ?? false
-        );
+        return async (textToDoc) => {
+          const content = await printTemplateContent(
+            node.key.arguments[0],
+            textToDoc,
+            embedOptions
+          );
+          return printTemplateTag(
+            content,
+            node.extra.isDefaultTemplate ?? false
+          );
+        };
       } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
-        return printTemplateTag(
-          printTemplateContent(
+        return async (textToDoc) => {
+          const content = await printTemplateContent(
             node.elements[0].arguments[0],
             textToDoc,
             embedOptions
-          ),
-          node.extra.isDefaultTemplate ?? false
-        );
+          );
+          return printTemplateTag(
+            content,
+            node.extra.isDefaultTemplate ?? false
+          );
+        };
       }
     } catch (error: unknown) {
       console.error(error);
