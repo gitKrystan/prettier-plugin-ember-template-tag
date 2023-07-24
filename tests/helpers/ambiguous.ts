@@ -71,7 +71,7 @@ export function makeAmbiguousExpressionTest(
             await behavesLikeFormattedAmbiguousCase(code, config.options);
           });
         });
-        describe('with semi, with newline', () => {
+        describe('with semi, without newline', () => {
           test(`it formats ${testCase.name}`, async () => {
             const code = testCase.code
               .replaceAll(AMBIGUOUS_PLACEHOLDER, ambiguousExpression)

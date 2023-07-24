@@ -520,6 +520,266 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;(oh, no) => {}
+
+const What = <template>Hi</template>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1
+;(oh, no) => {}
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
+"<template>
+  what
+</template>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1
+;(oh, no) => {}
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1
+;(oh, no) => {}
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+;(oh, no) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
+;(oh, no) => {}
+"
+`;
+
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
@@ -1163,6 +1423,266 @@ export interface Signature {
 `;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gts/simple.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;(oops) => {}
+
+const What = <template>Hi</template>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1
+;(oops) => {}
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
+"<template>
+  what
+</template>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1
+;(oops) => {}
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1
+;(oops) => {}
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+;(oops) => {}
+"
+`;
+
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
@@ -1836,6 +2356,266 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;+\\"oops\\"
+
+const What = <template>Hi</template>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1
+;+\\"oops\\"
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
+"<template>
+  what
+</template>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1
+;+\\"oops\\"
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1
+;+\\"oops\\"
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+;+\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
+;+\\"oops\\"
+"
+`;
+
 exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1 + \\"oops\\"
 "
@@ -2361,6 +3141,266 @@ export interface Signature {
 `;
 
 exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gts/simple.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;/oops/
+
+const What = <template>Hi</template>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1
+;/oops/
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
+"<template>
+  what
+</template>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1
+;/oops/
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1
+;/oops/
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+;/oops/
+"
+`;
+
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
@@ -3014,6 +4054,299 @@ export interface Signature {
 `;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, with newline > it formats ../cases/gts/simple.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+<template>
+  oops
+</template>
+const What = <template>Hi</template>
+<template>oops</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1
+<template>
+  oops
+</template>
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
+"<template>
+  what
+</template>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1
+<template>
+  oops
+</template>
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1
+<template>
+  oops
+</template>
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+<template>
+  oops
+</template>
+"
+`;
+
+exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
@@ -4255,6 +5588,324 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+/** It's a component */
+class MyComponent extends Component {
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>;
+  [\\"oops\\"]
+}
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+/** It's a component */
+class MyComponent extends Component {
+  get whatever() {}
+
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>;
+  [\\"oops\\"]
+}
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;[\\"oops\\"]
+
+const What = <template>Hi</template>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1
+;[\\"oops\\"]
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
+"<template>
+  what
+</template>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `
+"import Component from \\"@glimmer/component\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {
+    myArg: string
+  }
+  Yields: []
+}
+
+/** It's a component */
+class MyComponent extends Component<Signature> {
+  <template>
+    <h1>
+      Class top level template. Class top level template. Class top level
+      template. Class top level template. Class top level template.
+    </h1>
+  </template>;
+  [\\"oops\\"]
+}
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1
+;[\\"oops\\"]
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1
+;[\\"oops\\"]
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+;[\\"oops\\"]
+"
+`;
+
+exports[`ambiguous > config > semi: false > ["oops"] > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
+;[\\"oops\\"]
+"
+`;
+
 exports[`ambiguous > config > semi: false > ["oops"] > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `
 "import Component from \\"@glimmer/component\\"
 
@@ -5117,6 +6768,266 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;\`oops\`
+
+const What = <template>Hi</template>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1
+;\`oops\`
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
+"<template>
+  what
+</template>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1
+;\`oops\`
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1
+;\`oops\`
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+;\`oops\`
+"
+`;
+
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
+;\`oops\`
+"
+`;
+
 exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1\`oops\`
 "
@@ -5851,6 +7762,266 @@ export interface Signature {
 `;
 
 exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gts/simple.gts 2`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  what
+</template> as TemplateOnlyComponent<Signature>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
+"<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
+"export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
+"const num = 1
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
+"const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;-\\"oops\\"
+
+const What = <template>Hi</template>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
+"const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2 = <template>Second module variable template.</template>,
+  num = 1
+;-\\"oops\\"
+
+const bool = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4 = <template>Second module variable template.</template>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
+"<template>
+  what
+</template>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+<template>
+  Explicit default export module top level component. Explicit default export
+  module top level component. Explicit default export module top level
+  component. Explicit default export module top level component. Explicit
+  default export module top level component.
+</template> as TemplateOnlyComponent<Signature>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported: TemplateOnlyComponent<Signature> = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+export const Exported = <template>
+  Exported variable template. Exported variable template. Exported variable
+  template. Exported variable template. Exported variable template. Exported
+  variable template. Exported variable template.
+</template> as TemplateOnlyComponent<Signature>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
+"const num: number = 1
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private: TemplateOnlyComponent<Signature> = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const Private = <template>
+  Private variable template. Private variable template. Private variable
+  template. Private variable template. Private variable template. Private
+  variable template. Private variable template.
+</template> as TemplateOnlyComponent<Signature>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar2: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>,
+  num = 1
+;-\\"oops\\"
+
+const bool: boolean = false,
+  ModVar3: TemplateOnlyComponent<Signature> = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template>,
+  ModVar4: TemplateOnlyComponent<Signature> = <template>
+    Second module variable template.
+  </template>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
+"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+
+export interface Signature {
+  Element: HTMLElement
+  Args: {}
+  Yields: []
+}
+
+const ModVar1 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar2 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>,
+  num = 1
+;-\\"oops\\"
+
+const bool: boolean = false,
+  ModVar3 = <template>
+    <h1>
+      Module variable template. Module variable template. Module variable
+      template. Module variable template. Module variable template. Module
+      variable template. Module variable template. Module variable template.
+    </h1>
+  </template> as TemplateOnlyComponent<Signature>,
+  ModVar4 = <template>
+    Second module variable template.
+  </template> as TemplateOnlyComponent<Signature>
+;-\\"oops\\"
+"
+`;
+
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
 
 export interface Signature {
