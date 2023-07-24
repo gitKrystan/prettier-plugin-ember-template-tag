@@ -54,17 +54,8 @@ export const printer: Printer<Node | undefined> = {
         return printRawText(path, options);
       } else {
         let printed = estreePrinter.print(path, options, print, args);
-
         assert('Expected Glimmer doc to be an array', Array.isArray(printed));
-
-        // Remove the semicolons that Prettier added so we can manage them
-        if (docMatchesString(printed[0], ';')) {
-          printed.shift();
-        }
-
-        if (docMatchesString(printed.at(-1), ';')) {
-          printed.pop();
-        }
+        trimPrinted(printed);
 
         if (
           !options.templateExportDefault &&
@@ -72,9 +63,7 @@ export const printer: Printer<Node | undefined> = {
           docMatchesString(printed[1], 'default')
         ) {
           printed = printed.slice(2);
-          if (docMatchesString(printed[0], '')) {
-            printed.shift();
-          }
+          trimPrinted(printed);
         }
 
         if (options.semi && getGlimmerExpression(node).extra.forceSemi) {
@@ -155,6 +144,26 @@ export const printer: Printer<Node | undefined> = {
    */
   hasPrettierIgnore: undefined,
 };
+
+/**
+ * Remove the semicolons and empty strings that Prettier added so we can manage
+ * them.
+ */
+function trimPrinted(printed: doc.builders.Doc[]) {
+  while (
+    docMatchesString(printed[0], ';') ||
+    docMatchesString(printed[0], '')
+  ) {
+    printed.shift();
+  }
+
+  while (
+    docMatchesString(printed.at(-1), ';') ||
+    docMatchesString(printed.at(-1), '')
+  ) {
+    printed.pop();
+  }
+}
 
 function printRawText(
   { node }: AstPath<Node | undefined>,
