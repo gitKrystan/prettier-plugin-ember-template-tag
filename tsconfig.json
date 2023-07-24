@@ -11,7 +11,11 @@
     "noEmit": true,
 
     // TODO: We should remove this and fix the resulting errors
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+
+    "paths": {
+      "*": ["./@types/*"]
+    }
   },
   "include": ["src"]
 }

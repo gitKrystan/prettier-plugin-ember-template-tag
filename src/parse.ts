@@ -16,7 +16,6 @@ import {
   TEMPLATE_TAG_PLACEHOLDER,
 } from './config';
 import type { Options } from './options';
-import { definePrinter } from './print/index';
 import type {
   GlimmerExpressionExtra,
   GlimmerTemplateExtra,
@@ -75,7 +74,6 @@ export const parser: Parser<Node | undefined> = {
   astFormat: PRINTER_NAME,
 
   preprocess(text: string, options: Options): string {
-    definePrinter(options);
     const js = preprocess(text, options);
     return typescript.preprocess?.(js, options) ?? js;
   },

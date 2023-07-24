@@ -1,11 +1,11 @@
 import type { Node } from '@babel/types';
 import type {
   AstPath,
-  Plugin,
   Options as PrettierOptions,
   Printer,
   doc,
 } from 'prettier';
+import { printers as estreePrinters } from 'prettier/plugins/estree';
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
@@ -22,50 +22,26 @@ import {
   isGlimmerExpressionStatementTS,
   isGlimmerTemplateLiteral,
 } from '../types/glimmer';
-import { assert, assertExists } from '../utils/index';
+import { assert } from '../utils/index';
 import {
   printTemplateContent,
   printTemplateLiteral,
   printTemplateTag,
 } from './template';
 
-// @ts-expect-error FIXME: HACK because estree printer isn't exported. See below.
-export const printer: Printer<Node | undefined> = {};
+const estreePrinter = estreePrinters['estree'] as Printer<Node | undefined>;
 
-/**
- * FIXME: HACK because estree printer isn't exported.
- *
- * @see https://github.com/prettier/prettier/issues/10259
- * @see https://github.com/prettier/prettier/issues/4424
- */
-export function definePrinter(options: Options): void {
-  const estreePlugin = assertExists(options.plugins.find(isEstreePlugin));
-  const estreePrinter = estreePlugin.printers.estree;
+export const printer: Printer<Node | undefined> = {
+  ...estreePrinter,
 
-  const defaultHasPrettierIgnore = assertExists(
-    estreePrinter.hasPrettierIgnore
-  );
-
-  // Part of the HACK described above
-  // eslint-disable-next-line @typescript-eslint/unbound-method
-  const defaultPrint = estreePrinter.print;
-
-  Reflect.setPrototypeOf(
-    printer,
-    Object.create(estreePrinter) as Printer<Node | undefined>
-  );
-
-  printer.print = (
+  print(
     path: AstPath<Node | undefined>,
     options: Options,
     print: (path: AstPath<Node | undefined>) => doc.builders.Doc,
     args: unknown
-  ) => {
-    const node = path.getValue();
-    const hasPrettierIgnore = checkPrettierIgnore(
-      path,
-      defaultHasPrettierIgnore
-    );
+  ) {
+    const { node } = path;
+    const hasPrettierIgnore = checkPrettierIgnore(path);
 
     if (
       isGlimmerClassProperty(node) ||
@@ -77,7 +53,7 @@ export function definePrinter(options: Options): void {
       if (hasPrettierIgnore) {
         return printRawText(path, options);
       } else {
-        let printed = defaultPrint(path, options, print, args);
+        let printed = estreePrinter.print(path, options, print, args);
 
         assert('Expected Glimmer doc to be an array', Array.isArray(printed));
 
@@ -113,21 +89,16 @@ export function definePrinter(options: Options): void {
     } else if (hasPrettierIgnore) {
       return printRawText(path, options);
     } else {
-      return defaultPrint(path, options, print, args);
+      return estreePrinter.print(path, options, print, args);
     }
-  };
+  },
 
   /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
-  printer.embed = (
-    path: AstPath<Node | undefined>,
-    embedOptions: PrettierOptions
-  ) => {
-    const wasPreprocessed = options.__inputWasPreprocessed;
-    const node = path.getValue();
-    const hasPrettierIgnore = checkPrettierIgnore(
-      path,
-      defaultHasPrettierIgnore
-    );
+  embed(path: AstPath<Node | undefined>, embedOptions: PrettierOptions) {
+    const { node } = path;
+    const wasPreprocessed = (embedOptions as Options).__inputWasPreprocessed;
+
+    const hasPrettierIgnore = checkPrettierIgnore(path);
 
     if (hasPrettierIgnore) {
       return printRawText(path, embedOptions as Options);
@@ -175,33 +146,20 @@ export function definePrinter(options: Options): void {
 
     // Nothing to embed, so move on to the regular printer.
     return null;
-  };
+  },
 
   /**
-   * Turn off built-in prettier-ignore handling because it will skip embedding,
-   * which will print `[__GLIMMER_TEMPLATE(...)]` instead of
+   * Turn off any built-in prettier-ignore handling because it will skip
+   * embedding, which will print `[__GLIMMER_TEMPLATE(...)]` instead of
    * `<template>...</template>`.
    */
-  printer.hasPrettierIgnore = (_path): boolean => {
-    return false;
-  };
-}
-
-function isEstreePlugin(
-  plugin: string | Plugin<Node | undefined>
-): plugin is Plugin<Node | undefined> & {
-  printers: { estree: Printer<Node | undefined> };
-} {
-  return Boolean(
-    typeof plugin !== 'string' && plugin.printers && plugin.printers['estree']
-  );
-}
+  hasPrettierIgnore: undefined,
+};
 
 function printRawText(
-  path: AstPath<Node | undefined>,
+  { node }: AstPath<Node | undefined>,
   options: Options
 ): string {
-  const node = path.getValue();
   if (!node) {
     return '';
   }
@@ -218,16 +176,15 @@ function printRawText(
   return raw;
 }
 
-function checkPrettierIgnore(
-  path: AstPath<Node | undefined>,
-  hasPrettierIgnore: (path: AstPath<Node | undefined>) => boolean
-): boolean {
+function hasPrettierIgnore(path: AstPath<Node | undefined>): boolean {
+  return path.node?.leadingComments?.at(-1)?.value.trim() === 'prettier-ignore';
+}
+
+function checkPrettierIgnore(path: AstPath<Node | undefined>): boolean {
   return (
     hasPrettierIgnore(path) ||
     (!!path.getParentNode() &&
-      path.callParent((parent) =>
-        checkPrettierIgnore(parent, hasPrettierIgnore)
-      ))
+      path.callParent((parent) => checkPrettierIgnore(parent)))
   );
 }
 
