@@ -129,7 +129,7 @@ export const printer: Printer<Node | undefined> = {
       }
 
       // Nothing to embed, so move on to the regular printer.
-      return undefined;
+      return;
     };
   },
 
@@ -145,7 +145,7 @@ export const printer: Printer<Node | undefined> = {
  * Remove the semicolons and empty strings that Prettier added so we can manage
  * them.
  */
-function trimPrinted(printed: doc.builders.Doc[]) {
+function trimPrinted(printed: doc.builders.Doc[]): void {
   while (
     docMatchesString(printed[0], ';') ||
     docMatchesString(printed[0], '')
