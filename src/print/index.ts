@@ -93,18 +93,16 @@ export const printer: Printer<Node | undefined> = {
       return printRawText(path, embedOptions as Options);
     }
 
-    try {
-      if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
-        return async (textToDoc) => {
+    return async (textToDoc) => {
+      try {
+        if (wasPreprocessed && isGlimmerTemplateLiteral(node)) {
           const content = await printTemplateContent(
             node,
             textToDoc,
             embedOptions as Options
           );
           return printTemplateLiteral(content);
-        };
-      } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
-        return async (textToDoc) => {
+        } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
           const content = await printTemplateContent(
             node.key.arguments[0],
             textToDoc,
@@ -114,9 +112,7 @@ export const printer: Printer<Node | undefined> = {
             content,
             node.extra.isDefaultTemplate ?? false
           );
-        };
-      } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
-        return async (textToDoc) => {
+        } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
           const content = await printTemplateContent(
             node.elements[0].arguments[0],
             textToDoc,
@@ -126,15 +122,15 @@ export const printer: Printer<Node | undefined> = {
             content,
             node.extra.isDefaultTemplate ?? false
           );
-        };
+        }
+      } catch (error: unknown) {
+        console.error(error);
+        return printRawText(path, embedOptions as Options);
       }
-    } catch (error: unknown) {
-      console.error(error);
-      return printRawText(path, embedOptions as Options);
-    }
 
-    // Nothing to embed, so move on to the regular printer.
-    return null;
+      // Nothing to embed, so move on to the regular printer.
+      return undefined;
+    };
   },
 
   /**
