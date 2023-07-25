@@ -6,6 +6,10 @@
 
 A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](https://rfcs.emberjs.com/id/0779-first-class-component-templates/) in both `.gjs` and `.gts` files. See also [Ember Template Imports](https://github.com/ember-template-imports/ember-template-imports).
 
+## Compatibility
+
+Prettier 3.0.0 and above
+
 ## Usage
 
 1. Install:
