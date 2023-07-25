@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-ember-template-tag",
-  "version": "1.0.0-0",
+  "version": "1.0.0",
   "description": "A prettier plugin for formatting Ember template tags",
   "keywords": [
     "ember",

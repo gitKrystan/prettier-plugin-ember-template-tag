@@ -8,6 +8,15 @@
 
 
 
+
+## v1.0.0 (2023-07-25)
+
+#### :house: Internal
+* [#83](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/83) Add tests for using template tag within render in a test ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v1.0.0-0 (2023-07-25)
 
 #### :boom: Breaking Change
