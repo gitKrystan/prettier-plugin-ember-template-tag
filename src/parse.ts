@@ -9,14 +9,13 @@ import {
 import { getTemplateLocals } from '@glimmer/syntax';
 import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates';
 import type { Parser } from 'prettier';
-import { parsers as babelParsers } from 'prettier/parser-babel';
+import { parsers as babelParsers } from 'prettier/plugins/babel';
 import {
   PRINTER_NAME,
   TEMPLATE_TAG_NAME,
   TEMPLATE_TAG_PLACEHOLDER,
 } from './config';
 import type { Options } from './options';
-import { definePrinter } from './print/index';
 import type {
   GlimmerExpressionExtra,
   GlimmerTemplateExtra,
@@ -75,17 +74,12 @@ export const parser: Parser<Node | undefined> = {
   astFormat: PRINTER_NAME,
 
   preprocess(text: string, options: Options): string {
-    definePrinter(options);
     const js = preprocess(text, options);
     return typescript.preprocess?.(js, options) ?? js;
   },
 
-  parse(
-    text: string,
-    parsers: Record<string, Parser<unknown>>,
-    options: Options
-  ): Node {
-    const ast = typescript.parse(text, parsers, options);
+  async parse(text: string, options: Options): Promise<Node> {
+    const ast = await typescript.parse(text, options);
     assert('expected ast', ast);
     traverse(ast, {
       enter: makeEnter(options),

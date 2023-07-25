@@ -12,11 +12,11 @@ export interface Options extends ParserOptions<Node | undefined> {
 }
 
 const templateExportDefault: BooleanSupportOption = {
-  since: '0.1.0',
   category: 'Format',
   type: 'boolean',
   default: false,
-  description: 'Prepend default export template tags with "export default".',
+  description:
+    'Prepend default export template tags with "export default". Since 0.1.0.',
 };
 
 /**
@@ -32,19 +32,17 @@ export function getTemplateSingleQuote(options: Options): boolean {
 }
 
 const templateSingleQuote: BooleanSupportOption = {
-  since: '0.0.3',
   category: 'Format',
   type: 'boolean',
   description:
-    'Use single quotes instead of double quotes within template tags.',
+    'Use single quotes instead of double quotes within template tags. Since 0.0.3.',
 };
 
 const __inputWasPreprocessed: BooleanSupportOption = {
-  since: '0.1.0',
   category: 'Format',
   type: 'boolean',
   description:
-    'Internal: If true, the template was preprocessed before being run through Prettier.',
+    'Internal: If true, the template was preprocessed before being run through Prettier. Since 0.1.0.',
 };
 
 export const options: SupportOptions = {

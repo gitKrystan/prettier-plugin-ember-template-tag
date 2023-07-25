@@ -21,7 +21,7 @@ export default class ProjectStatusComponent extends Component {
       <Icon @type={{this.iconType}} @id={{this.iconId}} />
       {{@project.status}}{{if this.restartProject.isRunning \\"...\\"}}
     </Button>\`,
-    { strictMode: true }
+    { strictMode: true },
   )]
 
   @service server;
@@ -60,7 +60,7 @@ class MyComponent extends Component {
       Class top level template. Class top level template. Class top level
       template. Class top level template. Class top level template.
     </h1>\`,
-    { strictMode: true }
+    { strictMode: true },
   )]
 }
 "
@@ -78,7 +78,7 @@ class MyComponent extends Component {
       Class top level template. Class top level template. Class top level
       template. Class top level template. Class top level template.
     </h1>\`,
-    { strictMode: true }
+    { strictMode: true },
   )]
 }
 "
@@ -94,7 +94,7 @@ class MyComponent extends Component {
       Class top level template. Class top level template. Class top level
       template. Class top level template. Class top level template.
     </h1>\`,
-    { strictMode: true }
+    { strictMode: true },
   )]
 
   what = \`template literal that is not a template\`;
@@ -109,7 +109,7 @@ exports[`format > config > with preprocessed code > it formats ../cases/gjs/defa
     module top level component. Explicit default export module top level
     component. Explicit default export module top level component. Explicit
     default export module top level component.\`,
-    { strictMode: true }
+    { strictMode: true },
   ),
 ]
 "
@@ -121,7 +121,7 @@ exports[`format > config > with preprocessed code > it formats ../cases/gjs/expo
     \`Exported variable template. Exported variable template. Exported variable
     template. Exported variable template. Exported variable template. Exported
     variable template. Exported variable template.\`,
-    { strictMode: true }
+    { strictMode: true },
   ),
 ];
 "
@@ -149,7 +149,7 @@ exports[`format > config > with preprocessed code > it formats ../cases/gjs/mod-
     \`Private variable template. Private variable template. Private variable
     template. Private variable template. Private variable template. Private
     variable template. Private variable template.\`,
-    { strictMode: true }
+    { strictMode: true },
   ),
 ];
 
@@ -165,7 +165,7 @@ exports[`format > config > with preprocessed code > it formats ../cases/gjs/mult
         template. Module variable template. Module variable template. Module
         variable template. Module variable template. Module variable template.
       </h1>\`,
-      { strictMode: true }
+      { strictMode: true },
     ),
   ],
   ModVar2 = [
@@ -183,7 +183,7 @@ const bool = false,
         template. Module variable template. Module variable template. Module
         variable template. Module variable template. Module variable template.
       </h1>\`,
-      { strictMode: true }
+      { strictMode: true },
     ),
   ],
   ModVar4 = [
@@ -323,7 +323,7 @@ export default class ProjectStatusComponent extends Component<ProjectStatusSig> 
       <Icon @type={{this.iconType}} @id={{this.iconId}} />
       {{@project.status}}{{if this.restartProject.isRunning \\"...\\"}}
     </Button>\`,
-    { strictMode: true }
+    { strictMode: true },
   )]
 
   @service private declare server: ServerService;
@@ -370,7 +370,7 @@ class MyComponent extends Component<Signature> {
       Class top level template. Class top level template. Class top level
       template. Class top level template. Class top level template.
     </h1>\`,
-    { strictMode: true }
+    { strictMode: true },
   )]
 }
 "
@@ -395,7 +395,7 @@ class MyComponent extends Component<Signature> {
       Class top level template. Class top level template. Class top level
       template. Class top level template. Class top level template.
     </h1>\`,
-    { strictMode: true }
+    { strictMode: true },
   )]
 
   what = \`template literal that is not a template\`;
@@ -418,7 +418,7 @@ export interface Signature {
     module top level component. Explicit default export module top level
     component. Explicit default export module top level component. Explicit
     default export module top level component.\`,
-    { strictMode: true }
+    { strictMode: true },
   ),
 ] as TemplateOnlyComponent<Signature>
 "
@@ -438,7 +438,7 @@ export const Exported: TemplateOnlyComponent<Signature> = [
     \`Exported variable template. Exported variable template. Exported variable
     template. Exported variable template. Exported variable template. Exported
     variable template. Exported variable template.\`,
-    { strictMode: true }
+    { strictMode: true },
   ),
 ];
 "
@@ -458,7 +458,7 @@ export const Exported = [
     \`Exported variable template. Exported variable template. Exported variable
     template. Exported variable template. Exported variable template. Exported
     variable template. Exported variable template.\`,
-    { strictMode: true }
+    { strictMode: true },
   ),
 ] as TemplateOnlyComponent<Signature>;
 "
@@ -483,7 +483,7 @@ const Private: TemplateOnlyComponent<Signature> = [
     \`Private variable template. Private variable template. Private variable
     template. Private variable template. Private variable template. Private
     variable template. Private variable template.\`,
-    { strictMode: true }
+    { strictMode: true },
   ),
 ];
 "
@@ -503,7 +503,7 @@ const Private = [
     \`Private variable template. Private variable template. Private variable
     template. Private variable template. Private variable template. Private
     variable template. Private variable template.\`,
-    { strictMode: true }
+    { strictMode: true },
   ),
 ] as TemplateOnlyComponent<Signature>;
 "
@@ -525,7 +525,7 @@ const ModVar1: TemplateOnlyComponent<Signature> = [
         template. Module variable template. Module variable template. Module
         variable template. Module variable template. Module variable template.
       </h1>\`,
-      { strictMode: true }
+      { strictMode: true },
     ),
   ],
   ModVar2: TemplateOnlyComponent<Signature> = [
@@ -543,7 +543,7 @@ const bool: boolean = false,
         template. Module variable template. Module variable template. Module
         variable template. Module variable template. Module variable template.
       </h1>\`,
-      { strictMode: true }
+      { strictMode: true },
     ),
   ],
   ModVar4: TemplateOnlyComponent<Signature> = [
@@ -570,7 +570,7 @@ const ModVar1 = [
         template. Module variable template. Module variable template. Module
         variable template. Module variable template. Module variable template.
       </h1>\`,
-      { strictMode: true }
+      { strictMode: true },
     ),
   ] as TemplateOnlyComponent<Signature>,
   ModVar2 = [
@@ -588,7 +588,7 @@ const bool: boolean = false,
         template. Module variable template. Module variable template. Module
         variable template. Module variable template. Module variable template.
       </h1>\`,
-      { strictMode: true }
+      { strictMode: true },
     ),
   ] as TemplateOnlyComponent<Signature>,
   ModVar4 = [

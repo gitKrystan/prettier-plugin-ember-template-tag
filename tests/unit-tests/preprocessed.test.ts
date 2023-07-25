@@ -17,7 +17,7 @@ describe('format', () => {
 });
 
 function preprocessedTest(config: Config, testCase: TestCase): void {
-  test(`it formats ${testCase.name}`, () => {
+  test(`it formats ${testCase.name}`, async () => {
     const code = testCase.code.replaceAll(AMBIGUOUS_PLACEHOLDER, '');
     const preprocessed = preprocessEmbeddedTemplates(code, {
       getTemplateLocals,
@@ -30,7 +30,7 @@ function preprocessedTest(config: Config, testCase: TestCase): void {
 
       relativePath: testCase.path,
     }).output;
-    const result = format(preprocessed, config.options);
+    const result = await format(preprocessed, config.options);
     expect(result).toMatchSnapshot();
   });
 }
