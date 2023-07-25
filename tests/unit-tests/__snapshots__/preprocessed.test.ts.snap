@@ -799,6 +799,22 @@ export interface Signature {
 "
 `;
 
+exports[`format > config > with preprocessed code > it formats ../cases/gts/rendering-test.gts 1`] = `
+"import { module, test } from \\"qunit\\";
+import { render } from \\"@ember/test-helpers\\";
+import { setupRenderingTest } from \\"ember-qunit\\";
+
+module(\\"Render with template tag\\", function (hooks) {
+  setupRenderingTest(hooks);
+
+  test(\\"it has a template tag\\", async function (assert) {
+    await render([__GLIMMER_TEMPLATE(\`what\`, { strictMode: true })]);
+    assert.dom().hasText(\\"what\\");
+  });
+});
+"
+`;
+
 exports[`format > config > with preprocessed code > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
