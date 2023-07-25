@@ -7,6 +7,33 @@
 
 
 
+
+## v1.0.0-0 (2023-07-25)
+
+#### :boom: Breaking Change
+* [#78](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/78) Upgrade to Prettier 3 (Closes [#61](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/61)); Breaks compatibility with Prettier 2 ([@gitKrystan](https://github.com/gitKrystan))
+* [#57](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/57) Drop Node 14 ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :memo: Documentation
+* [#55](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/55) README improvements ([@charlesfries](https://github.com/charlesfries))
+* [#54](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/54) Improve documentation of prettier plugin config ([@ef4](https://github.com/ef4))
+
+#### :house: Internal
+* [#82](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/82) Run prettier -w with new trailingComma=all default ([@gitKrystan](https://github.com/gitKrystan))
+* [#74](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/74) Add dependabot.yml ([@gitKrystan](https://github.com/gitKrystan))
+* [#73](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/73) Upgrade @tsconfig/node16 ([@gitKrystan](https://github.com/gitKrystan))
+* [#72](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/72) Upgrade concurrently ([@gitKrystan](https://github.com/gitKrystan))
+* [#71](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/71) Upgrade vite / vitest / test package dependencies ([@gitKrystan](https://github.com/gitKrystan))
+* [#70](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/70) Upgrade eslint and eslint plugins ([@gitKrystan](https://github.com/gitKrystan))
+* [#69](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/69) Upgrade release-it dependencies ([@gitKrystan](https://github.com/gitKrystan))
+* [#68](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/68) Upgrade pnpm and node@16 ([@gitKrystan](https://github.com/gitKrystan))
+* [#56](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/56) Upgrade Dependencies ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 3
+- Charles Fries ([@charlesfries](https://github.com/charlesfries))
+- Edward Faulkner ([@ef4](https://github.com/ef4))
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v0.3.2 (2023-02-01)
 
 #### :bug: Bug Fix
