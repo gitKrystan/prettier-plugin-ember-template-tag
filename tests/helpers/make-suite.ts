@@ -20,7 +20,7 @@ export interface Config {
  */
 export function makeSuite(
   caseGetter: () => Promise<TestCase[]>,
-  testCallback: (config: Config, testCase: TestCase) => void
+  testCallback: (config: Config, testCase: TestCase) => void,
 ): (config: Config) => void {
   return function _describeConfig(config: Config): void {
     describe('config', async () => {
@@ -47,7 +47,7 @@ export const describeSuite = makeSuite(getAllCases, simpleTest);
  */
 export const describeAmbiguitySuite = makeSuite(
   getAmbiguousCases,
-  makeAmbiguousExpressionTest()
+  makeAmbiguousExpressionTest(),
 );
 
 /** Runs a simple `format` test for the given `config` and `testCase` */

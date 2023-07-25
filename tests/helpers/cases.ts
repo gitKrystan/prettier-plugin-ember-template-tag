@@ -13,7 +13,7 @@ export interface TestCase {
  */
 export async function getCases(
   baseDirectory: fs.PathLike,
-  directory: fs.PathLike
+  directory: fs.PathLike,
 ): Promise<TestCase[]> {
   const entries = await fs.promises.readdir(directory, { withFileTypes: true });
   const cases = await Promise.all(
@@ -21,7 +21,7 @@ export async function getCases(
       if (entry.isDirectory()) {
         return getCases(
           baseDirectory,
-          path.join(directory.toString(), entry.name)
+          path.join(directory.toString(), entry.name),
         );
       } else {
         const filename = path.join(directory.toString(), entry.name);
@@ -34,7 +34,7 @@ export async function getCases(
           path: filename,
         };
       }
-    })
+    }),
   );
 
   return cases.flat();

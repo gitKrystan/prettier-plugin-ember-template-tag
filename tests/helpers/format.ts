@@ -16,7 +16,7 @@ const DEFAULT_OPTIONS: Partial<Options> = {
  */
 export async function format(
   code: string,
-  overrides: Partial<Options> = {}
+  overrides: Partial<Options> = {},
 ): Promise<string> {
   return await prettierFormat(code, {
     ...DEFAULT_OPTIONS,

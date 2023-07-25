@@ -8,7 +8,7 @@ import { makeSuite } from '../../helpers/make-suite';
 describe('ambiguous', () => {
   makeSuite(
     getAmbiguousCases,
-    makeAmbiguousExpressionTest(['(oops) => {}', '(oh, no) => {}'])
+    makeAmbiguousExpressionTest(['(oops) => {}', '(oh, no) => {}']),
   )({
     name: 'arrowParens: "avoid"',
     options: { arrowParens: 'avoid' },
