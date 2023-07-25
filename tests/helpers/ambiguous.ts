@@ -38,11 +38,11 @@ export async function getAmbiguousCases(): Promise<TestCase[]> {
  * @see https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/1 for more details
  */
 export function makeAmbiguousExpressionTest(
-  ambiguousExpressions = AMBIGUOUS_EXPRESSIONS
+  ambiguousExpressions = AMBIGUOUS_EXPRESSIONS,
 ) {
   return function ambiguousExpressionTest(
     config: Config,
-    testCase: TestCase
+    testCase: TestCase,
   ): void {
     for (const ambiguousExpression of ambiguousExpressions) {
       describe(ambiguousExpression, () => {
@@ -87,7 +87,7 @@ export function makeAmbiguousExpressionTest(
 
 async function behavesLikeFormattedAmbiguousCase(
   code: string,
-  formatOptions: Partial<Options> = {}
+  formatOptions: Partial<Options> = {},
 ): Promise<void> {
   try {
     const result = await format(code, formatOptions);

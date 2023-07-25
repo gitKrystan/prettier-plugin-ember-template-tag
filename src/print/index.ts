@@ -38,7 +38,7 @@ export const printer: Printer<Node | undefined> = {
     path: AstPath<Node | undefined>,
     options: Options,
     print: (path: AstPath<Node | undefined>) => doc.builders.Doc,
-    args: unknown
+    args: unknown,
   ) {
     const { node } = path;
     const hasPrettierIgnore = checkPrettierIgnore(path);
@@ -99,28 +99,28 @@ export const printer: Printer<Node | undefined> = {
           const content = await printTemplateContent(
             node,
             textToDoc,
-            embedOptions as Options
+            embedOptions as Options,
           );
           return printTemplateLiteral(content);
         } else if (!wasPreprocessed && isGlimmerClassProperty(node)) {
           const content = await printTemplateContent(
             node.key.arguments[0],
             textToDoc,
-            embedOptions as Options
+            embedOptions as Options,
           );
           return printTemplateTag(
             content,
-            node.extra.isDefaultTemplate ?? false
+            node.extra.isDefaultTemplate ?? false,
           );
         } else if (!wasPreprocessed && isGlimmerArrayExpression(node)) {
           const content = await printTemplateContent(
             node.elements[0].arguments[0],
             textToDoc,
-            embedOptions as Options
+            embedOptions as Options,
           );
           return printTemplateTag(
             content,
-            node.extra.isDefaultTemplate ?? false
+            node.extra.isDefaultTemplate ?? false,
           );
         }
       } catch (error: unknown) {
@@ -163,7 +163,7 @@ function trimPrinted(printed: doc.builders.Doc[]): void {
 
 function printRawText(
   { node }: AstPath<Node | undefined>,
-  options: Options
+  options: Options,
 ): string {
   if (!node) {
     return '';
@@ -195,7 +195,7 @@ function checkPrettierIgnore(path: AstPath<Node | undefined>): boolean {
 
 function docMatchesString(
   doc: doc.builders.Doc | undefined,
-  string: string
+  string: string,
 ): doc is string {
   return typeof doc === 'string' && doc.trim() === string;
 }

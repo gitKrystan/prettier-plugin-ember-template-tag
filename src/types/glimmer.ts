@@ -31,7 +31,7 @@ export interface GlimmerTemplateExtra {
 
 /** Type predicate */
 export function isGlimmerTemplateLiteral(
-  node: Node | null | undefined
+  node: Node | null | undefined,
 ): node is GlimmerTemplateLiteral {
   return isTemplateLiteral(node) && node.extra?.['isGlimmerTemplate'] === true;
 }
@@ -47,7 +47,7 @@ export type GlimmerExpression = GlimmerArrayExpression | GlimmerClassProperty;
 
 /** Type predicate */
 export function isGlimmerExpression(
-  node: Node | null | undefined
+  node: Node | null | undefined,
 ): node is GlimmerExpression {
   return node?.extra?.['isGlimmerTemplate'] === true;
 }
@@ -58,7 +58,7 @@ export interface GlimmerArrayExpression extends RawGlimmerArrayExpression {
 
 /** Type predicate */
 export function isGlimmerArrayExpression(
-  node: Node | null | undefined
+  node: Node | null | undefined,
 ): node is GlimmerArrayExpression {
   return isArrayExpression(node) && isGlimmerExpression(node);
 }
@@ -69,7 +69,7 @@ export interface GlimmerClassProperty extends RawGlimmerClassProperty {
 
 /** Type predicate */
 export function isGlimmerClassProperty(
-  node: Node | null | undefined
+  node: Node | null | undefined,
 ): node is GlimmerClassProperty {
   return isClassProperty(node) && isGlimmerExpression(node);
 }
@@ -88,7 +88,7 @@ export interface GlimmerExportDefaultDeclaration
 
 /** Type predicate */
 export function isGlimmerExportDefaultDeclaration(
-  node: unknown
+  node: unknown,
 ): node is GlimmerExportDefaultDeclaration {
   return (
     isNode(node) &&
@@ -111,7 +111,7 @@ export interface GlimmerExportDefaultDeclarationTS
 
 /** Type predicate */
 export function isGlimmerExportDefaultDeclarationTS(
-  node: unknown
+  node: unknown,
 ): node is GlimmerExportDefaultDeclarationTS {
   return (
     isNode(node) &&
@@ -137,7 +137,7 @@ export interface GlimmerTSAsExpression
 
 /** Type predicate */
 export function isGlimmerTSAsExpression(
-  node: unknown
+  node: unknown,
 ): node is GlimmerTSAsExpression {
   return (
     isNode(node) &&
@@ -160,7 +160,7 @@ export interface GlimmerExpressionStatement
 
 /** Type predicate */
 export function isGlimmerExpressionStatement(
-  node: unknown
+  node: unknown,
 ): node is GlimmerExpressionStatement {
   return (
     isNode(node) &&
@@ -183,7 +183,7 @@ export interface GlimmerExpressionStatementTS
 
 /** Type predicate */
 export function isGlimmerExpressionStatementTS(
-  node: unknown
+  node: unknown,
 ): node is GlimmerExpressionStatementTS {
   return (
     isNode(node) &&
@@ -200,7 +200,7 @@ export function getGlimmerExpression(
     | GlimmerExpressionStatement
     | GlimmerExpressionStatementTS
     | GlimmerClassProperty
-    | GlimmerArrayExpression
+    | GlimmerArrayExpression,
 ): GlimmerExpression {
   switch (node.type) {
     case 'ExportDefaultDeclaration': {

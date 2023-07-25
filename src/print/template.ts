@@ -22,9 +22,9 @@ export async function printTemplateContent(
     // Don't use our `Options` here even though technically they are available
     // because we don't want to accidentally pass them into `textToDoc`. We
     // should normalize them into standard Prettier options at this point.
-    options: PrettierOptions
+    options: PrettierOptions,
   ) => Promise<doc.builders.Doc>,
-  options: Options
+  options: Options,
 ): Promise<doc.builders.Doc> {
   const text = node.quasis.map((quasi) => quasi.value.raw).join(' ');
   return await textToDoc(text.trim(), {
@@ -45,7 +45,7 @@ export async function printTemplateContent(
  */
 export function printTemplateTag(
   content: doc.builders.Doc,
-  useHardline: boolean
+  useHardline: boolean,
 ): doc.builders.Doc {
   const line = useHardline ? hardline : softline;
   return group([
@@ -58,7 +58,7 @@ export function printTemplateTag(
 
 /** Prints the given template content as a template literal. */
 export function printTemplateLiteral(
-  content: doc.builders.Doc
+  content: doc.builders.Doc,
 ): doc.builders.Doc {
   return group(['`', content, '`']);
 }

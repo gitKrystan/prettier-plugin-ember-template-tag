@@ -10,7 +10,7 @@ export function isRecord(value: unknown): value is Record<string, unknown> {
  */
 export function assert(
   message: string,
-  condition?: unknown
+  condition?: unknown,
 ): asserts condition {
   if (!condition) {
     throw new Error(message);
@@ -20,7 +20,7 @@ export function assert(
 /** Asserts that the given item is not undefined. */
 export function assertExists<T>(
   item: T | undefined,
-  message = 'assertExists failed'
+  message = 'assertExists failed',
 ): T {
   assert(message, item !== undefined);
   return item;

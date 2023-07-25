@@ -33,7 +33,7 @@ import {
  */
 export function hasAmbiguousNextLine(
   path: NodePath,
-  options: Options
+  options: Options,
 ): boolean {
   // Note: getNextSibling().node will be undefined if there is no sibling
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition

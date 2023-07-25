@@ -29,7 +29,7 @@ export interface RawGlimmerArrayExpression extends ArrayExpression {
 
 /** Type predicate */
 export function isRawGlimmerArrayExpression(
-  value: Node | null | undefined
+  value: Node | null | undefined,
 ): value is RawGlimmerArrayExpression {
   return (
     isArrayExpression(value) && isRawGlimmerCallExpression(value.elements[0])
@@ -74,7 +74,7 @@ export interface RawGlimmerClassProperty extends ClassProperty {
 
 /** Type predicate */
 export function isRawGlimmerClassProperty(
-  value: Node | null | undefined
+  value: Node | null | undefined,
 ): value is RawGlimmerClassProperty {
   return isClassProperty(value) && isRawGlimmerCallExpression(value.key);
 }
@@ -95,7 +95,7 @@ export interface RawGlimmerCallExpression extends CallExpression {
 
 /** Type predicate */
 export function isRawGlimmerCallExpression(
-  value: Node | null | undefined
+  value: Node | null | undefined,
 ): value is RawGlimmerCallExpression {
   return (
     isCallExpression(value) &&

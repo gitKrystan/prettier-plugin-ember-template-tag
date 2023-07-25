@@ -43,7 +43,7 @@ const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 
 const preprocess: Required<Parser<Node | undefined>>['preprocess'] = (
   text: string,
-  options: Options
+  options: Options,
 ) => {
   let preprocessed: string;
   if (text.includes(TEMPLATE_TAG_PLACEHOLDER)) {
@@ -111,7 +111,7 @@ function makeEnter(options: Options): (path: NodePath) => void {
       hasRawGlimmerArrayExpression(node.tag)
     ) {
       throw new SyntaxError(
-        'Ember <template> tag used as tagged template expression.'
+        'Ember <template> tag used as tagged template expression.',
       );
     } else if (
       isMemberExpression(node) &&
@@ -144,7 +144,7 @@ function makeExit(): (path: NodePath) => void {
 
 function tagGlimmerExpression(
   node: RawGlimmerArrayExpression | RawGlimmerClassProperty,
-  forceSemi: boolean
+  forceSemi: boolean,
 ): void {
   const extra: GlimmerExpressionExtra = {
     isGlimmerTemplate: true,
@@ -176,7 +176,7 @@ function desugarDefaultExportTemplates(preprocessed: string): string {
 
   // (^|;)\s*(\()?\s*\[__GLIMMER_TEMPLATE
   const sugaredDefaultExport = new RegExp(
-    `(^|;)\\s*(\\()?\\s*\\${placeholderOpen}`
+    `(^|;)\\s*(\\()?\\s*\\${placeholderOpen}`,
   );
   const desugaredDefaultExport = `$1 export default $2${placeholderOpen}`;
 
