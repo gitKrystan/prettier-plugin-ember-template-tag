@@ -68,7 +68,7 @@ importers:
         version: 3.2.0(eslint@8.45.0)
       eslint-plugin-jsdoc:
         specifier: ^46.4.4
-        version: 46.4.4(eslint@8.45.0)
+        version: 46.4.5(eslint@8.45.0)
       eslint-plugin-n:
         specifier: ^16.0.1
         version: 16.0.1(eslint@8.45.0)
@@ -2551,8 +2551,8 @@ packages:
       ignore: 5.2.4
     dev: true
 
-  /eslint-plugin-jsdoc@46.4.4(eslint@8.45.0):
-    resolution: {integrity: sha512-D8TGPOkq3bnzmYmA7Q6jdsW+Slx7CunhJk1tlouVq6wJjlP1p6eigZPvxFn7aufud/D66xBsNVMhkDQEuqumMg==}
+  /eslint-plugin-jsdoc@46.4.5(eslint@8.45.0):
+    resolution: {integrity: sha512-HjTuxqDYplAQFu29F3MHFCDDBgeqOxPXI6TyBhL0u2rr4XntJ0z3C9PmJvpjFscKdHwkZDN/0l1QCG0QwyRi4g==}
     engines: {node: '>=16'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
