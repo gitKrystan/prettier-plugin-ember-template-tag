@@ -33,7 +33,6 @@
     "preexample": "vite build",
     "example": "pnpm preexample && cd examples && pnpm example",
     "example-ts": "pnpm preexample && cd examples && pnpm example-ts",
-    "preinstall": "npx only-allow pnpm",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
     "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
     "lint:eslint": "eslint . --cache",
