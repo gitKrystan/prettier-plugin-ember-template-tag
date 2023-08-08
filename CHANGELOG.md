@@ -9,6 +9,15 @@
 
 
 
+
+## v1.0.1 (2023-08-08)
+
+#### :bug: Bug Fix
+* [#93](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/93) Add `only-allow` to `devDependencies` so it does not require network ([@chriskrycho](https://github.com/chriskrycho))
+
+#### Committers: 1
+- Chris Krycho ([@chriskrycho](https://github.com/chriskrycho))
+
 ## v1.0.0 (2023-07-25)
 
 #### :house: Internal
