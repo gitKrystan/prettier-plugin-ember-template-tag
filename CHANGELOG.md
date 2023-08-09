@@ -10,6 +10,15 @@
 
 
 
+
+## v1.0.2 (2023-08-09)
+
+#### :bug: Bug Fix
+* [#103](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/103) Remove npx only-allow pnpm preinstall hook and devDep ([@chrisrng](https://github.com/chrisrng))
+
+#### Committers: 1
+- Chris Ng ([@chrisrng](https://github.com/chrisrng))
+
 ## v1.0.1 (2023-08-08)
 
 #### :bug: Bug Fix
