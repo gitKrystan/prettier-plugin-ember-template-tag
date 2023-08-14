@@ -65,7 +65,7 @@
     "@types/node": "^20.4.4",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
-    "@vitest/ui": "^0.33.0",
+    "@vitest/ui": "^0.34.1",
     "concurrently": "^8.2.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
