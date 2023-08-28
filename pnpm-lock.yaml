@@ -77,7 +77,7 @@ importers:
         version: 48.0.1(eslint@8.47.0)
       eslint-plugin-vitest:
         specifier: ^0.2.6
-        version: 0.2.8(eslint@8.47.0)(typescript@5.1.6)(vite@4.4.6)(vitest@0.34.1)
+        version: 0.2.8(eslint@8.47.0)(typescript@5.1.6)(vite@4.4.6)(vitest@0.34.3)
       prettier-plugin-jsdoc:
         specifier: ^1.0.1
         version: 1.0.1(prettier@3.0.0)
@@ -2610,7 +2610,7 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
-  /eslint-plugin-vitest@0.2.8(eslint@8.47.0)(typescript@5.1.6)(vite@4.4.6)(vitest@0.34.1):
+  /eslint-plugin-vitest@0.2.8(eslint@8.47.0)(typescript@5.1.6)(vite@4.4.6)(vitest@0.34.3):
     resolution: {integrity: sha512-q8s4tStyKtn3gXf+8nf1ZYTHhoCXKdnozZzp6u8b4ni5v68Y4vxhNh4Z8njUfNjEY8HoPBB77MazHMR23IPb+g==}
     engines: {node: 14.x || >= 16}
     peerDependencies:
@@ -2624,7 +2624,7 @@ packages:
       '@typescript-eslint/utils': 6.3.0(eslint@8.47.0)(typescript@5.1.6)
       eslint: 8.47.0
       vite: 4.4.6(@types/node@20.4.8)
-      vitest: 0.34.1(@vitest/ui@0.34.1)
+      vitest: 0.34.3(@vitest/ui@0.34.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
