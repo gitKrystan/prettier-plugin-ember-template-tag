@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "example": "pnpm exec prettier . --write"
+    "example": "pnpm exec prettier . --write --plugin prettier-plugin-ember-template-tag --log-level debug",
+    "example-debug": "pnpm exec prettier . --write --plugin prettier-plugin-ember-template-tag --log-level debug"
   },
   "dependencies": {
     "prettier": "^3.0.3",
