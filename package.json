@@ -42,8 +42,9 @@
     "release": "release-it",
     "release:ci": "release-it --ci",
     "release:debug": "release-it --verbose --dry-run",
-    "test:all": "concurrently \"pnpm:test:run\" \"pnpm:example\" \"pnpm:example-ts\"",
+    "test:all": "concurrently \"pnpm:test:run\" \"pnpm:test:example\"",
     "test": "vitest",
+    "test:example": "pnpm preexample && cd examples && pnpm test",
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
   },
