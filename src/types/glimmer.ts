@@ -2,8 +2,8 @@ import type {
   ExportDefaultDeclaration,
   ExpressionStatement,
   Node,
-  TSAsExpression,
   TemplateLiteral,
+  TSAsExpression,
 } from '@babel/types';
 import {
   isArrayExpression,
@@ -11,10 +11,14 @@ import {
   isExportDefaultDeclaration,
   isExpressionStatement,
   isNode,
-  isTSAsExpression,
   isTemplateLiteral,
+  isTSAsExpression,
 } from '@babel/types';
-import type { RawGlimmerArrayExpression, RawGlimmerClassProperty } from './raw';
+
+import type {
+  RawGlimmerArrayExpression,
+  RawGlimmerClassProperty,
+} from './raw.js';
 
 /**
  * A Template Literal with a tag indicating that it is actually a Glimmer

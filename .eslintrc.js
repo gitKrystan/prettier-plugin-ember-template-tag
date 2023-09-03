@@ -16,7 +16,7 @@ module.exports = {
     project: './tsconfig.lint.json',
     allowAutomaticSingleRunInference: true,
   },
-  plugins: ['@typescript-eslint', 'jsdoc', 'unicorn'],
+  plugins: ['@typescript-eslint', 'jsdoc', 'unicorn', 'simple-import-sort'],
   root: true,
   reportUnusedDisableDirectives: true,
   rules: {
@@ -30,13 +30,7 @@ module.exports = {
     ],
     '@typescript-eslint/consistent-type-assertions': 'error',
     '@typescript-eslint/consistent-type-definitions': 'error',
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      {
-        prefer: 'type-imports',
-        fixStyle: 'inline-type-imports',
-      },
-    ],
+    '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-function-return-type': [
       'error',
       { allowExpressions: true },
@@ -76,6 +70,8 @@ module.exports = {
     'jsdoc/require-param': 'off',
     'jsdoc/require-param-type': 'off',
     'jsdoc/tag-lines': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     'unicorn/consistent-function-scoping': [
       'error',
       { checkArrowFunctions: false },

@@ -1,9 +1,10 @@
 import type { Node } from '@babel/types';
 import type { Parser, Plugin, Printer, SupportLanguage } from 'prettier';
-import { PARSER_NAME, PRINTER_NAME } from './config';
-import { options } from './options';
-import { parser } from './parse';
-import { printer } from './print/index';
+
+import { PARSER_NAME, PRINTER_NAME } from './config.js';
+import { options } from './options.js';
+import { parser } from './parse.js';
+import { printer } from './print/index.js';
 
 const languages: SupportLanguage[] = [
   {

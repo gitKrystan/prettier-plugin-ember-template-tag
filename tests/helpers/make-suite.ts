@@ -1,13 +1,14 @@
 import { describe, expect, test } from 'vitest';
-import type { Options } from '../../src/options';
+
+import type { Options } from '../../src/options.js';
 import {
   AMBIGUOUS_PLACEHOLDER,
   getAmbiguousCases,
   makeAmbiguousExpressionTest,
-} from './ambiguous';
-import type { TestCase } from './cases';
-import { getAllCases } from './cases';
-import { format } from './format';
+} from './ambiguous.js';
+import type { TestCase } from './cases.js';
+import { getAllCases } from './cases.js';
+import { format } from './format.js';
 
 export interface Config {
   name: string;

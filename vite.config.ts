@@ -1,3 +1,5 @@
+// @ts-expect-error https://github.com/vitejs/vite/issues/11552
+
 import { defineConfig } from 'vite';
 
 export default defineConfig({

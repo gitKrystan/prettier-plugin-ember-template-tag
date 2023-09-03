@@ -14,7 +14,8 @@ import {
   isNode,
   isTemplateLiteral,
 } from '@babel/types';
-import { TEMPLATE_TAG_PLACEHOLDER } from '../config';
+
+import { TEMPLATE_TAG_PLACEHOLDER } from '../config.js';
 
 /**
  * Before preprocess: n/a

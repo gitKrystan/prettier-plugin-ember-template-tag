@@ -1,5 +1,5 @@
 // @ts-expect-error FIXME: TS7016 Get ETI to export these + types
-import * as util from 'ember-template-imports/src/util';
+import * as util from 'ember-template-imports/src/util.js';
 
 export const PARSER_NAME = 'ember-template-tag';
 export const PRINTER_NAME = 'ember-template-tag-estree';
