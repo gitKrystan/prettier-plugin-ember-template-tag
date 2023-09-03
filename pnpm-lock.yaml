@@ -52,8 +52,8 @@ importers:
         specifier: ^6.5.0
         version: 6.5.0(eslint@8.48.0)(typescript@5.1.6)
       '@vitest/ui':
-        specifier: ^0.34.1
-        version: 0.34.1(vitest@0.34.3)
+        specifier: ^0.34.3
+        version: 0.34.3(vitest@0.34.3)
       concurrently:
         specifier: ^8.2.0
         version: 8.2.0
@@ -88,11 +88,11 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
       vite:
-        specifier: ^4.4.6
-        version: 4.4.6(@types/node@20.5.9)
+        specifier: ^4.4.9
+        version: 4.4.9(@types/node@20.5.9)
       vitest:
-        specifier: ^0.34.1
-        version: 0.34.3(@vitest/ui@0.34.1)
+        specifier: ^0.34.3
+        version: 0.34.3(@vitest/ui@0.34.3)
 
   examples:
     dependencies:
@@ -113,8 +113,8 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
       vite:
-        specifier: ^4.4.6
-        version: 4.4.6(@types/node@20.5.9)
+        specifier: ^4.4.9
+        version: 4.4.9(@types/node@20.5.9)
 
 packages:
 
@@ -1235,27 +1235,19 @@ packages:
       tinyspy: 2.1.1
     dev: true
 
-  /@vitest/ui@0.34.1(vitest@0.34.3):
-    resolution: {integrity: sha512-bwmkgMjDcMr3pg0UXLwfwZ/WI1fq2N+5DUisqHkY9bvnNRnpT6QiewtSS/VhmN61ixgNpSKbEGVboml2GLuxfA==}
+  /@vitest/ui@0.34.3(vitest@0.34.3):
+    resolution: {integrity: sha512-iNcOQ0xML9znOReiwpKJrTLSj5zFxmveD3VCxIJNqnsaMYpONSbSiiJLC1Y1dYlkmiHylp+ElNcUZYIMWdxRvA==}
     peerDependencies:
       vitest: '>=0.30.1 <1'
     dependencies:
-      '@vitest/utils': 0.34.1
+      '@vitest/utils': 0.34.3
       fast-glob: 3.3.1
       fflate: 0.8.0
       flatted: 3.2.7
       pathe: 1.1.1
       picocolors: 1.0.0
       sirv: 2.0.3
-      vitest: 0.34.3(@vitest/ui@0.34.1)
-    dev: true
-
-  /@vitest/utils@0.34.1:
-    resolution: {integrity: sha512-/ql9dsFi4iuEbiNcjNHQWXBum7aL8pyhxvfnD9gNtbjR9fUKAjxhj4AA3yfLXg6gJpMGGecvtF8Au2G9y3q47Q==}
-    dependencies:
-      diff-sequences: 29.4.3
-      loupe: 2.3.6
-      pretty-format: 29.6.1
+      vitest: 0.34.3(@vitest/ui@0.34.3)
     dev: true
 
   /@vitest/utils@0.34.3:
@@ -2642,7 +2634,7 @@ packages:
       '@typescript-eslint/utils': 6.5.0(eslint@8.48.0)(typescript@5.2.2)
       eslint: 8.48.0
       typescript: 5.2.2
-      vitest: 0.34.3(@vitest/ui@0.34.1)
+      vitest: 0.34.3(@vitest/ui@0.34.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5987,42 +5979,6 @@ packages:
       - terser
     dev: true
 
-  /vite@4.4.6(@types/node@20.5.9):
-    resolution: {integrity: sha512-EY6Mm8vJ++S3D4tNAckaZfw3JwG3wa794Vt70M6cNJ6NxT87yhq7EC8Rcap3ahyHdo8AhCmV9PTk+vG1HiYn1A==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      '@types/node': 20.5.9
-      esbuild: 0.18.16
-      postcss: 8.4.27
-      rollup: 3.28.0
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /vite@4.4.9(@types/node@20.5.9):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -6059,7 +6015,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest@0.34.3(@vitest/ui@0.34.1):
+  /vitest@0.34.3(@vitest/ui@0.34.3):
     resolution: {integrity: sha512-7+VA5Iw4S3USYk+qwPxHl8plCMhA5rtfwMjgoQXMT7rO5ldWcdsdo3U1QD289JgglGK4WeOzgoLTsGFu6VISyQ==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -6097,7 +6053,7 @@ packages:
       '@vitest/runner': 0.34.3
       '@vitest/snapshot': 0.34.3
       '@vitest/spy': 0.34.3
-      '@vitest/ui': 0.34.1(vitest@0.34.3)
+      '@vitest/ui': 0.34.3(vitest@0.34.3)
       '@vitest/utils': 0.34.3
       acorn: 8.10.0
       acorn-walk: 8.2.0
