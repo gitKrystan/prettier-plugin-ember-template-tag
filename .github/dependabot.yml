@@ -16,17 +16,3 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
-
-  - package-ecosystem: 'npm'
-    directory: '/tests'
-    schedule:
-      interval: 'weekly'
-    labels:
-      - 'internal'
-
-  - package-ecosystem: 'npm'
-    directory: '/examples'
-    schedule:
-      interval: 'weekly'
-    labels:
-      - 'internal'
