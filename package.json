@@ -32,7 +32,6 @@
     "build": "tsc && vite build",
     "preexample": "vite build",
     "example": "pnpm preexample && cd examples && pnpm example",
-    "example-ts": "pnpm preexample && cd examples && pnpm example-ts",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
     "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
     "lint:eslint": "eslint . --cache",

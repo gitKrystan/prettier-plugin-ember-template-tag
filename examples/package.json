@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "example": "pnpm exec prettier --write ./example.gjs",
-    "example-ts": "pnpm exec prettier --write ./example.gts"
+    "example": "pnpm exec prettier . --write"
   },
   "dependencies": {
     "prettier": "^3.0.3",
