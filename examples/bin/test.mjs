@@ -17,6 +17,7 @@ const newLine = () => console.log();
 const inputDir = './input';
 const expectedOutputDir = './expected-output';
 
+// NOTE: Run with `--debug` to get debug output (from both this script and prettier)
 const run = async () => {
   logDebug('Reading input directory...');
 
