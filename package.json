@@ -32,7 +32,6 @@
     "build": "tsc && vite build",
     "preexample": "vite build",
     "example": "pnpm preexample && cd examples && pnpm example",
-    "example-ts": "pnpm preexample && cd examples && pnpm example-ts",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
     "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
     "lint:eslint": "eslint . --cache",
@@ -43,8 +42,9 @@
     "release": "release-it",
     "release:ci": "release-it --ci",
     "release:debug": "release-it --verbose --dry-run",
-    "test:all": "concurrently \"pnpm:test:run\" \"pnpm:example\" \"pnpm:example-ts\"",
+    "test:all": "concurrently \"pnpm:test:run\" \"pnpm:test:example\"",
     "test": "vitest",
+    "test:example": "pnpm preexample && cd examples && pnpm test",
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
   },
