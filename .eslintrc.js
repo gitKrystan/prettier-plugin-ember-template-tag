@@ -30,13 +30,7 @@ module.exports = {
     ],
     '@typescript-eslint/consistent-type-assertions': 'error',
     '@typescript-eslint/consistent-type-definitions': 'error',
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      {
-        prefer: 'type-imports',
-        fixStyle: 'inline-type-imports',
-      },
-    ],
+    '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-function-return-type': [
       'error',
       { allowExpressions: true },
