@@ -1,11 +1,11 @@
-import { format as prettierFormat } from 'prettier';
+import { format as prettierFormat, type Plugin } from 'prettier';
 import { PARSER_NAME } from '../../src/config.js';
 import plugin from '../../src/main.js';
 import type { Options } from '../../src/options.js';
 
 const DEFAULT_OPTIONS: Partial<Options> = {
   parser: PARSER_NAME,
-  plugins: [plugin],
+  plugins: [plugin as Plugin],
 };
 
 /**
