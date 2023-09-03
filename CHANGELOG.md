@@ -11,6 +11,19 @@
 
 
 
+
+## v1.1.0 (2023-09-03)
+
+#### :bug: Bug Fix
+* [#125](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/125) Add more detail to languages array (possibly simplifying VSCode setup!) ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :house: Internal
+* [#124](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/124) Add acceptance testing and document passing `--plugin` flag to `prettier` in CLI ([@gitKrystan](https://github.com/gitKrystan))
+* Various dependency upgrades
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v1.0.2 (2023-08-09)
 
 #### :bug: Bug Fix
