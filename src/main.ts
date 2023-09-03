@@ -7,9 +7,20 @@ import { printer } from './print/index';
 
 const languages: SupportLanguage[] = [
   {
-    extensions: ['.gjs', '.gts'],
-    name: 'Ember Template Tag',
+    name: 'Ember Template Tag (gjs)',
+    aliases: ['gjs', 'glimmer-js'],
+    extensions: ['.gjs'],
+    vscodeLanguageIds: ['glimmer-js'],
     parsers: [PARSER_NAME],
+    group: 'JavaScript',
+  },
+  {
+    name: 'Ember Template Tag (gts)',
+    aliases: ['gts', 'glimmer-ts'],
+    extensions: ['.gts'],
+    vscodeLanguageIds: ['glimmer-ts'],
+    parsers: [PARSER_NAME],
+    group: 'TypeScript',
   },
 ];
 
