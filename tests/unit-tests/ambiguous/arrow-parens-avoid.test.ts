@@ -2,8 +2,8 @@ import { describe } from 'vitest';
 import {
   getAmbiguousCases,
   makeAmbiguousExpressionTest,
-} from '../../helpers/ambiguous';
-import { makeSuite } from '../../helpers/make-suite';
+} from '../../helpers/ambiguous.js';
+import { makeSuite } from '../../helpers/make-suite.js';
 
 describe('ambiguous', () => {
   makeSuite(

@@ -7,7 +7,7 @@ import {
   isRegExpLiteral,
   isUnaryExpression,
 } from '@babel/types';
-import type { Options } from '../options';
+import type { Options } from '../options.js';
 import {
   isGlimmerExportDefaultDeclaration,
   isGlimmerExportDefaultDeclarationTS,

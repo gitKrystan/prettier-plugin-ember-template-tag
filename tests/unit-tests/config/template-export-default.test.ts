@@ -1,4 +1,4 @@
-import { describeSuite } from '../../helpers/make-suite';
+import { describeSuite } from '../../helpers/make-suite.js';
 
 describeSuite({
   name: 'templateExportDefault: true',

@@ -14,7 +14,10 @@ import {
   isTSAsExpression,
   isTemplateLiteral,
 } from '@babel/types';
-import type { RawGlimmerArrayExpression, RawGlimmerClassProperty } from './raw';
+import type {
+  RawGlimmerArrayExpression,
+  RawGlimmerClassProperty,
+} from './raw.js';
 
 /**
  * A Template Literal with a tag indicating that it is actually a Glimmer

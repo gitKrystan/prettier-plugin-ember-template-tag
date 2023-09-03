@@ -10,9 +10,6 @@
     "isolatedModules": true,
     "noEmit": true,
 
-    // TODO: We should remove this and fix the resulting errors
-    "moduleResolution": "node",
-
     "paths": {
       "*": ["./@types/*"]
     }

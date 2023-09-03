@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import type { Options } from '../../src/options';
-import type { TestCase } from '../helpers/cases';
-import { getAllCases } from '../helpers/cases';
-import { format } from '../helpers/format';
-import type { Config } from './make-suite';
+import type { Options } from '../../src/options.js';
+import type { TestCase } from '../helpers/cases.js';
+import { getAllCases } from '../helpers/cases.js';
+import { format } from '../helpers/format.js';
+import type { Config } from './make-suite.js';
 
 /**
  * Add this comment to any test case and it will be replaced by the

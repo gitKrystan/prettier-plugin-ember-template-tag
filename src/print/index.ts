@@ -5,13 +5,13 @@ import type {
   Printer,
   doc,
 } from 'prettier';
-import { printers as estreePrinters } from 'prettier/plugins/estree';
+import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
   TEMPLATE_TAG_PLACEHOLDER,
 } from '../config';
-import type { Options } from '../options';
+import type { Options } from '../options.js';
 import {
   getGlimmerExpression,
   isGlimmerArrayExpression,
@@ -22,7 +22,7 @@ import {
   isGlimmerExpressionStatementTS,
   isGlimmerTemplateLiteral,
 } from '../types/glimmer';
-import { assert } from '../utils/index';
+import { assert } from '../utils/index.js';
 import {
   printTemplateContent,
   printTemplateLiteral,
