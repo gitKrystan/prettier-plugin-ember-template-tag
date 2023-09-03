@@ -1,4 +1,5 @@
 import type { doc } from 'prettier';
+
 import { isRecord } from '../utils/index.js';
 
 /** Type predicate */

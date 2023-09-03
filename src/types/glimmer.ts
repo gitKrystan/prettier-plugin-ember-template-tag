@@ -2,8 +2,8 @@ import type {
   ExportDefaultDeclaration,
   ExpressionStatement,
   Node,
-  TSAsExpression,
   TemplateLiteral,
+  TSAsExpression,
 } from '@babel/types';
 import {
   isArrayExpression,
@@ -11,9 +11,10 @@ import {
   isExportDefaultDeclaration,
   isExpressionStatement,
   isNode,
-  isTSAsExpression,
   isTemplateLiteral,
+  isTSAsExpression,
 } from '@babel/types';
+
 import type {
   RawGlimmerArrayExpression,
   RawGlimmerClassProperty,

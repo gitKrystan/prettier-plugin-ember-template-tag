@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest';
+
 import type { Options } from '../../src/options.js';
 import type { TestCase } from '../helpers/cases.js';
 import { getAllCases } from '../helpers/cases.js';

@@ -16,7 +16,7 @@ module.exports = {
     project: './tsconfig.lint.json',
     allowAutomaticSingleRunInference: true,
   },
-  plugins: ['@typescript-eslint', 'jsdoc', 'unicorn'],
+  plugins: ['@typescript-eslint', 'jsdoc', 'unicorn', 'simple-import-sort'],
   root: true,
   reportUnusedDisableDirectives: true,
   rules: {
@@ -70,6 +70,8 @@ module.exports = {
     'jsdoc/require-param': 'off',
     'jsdoc/require-param-type': 'off',
     'jsdoc/tag-lines': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     'unicorn/consistent-function-scoping': [
       'error',
       { checkArrowFunctions: false },

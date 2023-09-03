@@ -72,6 +72,9 @@ importers:
       eslint-plugin-n:
         specifier: ^16.0.2
         version: 16.0.2(eslint@8.48.0)
+      eslint-plugin-simple-import-sort:
+        specifier: ^10.0.0
+        version: 10.0.0(eslint@8.48.0)
       eslint-plugin-unicorn:
         specifier: ^48.0.1
         version: 48.0.1(eslint@8.48.0)
@@ -2534,6 +2537,14 @@ packages:
       minimatch: 3.1.2
       resolve: 1.22.2
       semver: 7.5.4
+    dev: true
+
+  /eslint-plugin-simple-import-sort@10.0.0(eslint@8.48.0):
+    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
+    peerDependencies:
+      eslint: '>=5.0.0'
+    dependencies:
+      eslint: 8.48.0
     dev: true
 
   /eslint-plugin-unicorn@48.0.1(eslint@8.48.0):

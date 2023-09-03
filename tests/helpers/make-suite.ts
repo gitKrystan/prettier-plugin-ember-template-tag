@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest';
+
 import type { Options } from '../../src/options.js';
 import {
   AMBIGUOUS_PLACEHOLDER,

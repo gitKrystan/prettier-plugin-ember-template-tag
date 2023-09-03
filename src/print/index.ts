@@ -1,11 +1,12 @@
 import type { Node } from '@babel/types';
 import type {
   AstPath,
+  doc,
   Options as PrettierOptions,
   Printer,
-  doc,
 } from 'prettier';
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
+
 import {
   TEMPLATE_TAG_CLOSE,
   TEMPLATE_TAG_OPEN,
