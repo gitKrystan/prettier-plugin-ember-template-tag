@@ -15,7 +15,7 @@ importers:
         specifier: ^0.84.3
         version: 0.84.3
       ember-cli-htmlbars:
-        specifier: ^6.2.0
+        specifier: ^6.3.0
         version: 6.3.0
       ember-template-imports:
         specifier: ^3.4.2
