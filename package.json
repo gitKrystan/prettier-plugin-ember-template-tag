@@ -49,14 +49,14 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@babel/core": "^7.22.11",
+    "@babel/core": "^7.23.2",
     "@glimmer/syntax": "^0.84.3",
     "ember-cli-htmlbars": "^6.3.0",
     "ember-template-imports": "^3.4.2",
     "prettier": "^3.0.3"
   },
   "devDependencies": {
-    "@babel/types": "^7.22.11",
+    "@babel/types": "^7.23.0",
     "@release-it-plugins/lerna-changelog": "^6.0.0",
     "@tsconfig/node16": "^16.1.1",
     "@tsconfig/strictest": "^2.0.2",
