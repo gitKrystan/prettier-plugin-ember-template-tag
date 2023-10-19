@@ -70,7 +70,7 @@ importers:
         specifier: ^46.8.2
         version: 46.8.2(eslint@8.51.0)
       eslint-plugin-n:
-        specifier: ^16.0.2
+        specifier: ^16.2.0
         version: 16.2.0(eslint@8.51.0)
       eslint-plugin-simple-import-sort:
         specifier: ^10.0.0
