@@ -6,16 +6,11 @@ import {
   isMemberExpression,
   isTaggedTemplateExpression,
 } from '@babel/types';
-import { getTemplateLocals } from '@glimmer/syntax';
-import { preprocessEmbeddedTemplates } from 'ember-template-imports/lib/preprocess-embedded-templates.js';
+import { Preprocessor } from 'content-tag';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
-import {
-  PRINTER_NAME,
-  TEMPLATE_TAG_NAME,
-  TEMPLATE_TAG_PLACEHOLDER,
-} from './config';
+import { PRINTER_NAME, TEMPLATE_TAG_PLACEHOLDER } from './config';
 import type { Options } from './options.js';
 import type {
   GlimmerExpressionExtra,
@@ -41,6 +36,7 @@ import { hasAmbiguousNextLine } from './utils/ambiguity.js';
 import { assert, squish } from './utils/index.js';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
+const p = new Preprocessor();
 
 const preprocess: Required<Parser<Node | undefined>>['preprocess'] = (
   text: string,
@@ -54,17 +50,7 @@ const preprocess: Required<Parser<Node | undefined>>['preprocess'] = (
     preprocessed = text;
   } else {
     options.__inputWasPreprocessed = false;
-    preprocessed = preprocessEmbeddedTemplates(text, {
-      getTemplateLocals,
-
-      templateTag: TEMPLATE_TAG_NAME,
-      templateTagReplacement: TEMPLATE_TAG_PLACEHOLDER,
-
-      includeSourceMaps: false,
-      includeTemplateTokens: false,
-
-      relativePath: options.filepath,
-    }).output;
+    preprocessed = p.process(text);
   }
 
   return desugarDefaultExportTemplates(preprocessed);
