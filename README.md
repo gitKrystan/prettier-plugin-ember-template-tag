@@ -53,9 +53,16 @@ Prettier 3.0.0 and above
 
    _If you already have a `"prettier"` section in `package.json`, remember that takes precedence over the `.prettierrc.js` file!_
 
-1. Run `npm prettier --write . --plugin prettier-plugin-ember-template-tag`
+1. Run prettier on your codebase
 
-   See <https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/113> and <https://github.com/prettier/prettier/issues/15351> for details on why using the `--plugin` flag is required here.
+   ```shell
+   # With prettier < 3.1
+   # See <https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/113> and <https://github.com/prettier/prettier/issues/15351> for details on why using the `--plugin` flag is required here.
+   npm prettier --write . --plugin prettier-plugin-ember-template-tag
+
+   # With prettier >= 3.1
+   npm prettier --write .
+   ```
 
 ## Opinions
 
