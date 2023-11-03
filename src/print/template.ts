@@ -1,4 +1,3 @@
-import type { TemplateLiteral } from '@babel/types';
 import type { Options as PrettierOptions } from 'prettier';
 import { doc } from 'prettier';
 
@@ -17,7 +16,7 @@ const {
  * NOTE: The contents are not surrounded with "`"
  */
 export async function printTemplateContent(
-  node: TemplateLiteral,
+  text: string,
   textToDoc: (
     text: string,
     // Don't use our `Options` here even though technically they are available
@@ -27,7 +26,6 @@ export async function printTemplateContent(
   ) => Promise<doc.builders.Doc>,
   options: Options,
 ): Promise<doc.builders.Doc> {
-  const text = node.quasis.map((quasi) => quasi.value.raw).join(' ');
   return await textToDoc(text.trim(), {
     ...options,
     parser: 'glimmer',
@@ -46,15 +44,23 @@ export async function printTemplateContent(
  */
 export function printTemplateTag(
   content: doc.builders.Doc,
-  useHardline: boolean,
+  options: {
+    exportDefault: boolean;
+    useHardline: boolean;
+    raw: boolean;
+  },
 ): doc.builders.Doc {
-  const line = useHardline ? hardline : softline;
-  return group([
+  const line = options.raw ? '' : options.useHardline ? hardline : softline;
+  const doc = [
     TEMPLATE_TAG_OPEN,
     indent([line, group(content)]),
     line,
     TEMPLATE_TAG_CLOSE,
-  ]);
+  ];
+  if (options.exportDefault) {
+    doc.splice(0, 0, 'export default ');
+  }
+  return [group(doc)];
 }
 
 /** Prints the given template content as a template literal. */

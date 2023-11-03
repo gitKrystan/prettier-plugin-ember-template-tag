@@ -5,7 +5,7 @@
   "scripts": {
     "example": "pnpm exec prettier . --write --plugin prettier-plugin-ember-template-tag",
     "example-debug": "pnpm exec prettier . --write --plugin prettier-plugin-ember-template-tag --log-level debug",
-    "test": "./bin/test.mjs"
+    "test": "node ./bin/test.mjs"
   },
   "dependencies": {
     "prettier": "^3.0.3",

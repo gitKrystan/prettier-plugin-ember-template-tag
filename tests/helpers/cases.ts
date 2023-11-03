@@ -26,7 +26,9 @@ export async function getCases(
       } else {
         const filename = path.join(directory.toString(), entry.name);
         const code = fs.readFileSync(filename, 'utf8');
-        const name = path.relative(baseDirectory.toString(), filename);
+        const name = path
+          .relative(baseDirectory.toString(), filename)
+          .replaceAll('\\', '/');
 
         return {
           name,

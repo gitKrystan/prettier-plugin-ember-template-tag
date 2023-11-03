@@ -1,206 +1,245 @@
-import type { NodePath } from '@babel/core';
 import { traverse } from '@babel/core';
-import type { Node, TemplateLiteral } from '@babel/types';
-import {
-  isBinaryExpression,
-  isMemberExpression,
-  isTaggedTemplateExpression,
-} from '@babel/types';
+import type { Node } from '@babel/types';
+import { type Comment } from '@babel/types';
 import { Preprocessor } from 'content-tag';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
-import { PRINTER_NAME, TEMPLATE_TAG_PLACEHOLDER } from './config';
+import { PRINTER_NAME } from './config';
 import type { Options } from './options.js';
-import type {
-  GlimmerExpressionExtra,
-  GlimmerTemplateExtra,
-} from './types/glimmer';
-import {
-  getGlimmerExpression,
-  isGlimmerClassProperty,
-  isGlimmerExportDefaultDeclaration,
-  isGlimmerExportDefaultDeclarationTS,
-} from './types/glimmer';
-import type {
-  RawGlimmerArrayExpression,
-  RawGlimmerClassProperty,
-} from './types/raw';
-import {
-  hasRawGlimmerArrayExpression,
-  isRawGlimmerArrayExpression,
-  isRawGlimmerCallExpression,
-  isRawGlimmerClassProperty,
-} from './types/raw';
-import { hasAmbiguousNextLine } from './utils/ambiguity.js';
-import { assert, squish } from './utils/index.js';
+import { assert } from './utils';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
 
-const preprocess: Required<Parser<Node | undefined>>['preprocess'] = (
-  text: string,
-  options: Options,
-) => {
-  let preprocessed: string;
-  if (text.includes(TEMPLATE_TAG_PLACEHOLDER)) {
-    // This happens when Prettier is being run via eslint + eslint-plugin-ember
-    // See https://github.com/ember-cli/eslint-plugin-ember/issues/1659
-    options.__inputWasPreprocessed = true;
-    preprocessed = text;
-  } else {
-    options.__inputWasPreprocessed = false;
-    preprocessed = p.process(text);
-  }
+interface Path {
+  node: Node;
+  parent: Node | null;
+  parentKey: string | null;
+  parentPath: Path | null;
+}
 
-  return desugarDefaultExportTemplates(preprocessed);
-};
+export interface TemplateNode {
+  type: 'FunctionDeclaration';
+  leadingComments: Comment[];
+  range: [number, number];
+  start: number;
+  end: number;
+  extra: {
+    isGlimmerTemplate: boolean;
+    isDefaultTemplate: boolean;
+    isAssignment: boolean;
+    isAlreadyExportDefault: boolean;
+    template: string;
+  };
+}
+
+interface PreprocessedResult {
+  templateVisitorKeys: Record<string, string[]>;
+  templateInfos: {
+    /** Range of the template including <template></template> tags */
+    templateRange: [number, number];
+    /** Range of the template content, excluding <template></template> tags */
+    range: [number, number];
+    ast: TemplateNode | undefined;
+  }[];
+}
+
+/** Traverses the AST and replaces the transformed template parts with other AST */
+function convertAst(
+  result: { ast: Node; code: string },
+  preprocessedResult: PreprocessedResult,
+): void {
+  const templateInfos = preprocessedResult.templateInfos;
+  let counter = 0;
+
+  traverse(result.ast, {
+    enter(path: Path) {
+      const node = path.node;
+      if (
+        node.type === 'ObjectExpression' ||
+        node.type === 'BlockStatement' ||
+        node.type === 'StaticBlock'
+      ) {
+        const range = node.range as [number, number];
+
+        const template = templateInfos.find(
+          (t) =>
+            (t.templateRange[0] === range[0] &&
+              t.templateRange[1] === range[1]) ||
+            (t.templateRange[0] === range[0] - 1 &&
+              t.templateRange[1] === range[1] + 1) ||
+            (t.templateRange[0] === range[0] &&
+              t.templateRange[1] === range[1] + 1),
+        );
+
+        if (!template) {
+          return null;
+        }
+        counter++;
+        const ast = template.ast as TemplateNode;
+        ast.extra.isAlreadyExportDefault =
+          path.parent?.type === 'ExportDefaultDeclaration' ||
+          path.parentPath?.parent?.type === 'ExportDefaultDeclaration';
+        ast.extra.isDefaultTemplate =
+          path.parent?.type === 'ExportDefaultDeclaration' ||
+          path.parent?.type === 'Program' ||
+          (path.parent?.type === 'ExpressionStatement' &&
+            path.parentPath?.parent?.type === 'Program') ||
+          (path.parent?.type === 'TSAsExpression' &&
+            path.parentPath?.parentPath?.parent?.type === 'Program') ||
+          path.parentPath?.parent?.type === 'ExportDefaultDeclaration';
+
+        ast.extra.isAssignment =
+          !ast.extra.isDefaultTemplate && node.type !== 'StaticBlock';
+
+        ast.leadingComments = node.leadingComments as Comment[];
+        Object.assign(node, ast);
+      }
+      return null;
+    },
+  });
+
+  if (counter !== templateInfos.length) {
+    throw new Error('failed to process all templates');
+  }
+}
+
+interface Info {
+  output: string;
+  templateInfos: {
+    type: 'expression' | 'class-member';
+    tagName: 'template';
+    contents: string;
+    range: {
+      start: number;
+      end: number;
+    };
+    contentRange: {
+      start: number;
+      end: number;
+    };
+    startRange: {
+      end: number;
+      start: number;
+    };
+    endRange: {
+      start: number;
+      end: number;
+    };
+  }[];
+}
+
+/**
+ * Preprocesses the template info, parsing the template content to Glimmer AST,
+ * fixing the offsets and locations of all nodes also calculates the block
+ * params locations & ranges and adding it to the info
+ */
+function preprocessGlimmerTemplates(
+  info: Info,
+  code: string,
+): PreprocessedResult {
+  const templateInfos = info.templateInfos.map((r) => ({
+    range: [r.contentRange.start, r.contentRange.end] as [number, number],
+    templateRange: [r.range.start, r.range.end] as [number, number],
+    ast: undefined as undefined | TemplateNode,
+  }));
+  const templateVisitorKeys = {};
+  for (const tpl of templateInfos) {
+    const range = tpl.range;
+    const template = code.slice(...range);
+    const ast: TemplateNode = {
+      type: 'FunctionDeclaration',
+      leadingComments: [],
+      range: [tpl.templateRange[0], tpl.templateRange[1]],
+      start: tpl.templateRange[0],
+      end: tpl.templateRange[1],
+      extra: {
+        isGlimmerTemplate: true,
+        isDefaultTemplate: false,
+        isAssignment: false,
+        isAlreadyExportDefault: false,
+        template,
+      },
+    };
+    tpl.ast = ast;
+  }
+  return {
+    templateVisitorKeys,
+    templateInfos,
+  };
+}
+
+function replaceRange(
+  s: string,
+  start: number,
+  end: number,
+  substitute: string,
+): string {
+  return s.slice(0, start) + substitute + s.slice(end);
+}
+
+function transformForPrettier(code: string): Info {
+  let jsCode = code;
+  const result = p.parse(code) as Info['templateInfos'];
+  for (const tplInfo of result.reverse()) {
+    const lineBreaks = [...tplInfo.contents].reduce(
+      (previous, current) => previous + (current === '\n' ? 1 : 0),
+      0,
+    );
+    if (tplInfo.type === 'class-member') {
+      const tplLength = tplInfo.range.end - tplInfo.range.start;
+      const spaces = tplLength - 'static{`'.length - '`}'.length - lineBreaks;
+      const total = ' '.repeat(spaces) + '\n'.repeat(lineBreaks);
+      const replacementCode = `static{\`${total}\`}`;
+      jsCode = replaceRange(
+        jsCode,
+        tplInfo.range.start,
+        tplInfo.range.end,
+        replacementCode,
+      );
+    } else {
+      const tplLength = tplInfo.range.end - tplInfo.range.start;
+      const nextWord = code.slice(tplInfo.range.end).match(/\S+/);
+      let prefix = '{';
+      let suffix = '}';
+      if (nextWord && nextWord[0] === 'as') {
+        prefix = '(' + prefix;
+        suffix = suffix + ')';
+      } else if (!nextWord || ![',', ')'].includes(nextWord[0][0] || '')) {
+        suffix += ';';
+      }
+      const spaces = tplLength - prefix.length - suffix.length - lineBreaks;
+      const total = ' '.repeat(spaces) + '\n'.repeat(lineBreaks);
+      const replacementCode = `${prefix}${total}${suffix}`;
+      jsCode = replaceRange(
+        jsCode,
+        tplInfo.range.start,
+        tplInfo.range.end,
+        replacementCode,
+      );
+    }
+  }
+  return {
+    templateInfos: result,
+    output: jsCode,
+  };
+}
 
 export const parser: Parser<Node | undefined> = {
   ...typescript,
   astFormat: PRINTER_NAME,
 
-  preprocess(text: string, options: Options): string {
-    const js = preprocess(text, options);
-    return typescript.preprocess?.(js, options) ?? js;
+  preprocess(text: string): string {
+    return text;
   },
 
-  async parse(text: string, options: Options): Promise<Node> {
-    const ast = await typescript.parse(text, options);
+  async parse(code: string, options: Options): Promise<Node> {
+    const info = transformForPrettier(code);
+    const ast = await typescript.parse(info.output, options);
+    const preprocessedResult = preprocessGlimmerTemplates(info, code);
     assert('expected ast', ast);
-    traverse(ast, {
-      enter: makeEnter(options),
-      exit: makeExit(),
-    });
+    convertAst({ ast, code }, preprocessedResult);
     return ast;
   },
 };
-
-function makeEnter(options: Options): (path: NodePath) => void {
-  return (path: NodePath) => {
-    const node = path.node;
-    const parentNode = path.parentPath?.node;
-
-    if (
-      parentNode &&
-      'property' in parentNode &&
-      isRawGlimmerCallExpression(parentNode.property)
-    ) {
-      throw new SyntaxError('Ember <template> tag used as an object property.');
-    } else if (
-      isBinaryExpression(node) &&
-      (hasRawGlimmerArrayExpression(node.left) ||
-        hasRawGlimmerArrayExpression(node.right))
-    ) {
-      throw new SyntaxError('Ember <template> tag used in binary expression.');
-    } else if (
-      isTaggedTemplateExpression(node) &&
-      hasRawGlimmerArrayExpression(node.tag)
-    ) {
-      throw new SyntaxError(
-        'Ember <template> tag used as tagged template expression.',
-      );
-    } else if (
-      isMemberExpression(node) &&
-      hasRawGlimmerArrayExpression(node.object)
-    ) {
-      throw new SyntaxError('Ember <template> tag used as member expression.');
-    }
-
-    if (isRawGlimmerArrayExpression(node)) {
-      tagGlimmerExpression(node, hasAmbiguousNextLine(path, options));
-      tagGlimmerTemplate(node.elements[0].arguments[0]);
-    } else if (isRawGlimmerClassProperty(node)) {
-      tagGlimmerExpression(node, hasAmbiguousNextLine(path, options));
-      tagGlimmerTemplate(node.key.arguments[0]);
-    }
-  };
-}
-
-function makeExit(): (path: NodePath) => void {
-  return ({ node }: NodePath) => {
-    if (
-      isGlimmerExportDefaultDeclaration(node) ||
-      isGlimmerExportDefaultDeclarationTS(node) ||
-      isGlimmerClassProperty(node)
-    ) {
-      getGlimmerExpression(node).extra.isDefaultTemplate = true;
-    }
-  };
-}
-
-function tagGlimmerExpression(
-  node: RawGlimmerArrayExpression | RawGlimmerClassProperty,
-  forceSemi: boolean,
-): void {
-  const extra: GlimmerExpressionExtra = {
-    isGlimmerTemplate: true,
-    forceSemi,
-  };
-  node.extra =
-    typeof node.extra === 'object' ? { ...node.extra, ...extra } : extra;
-}
-
-function tagGlimmerTemplate(node: TemplateLiteral): void {
-  const extra: GlimmerTemplateExtra = {
-    isGlimmerTemplate: true,
-  };
-  node.extra =
-    typeof node.extra === 'object' ? { ...node.extra, ...extra } : extra;
-}
-
-/**
- * Desugar template tag default exports because they parse as
- * ExpressionStatement, which has a bunch of irrelevant custom semicolon
- * handling in Prettier that is very difficult to undo. We can optionally
- * re-sugar on print. See `templateExportDefault` option.
- *
- * HACK: An attempt was made to do this via babel transforms but it destroyed
- * Prettier's newline preservation logic.
- */
-function desugarDefaultExportTemplates(preprocessed: string): string {
-  const placeholderOpen = `[${TEMPLATE_TAG_PLACEHOLDER}`; // intentionally missing ]
-
-  // (^|;)\s*(\()?\s*\[__GLIMMER_TEMPLATE
-  const sugaredDefaultExport = new RegExp(
-    `(^|;)\\s*(\\()?\\s*\\${placeholderOpen}`,
-  );
-  const desugaredDefaultExport = `$1 export default $2${placeholderOpen}`;
-
-  const lines = preprocessed.split(/\r?\n/);
-  const desugaredLines: string[] = [];
-  let previousLine = '';
-  let blockLevel = 0;
-
-  for (let line of lines) {
-    // HACK: This is pretty fragile as it will increment for, e.g., "{" which
-    // doesn't actually increment the block level IRL
-    const inc = (line.match(/{/g) ?? []).length;
-    blockLevel += inc;
-
-    const dec = (line.match(/}/g) ?? []).length;
-    blockLevel -= dec;
-
-    let squished = squish(line);
-
-    if (
-      !squished.endsWith('// prettier-ignore') &&
-      !squished.endsWith('/* prettier-ignore */') &&
-      previousLine !== '// prettier-ignore' &&
-      previousLine !== '/* prettier-ignore */' &&
-      !previousLine.endsWith('=') &&
-      blockLevel === 0
-    ) {
-      line = line.replace(sugaredDefaultExport, desugaredDefaultExport);
-      squished = squish(line);
-    }
-
-    desugaredLines.push(line);
-
-    if (squished.length > 0) {
-      previousLine = squished;
-    }
-  }
-
-  return desugaredLines.join('\r\n');
-}

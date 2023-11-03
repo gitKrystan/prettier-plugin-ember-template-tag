@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "prettier-plugin-ember-template-tag": "workspace:^",
-    "ember-template-imports": "^3.4.2"
+    "prettier-plugin-ember-template-tag": "workspace:^"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
