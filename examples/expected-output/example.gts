@@ -11,4 +11,4 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>
+</template> as TemplateOnlyComponent<Signature>;

@@ -26,7 +26,9 @@ A clear and concise description of what you expected to happen.
 ### 🌍 Environment
 
 - prettier-plugin-ember-template-tag version: -
-- ember-template-imports version: -
+- ember-template-imports version (if applicable): -
+- content-tag version (if applicable): -
+- eslint-plugin-ember version (if applicable): -
 
 ### ➕ Additional Context
 

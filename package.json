@@ -52,7 +52,6 @@
     "@babel/core": "^7.23.2",
     "@glimmer/syntax": "^0.84.3",
     "ember-cli-htmlbars": "^6.3.0",
-    "ember-template-imports": "^3.4.2",
     "prettier": "^3.0.3"
   },
   "devDependencies": {
@@ -67,6 +66,7 @@
     "@typescript-eslint/parser": "^6.8.0",
     "@vitest/ui": "^0.34.6",
     "concurrently": "^8.2.2",
+    "content-tag": "^1.1.2",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-eslint-comments": "^3.2.0",

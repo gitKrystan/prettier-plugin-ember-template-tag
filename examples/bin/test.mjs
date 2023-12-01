@@ -37,8 +37,9 @@ const run = async () => {
     }
     console.log('💅 Running Prettier...');
     const prettier = spawn(
-      'prettier',
+      'node',
       [
+        './node_modules/prettier/bin/prettier.cjs',
         '.',
         '--write',
         '--plugin',

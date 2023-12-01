@@ -1,3 +1,4 @@
+import { Preprocessor } from 'content-tag';
 import { describe, expect, test } from 'vitest';
 
 import type { Options } from '../../src/options.js';
@@ -11,6 +12,8 @@ import type { Config } from './make-suite.js';
  * `AMBIGUOUS_EXPRESSIONS` below in the test cases.
  */
 export const AMBIGUOUS_PLACEHOLDER = '/*AMBIGUOUS*/';
+
+const preprocessor = new Preprocessor();
 
 const AMBIGUOUS_EXPRESSIONS = [
   '(oops) => {}',
@@ -93,10 +96,13 @@ async function behavesLikeFormattedAmbiguousCase(
   try {
     const result = await format(code, formatOptions);
     expect(result).toMatchSnapshot();
+    preprocessor.parse(result);
   } catch (error: unknown) {
     // Some of the ambiguous cases are Syntax Errors when parsed
     const isSyntaxError =
-      error instanceof SyntaxError || String(error).startsWith('SyntaxError');
+      error instanceof SyntaxError ||
+      String(error).startsWith('SyntaxError') ||
+      String(error).startsWith('Error: Parse Error');
     if (!isSyntaxError) {
       throw error;
     }

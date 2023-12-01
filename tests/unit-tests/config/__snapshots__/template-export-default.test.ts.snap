@@ -381,7 +381,7 @@ export default <template>
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>
+</template> as TemplateOnlyComponent<Signature>;
 "
 `;
 
@@ -753,6 +753,6 @@ export interface Signature {
 
 export default <template>
   what
-</template> as TemplateOnlyComponent<Signature>
+</template> as TemplateOnlyComponent<Signature>;
 "
 `;
