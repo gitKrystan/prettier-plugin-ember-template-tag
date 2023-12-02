@@ -12,13 +12,6 @@ import { assert } from './utils';
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
 
-interface Path {
-  node: Node;
-  parent: Node | null;
-  parentKey: string | null;
-  parentPath: Path | null;
-}
-
 export interface TemplateNode {
   type: 'FunctionDeclaration';
   leadingComments: Comment[];
@@ -54,7 +47,7 @@ function convertAst(
   let counter = 0;
 
   traverse(result.ast, {
-    enter(path: Path) {
+    enter(path) {
       const node = path.node;
       if (
         node.type === 'ObjectExpression' ||
@@ -79,16 +72,16 @@ function convertAst(
         counter++;
         const ast = template.ast as TemplateNode;
         ast.extra.isAlreadyExportDefault =
-          path.parent?.type === 'ExportDefaultDeclaration' ||
-          path.parentPath?.parent?.type === 'ExportDefaultDeclaration';
+          path.parent.type === 'ExportDefaultDeclaration' ||
+          path.parentPath?.parent.type === 'ExportDefaultDeclaration';
         ast.extra.isDefaultTemplate =
-          path.parent?.type === 'ExportDefaultDeclaration' ||
-          path.parent?.type === 'Program' ||
-          (path.parent?.type === 'ExpressionStatement' &&
-            path.parentPath?.parent?.type === 'Program') ||
-          (path.parent?.type === 'TSAsExpression' &&
-            path.parentPath?.parentPath?.parent?.type === 'Program') ||
-          path.parentPath?.parent?.type === 'ExportDefaultDeclaration';
+          path.parent.type === 'ExportDefaultDeclaration' ||
+          path.parent.type === 'Program' ||
+          (path.parent.type === 'ExpressionStatement' &&
+            path.parentPath?.parent.type === 'Program') ||
+          (path.parent.type === 'TSAsExpression' &&
+            path.parentPath?.parentPath?.parent.type === 'Program') ||
+          path.parentPath?.parent.type === 'ExportDefaultDeclaration';
 
         ast.extra.isAssignment =
           !ast.extra.isDefaultTemplate && node.type !== 'StaticBlock';
