@@ -1,6 +1,10 @@
 import type { Node } from '@babel/types';
-import type { doc, Options as PrettierOptions, Printer } from 'prettier';
-import type { AstPath } from 'prettier';
+import type {
+  AstPath,
+  doc,
+  Options as PrettierOptions,
+  Printer,
+} from 'prettier';
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';

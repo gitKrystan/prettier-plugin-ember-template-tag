@@ -45,6 +45,7 @@ module.exports = {
     '@typescript-eslint/no-dynamic-delete': 'error',
     '@typescript-eslint/no-extra-semi': 'error',
     '@typescript-eslint/no-extraneous-class': 'error',
+    '@typescript-eslint/no-import-type-side-effects': 'error',
     '@typescript-eslint/no-inferrable-types': 'error',
     '@typescript-eslint/no-invalid-void-type': 'error',
     '@typescript-eslint/no-require-imports': 'error',
@@ -73,6 +74,7 @@ module.exports = {
     'jsdoc/tag-lines': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    'unicorn/consistent-destructuring': 'off',
     'unicorn/consistent-function-scoping': [
       'error',
       { checkArrowFunctions: false },

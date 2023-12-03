@@ -1,4 +1,5 @@
-import { type Comment } from '@babel/types';
+import type { NodePath } from '@babel/core';
+import type { Comment } from '@babel/types';
 
 /** The raw GlimmerTemplate node as parsed by the content-tag parser. */
 export interface RawGlimmerTemplate {
@@ -58,10 +59,33 @@ export interface GlimmerTemplate {
   end: number;
 
   extra: {
+    isGlimmerTemplate: true;
+    // FIXME: Is this actually used?
     isAlreadyExportDefault: boolean;
     isAssignment: boolean;
     isDefaultTemplate: boolean;
-    isGlimmerTemplate: boolean;
     template: string;
   };
+}
+
+/** Returns true if the GlimmerTemplate path is already a default export. */
+export function isAlreadyExportDefault(path: NodePath): boolean {
+  return (
+    path.parent.type === 'ExportDefaultDeclaration' ||
+    path.parentPath?.parent.type === 'ExportDefaultDeclaration'
+  );
+}
+
+// FIXME: Seems to overlap with isAlreadyExportDefault
+/** Returns true if the GlimmerTemplate path is already a default template. */
+export function isDefaultTemplate(path: NodePath): boolean {
+  return (
+    path.parent.type === 'ExportDefaultDeclaration' ||
+    path.parent.type === 'Program' ||
+    (path.parent.type === 'ExpressionStatement' &&
+      path.parentPath?.parent.type === 'Program') ||
+    (path.parent.type === 'TSAsExpression' &&
+      path.parentPath?.parentPath?.parent.type === 'Program') ||
+    path.parentPath?.parent.type === 'ExportDefaultDeclaration'
+  );
 }

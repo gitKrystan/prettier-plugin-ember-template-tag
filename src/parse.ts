@@ -1,6 +1,5 @@
 import { traverse } from '@babel/core';
-import type { Node } from '@babel/types';
-import { type Comment } from '@babel/types';
+import type { Comment, Node } from '@babel/types';
 import { Preprocessor } from 'content-tag';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/plugins/babel.js';
@@ -8,6 +7,7 @@ import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 import { PRINTER_NAME } from './config';
 import type { Options } from './options.js';
 import type { GlimmerTemplate, RawGlimmerTemplate } from './types/glimmer';
+import { isAlreadyExportDefault, isDefaultTemplate } from './types/glimmer';
 import { assert } from './utils';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
@@ -31,56 +31,48 @@ interface PreprocessedResult {
    */
   contentRange: readonly [start: number, end: number];
 
-  ast: GlimmerTemplate;
+  templateNode: GlimmerTemplate;
 }
 
 /** Traverses the AST and replaces the transformed template parts with other AST */
-function convertAst(
-  result: { ast: Node; code: string },
-  preprocessedResult: PreprocessedResult[],
-): void {
+function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
   let counter = 0;
 
-  traverse(result.ast, {
+  traverse(ast, {
     enter(path) {
-      const node = path.node;
+      const { node } = path;
       if (
         node.type === 'ObjectExpression' ||
         node.type === 'BlockStatement' ||
         node.type === 'StaticBlock'
       ) {
-        const range = node.range as [number, number];
+        const { range } = node;
+        assert('expected range', range);
 
-        const template = preprocessedResult.find(
-          (t) =>
-            (t.range[0] === range[0] && t.range[1] === range[1]) ||
-            (t.range[0] === range[0] - 1 && t.range[1] === range[1] + 1) ||
-            (t.range[0] === range[0] && t.range[1] === range[1] + 1),
+        const preprocessedTemplate = preprocessedResult.find(
+          (p) =>
+            (p.range[0] === range[0] && p.range[1] === range[1]) ||
+            (p.range[0] === range[0] - 1 && p.range[1] === range[1] + 1) ||
+            (p.range[0] === range[0] && p.range[1] === range[1] + 1),
         );
 
-        if (!template) {
+        if (!preprocessedTemplate) {
           return null;
         }
+
+        const { templateNode } = preprocessedTemplate;
+        templateNode.extra.isAlreadyExportDefault =
+          isAlreadyExportDefault(path);
+        templateNode.extra.isDefaultTemplate = isDefaultTemplate(path);
+
+        templateNode.extra.isAssignment =
+          !templateNode.extra.isDefaultTemplate && node.type !== 'StaticBlock';
+
+        templateNode.leadingComments = node.leadingComments as Comment[];
+
+        Object.assign(node, templateNode);
+
         counter++;
-        assert('expected ast on template', template.ast);
-        const { ast } = template;
-        ast.extra.isAlreadyExportDefault =
-          path.parent.type === 'ExportDefaultDeclaration' ||
-          path.parentPath?.parent.type === 'ExportDefaultDeclaration';
-        ast.extra.isDefaultTemplate =
-          path.parent.type === 'ExportDefaultDeclaration' ||
-          path.parent.type === 'Program' ||
-          (path.parent.type === 'ExpressionStatement' &&
-            path.parentPath?.parent.type === 'Program') ||
-          (path.parent.type === 'TSAsExpression' &&
-            path.parentPath?.parentPath?.parent.type === 'Program') ||
-          path.parentPath?.parent.type === 'ExportDefaultDeclaration';
-
-        ast.extra.isAssignment =
-          !ast.extra.isDefaultTemplate && node.type !== 'StaticBlock';
-
-        ast.leadingComments = node.leadingComments as Comment[];
-        Object.assign(node, ast);
       }
       return null;
     },
@@ -124,7 +116,7 @@ function preprocess(
     return {
       range,
       contentRange,
-      ast,
+      templateNode: ast,
     } satisfies PreprocessedResult;
   });
 }
@@ -195,7 +187,7 @@ export const parser: Parser<Node | undefined> = {
     const preprocessedResult = preprocess(prepared, code);
     const ast = await typescript.parse(prepared.output, options);
     assert('expected ast', ast);
-    convertAst({ ast, code }, preprocessedResult);
+    convertAst(ast, preprocessedResult);
     return ast;
   },
 };
