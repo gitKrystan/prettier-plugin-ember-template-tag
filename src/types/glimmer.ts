@@ -81,3 +81,29 @@ export function isDefaultTemplate(path: NodePath): boolean {
       path.parentPath?.parentPath?.parent.type === 'Program')
   );
 }
+
+/**
+ *
+ */
+export function getGlimmerTemplate(
+  node: Node | undefined,
+): GlimmerTemplate | null {
+  if (!node) return null;
+  if (isGlimmerTemplate(node)) {
+    return node;
+  }
+  if (
+    node.type === 'ExportDefaultDeclaration' &&
+    isGlimmerTemplate(node.declaration)
+  ) {
+    return node.declaration;
+  }
+  if (
+    node.type === 'ExportDefaultDeclaration' &&
+    node.declaration.type === 'TSAsExpression' &&
+    isGlimmerTemplate(node.declaration.expression)
+  ) {
+    return node.declaration.expression;
+  }
+  return null;
+}

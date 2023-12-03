@@ -8,87 +8,12 @@ import type {
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';
-import type { GlimmerTemplate } from '../types/glimmer';
-import { isGlimmerTemplate } from '../types/glimmer';
+import { getGlimmerTemplate, isGlimmerTemplate } from '../types/glimmer';
 import { assert } from '../utils';
+import { fixPreviousPrint, saveCurrentPrintOnSiblingNode } from './ambiguity';
 import { printTemplateContent, printTemplateTag } from './template';
 
 const estreePrinter = estreePrinters['estree'] as Printer<Node | undefined>;
-
-function getGlimmerTemplate(node: Node | undefined): GlimmerTemplate | null {
-  if (!node) return null;
-  if (isGlimmerTemplate(node)) {
-    return node;
-  }
-  if (
-    node.type === 'ExportDefaultDeclaration' &&
-    isGlimmerTemplate(node.declaration)
-  ) {
-    return node.declaration;
-  }
-  if (
-    node.type === 'ExportDefaultDeclaration' &&
-    node.declaration.type === 'TSAsExpression' &&
-    isGlimmerTemplate(node.declaration.expression)
-  ) {
-    return node.declaration.expression;
-  }
-  return null;
-}
-
-/** NOTE: This is highly specialized for use in `fixPreviousPrint` */
-function flattenDoc(doc: doc.builders.Doc): string[] {
-  if (Array.isArray(doc)) {
-    return doc.flatMap(flattenDoc);
-  } else if (typeof doc === 'string') {
-    return [doc];
-  } else if ('contents' in doc) {
-    return flattenDoc(doc.contents);
-  } else {
-    return [];
-  }
-}
-
-/**
- * Search next non EmptyStatement node and set current print, so we can fix it
- * later if its ambiguous
- */
-function saveCurrentPrintOnSiblingNode(
-  path: AstPath<Node | undefined>,
-  printed: doc.builders.Doc[],
-): void {
-  const { index, siblings } = path;
-  if (index !== null) {
-    const nextNode = siblings
-      ?.slice(index + 1)
-      .find((n) => n?.type !== 'EmptyStatement');
-    if (nextNode) {
-      nextNode.extra = nextNode.extra || {};
-      nextNode.extra['prevTemplatePrinted'] = printed;
-    }
-  }
-}
-
-/** HACK to fix ASI semi-colons. */
-function fixPreviousPrint(
-  previousTemplatePrinted: doc.builders.Doc[],
-  path: AstPath<Node | undefined>,
-  options: Options,
-  print: (path: AstPath<Node | undefined>) => doc.builders.Doc,
-  args: unknown,
-): void {
-  const printedSemiFalse = estreePrinter.print(
-    path,
-    { ...options, semi: false },
-    print,
-    args,
-  );
-  const flat = flattenDoc(printedSemiFalse);
-  const previousFlat = flattenDoc(previousTemplatePrinted);
-  if (flat[0]?.startsWith(';') && previousFlat.at(-1) !== ';') {
-    previousTemplatePrinted.push(';');
-  }
-}
 
 export const printer: Printer<Node | undefined> = {
   ...estreePrinter,
