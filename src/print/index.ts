@@ -160,8 +160,8 @@ export const printer: Printer<Node | undefined> = {
     }
 
     return async (textToDoc) => {
-      try {
-        if (node && isGlimmerTemplate(node)) {
+      if (node && isGlimmerTemplate(node)) {
+        try {
           const content = await printTemplateContent(
             node.extra.template,
             textToDoc,
@@ -174,11 +174,11 @@ export const printer: Printer<Node | undefined> = {
           );
           saveCurrentPrintOnSiblingNode(path, printed);
           return printed;
+        } catch {
+          const printed = [printRawText(path, embedOptions as Options)];
+          saveCurrentPrintOnSiblingNode(path, printed);
+          return printed;
         }
-      } catch {
-        const printed = [printRawText(path, embedOptions as Options)];
-        saveCurrentPrintOnSiblingNode(path, printed);
-        return printed;
       }
 
       // Nothing to embed, so move on to the regular printer.
@@ -194,10 +194,7 @@ export const printer: Printer<Node | undefined> = {
   hasPrettierIgnore: undefined,
 };
 
-/**
- * Remove the semicolons and empty strings that Prettier added so we can manage
- * them.
- */
+/** Remove the empty strings that Prettier added so we can manage them. */
 function trimPrinted(printed: doc.builders.Doc[]): void {
   while (docMatchesString(printed[0], '')) {
     printed.shift();
