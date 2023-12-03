@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -77,7 +77,7 @@ exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with new
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -266,9 +266,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:17: 10:18]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:17: 12:18]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -343,7 +343,7 @@ exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without 
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:17: 19:18]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -532,23 +532,23 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `[Error: Parse Error at <anon>:2:10: 2:12]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:14: 5:15]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `[Error: Parse Error at <anon>:2:20: 2:21]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:14: 5:15]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `[Error: Parse Error at <anon>:9:18: 9:19]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `[Error: Parse Error at <anon>:4:22: 4:24]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -569,7 +569,7 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `[Error: Parse Error at <anon>:14:14: 14:15]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -589,9 +589,9 @@ export const Exported = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `[Error: Parse Error at <anon>:2:20: 2:21]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `[Error: Parse Error at <anon>:14:14: 14:15]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -611,9 +611,9 @@ const Private = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `[Error: Parse Error at <anon>:20:18: 20:19]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `[Error: Parse Error at <anon>:20:18: 20:19]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -631,23 +631,23 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:3: 10:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:3: 12:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `[Error: Parse Error at <anon>:2:10: 2:12]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:14: 5:15]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `[Error: Parse Error at <anon>:1:39: 1:40]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:14: 5:15]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `[Error: Parse Error at <anon>:8:29: 8:30]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `[Error: Parse Error at <anon>:4:22: 4:24]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:3: 19:4]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -667,7 +667,7 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `[Error: Parse Error at <anon>:13:14: 13:15]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -686,9 +686,9 @@ export const Exported = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `[Error: Parse Error at <anon>:1:49: 1:50]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `[Error: Parse Error at <anon>:13:14: 13:15]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -707,9 +707,9 @@ const Private = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `[Error: Parse Error at <anon>:18:29: 18:30]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `[Error: Parse Error at <anon>:18:29: 18:30]`;
+exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -726,9 +726,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -803,7 +803,7 @@ exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newli
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -992,9 +992,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:17: 10:18]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:17: 12:18]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -1069,7 +1069,7 @@ exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without ne
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:17: 19:18]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1258,23 +1258,23 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `[Error: Parse Error at <anon>:2:8: 2:10]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:12: 5:13]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `[Error: Parse Error at <anon>:2:18: 2:19]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:12: 5:13]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `[Error: Parse Error at <anon>:9:16: 9:17]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `[Error: Parse Error at <anon>:4:20: 4:22]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1295,7 +1295,7 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `[Error: Parse Error at <anon>:14:12: 14:13]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1315,9 +1315,9 @@ export const Exported = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `[Error: Parse Error at <anon>:2:18: 2:19]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `[Error: Parse Error at <anon>:14:12: 14:13]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1337,9 +1337,9 @@ const Private = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `[Error: Parse Error at <anon>:20:16: 20:17]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `[Error: Parse Error at <anon>:20:16: 20:17]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1357,23 +1357,23 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:3: 10:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:3: 12:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `[Error: Parse Error at <anon>:2:8: 2:10]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:12: 5:13]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `[Error: Parse Error at <anon>:1:37: 1:38]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:12: 5:13]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `[Error: Parse Error at <anon>:8:27: 8:28]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `[Error: Parse Error at <anon>:4:20: 4:22]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:3: 19:4]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1393,7 +1393,7 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `[Error: Parse Error at <anon>:13:12: 13:13]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1412,9 +1412,9 @@ export const Exported = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `[Error: Parse Error at <anon>:1:47: 1:48]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `[Error: Parse Error at <anon>:13:12: 13:13]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1433,9 +1433,9 @@ const Private = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `[Error: Parse Error at <anon>:18:27: 18:28]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `[Error: Parse Error at <anon>:18:27: 18:28]`;
+exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > (oops) => {} > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1452,9 +1452,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -1529,7 +1529,7 @@ exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > 
 "
 `;
 
-exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1718,9 +1718,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:17: 10:18]`;
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:17: 12:18]`;
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -1795,7 +1795,7 @@ exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline
 "
 `;
 
-exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:17: 19:18]`;
+exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -1984,9 +1984,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -2059,7 +2059,7 @@ exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline
 "
 `;
 
-exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -2241,9 +2241,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:3: 10:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:3: 12:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -2316,7 +2316,7 @@ exports[`ambiguous > config > semi: false > +"oops" > without semi, without newl
 "
 `;
 
-exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:3: 19:4]`;
+exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -2490,9 +2490,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -2567,7 +2567,7 @@ exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > i
 "
 `;
 
-exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > /oops/ > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -2756,9 +2756,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:17: 10:18]`;
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:17: 12:18]`;
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -2833,7 +2833,7 @@ exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline 
 "
 `;
 
-exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:17: 19:18]`;
+exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > /oops/ > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -3022,77 +3022,77 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `[Error: Parse Error at <anon>:2:6: 2:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:6: 5:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `[Error: Parse Error at <anon>:2:12: 2:13]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `[Error: Parse Error at <anon>:7:1: 7:6]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `[Error: Parse Error at <anon>:11:1: 11:6]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `[Error: Parse Error at <anon>:4:18: 4:19]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `[Error: Parse Error at <anon>:13:6: 13:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `[Error: Parse Error at <anon>:14:6: 14:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `[Error: Parse Error at <anon>:14:6: 14:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `[Error: Parse Error at <anon>:2:12: 2:13]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `[Error: Parse Error at <anon>:14:6: 14:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `[Error: Parse Error at <anon>:14:6: 14:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `[Error: Parse Error at <anon>:22:5: 22:10]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `[Error: Parse Error at <anon>:23:1: 23:6]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `[Error: Parse Error at <anon>:15:18: 15:19]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:3: 10:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:3: 12:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `[Error: Parse Error at <anon>:2:6: 2:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `[Error: Parse Error at <anon>:5:6: 5:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `[Error: Parse Error at <anon>:1:31: 1:32]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `[Error: Parse Error at <anon>:7:1: 7:6]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `[Error: Parse Error at <anon>:10:1: 10:6]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `[Error: Parse Error at <anon>:4:18: 4:19]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:3: 19:4]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `[Error: Parse Error at <anon>:12:6: 12:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `[Error: Parse Error at <anon>:13:6: 13:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `[Error: Parse Error at <anon>:13:6: 13:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `[Error: Parse Error at <anon>:1:41: 1:42]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `[Error: Parse Error at <anon>:13:6: 13:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `[Error: Parse Error at <anon>:13:6: 13:7]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `[Error: Parse Error at <anon>:20:5: 20:10]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `[Error: Parse Error at <anon>:21:1: 21:6]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `[Error: Parse Error at <anon>:14:18: 14:19]`;
+exports[`ambiguous > config > semi: false > /oops/ > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `
 "import Component from \\"@glimmer/component\\"
@@ -4216,11 +4216,7 @@ exports[`ambiguous > config > semi: false > <template>oops</template> > without 
 "
 `;
 
-exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
-[SyntaxError: Unterminated regular expression. (1:42)
-[0m[31m[1m>[22m[39m[90m 1 |[39m       [36mconst[39m num [33m=[39m [35m1[39m      [33m<[39m[33mtemplate[39m[33m>[39moops[33m<[39m[33m/[39m[33mtemplate[39m[33m>[39m[0m
-[0m [90m   |[39m                                          [31m[1m^[22m[39m[0m]
-`;
+exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
 "const Private = <template>
@@ -4239,16 +4235,7 @@ const What = <template>Hi</template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `
-[SyntaxError: Unterminated regular expression. (8:32)
-[0m [90m  6 |[39m   [33mSecond[39m module variable template[33m.[39m[0m
-[0m [90m  7 |[39m [33m<[39m[33m/[39m[33mtemplate[39m[33m>[39m[33m,[39m[0m
-[0m[31m[1m>[22m[39m[90m  8 |[39m     num [33m=[39m [35m1[39m    [33m<[39m[33mtemplate[39m[33m>[39moops[33m<[39m[33m/[39m[33mtemplate[39m[33m>[39m[0m
-[0m [90m    |[39m                                [31m[1m^[22m[39m[0m
-[0m [90m  9 |[39m[0m
-[0m [90m 10 |[39m [36mconst[39m bool [33m=[39m [36mfalse[39m[33m,[39m [33mModVar3[39m [33m=[39m[33m<[39m[33mtemplate[39m[33m>[39m[0m
-[0m [90m 11 |[39m[0m]
-`;
+exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
 "<template>
@@ -4341,11 +4328,7 @@ export const Exported = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
-[SyntaxError: Unterminated regular expression. (1:52)
-[0m[31m[1m>[22m[39m[90m 1 |[39m       [36mconst[39m num[33m:[39m   number [33m=[39m [35m1[39m      [33m<[39m[33mtemplate[39m[33m>[39moops[33m<[39m[33m/[39m[33mtemplate[39m[33m>[39m[0m
-[0m [90m   |[39m                                                    [31m[1m^[22m[39m[0m]
-`;
+exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -4385,27 +4368,9 @@ const Private = <template>
 "
 `;
 
-exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
-[SyntaxError: Unterminated regular expression. (18:32)
-[0m [90m 16 |[39m   [33mSecond[39m module variable template[33m.[39m[0m
-[0m [90m 17 |[39m [33m<[39m[33m/[39m[33mtemplate[39m[33m>[39m[33m,[39m[0m
-[0m[31m[1m>[22m[39m[90m 18 |[39m     num [33m=[39m [35m1[39m    [33m<[39m[33mtemplate[39m[33m>[39moops[33m<[39m[33m/[39m[33mtemplate[39m[33m>[39m[0m
-[0m [90m    |[39m                                [31m[1m^[22m[39m[0m
-[0m [90m 19 |[39m[0m
-[0m [90m 20 |[39m     [36mconst[39m bool[33m:[39m boolean [33m=[39m [36mfalse[39m[33m,[39m [33mModVar3[39m[33m:[39m [33mTemplateOnlyComponent[39m[33m<[39m[33mSignature[39m[33m>[39m  [33m=[39m [33m<[39m[33mtemplate[39m[33m>[39m[0m
-[0m [90m 21 |[39m[0m]
-`;
+exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
-[SyntaxError: Unterminated regular expression. (18:32)
-[0m [90m 16 |[39m   [33mSecond[39m module variable template[33m.[39m[0m
-[0m [90m 17 |[39m [33m<[39m[33m/[39m[33mtemplate[39m[33m>[39m [36mas[39m [33mTemplateOnlyComponent[39m[33m<[39m[33mSignature[39m[33m>[39m[33m,[39m[0m
-[0m[31m[1m>[22m[39m[90m 18 |[39m     num [33m=[39m [35m1[39m    [33m<[39m[33mtemplate[39m[33m>[39moops[33m<[39m[33m/[39m[33mtemplate[39m[33m>[39m[0m
-[0m [90m    |[39m                                [31m[1m^[22m[39m[0m
-[0m [90m 19 |[39m[0m
-[0m [90m 20 |[39m[0m
-[0m [90m 21 |[39m [36mconst[39m bool[33m:[39m boolean [33m=[39m [36mfalse[39m[33m,[39m [33mModVar3[39m  [33m=[39m [33m<[39m[33mtemplate[39m[33m>[39m[0m]
-`;
+exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -5675,9 +5640,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -5752,7 +5717,7 @@ exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline >
 "
 `;
 
-exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > \`oops\` > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -5941,9 +5906,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:17: 10:18]`;
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:17: 12:18]`;
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -6018,7 +5983,7 @@ exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newlin
 "
 `;
 
-exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:17: 19:18]`;
+exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > \`oops\` > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -6207,9 +6172,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -6282,7 +6247,7 @@ exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newlin
 "
 `;
 
-exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > \`oops\` > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -6468,9 +6433,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > \`oops\` > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:3: 10:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > \`oops\` > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:3: 12:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > \`oops\` > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -6543,7 +6508,7 @@ exports[`ambiguous > config > semi: false > \`oops\` > without semi, without new
 "
 `;
 
-exports[`ambiguous > config > semi: false > \`oops\` > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:3: 19:4]`;
+exports[`ambiguous > config > semi: false > \`oops\` > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > \`oops\` > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -6721,9 +6686,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -6798,7 +6763,7 @@ exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > 
 "
 `;
 
-exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -6987,9 +6952,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:17: 10:18]`;
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:17: 12:18]`;
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -7064,7 +7029,7 @@ exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline
 "
 `;
 
-exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:17: 19:18]`;
+exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -7253,9 +7218,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:11:3: 11:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:13:3: 13:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -7328,7 +7293,7 @@ exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline
 "
 `;
 
-exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:20:3: 20:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
@@ -7510,9 +7475,9 @@ export interface Signature {
 "
 `;
 
-exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `[Error: Parse Error at <anon>:10:3: 10:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
 
-exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `[Error: Parse Error at <anon>:12:3: 12:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -7585,7 +7550,7 @@ exports[`ambiguous > config > semi: false > -"oops" > without semi, without newl
 "
 `;
 
-exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `[Error: Parse Error at <anon>:19:3: 19:4]`;
+exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
