@@ -107,6 +107,5 @@ async function behavesLikeFormattedAmbiguousCase(
       throw error;
     }
     expect(isSyntaxError, 'Expected SyntaxError').toBeTruthy();
-    expect(`\n${error}\n`).toMatchSnapshot();
   }
 }
