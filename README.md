@@ -56,12 +56,12 @@ Prettier 3.0.0 and above
 1. Run prettier on your codebase
 
    ```shell
+   # With prettier >= 3.1
+   npm prettier --write .
+
    # With prettier < 3.1
    # See <https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/113> and <https://github.com/prettier/prettier/issues/15351> for details on why using the `--plugin` flag is required here.
    npm prettier --write . --plugin prettier-plugin-ember-template-tag
-
-   # With prettier >= 3.1
-   npm prettier --write .
    ```
 
 ## Opinions
