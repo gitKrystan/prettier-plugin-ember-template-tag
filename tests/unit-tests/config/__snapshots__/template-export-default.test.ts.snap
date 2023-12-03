@@ -118,7 +118,7 @@ exports[`config > templateExportDefault: true > it formats ../cases/gjs/exported
 `;
 
 exports[`config > templateExportDefault: true > it formats ../cases/gjs/invalid-template.gjs 1`] = `
-"export default <template>
+"<template>
               {{#if oops}}
             </template>
 "
@@ -255,7 +255,7 @@ exports[`config > templateExportDefault: true > it formats ../cases/gjs/prettier
 `;
 
 exports[`config > templateExportDefault: true > it formats ../cases/gjs/simple.gjs 1`] = `
-"export default <template>
+"<template>
   what
 </template>
 "
@@ -751,7 +751,7 @@ export interface Signature {
   Yields: [];
 }
 
-export default <template>
+<template>
   what
 </template> as TemplateOnlyComponent<Signature>;
 "

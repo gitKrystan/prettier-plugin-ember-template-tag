@@ -44,22 +44,15 @@ export async function printTemplateContent(
  */
 export function printTemplateTag(
   content: doc.builders.Doc,
-  options: {
-    exportDefault: boolean;
-    useHardline: boolean;
-    raw: boolean;
-  },
-): doc.builders.Doc {
-  const line = options.raw ? '' : options.useHardline ? hardline : softline;
+  useHardline: boolean,
+): doc.builders.Doc[] {
+  const line = useHardline ? hardline : softline;
   const doc = [
     TEMPLATE_TAG_OPEN,
     indent([line, group(content)]),
     line,
     TEMPLATE_TAG_CLOSE,
   ];
-  if (options.exportDefault) {
-    doc.splice(0, 0, 'export default ');
-  }
   return [group(doc)];
 }
 

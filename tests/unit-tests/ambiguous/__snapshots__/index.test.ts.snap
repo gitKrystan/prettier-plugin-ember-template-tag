@@ -1,5 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`ambiguous > config > default > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -72,6 +76,8 @@ exports[`ambiguous > config > default > (oh, no) => {} > with semi, with newline
 (oh, no) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -260,6 +266,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -332,6 +342,8 @@ exports[`ambiguous > config > default > (oh, no) => {} > with semi, without newl
 (oh, no) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -520,6 +532,24 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
@@ -539,6 +569,8 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
@@ -556,6 +588,10 @@ export const Exported = <template>
 (oh, no) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -575,6 +611,10 @@ const Private = <template>
 "
 `;
 
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
@@ -590,6 +630,24 @@ export interface Signature {
 (oh, no) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -609,6 +667,8 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 export interface Signature {
@@ -625,6 +685,10 @@ export const Exported = <template>
 (oh, no) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -643,6 +707,10 @@ const Private = <template>
 "
 `;
 
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 export interface Signature {
@@ -657,6 +725,10 @@ export interface Signature {
 (oh, no) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oops) => {} > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oops) => {} > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -730,6 +802,8 @@ exports[`ambiguous > config > default > (oops) => {} > with semi, with newline >
 (oops) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oops) => {} > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oops) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -918,6 +992,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > (oops) => {} > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oops) => {} > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -990,6 +1068,8 @@ exports[`ambiguous > config > default > (oops) => {} > with semi, without newlin
 (oops) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oops) => {} > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oops) => {} > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -1178,6 +1258,24 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
@@ -1197,6 +1295,8 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
@@ -1214,6 +1314,10 @@ export const Exported = <template>
 (oops) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -1233,6 +1337,10 @@ const Private = <template>
 "
 `;
 
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oops) => {} > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 
@@ -1248,6 +1356,24 @@ export interface Signature {
 (oops) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -1267,6 +1393,8 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 export interface Signature {
@@ -1283,6 +1411,10 @@ export const Exported = <template>
 (oops) => {};
 "
 `;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -1301,6 +1433,10 @@ const Private = <template>
 "
 `;
 
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > (oops) => {} > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 export interface Signature {
@@ -1315,6 +1451,10 @@ export interface Signature {
 (oops) => {};
 "
 `;
+
+exports[`ambiguous > config > default > +"oops" > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > +"oops" > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > +"oops" > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
@@ -1388,6 +1528,8 @@ exports[`ambiguous > config > default > +"oops" > with semi, with newline > it f
 +\\"oops\\";
 "
 `;
+
+exports[`ambiguous > config > default > +"oops" > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > +"oops" > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -1576,6 +1718,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > +"oops" > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > +"oops" > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > +"oops" > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -1648,6 +1794,8 @@ exports[`ambiguous > config > default > +"oops" > with semi, without newline > i
 +\\"oops\\";
 "
 `;
+
+exports[`ambiguous > config > default > +"oops" > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > +"oops" > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -1836,6 +1984,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -1906,6 +2058,8 @@ exports[`ambiguous > config > default > +"oops" > without semi, with newline > i
 +\\"oops\\";
 "
 `;
+
+exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -2087,6 +2241,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -2157,6 +2315,8 @@ exports[`ambiguous > config > default > +"oops" > without semi, without newline 
 +\\"oops\\";
 "
 `;
+
+exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -2330,6 +2490,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > /oops/ > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > /oops/ > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -2402,6 +2566,8 @@ exports[`ambiguous > config > default > /oops/ > with semi, with newline > it fo
 /oops/;
 "
 `;
+
+exports[`ambiguous > config > default > /oops/ > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > /oops/ > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -2590,6 +2756,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > /oops/ > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > /oops/ > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -2662,6 +2832,8 @@ exports[`ambiguous > config > default > /oops/ > with semi, without newline > it
 /oops/;
 "
 `;
+
+exports[`ambiguous > config > default > /oops/ > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > /oops/ > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -2850,6 +3022,78 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > /oops/ > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > <template>oops</template> > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `
 "import Component from \\"@glimmer/component\\";
 
@@ -2861,9 +3105,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -2881,9 +3123,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -2996,9 +3236,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3223,9 +3461,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3243,9 +3479,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3356,9 +3590,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3582,9 +3814,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3602,9 +3832,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3717,9 +3945,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3943,9 +4169,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3962,9 +4186,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3994,6 +4216,8 @@ exports[`ambiguous > config > default > <template>oops</template> > without semi
 "
 `;
 
+exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
 "const Private = <template>
   Private variable template. Private variable template. Private variable
@@ -4010,6 +4234,8 @@ const What = <template>Hi</template>;
 </template>
 "
 `;
+
+exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
 "<template>
@@ -4039,9 +4265,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -4104,6 +4328,8 @@ export const Exported = <template>
 "
 `;
 
+exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
 export interface Signature {
@@ -4141,6 +4367,10 @@ const Private = <template>
 </template>
 "
 `;
+
+exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -5410,6 +5640,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > \`oops\` > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > \`oops\` > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > \`oops\` > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -5482,6 +5716,8 @@ exports[`ambiguous > config > default > \`oops\` > with semi, with newline > it 
 \`oops\`;
 "
 `;
+
+exports[`ambiguous > config > default > \`oops\` > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > \`oops\` > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -5670,6 +5906,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > \`oops\` > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > \`oops\` > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > \`oops\` > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -5742,6 +5982,8 @@ exports[`ambiguous > config > default > \`oops\` > with semi, without newline > 
 \`oops\`;
 "
 `;
+
+exports[`ambiguous > config > default > \`oops\` > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > \`oops\` > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -5930,6 +6172,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > \`oops\` > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > \`oops\` > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > \`oops\` > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -6000,6 +6246,8 @@ exports[`ambiguous > config > default > \`oops\` > without semi, with newline > 
 \`oops\`;
 "
 `;
+
+exports[`ambiguous > config > default > \`oops\` > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > \`oops\` > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -6185,6 +6433,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > \`oops\` > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > \`oops\` > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > \`oops\` > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -6255,6 +6507,8 @@ exports[`ambiguous > config > default > \`oops\` > without semi, without newline
 \`oops\`;
 "
 `;
+
+exports[`ambiguous > config > default > \`oops\` > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > \`oops\` > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -6432,6 +6686,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > -"oops" > with semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > -"oops" > with semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > -"oops" > with semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -6504,6 +6762,8 @@ exports[`ambiguous > config > default > -"oops" > with semi, with newline > it f
 -\\"oops\\";
 "
 `;
+
+exports[`ambiguous > config > default > -"oops" > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > -"oops" > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -6692,6 +6952,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > -"oops" > with semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > -"oops" > with semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > -"oops" > with semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -6764,6 +7028,8 @@ exports[`ambiguous > config > default > -"oops" > with semi, without newline > i
 -\\"oops\\";
 "
 `;
+
+exports[`ambiguous > config > default > -"oops" > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > -"oops" > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -6952,6 +7218,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -7022,6 +7292,8 @@ exports[`ambiguous > config > default > -"oops" > without semi, with newline > i
 -\\"oops\\";
 "
 `;
+
+exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
@@ -7203,6 +7475,10 @@ export interface Signature {
 "
 `;
 
+exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gjs/component-class.gjs 1`] = `"Syntax Error"`;
+
+exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
+
 exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
 "<template>
   Explicit default export module top level component. Explicit default export
@@ -7273,6 +7549,8 @@ exports[`ambiguous > config > default > -"oops" > without semi, without newline 
 -\\"oops\\";
 "
 `;
+
+exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
 "import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";

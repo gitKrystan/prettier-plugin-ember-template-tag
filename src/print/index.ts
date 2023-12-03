@@ -1,98 +1,25 @@
 import type { Node } from '@babel/types';
-import type { doc, Options as PrettierOptions, Printer } from 'prettier';
-import type { AstPath } from 'prettier';
+import type {
+  AstPath,
+  doc,
+  Options as PrettierOptions,
+  Printer,
+} from 'prettier';
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';
-import type { TemplateNode } from '../parse';
+import { getGlimmerTemplate, isGlimmerTemplate } from '../types/glimmer';
 import { assert } from '../utils';
+import { fixPreviousPrint, saveCurrentPrintOnSiblingNode } from './ambiguity';
 import { printTemplateContent, printTemplateTag } from './template';
 
 const estreePrinter = estreePrinters['estree'] as Printer<Node | undefined>;
-
-function getGlimmerExpression(node: Node | undefined): Node | null {
-  if (!node) return null;
-  if (node.extra?.['isGlimmerTemplate']) {
-    return node;
-  }
-  if (
-    node.type === 'ExportDefaultDeclaration' &&
-    node.declaration.extra?.['isGlimmerTemplate']
-  ) {
-    return node.declaration;
-  }
-  if (
-    node.type === 'ExportDefaultDeclaration' &&
-    node.declaration.type === 'TSAsExpression' &&
-    node.declaration.expression.extra?.['isGlimmerTemplate']
-  ) {
-    return node.declaration.expression;
-  }
-  return null;
-}
-
-function flattenDoc(doc: doc.builders.Doc): string[] {
-  const array = (doc as unknown as doc.builders.Group).contents || doc;
-  if (!Array.isArray(array)) return array as unknown as string[];
-  return array.flatMap((x) =>
-    (x as doc.builders.Group).contents
-      ? flattenDoc((x as doc.builders.Group).contents)
-      : Array.isArray(x)
-      ? flattenDoc(x)
-      : x,
-  ) as string[];
-}
-
-/**
- * Search next non EmptyStatement node and set current print, so we can fix it
- * later if its ambiguous
- */
-function saveCurrentPrintOnSiblingNode(
-  path: AstPath<Node | undefined>,
-  printed: doc.builders.Doc,
-): void {
-  const { index, siblings } = path;
-  if (index !== null) {
-    const nextNode = siblings
-      ?.slice(index + 1)
-      .find((n) => n?.type !== 'EmptyStatement');
-    if (nextNode) {
-      nextNode.extra = nextNode.extra || {};
-      nextNode.extra['prevTemplatePrinted'] = printed;
-    }
-  }
-}
-
-function fixPreviousPrint(
-  path: AstPath<Node | undefined>,
-  options: Options,
-  print: (path: AstPath<Node | undefined>) => doc.builders.Doc,
-  args: unknown,
-): void {
-  const printedSemiFalse = estreePrinter.print(
-    path,
-    { ...options, semi: false },
-    print,
-    args,
-  );
-  const flat = flattenDoc(printedSemiFalse);
-  const previousTemplatePrinted = path.node?.extra?.[
-    'prevTemplatePrinted'
-  ] as string[];
-  const previousFlat = flattenDoc(previousTemplatePrinted);
-  if (flat[0]?.startsWith(';') && previousFlat.at(-1) !== ';') {
-    previousTemplatePrinted.push(';');
-  }
-}
 
 export const printer: Printer<Node | undefined> = {
   ...estreePrinter,
 
   getVisitorKeys(node, nonTraversableKeys) {
-    if (node === undefined) {
-      return [];
-    }
-    if (node.extra?.['isGlimmerTemplate']) {
+    if (!node || isGlimmerTemplate(node)) {
       return [];
     }
     return estreePrinter.getVisitorKeys?.(node, nonTraversableKeys) || [];
@@ -106,7 +33,7 @@ export const printer: Printer<Node | undefined> = {
   ) {
     const { node } = path;
     const hasPrettierIgnore = checkPrettierIgnore(path);
-    if (getGlimmerExpression(node)) {
+    if (getGlimmerTemplate(node)) {
       if (hasPrettierIgnore) {
         return printRawText(path, options);
       } else {
@@ -114,21 +41,32 @@ export const printer: Printer<Node | undefined> = {
         assert('Expected Glimmer doc to be an array', Array.isArray(printed));
         trimPrinted(printed);
 
+        // Always remove export default so we start with a blank slate
         if (
-          !options.templateExportDefault &&
           docMatchesString(printed[0], 'export') &&
           docMatchesString(printed[1], 'default')
         ) {
           printed = printed.slice(2);
           trimPrinted(printed);
         }
+
+        if (options.templateExportDefault) {
+          printed.unshift('export ', 'default ');
+        }
+
         saveCurrentPrintOnSiblingNode(path, printed);
         return printed;
       }
     }
 
     if (options.semi && node?.extra?.['prevTemplatePrinted']) {
-      fixPreviousPrint(path, options, print, args);
+      fixPreviousPrint(
+        node.extra['prevTemplatePrinted'] as doc.builders.Doc[],
+        path,
+        options,
+        print,
+        args,
+      );
     }
 
     return hasPrettierIgnore
@@ -141,68 +79,40 @@ export const printer: Printer<Node | undefined> = {
     const { node } = path;
 
     const hasPrettierIgnore = checkPrettierIgnore(path);
-    const options = { ...embedOptions } as Options;
 
     if (hasPrettierIgnore) {
       return printRawText(path, embedOptions as Options);
     }
 
     return async (textToDoc) => {
-      try {
-        if (node?.extra?.['isGlimmerTemplate'] && node.extra['template']) {
-          let content = null;
-          let raw = false;
-          try {
-            content = await printTemplateContent(
-              node.extra['template'] as string,
-              textToDoc,
-              embedOptions as Options,
-            );
-          } catch {
-            content = node.extra['template'] as string;
-            raw = true;
-          }
-          const extra = node.extra as TemplateNode['extra'];
-          const { isDefaultTemplate, isAssignment, isAlreadyExportDefault } =
-            extra;
-          const useHardline = !isAssignment || isDefaultTemplate || false;
-          const shouldExportDefault =
-            (!isAlreadyExportDefault &&
-              isDefaultTemplate &&
-              options.templateExportDefault) ||
-            false;
-          const printed = printTemplateTag(content, {
-            exportDefault: shouldExportDefault,
-            useHardline,
-            raw,
-          });
+      if (node && isGlimmerTemplate(node)) {
+        try {
+          const content = await printTemplateContent(
+            node.extra.template,
+            textToDoc,
+            embedOptions as Options,
+          );
+
+          const printed = printTemplateTag(
+            content,
+            node.extra.isDefaultTemplate,
+          );
+          saveCurrentPrintOnSiblingNode(path, printed);
+          return printed;
+        } catch {
+          const printed = [printRawText(path, embedOptions as Options)];
           saveCurrentPrintOnSiblingNode(path, printed);
           return printed;
         }
-      } catch (error) {
-        console.log(error);
-        const printed = [printRawText(path, embedOptions as Options)];
-        saveCurrentPrintOnSiblingNode(path, printed);
-        return printed;
       }
 
       // Nothing to embed, so move on to the regular printer.
       return;
     };
   },
-
-  /**
-   * Turn off any built-in prettier-ignore handling because it will skip
-   * embedding, which will print `[__GLIMMER_TEMPLATE(...)]` instead of
-   * `<template>...</template>`.
-   */
-  hasPrettierIgnore: undefined,
 };
 
-/**
- * Remove the semicolons and empty strings that Prettier added so we can manage
- * them.
- */
+/** Remove the empty strings that Prettier added so we can manage them. */
 function trimPrinted(printed: doc.builders.Doc[]): void {
   while (docMatchesString(printed[0], '')) {
     printed.shift();
