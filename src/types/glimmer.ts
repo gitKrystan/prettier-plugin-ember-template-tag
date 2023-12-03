@@ -41,6 +41,24 @@ export interface RawGlimmerTemplate {
   };
 }
 
+export interface GlimmerTemplateInfo {
+  /**
+   * Range of the contents, inclusive of inclusive of the
+   * `<template></template>` tags.
+   */
+  range: [start: number, end: number];
+
+  /** Beginning of the range, before the opening `<template>` tag. */
+  start: number;
+
+  /** End of the range, after the closing `</template>` tag. */
+  end: number;
+
+  extra: {
+    template: string;
+  };
+}
+
 export interface GlimmerTemplate {
   type: 'FunctionDeclaration';
 

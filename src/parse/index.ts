@@ -1,12 +1,18 @@
+import type { NodePath } from '@babel/core';
 import { traverse } from '@babel/core';
-import type { Comment, Node } from '@babel/types';
+import type {
+  BlockStatement,
+  Node,
+  ObjectExpression,
+  StaticBlock,
+} from '@babel/types';
 import { Preprocessor } from 'content-tag';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
 import { PRINTER_NAME } from '../config';
 import type { Options } from '../options.js';
-import type { GlimmerTemplate, RawGlimmerTemplate } from '../types/glimmer';
+import type { GlimmerTemplateInfo, RawGlimmerTemplate } from '../types/glimmer';
 import { isDefaultTemplate } from '../types/glimmer';
 import { assert } from '../utils';
 import { normalizeWhitespace } from './whitespace';
@@ -26,7 +32,22 @@ interface PreprocessedResult {
    */
   range: { start: number; end: number };
 
-  templateNode: GlimmerTemplate;
+  templateInfo: GlimmerTemplateInfo;
+}
+
+/** Converts a node into a GlimmerTemplate node */
+function convertNode(
+  path: NodePath,
+  node: BlockStatement | ObjectExpression | StaticBlock,
+  templateInfo: GlimmerTemplateInfo,
+): void {
+  Object.assign(node, templateInfo, {
+    type: 'FunctionDeclaration',
+    extra: Object.assign(node.extra ?? {}, templateInfo.extra, {
+      isGlimmerTemplate: true,
+      isDefaultTemplate: isDefaultTemplate(path),
+    }),
+  });
 }
 
 /** Traverses the AST and replaces the transformed template parts with other AST */
@@ -56,12 +77,7 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
           return null;
         }
 
-        const { templateNode } = preprocessedTemplate;
-        templateNode.extra.isDefaultTemplate = isDefaultTemplate(path);
-
-        templateNode.leadingComments = node.leadingComments as Comment[];
-
-        Object.assign(node, templateNode);
+        convertNode(path, node, preprocessedTemplate.templateInfo);
 
         counter++;
       }
@@ -90,21 +106,17 @@ function preprocess(code: string): Preprocessed {
       templateNode.contentRange.start,
       templateNode.contentRange.end,
     );
-    const ast: GlimmerTemplate = {
-      type: 'FunctionDeclaration',
-      leadingComments: [],
+    const templateInfo: GlimmerTemplateInfo = {
       range: [templateNode.range.start, templateNode.range.end],
       start: templateNode.range.start,
       end: templateNode.range.end,
       extra: {
-        isGlimmerTemplate: true,
-        isDefaultTemplate: false,
         template,
       },
     };
     results.push({
       range: templateNode.range,
-      templateNode: ast,
+      templateInfo,
     } satisfies PreprocessedResult);
   }
 
