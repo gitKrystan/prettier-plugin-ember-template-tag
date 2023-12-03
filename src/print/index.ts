@@ -157,23 +157,16 @@ export const printer: Printer<Node | undefined> = {
     return async (textToDoc) => {
       try {
         if (node && isGlimmerTemplate(node)) {
-          let content = null;
-          let raw = false;
-          try {
-            content = await printTemplateContent(
-              node.extra.template,
-              textToDoc,
-              embedOptions as Options,
-            );
-          } catch {
-            content = node.extra.template;
-            raw = true;
-          }
+          const content = await printTemplateContent(
+            node.extra.template,
+            textToDoc,
+            embedOptions as Options,
+          );
 
-          const printed = printTemplateTag(content, {
-            useHardline: node.extra.isDefaultTemplate,
-            raw,
-          });
+          const printed = printTemplateTag(
+            content,
+            node.extra.isDefaultTemplate,
+          );
           saveCurrentPrintOnSiblingNode(path, printed);
           return printed;
         }
