@@ -66,8 +66,7 @@ export interface GlimmerTemplate {
 }
 
 /** Returns true if the node is a GlimmerTemplate. */
-// @ts-expect-error FIXME:
-export function isGlimmerTemplate(node: Node): node is GlimmerTemplate {
+export function isGlimmerTemplate(node: Node): node is Node & GlimmerTemplate {
   return node.extra?.['isGlimmerTemplate'] === true;
 }
 
@@ -82,9 +81,7 @@ export function isDefaultTemplate(path: NodePath): boolean {
   );
 }
 
-/**
- *
- */
+/** Extracts GlimmerTemplate from node. */
 export function getGlimmerTemplate(
   node: Node | undefined,
 ): GlimmerTemplate | null {

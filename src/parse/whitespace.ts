@@ -14,6 +14,7 @@ function replaceRange(
   );
 }
 
+/** Hacks to normalize whitespace. */
 export function normalizeWhitespace(
   templateNode: RawGlimmerTemplate,
   originalCode: string,
