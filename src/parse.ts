@@ -14,7 +14,7 @@ const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
 
 interface Preprocessed {
-  output: string;
+  code: string;
   results: PreprocessedResult[];
 }
 
@@ -78,19 +78,6 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
   }
 }
 
-function replaceRange(
-  s: string,
-  start: number,
-  end: number,
-  substitute: string,
-): string {
-  return s.slice(0, start) + substitute + s.slice(end);
-}
-
-const STATIC_OPEN = 'static{`';
-const STATIC_CLOSE = '`}';
-const NEWLINE = '\n';
-
 /**
  * Pre-processes the template info, parsing the template content to Glimmer AST,
  * fixing the offsets and locations of all nodes also calculates the block
@@ -101,39 +88,7 @@ function preprocess(code: string): Preprocessed {
   const results: PreprocessedResult[] = [];
   let output = code;
   for (const templateNode of templateNodes.reverse()) {
-    let prefix: string;
-    let suffix: string;
-    if (templateNode.type === 'class-member') {
-      prefix = STATIC_OPEN;
-      suffix = STATIC_CLOSE;
-    } else {
-      const nextWord = code.slice(templateNode.range.end).match(/\S+/);
-      prefix = '{';
-      suffix = '}';
-      if (nextWord && nextWord[0] === 'as') {
-        prefix = '(' + prefix;
-        suffix = suffix + ')';
-      } else if (!nextWord || ![',', ')'].includes(nextWord[0][0] || '')) {
-        suffix += ';';
-      }
-    }
-
-    const lineBreakCount = [...templateNode.contents].reduce(
-      (sum, currentContents) => sum + (currentContents === NEWLINE ? 1 : 0),
-      0,
-    );
-    const totalLength = templateNode.range.end - templateNode.range.start;
-    const spaces = totalLength - prefix.length - suffix.length - lineBreakCount;
-    const content = ' '.repeat(spaces) + NEWLINE.repeat(lineBreakCount);
-
-    output = replaceRange(
-      output,
-      templateNode.range.start,
-      templateNode.range.end,
-      `${prefix}${content}${suffix}`,
-    );
-
-    // FIXME: Look for code duplication, opportunities for cleanup, etc.
+    output = normalizeWhitespace(templateNode, code, output);
 
     const contentRange = [
       templateNode.contentRange.start,
@@ -160,7 +115,59 @@ function preprocess(code: string): Preprocessed {
     } satisfies PreprocessedResult);
   }
 
-  return { results, output };
+  return { results, code: output };
+}
+
+function replaceRange(
+  original: string,
+  range: { start: number; end: number },
+  substitute: string,
+): string {
+  return (
+    original.slice(0, range.start) + substitute + original.slice(range.end)
+  );
+}
+
+const STATIC_OPEN = 'static{`';
+const STATIC_CLOSE = '`}';
+const NEWLINE = '\n';
+
+function normalizeWhitespace(
+  templateNode: RawGlimmerTemplate,
+  originalCode: string,
+  currentCode: string,
+): string {
+  let prefix: string;
+  let suffix: string;
+
+  if (templateNode.type === 'class-member') {
+    prefix = STATIC_OPEN;
+    suffix = STATIC_CLOSE;
+  } else {
+    const nextWord = originalCode.slice(templateNode.range.end).match(/\S+/);
+    prefix = '{';
+    suffix = '}';
+    if (nextWord && nextWord[0] === 'as') {
+      prefix = '(' + prefix;
+      suffix = suffix + ')';
+    } else if (!nextWord || ![',', ')'].includes(nextWord[0][0] || '')) {
+      suffix += ';';
+    }
+  }
+
+  const lineBreakCount = [...templateNode.contents].reduce(
+    (sum, currentContents) => sum + (currentContents === NEWLINE ? 1 : 0),
+    0,
+  );
+  const totalLength = templateNode.range.end - templateNode.range.start;
+  const spaces = totalLength - prefix.length - suffix.length - lineBreakCount;
+  const content = ' '.repeat(spaces) + NEWLINE.repeat(lineBreakCount);
+
+  return replaceRange(
+    currentCode,
+    templateNode.range,
+    `${prefix}${content}${suffix}`,
+  );
 }
 
 export const parser: Parser<Node | undefined> = {
@@ -169,7 +176,7 @@ export const parser: Parser<Node | undefined> = {
 
   async parse(code: string, options: Options): Promise<Node> {
     const preprocessed = preprocess(code);
-    const ast = await typescript.parse(preprocessed.output, options);
+    const ast = await typescript.parse(preprocessed.code, options);
     assert('expected ast', ast);
     convertAst(ast, preprocessed.results);
     return ast;
