@@ -35,16 +35,17 @@ function getGlimmerTemplate(node: Node | undefined): GlimmerTemplate | null {
   return null;
 }
 
+/** NOTE: This is highly specialized for use in `fixPreviousPrint` */
 function flattenDoc(doc: doc.builders.Doc): string[] {
-  const array = (doc as unknown as doc.builders.Group).contents || doc;
-  if (!Array.isArray(array)) return array as unknown as string[];
-  return array.flatMap((x) =>
-    (x as doc.builders.Group).contents
-      ? flattenDoc((x as doc.builders.Group).contents)
-      : Array.isArray(x)
-      ? flattenDoc(x)
-      : x,
-  ) as string[];
+  if (Array.isArray(doc)) {
+    return doc.flatMap(flattenDoc);
+  } else if (typeof doc === 'string') {
+    return [doc];
+  } else if ('contents' in doc) {
+    return flattenDoc(doc.contents);
+  } else {
+    return [];
+  }
 }
 
 /**
