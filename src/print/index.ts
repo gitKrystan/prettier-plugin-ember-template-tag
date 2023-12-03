@@ -110,13 +110,6 @@ export const printer: Printer<Node | undefined> = {
       return;
     };
   },
-
-  /**
-   * Turn off any built-in prettier-ignore handling because it will skip
-   * embedding, which will print the preprocessed template instead of
-   * `<template>...</template>`.
-   */
-  hasPrettierIgnore: undefined,
 };
 
 /** Remove the empty strings that Prettier added so we can manage them. */
