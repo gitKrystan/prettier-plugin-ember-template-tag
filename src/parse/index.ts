@@ -4,11 +4,11 @@ import { Preprocessor } from 'content-tag';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
-import { PRINTER_NAME } from './config';
-import type { Options } from './options.js';
-import type { GlimmerTemplate, RawGlimmerTemplate } from './types/glimmer';
-import { isDefaultTemplate } from './types/glimmer';
-import { assert } from './utils';
+import { PRINTER_NAME } from '../config';
+import type { Options } from '../options.js';
+import type { GlimmerTemplate, RawGlimmerTemplate } from '../types/glimmer';
+import { isDefaultTemplate } from '../types/glimmer';
+import { assert } from '../utils';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
