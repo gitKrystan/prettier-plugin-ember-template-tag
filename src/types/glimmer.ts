@@ -72,16 +72,13 @@ export function isGlimmerTemplate(node: Node): node is GlimmerTemplate {
   return node.extra?.['isGlimmerTemplate'] === true;
 }
 
-// FIXME: Seems to overlap with isAlreadyExportDefault
 /** Returns true if the GlimmerTemplate path is already a default template. */
 export function isDefaultTemplate(path: NodePath): boolean {
   return (
-    path.parent.type === 'ExportDefaultDeclaration' ||
+    // Top level `<template></template>`
     path.parent.type === 'Program' ||
-    (path.parent.type === 'ExpressionStatement' &&
-      path.parentPath?.parent.type === 'Program') ||
+    // Top level `<template></template> as TemplateOnlyComponent<Signature>`
     (path.parent.type === 'TSAsExpression' &&
-      path.parentPath?.parentPath?.parent.type === 'Program') ||
-    path.parentPath?.parent.type === 'ExportDefaultDeclaration'
+      path.parentPath?.parentPath?.parent.type === 'Program')
   );
 }
