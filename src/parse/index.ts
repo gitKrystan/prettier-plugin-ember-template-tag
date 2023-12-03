@@ -88,7 +88,7 @@ function preprocess(code: string): Preprocessed {
   const templateNodes = p.parse(code) as RawGlimmerTemplate[];
   const results: PreprocessedResult[] = [];
   let output = code;
-  for (const templateNode of templateNodes.reverse()) {
+  for (const templateNode of templateNodes) {
     output = normalizeWhitespace(templateNode, code, output);
 
     const contentRange = [
