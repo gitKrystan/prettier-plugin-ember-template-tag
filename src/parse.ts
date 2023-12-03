@@ -7,7 +7,7 @@ import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 import { PRINTER_NAME } from './config';
 import type { Options } from './options.js';
 import type { GlimmerTemplate, RawGlimmerTemplate } from './types/glimmer';
-import { isAlreadyExportDefault, isDefaultTemplate } from './types/glimmer';
+import { isDefaultTemplate } from './types/glimmer';
 import { assert } from './utils';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
@@ -61,10 +61,7 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
         }
 
         const { templateNode } = preprocessedTemplate;
-        templateNode.extra.isAlreadyExportDefault =
-          isAlreadyExportDefault(path);
         templateNode.extra.isDefaultTemplate = isDefaultTemplate(path);
-
         templateNode.extra.isAssignment =
           !templateNode.extra.isDefaultTemplate && node.type !== 'StaticBlock';
 
@@ -109,7 +106,6 @@ function preprocess(
         isGlimmerTemplate: true,
         isDefaultTemplate: false,
         isAssignment: false,
-        isAlreadyExportDefault: false,
         template,
       },
     };

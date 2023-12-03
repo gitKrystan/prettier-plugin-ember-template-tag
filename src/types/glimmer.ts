@@ -1,5 +1,5 @@
 import type { NodePath } from '@babel/core';
-import { is, type Comment, type Node } from '@babel/types';
+import type { Comment, Node } from '@babel/types';
 
 /** The raw GlimmerTemplate node as parsed by the content-tag parser. */
 export interface RawGlimmerTemplate {
@@ -60,25 +60,16 @@ export interface GlimmerTemplate {
 
   extra: {
     isGlimmerTemplate: true;
-    // FIXME: Is this actually used?
-    isAlreadyExportDefault: boolean;
     isAssignment: boolean;
     isDefaultTemplate: boolean;
     template: string;
   };
 }
 
+/** Returns true if the node is a GlimmerTemplate. */
 // @ts-expect-error FIXME:
 export function isGlimmerTemplate(node: Node): node is GlimmerTemplate {
   return node.extra?.['isGlimmerTemplate'] === true;
-}
-
-/** Returns true if the GlimmerTemplate path is already a default export. */
-export function isAlreadyExportDefault(path: NodePath): boolean {
-  return (
-    path.parent.type === 'ExportDefaultDeclaration' ||
-    path.parentPath?.parent.type === 'ExportDefaultDeclaration'
-  );
 }
 
 // FIXME: Seems to overlap with isAlreadyExportDefault

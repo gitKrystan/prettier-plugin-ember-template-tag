@@ -8,7 +8,8 @@ import type {
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';
-import { GlimmerTemplate, isGlimmerTemplate } from '../types/glimmer';
+import type { GlimmerTemplate } from '../types/glimmer';
+import { isGlimmerTemplate } from '../types/glimmer';
 import { assert } from '../utils';
 import { printTemplateContent, printTemplateTag } from './template';
 
@@ -116,14 +117,19 @@ export const printer: Printer<Node | undefined> = {
         assert('Expected Glimmer doc to be an array', Array.isArray(printed));
         trimPrinted(printed);
 
+        // Always remove export default so we start with a blank slate
         if (
-          !options.templateExportDefault &&
           docMatchesString(printed[0], 'export') &&
           docMatchesString(printed[1], 'default')
         ) {
           printed = printed.slice(2);
           trimPrinted(printed);
         }
+
+        if (options.templateExportDefault) {
+          printed.unshift('export ', 'default ');
+        }
+
         saveCurrentPrintOnSiblingNode(path, printed);
         return printed;
       }
@@ -143,7 +149,6 @@ export const printer: Printer<Node | undefined> = {
     const { node } = path;
 
     const hasPrettierIgnore = checkPrettierIgnore(path);
-    const options = { ...embedOptions } as Options;
 
     if (hasPrettierIgnore) {
       return printRawText(path, embedOptions as Options);
@@ -165,22 +170,17 @@ export const printer: Printer<Node | undefined> = {
             raw = true;
           }
           const {
-            extra: { isDefaultTemplate, isAssignment, isAlreadyExportDefault },
+            extra: { isDefaultTemplate, isAssignment },
           } = node;
           const useHardline = !isAssignment || isDefaultTemplate;
-          const shouldExportDefault =
-            !isAlreadyExportDefault &&
-            isDefaultTemplate &&
-            (options.templateExportDefault ?? false);
           const printed = printTemplateTag(content, {
-            exportDefault: shouldExportDefault,
             useHardline,
             raw,
           });
           saveCurrentPrintOnSiblingNode(path, printed);
           return printed;
         }
-      } catch (error) {
+      } catch {
         const printed = [printRawText(path, embedOptions as Options)];
         saveCurrentPrintOnSiblingNode(path, printed);
         return printed;

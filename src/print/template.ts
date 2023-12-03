@@ -45,7 +45,6 @@ export async function printTemplateContent(
 export function printTemplateTag(
   content: doc.builders.Doc,
   options: {
-    exportDefault: boolean;
     useHardline: boolean;
     raw: boolean;
   },
@@ -57,9 +56,6 @@ export function printTemplateTag(
     line,
     TEMPLATE_TAG_CLOSE,
   ];
-  if (options.exportDefault) {
-    doc.splice(0, 0, 'export default ');
-  }
   return [group(doc)];
 }
 
