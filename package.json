@@ -49,17 +49,17 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.23.5",
     "@glimmer/syntax": "^0.84.3",
     "ember-cli-htmlbars": "^6.3.0",
     "prettier": "^3.0.3"
   },
   "devDependencies": {
-    "@babel/types": "^7.23.0",
+    "@babel/types": "^7.23.5",
     "@release-it-plugins/lerna-changelog": "^6.0.0",
     "@tsconfig/node16": "^16.1.1",
     "@tsconfig/strictest": "^2.0.2",
-    "@types/babel__core": "^7.20.3",
+    "@types/babel__core": "^7.20.5",
     "@types/eslint": "^8.44.6",
     "@types/node": "^20.8.7",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
