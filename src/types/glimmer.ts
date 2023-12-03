@@ -1,5 +1,5 @@
 import type { NodePath } from '@babel/core';
-import type { Comment } from '@babel/types';
+import { is, type Comment, type Node } from '@babel/types';
 
 /** The raw GlimmerTemplate node as parsed by the content-tag parser. */
 export interface RawGlimmerTemplate {
@@ -66,6 +66,11 @@ export interface GlimmerTemplate {
     isDefaultTemplate: boolean;
     template: string;
   };
+}
+
+// @ts-expect-error FIXME:
+export function isGlimmerTemplate(node: Node): node is GlimmerTemplate {
+  return node.extra?.['isGlimmerTemplate'] === true;
 }
 
 /** Returns true if the GlimmerTemplate path is already a default export. */

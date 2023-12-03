@@ -8,7 +8,7 @@ import type {
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';
-import type { GlimmerTemplate } from '../types/glimmer';
+import { isGlimmerTemplate } from '../types/glimmer';
 import { assert } from '../utils';
 import { printTemplateContent, printTemplateTag } from './template';
 
@@ -153,28 +153,27 @@ export const printer: Printer<Node | undefined> = {
 
     return async (textToDoc) => {
       try {
-        if (node?.extra?.['isGlimmerTemplate'] && node.extra['template']) {
+        if (node && isGlimmerTemplate(node)) {
           let content = null;
           let raw = false;
           try {
             content = await printTemplateContent(
-              node.extra['template'] as string,
+              node.extra.template,
               textToDoc,
               embedOptions as Options,
             );
           } catch {
-            content = node.extra['template'] as string;
+            content = node.extra.template;
             raw = true;
           }
-          const extra = node.extra as GlimmerTemplate['extra'];
-          const { isDefaultTemplate, isAssignment, isAlreadyExportDefault } =
-            extra;
-          const useHardline = !isAssignment || isDefaultTemplate || false;
+          const {
+            extra: { isDefaultTemplate, isAssignment, isAlreadyExportDefault },
+          } = node;
+          const useHardline = !isAssignment || isDefaultTemplate;
           const shouldExportDefault =
-            (!isAlreadyExportDefault &&
-              isDefaultTemplate &&
-              options.templateExportDefault) ||
-            false;
+            !isAlreadyExportDefault &&
+            isDefaultTemplate &&
+            (options.templateExportDefault ?? false);
           const printed = printTemplateTag(content, {
             exportDefault: shouldExportDefault,
             useHardline,
@@ -184,7 +183,6 @@ export const printer: Printer<Node | undefined> = {
           return printed;
         }
       } catch (error) {
-        console.log(error);
         const printed = [printRawText(path, embedOptions as Options)];
         saveCurrentPrintOnSiblingNode(path, printed);
         return printed;
@@ -197,7 +195,7 @@ export const printer: Printer<Node | undefined> = {
 
   /**
    * Turn off any built-in prettier-ignore handling because it will skip
-   * embedding, which will print `[__GLIMMER_TEMPLATE(...)]` instead of
+   * embedding, which will print the preprocessed template instead of
    * `<template>...</template>`.
    */
   hasPrettierIgnore: undefined,
