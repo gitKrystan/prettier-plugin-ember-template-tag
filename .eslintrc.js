@@ -45,6 +45,7 @@ module.exports = {
     '@typescript-eslint/no-dynamic-delete': 'error',
     '@typescript-eslint/no-extra-semi': 'error',
     '@typescript-eslint/no-extraneous-class': 'error',
+    '@typescript-eslint/no-inferrable-types': 'error',
     '@typescript-eslint/no-invalid-void-type': 'error',
     '@typescript-eslint/no-require-imports': 'error',
     '@typescript-eslint/no-unnecessary-condition': 'error',

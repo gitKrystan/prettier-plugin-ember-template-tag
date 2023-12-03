@@ -4,7 +4,7 @@ import type { AstPath } from 'prettier';
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';
-import type { TemplateNode } from '../parse';
+import type { GlimmerTemplate } from '../types/glimmer';
 import { assert } from '../utils';
 import { printTemplateContent, printTemplateTag } from './template';
 
@@ -162,7 +162,7 @@ export const printer: Printer<Node | undefined> = {
             content = node.extra['template'] as string;
             raw = true;
           }
-          const extra = node.extra as TemplateNode['extra'];
+          const extra = node.extra as GlimmerTemplate['extra'];
           const { isDefaultTemplate, isAssignment, isAlreadyExportDefault } =
             extra;
           const useHardline = !isAssignment || isDefaultTemplate || false;

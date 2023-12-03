@@ -7,43 +7,52 @@ import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
 import { PRINTER_NAME } from './config';
 import type { Options } from './options.js';
+import type { GlimmerTemplate } from './types/glimmer';
 import { assert } from './utils';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
 
-export interface TemplateNode {
-  type: 'FunctionDeclaration';
-  leadingComments: Comment[];
-  range: [number, number];
-  start: number;
-  end: number;
-  extra: {
-    isGlimmerTemplate: boolean;
-    isDefaultTemplate: boolean;
-    isAssignment: boolean;
-    isAlreadyExportDefault: boolean;
-    template: string;
-  };
+interface Prepared {
+  output: string;
+  templateInfos: {
+    type: 'expression' | 'class-member';
+    tagName: 'template';
+    contents: string;
+    range: {
+      start: number;
+      end: number;
+    };
+    contentRange: {
+      start: number;
+      end: number;
+    };
+    startRange: {
+      end: number;
+      start: number;
+    };
+    endRange: {
+      start: number;
+      end: number;
+    };
+  }[];
 }
 
 interface PreprocessedResult {
-  templateVisitorKeys: Record<string, string[]>;
-  templateInfos: {
-    /** Range of the template including <template></template> tags */
-    templateRange: [number, number];
-    /** Range of the template content, excluding <template></template> tags */
-    range: [number, number];
-    ast: TemplateNode | undefined;
-  }[];
+  /** Range of the template including <template></template> tags */
+  templateRange: readonly [start: number, end: number];
+  /** Range of the template content, excluding <template></template> tags */
+  range: readonly [start: number, end: number];
+  ast: GlimmerTemplate;
 }
 
 /** Traverses the AST and replaces the transformed template parts with other AST */
 function convertAst(
   result: { ast: Node; code: string },
-  preprocessedResult: PreprocessedResult,
+  preprocessedResult: PreprocessedResult[],
 ): void {
-  const templateInfos = preprocessedResult.templateInfos;
+  // FIXME:
+  const templateInfos = preprocessedResult;
   let counter = 0;
 
   traverse(result.ast, {
@@ -70,7 +79,8 @@ function convertAst(
           return null;
         }
         counter++;
-        const ast = template.ast as TemplateNode;
+        assert('expected ast on template', template.ast);
+        const { ast } = template;
         ast.extra.isAlreadyExportDefault =
           path.parent.type === 'ExportDefaultDeclaration' ||
           path.parentPath?.parent.type === 'ExportDefaultDeclaration';
@@ -98,69 +108,35 @@ function convertAst(
   }
 }
 
-interface Info {
-  output: string;
-  templateInfos: {
-    type: 'expression' | 'class-member';
-    tagName: 'template';
-    contents: string;
-    range: {
-      start: number;
-      end: number;
-    };
-    contentRange: {
-      start: number;
-      end: number;
-    };
-    startRange: {
-      end: number;
-      start: number;
-    };
-    endRange: {
-      start: number;
-      end: number;
-    };
-  }[];
-}
-
 /**
  * Preprocesses the template info, parsing the template content to Glimmer AST,
  * fixing the offsets and locations of all nodes also calculates the block
  * params locations & ranges and adding it to the info
  */
-function preprocessGlimmerTemplates(
-  info: Info,
-  code: string,
-): PreprocessedResult {
-  const templateInfos = info.templateInfos.map((r) => ({
-    range: [r.contentRange.start, r.contentRange.end] as [number, number],
-    templateRange: [r.range.start, r.range.end] as [number, number],
-    ast: undefined as undefined | TemplateNode,
-  }));
-  const templateVisitorKeys = {};
-  for (const tpl of templateInfos) {
-    const range = tpl.range;
+function preprocess(info: Prepared, code: string): PreprocessedResult[] {
+  return info.templateInfos.map((tpl) => {
+    const range = [tpl.contentRange.start, tpl.contentRange.end] as const;
+    const templateRange = [tpl.range.start, tpl.range.end] as const;
     const template = code.slice(...range);
-    const ast: TemplateNode = {
-      type: 'FunctionDeclaration',
-      leadingComments: [],
-      range: [tpl.templateRange[0], tpl.templateRange[1]],
-      start: tpl.templateRange[0],
-      end: tpl.templateRange[1],
-      extra: {
-        isGlimmerTemplate: true,
-        isDefaultTemplate: false,
-        isAssignment: false,
-        isAlreadyExportDefault: false,
-        template,
+    return {
+      templateRange,
+      range,
+      ast: {
+        type: 'FunctionDeclaration',
+        leadingComments: [],
+        range: [templateRange[0], templateRange[1]],
+        start: templateRange[0],
+        end: templateRange[1],
+        extra: {
+          isGlimmerTemplate: true,
+          isDefaultTemplate: false,
+          isAssignment: false,
+          isAlreadyExportDefault: false,
+          template,
+        },
       },
     };
-    tpl.ast = ast;
-  }
-  return {
-    templateVisitorKeys,
-    templateInfos,
-  };
+  });
 }
 
 function replaceRange(
@@ -172,9 +148,9 @@ function replaceRange(
   return s.slice(0, start) + substitute + s.slice(end);
 }
 
-function transformForPrettier(code: string): Info {
+function prepare(code: string): Prepared {
   let jsCode = code;
-  const result = p.parse(code) as Info['templateInfos'];
+  const result = p.parse(code) as Prepared['templateInfos'];
   for (const tplInfo of result.reverse()) {
     const lineBreaks = [...tplInfo.contents].reduce(
       (previous, current) => previous + (current === '\n' ? 1 : 0),
@@ -223,14 +199,10 @@ export const parser: Parser<Node | undefined> = {
   ...typescript,
   astFormat: PRINTER_NAME,
 
-  preprocess(text: string): string {
-    return text;
-  },
-
   async parse(code: string, options: Options): Promise<Node> {
-    const info = transformForPrettier(code);
-    const ast = await typescript.parse(info.output, options);
-    const preprocessedResult = preprocessGlimmerTemplates(info, code);
+    const prepared = prepare(code);
+    const preprocessedResult = preprocess(prepared, code);
+    const ast = await typescript.parse(prepared.output, options);
     assert('expected ast', ast);
     convertAst({ ast, code }, preprocessedResult);
     return ast;
