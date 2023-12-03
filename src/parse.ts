@@ -13,9 +13,9 @@ import { assert } from './utils';
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
 
-interface PreparedResult {
+interface Preprocessed {
   output: string;
-  templateNodes: RawGlimmerTemplate[];
+  results: PreprocessedResult[];
 }
 
 interface PreprocessedResult {
@@ -78,42 +78,6 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
   }
 }
 
-/**
- * Pre-processes the template info, parsing the template content to Glimmer AST,
- * fixing the offsets and locations of all nodes also calculates the block
- * params locations & ranges and adding it to the info
- */
-function preprocess(
-  prepared: PreparedResult,
-  code: string,
-): PreprocessedResult[] {
-  return prepared.templateNodes.map((templateNode) => {
-    const contentRange = [
-      templateNode.contentRange.start,
-      templateNode.contentRange.end,
-    ] as const;
-    const range = [templateNode.range.start, templateNode.range.end] as const;
-    const template = code.slice(...contentRange);
-    const ast: GlimmerTemplate = {
-      type: 'FunctionDeclaration',
-      leadingComments: [],
-      range: [range[0], range[1]],
-      start: range[0],
-      end: range[1],
-      extra: {
-        isGlimmerTemplate: true,
-        isDefaultTemplate: false,
-        template,
-      },
-    };
-    return {
-      range,
-      contentRange,
-      templateNode: ast,
-    } satisfies PreprocessedResult;
-  });
-}
-
 function replaceRange(
   s: string,
   start: number,
@@ -127,9 +91,14 @@ const STATIC_OPEN = 'static{`';
 const STATIC_CLOSE = '`}';
 const NEWLINE = '\n';
 
-/** FIXME: What is the purpose of this? */
-function prepare(code: string): PreparedResult {
+/**
+ * Pre-processes the template info, parsing the template content to Glimmer AST,
+ * fixing the offsets and locations of all nodes also calculates the block
+ * params locations & ranges and adding it to the info
+ */
+function preprocess(code: string): Preprocessed {
   const templateNodes = p.parse(code) as RawGlimmerTemplate[];
+  const results: PreprocessedResult[] = [];
   let output = code;
   for (const templateNode of templateNodes.reverse()) {
     let prefix: string;
@@ -163,12 +132,35 @@ function prepare(code: string): PreparedResult {
       templateNode.range.end,
       `${prefix}${content}${suffix}`,
     );
+
+    // FIXME: Look for code duplication, opportunities for cleanup, etc.
+
+    const contentRange = [
+      templateNode.contentRange.start,
+      templateNode.contentRange.end,
+    ] as const;
+    const range = [templateNode.range.start, templateNode.range.end] as const;
+    const template = code.slice(...contentRange);
+    const ast: GlimmerTemplate = {
+      type: 'FunctionDeclaration',
+      leadingComments: [],
+      range: [range[0], range[1]],
+      start: range[0],
+      end: range[1],
+      extra: {
+        isGlimmerTemplate: true,
+        isDefaultTemplate: false,
+        template,
+      },
+    };
+    results.push({
+      range,
+      contentRange,
+      templateNode: ast,
+    } satisfies PreprocessedResult);
   }
 
-  return {
-    templateNodes,
-    output,
-  };
+  return { results, output };
 }
 
 export const parser: Parser<Node | undefined> = {
@@ -176,11 +168,10 @@ export const parser: Parser<Node | undefined> = {
   astFormat: PRINTER_NAME,
 
   async parse(code: string, options: Options): Promise<Node> {
-    const prepared = prepare(code);
-    const preprocessedResult = preprocess(prepared, code);
-    const ast = await typescript.parse(prepared.output, options);
+    const preprocessed = preprocess(code);
+    const ast = await typescript.parse(preprocessed.output, options);
     assert('expected ast', ast);
-    convertAst(ast, preprocessedResult);
+    convertAst(ast, preprocessed.results);
     return ast;
   },
 };
