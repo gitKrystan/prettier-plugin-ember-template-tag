@@ -19,10 +19,18 @@ interface PreparedResult {
 }
 
 interface PreprocessedResult {
-  /** Range of the template including <template></template> tags */
-  templateRange: readonly [start: number, end: number];
-  /** Range of the template content, excluding <template></template> tags */
+  /**
+   * Range of the contents, inclusive of inclusive of the
+   * `<template></template>` tags.
+   */
   range: readonly [start: number, end: number];
+
+  /**
+   * Range of the template contents, not inclusive of the
+   * `<template></template>` tags.
+   */
+  contentRange: readonly [start: number, end: number];
+
   ast: GlimmerTemplate;
 }
 
@@ -45,12 +53,9 @@ function convertAst(
 
         const template = preprocessedResult.find(
           (t) =>
-            (t.templateRange[0] === range[0] &&
-              t.templateRange[1] === range[1]) ||
-            (t.templateRange[0] === range[0] - 1 &&
-              t.templateRange[1] === range[1] + 1) ||
-            (t.templateRange[0] === range[0] &&
-              t.templateRange[1] === range[1] + 1),
+            (t.range[0] === range[0] && t.range[1] === range[1]) ||
+            (t.range[0] === range[0] - 1 && t.range[1] === range[1] + 1) ||
+            (t.range[0] === range[0] && t.range[1] === range[1] + 1),
         );
 
         if (!template) {
@@ -95,28 +100,32 @@ function preprocess(
   prepared: PreparedResult,
   code: string,
 ): PreprocessedResult[] {
-  return prepared.templateNodes.map((tpl) => {
-    const range = [tpl.contentRange.start, tpl.contentRange.end] as const;
-    const templateRange = [tpl.range.start, tpl.range.end] as const;
-    const template = code.slice(...range);
-    return {
-      templateRange,
-      range,
-      ast: {
-        type: 'FunctionDeclaration',
-        leadingComments: [],
-        range: [templateRange[0], templateRange[1]],
-        start: templateRange[0],
-        end: templateRange[1],
-        extra: {
-          isGlimmerTemplate: true,
-          isDefaultTemplate: false,
-          isAssignment: false,
-          isAlreadyExportDefault: false,
-          template,
-        },
+  return prepared.templateNodes.map((templateNode) => {
+    const contentRange = [
+      templateNode.contentRange.start,
+      templateNode.contentRange.end,
+    ] as const;
+    const range = [templateNode.range.start, templateNode.range.end] as const;
+    const template = code.slice(...contentRange);
+    const ast: GlimmerTemplate = {
+      type: 'FunctionDeclaration',
+      leadingComments: [],
+      range: [range[0], range[1]],
+      start: range[0],
+      end: range[1],
+      extra: {
+        isGlimmerTemplate: true,
+        isDefaultTemplate: false,
+        isAssignment: false,
+        isAlreadyExportDefault: false,
+        template,
       },
     };
+    return {
+      range,
+      contentRange,
+      ast,
+    } satisfies PreprocessedResult;
   });
 }
 
