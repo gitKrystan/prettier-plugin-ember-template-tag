@@ -55,7 +55,7 @@ function flattenDoc(doc: doc.builders.Doc): string[] {
  */
 function saveCurrentPrintOnSiblingNode(
   path: AstPath<Node | undefined>,
-  printed: doc.builders.Doc,
+  printed: doc.builders.Doc[],
 ): void {
   const { index, siblings } = path;
   if (index !== null) {
@@ -69,7 +69,9 @@ function saveCurrentPrintOnSiblingNode(
   }
 }
 
+/** HACK to fix ASI semi-colons. */
 function fixPreviousPrint(
+  previousTemplatePrinted: doc.builders.Doc[],
   path: AstPath<Node | undefined>,
   options: Options,
   print: (path: AstPath<Node | undefined>) => doc.builders.Doc,
@@ -82,9 +84,6 @@ function fixPreviousPrint(
     args,
   );
   const flat = flattenDoc(printedSemiFalse);
-  const previousTemplatePrinted = path.node?.extra?.[
-    'prevTemplatePrinted'
-  ] as string[];
   const previousFlat = flattenDoc(previousTemplatePrinted);
   if (flat[0]?.startsWith(';') && previousFlat.at(-1) !== ';') {
     previousTemplatePrinted.push(';');
@@ -136,7 +135,13 @@ export const printer: Printer<Node | undefined> = {
     }
 
     if (options.semi && node?.extra?.['prevTemplatePrinted']) {
-      fixPreviousPrint(path, options, print, args);
+      fixPreviousPrint(
+        node.extra['prevTemplatePrinted'] as doc.builders.Doc[],
+        path,
+        options,
+        print,
+        args,
+      );
     }
 
     return hasPrettierIgnore

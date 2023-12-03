@@ -45,7 +45,7 @@ export async function printTemplateContent(
 export function printTemplateTag(
   content: doc.builders.Doc,
   useHardline: boolean,
-): doc.builders.Doc {
+): doc.builders.Doc[] {
   const line = useHardline ? hardline : softline;
   const doc = [
     TEMPLATE_TAG_OPEN,
