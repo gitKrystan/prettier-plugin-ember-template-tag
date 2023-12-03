@@ -20,21 +20,6 @@ import { normalizeWhitespace } from './whitespace';
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
 
-interface Preprocessed {
-  code: string;
-  results: PreprocessedResult[];
-}
-
-interface PreprocessedResult {
-  /**
-   * Range of the contents, inclusive of inclusive of the
-   * `<template></template>` tags.
-   */
-  range: { start: number; end: number };
-
-  templateInfo: GlimmerTemplateInfo;
-}
-
 /** Converts a node into a GlimmerTemplate node */
 function convertNode(
   path: NodePath,
@@ -51,7 +36,7 @@ function convertNode(
 }
 
 /** Traverses the AST and replaces the transformed template parts with other AST */
-function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
+function convertAst(ast: Node, templateInfos: GlimmerTemplateInfo[]): void {
   let counter = 0;
 
   traverse(ast, {
@@ -64,20 +49,19 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
       ) {
         const { range } = node;
         assert('expected range', range);
-        const [start, end] = range;
 
-        const preprocessedTemplate = preprocessedResult.find(
+        const templateInfo = templateInfos.find(
           (p) =>
-            (p.range.start === start && p.range.end === end) ||
-            (p.range.start === start - 1 && p.range.end === end + 1) ||
-            (p.range.start === start && p.range.end === end + 1),
+            (p.range[0] === range[0] && p.range[1] === range[1]) ||
+            (p.range[0] === range[0] - 1 && p.range[1] === range[1] + 1) ||
+            (p.range[0] === range[0] && p.range[1] === range[1] + 1),
         );
 
-        if (!preprocessedTemplate) {
+        if (!templateInfo) {
           return null;
         }
 
-        convertNode(path, node, preprocessedTemplate.templateInfo);
+        convertNode(path, node, templateInfo);
 
         counter++;
       }
@@ -85,7 +69,7 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
     },
   });
 
-  if (counter !== preprocessedResult.length) {
+  if (counter !== templateInfos.length) {
     throw new Error('failed to process all templates');
   }
 }
@@ -95,9 +79,12 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
  * fixing the offsets and locations of all nodes also calculates the block
  * params locations & ranges and adding it to the info
  */
-function preprocess(code: string): Preprocessed {
+function preprocess(code: string): {
+  code: string;
+  templateInfos: GlimmerTemplateInfo[];
+} {
   const templateNodes = p.parse(code) as RawGlimmerTemplate[];
-  const results: PreprocessedResult[] = [];
+  const templateInfos: GlimmerTemplateInfo[] = [];
   let output = code;
   for (const templateNode of templateNodes) {
     output = normalizeWhitespace(templateNode, code, output);
@@ -114,13 +101,10 @@ function preprocess(code: string): Preprocessed {
         template,
       },
     };
-    results.push({
-      range: templateNode.range,
-      templateInfo,
-    } satisfies PreprocessedResult);
+    templateInfos.push(templateInfo);
   }
 
-  return { results, code: output };
+  return { templateInfos, code: output };
 }
 
 export const parser: Parser<Node | undefined> = {
@@ -131,7 +115,7 @@ export const parser: Parser<Node | undefined> = {
     const preprocessed = preprocess(code);
     const ast = await typescript.parse(preprocessed.code, options);
     assert('expected ast', ast);
-    convertAst(ast, preprocessed.results);
+    convertAst(ast, preprocessed.templateInfos);
     return ast;
   },
 };
