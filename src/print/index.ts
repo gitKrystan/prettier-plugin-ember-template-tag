@@ -8,27 +8,27 @@ import type {
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';
-import { isGlimmerTemplate } from '../types/glimmer';
+import { GlimmerTemplate, isGlimmerTemplate } from '../types/glimmer';
 import { assert } from '../utils';
 import { printTemplateContent, printTemplateTag } from './template';
 
 const estreePrinter = estreePrinters['estree'] as Printer<Node | undefined>;
 
-function getGlimmerExpression(node: Node | undefined): Node | null {
+function getGlimmerTemplate(node: Node | undefined): GlimmerTemplate | null {
   if (!node) return null;
-  if (node.extra?.['isGlimmerTemplate']) {
+  if (isGlimmerTemplate(node)) {
     return node;
   }
   if (
     node.type === 'ExportDefaultDeclaration' &&
-    node.declaration.extra?.['isGlimmerTemplate']
+    isGlimmerTemplate(node.declaration)
   ) {
     return node.declaration;
   }
   if (
     node.type === 'ExportDefaultDeclaration' &&
     node.declaration.type === 'TSAsExpression' &&
-    node.declaration.expression.extra?.['isGlimmerTemplate']
+    isGlimmerTemplate(node.declaration.expression)
   ) {
     return node.declaration.expression;
   }
@@ -93,10 +93,7 @@ export const printer: Printer<Node | undefined> = {
   ...estreePrinter,
 
   getVisitorKeys(node, nonTraversableKeys) {
-    if (node === undefined) {
-      return [];
-    }
-    if (node.extra?.['isGlimmerTemplate']) {
+    if (!node || isGlimmerTemplate(node)) {
       return [];
     }
     return estreePrinter.getVisitorKeys?.(node, nonTraversableKeys) || [];
@@ -110,7 +107,7 @@ export const printer: Printer<Node | undefined> = {
   ) {
     const { node } = path;
     const hasPrettierIgnore = checkPrettierIgnore(path);
-    if (getGlimmerExpression(node)) {
+    if (getGlimmerTemplate(node)) {
       if (hasPrettierIgnore) {
         return printRawText(path, options);
       } else {
