@@ -7,7 +7,7 @@ import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
 import { PRINTER_NAME } from './config';
 import type { Options } from './options.js';
-import type { GlimmerTemplate } from './types/glimmer';
+import type { GlimmerTemplate, RawGlimmerTemplate } from './types/glimmer';
 import { assert } from './utils';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
@@ -15,27 +15,7 @@ const p = new Preprocessor();
 
 interface Prepared {
   output: string;
-  templateInfos: {
-    type: 'expression' | 'class-member';
-    tagName: 'template';
-    contents: string;
-    range: {
-      start: number;
-      end: number;
-    };
-    contentRange: {
-      start: number;
-      end: number;
-    };
-    startRange: {
-      end: number;
-      start: number;
-    };
-    endRange: {
-      start: number;
-      end: number;
-    };
-  }[];
+  templateNodes: RawGlimmerTemplate[];
 }
 
 interface PreprocessedResult {
@@ -51,8 +31,6 @@ function convertAst(
   result: { ast: Node; code: string },
   preprocessedResult: PreprocessedResult[],
 ): void {
-  // FIXME:
-  const templateInfos = preprocessedResult;
   let counter = 0;
 
   traverse(result.ast, {
@@ -65,7 +43,7 @@ function convertAst(
       ) {
         const range = node.range as [number, number];
 
-        const template = templateInfos.find(
+        const template = preprocessedResult.find(
           (t) =>
             (t.templateRange[0] === range[0] &&
               t.templateRange[1] === range[1]) ||
@@ -103,7 +81,7 @@ function convertAst(
     },
   });
 
-  if (counter !== templateInfos.length) {
+  if (counter !== preprocessedResult.length) {
     throw new Error('failed to process all templates');
   }
 }
@@ -114,7 +92,7 @@ function convertAst(
  * params locations & ranges and adding it to the info
  */
 function preprocess(info: Prepared, code: string): PreprocessedResult[] {
-  return info.templateInfos.map((tpl) => {
+  return info.templateNodes.map((tpl) => {
     const range = [tpl.contentRange.start, tpl.contentRange.end] as const;
     const templateRange = [tpl.range.start, tpl.range.end] as const;
     const template = code.slice(...range);
@@ -148,50 +126,51 @@ function replaceRange(
   return s.slice(0, start) + substitute + s.slice(end);
 }
 
+const STATIC_OPEN = 'static{`';
+const STATIC_CLOSE = '`}';
+const NEWLINE = '\n';
+
+/** FIXME: What is the purpose of this? */
 function prepare(code: string): Prepared {
-  let jsCode = code;
-  const result = p.parse(code) as Prepared['templateInfos'];
-  for (const tplInfo of result.reverse()) {
-    const lineBreaks = [...tplInfo.contents].reduce(
-      (previous, current) => previous + (current === '\n' ? 1 : 0),
-      0,
-    );
-    if (tplInfo.type === 'class-member') {
-      const tplLength = tplInfo.range.end - tplInfo.range.start;
-      const spaces = tplLength - 'static{`'.length - '`}'.length - lineBreaks;
-      const total = ' '.repeat(spaces) + '\n'.repeat(lineBreaks);
-      const replacementCode = `static{\`${total}\`}`;
-      jsCode = replaceRange(
-        jsCode,
-        tplInfo.range.start,
-        tplInfo.range.end,
-        replacementCode,
-      );
+  const templateNodes = p.parse(code) as RawGlimmerTemplate[];
+  let output = code;
+  for (const templateNode of templateNodes.reverse()) {
+    let prefix: string;
+    let suffix: string;
+    if (templateNode.type === 'class-member') {
+      prefix = STATIC_OPEN;
+      suffix = STATIC_CLOSE;
     } else {
-      const tplLength = tplInfo.range.end - tplInfo.range.start;
-      const nextWord = code.slice(tplInfo.range.end).match(/\S+/);
-      let prefix = '{';
-      let suffix = '}';
+      const nextWord = code.slice(templateNode.range.end).match(/\S+/);
+      prefix = '{';
+      suffix = '}';
       if (nextWord && nextWord[0] === 'as') {
         prefix = '(' + prefix;
         suffix = suffix + ')';
       } else if (!nextWord || ![',', ')'].includes(nextWord[0][0] || '')) {
         suffix += ';';
       }
-      const spaces = tplLength - prefix.length - suffix.length - lineBreaks;
-      const total = ' '.repeat(spaces) + '\n'.repeat(lineBreaks);
-      const replacementCode = `${prefix}${total}${suffix}`;
-      jsCode = replaceRange(
-        jsCode,
-        tplInfo.range.start,
-        tplInfo.range.end,
-        replacementCode,
-      );
     }
+
+    const lineBreakCount = [...templateNode.contents].reduce(
+      (sum, currentContents) => sum + (currentContents === NEWLINE ? 1 : 0),
+      0,
+    );
+    const totalLength = templateNode.range.end - templateNode.range.start;
+    const spaces = totalLength - prefix.length - suffix.length - lineBreakCount;
+    const content = ' '.repeat(spaces) + NEWLINE.repeat(lineBreakCount);
+
+    output = replaceRange(
+      output,
+      templateNode.range.start,
+      templateNode.range.end,
+      `${prefix}${content}${suffix}`,
+    );
   }
+
   return {
-    templateInfos: result,
-    output: jsCode,
+    templateNodes,
+    output,
   };
 }
 
