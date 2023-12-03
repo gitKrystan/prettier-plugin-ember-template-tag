@@ -13,7 +13,7 @@ import { assert } from './utils';
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
 
-interface Prepared {
+interface PreparedResult {
   output: string;
   templateNodes: RawGlimmerTemplate[];
 }
@@ -87,12 +87,15 @@ function convertAst(
 }
 
 /**
- * Preprocesses the template info, parsing the template content to Glimmer AST,
+ * Pre-processes the template info, parsing the template content to Glimmer AST,
  * fixing the offsets and locations of all nodes also calculates the block
  * params locations & ranges and adding it to the info
  */
-function preprocess(info: Prepared, code: string): PreprocessedResult[] {
-  return info.templateNodes.map((tpl) => {
+function preprocess(
+  prepared: PreparedResult,
+  code: string,
+): PreprocessedResult[] {
+  return prepared.templateNodes.map((tpl) => {
     const range = [tpl.contentRange.start, tpl.contentRange.end] as const;
     const templateRange = [tpl.range.start, tpl.range.end] as const;
     const template = code.slice(...range);
@@ -131,7 +134,7 @@ const STATIC_CLOSE = '`}';
 const NEWLINE = '\n';
 
 /** FIXME: What is the purpose of this? */
-function prepare(code: string): Prepared {
+function prepare(code: string): PreparedResult {
   const templateNodes = p.parse(code) as RawGlimmerTemplate[];
   let output = code;
   for (const templateNode of templateNodes.reverse()) {
