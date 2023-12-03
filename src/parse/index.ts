@@ -24,13 +24,7 @@ interface PreprocessedResult {
    * Range of the contents, inclusive of inclusive of the
    * `<template></template>` tags.
    */
-  range: readonly [start: number, end: number];
-
-  /**
-   * Range of the template contents, not inclusive of the
-   * `<template></template>` tags.
-   */
-  contentRange: readonly [start: number, end: number];
+  range: { start: number; end: number };
 
   templateNode: GlimmerTemplate;
 }
@@ -49,12 +43,13 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
       ) {
         const { range } = node;
         assert('expected range', range);
+        const [start, end] = range;
 
         const preprocessedTemplate = preprocessedResult.find(
           (p) =>
-            (p.range[0] === range[0] && p.range[1] === range[1]) ||
-            (p.range[0] === range[0] - 1 && p.range[1] === range[1] + 1) ||
-            (p.range[0] === range[0] && p.range[1] === range[1] + 1),
+            (p.range.start === start && p.range.end === end) ||
+            (p.range.start === start - 1 && p.range.end === end + 1) ||
+            (p.range.start === start && p.range.end === end + 1),
         );
 
         if (!preprocessedTemplate) {
@@ -91,18 +86,16 @@ function preprocess(code: string): Preprocessed {
   for (const templateNode of templateNodes) {
     output = normalizeWhitespace(templateNode, code, output);
 
-    const contentRange = [
+    const template = code.slice(
       templateNode.contentRange.start,
       templateNode.contentRange.end,
-    ] as const;
-    const range = [templateNode.range.start, templateNode.range.end] as const;
-    const template = code.slice(...contentRange);
+    );
     const ast: GlimmerTemplate = {
       type: 'FunctionDeclaration',
       leadingComments: [],
-      range: [range[0], range[1]],
-      start: range[0],
-      end: range[1],
+      range: [templateNode.range.start, templateNode.range.end],
+      start: templateNode.range.start,
+      end: templateNode.range.end,
       extra: {
         isGlimmerTemplate: true,
         isDefaultTemplate: false,
@@ -110,8 +103,7 @@ function preprocess(code: string): Preprocessed {
       },
     };
     results.push({
-      range,
-      contentRange,
+      range: templateNode.range,
       templateNode: ast,
     } satisfies PreprocessedResult);
   }
