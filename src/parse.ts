@@ -62,8 +62,6 @@ function convertAst(ast: Node, preprocessedResult: PreprocessedResult[]): void {
 
         const { templateNode } = preprocessedTemplate;
         templateNode.extra.isDefaultTemplate = isDefaultTemplate(path);
-        templateNode.extra.isAssignment =
-          !templateNode.extra.isDefaultTemplate && node.type !== 'StaticBlock';
 
         templateNode.leadingComments = node.leadingComments as Comment[];
 
@@ -105,7 +103,6 @@ function preprocess(
       extra: {
         isGlimmerTemplate: true,
         isDefaultTemplate: false,
-        isAssignment: false,
         template,
       },
     };

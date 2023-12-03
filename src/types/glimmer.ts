@@ -60,7 +60,6 @@ export interface GlimmerTemplate {
 
   extra: {
     isGlimmerTemplate: true;
-    isAssignment: boolean;
     isDefaultTemplate: boolean;
     template: string;
   };

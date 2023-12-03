@@ -169,12 +169,9 @@ export const printer: Printer<Node | undefined> = {
             content = node.extra.template;
             raw = true;
           }
-          const {
-            extra: { isDefaultTemplate, isAssignment },
-          } = node;
-          const useHardline = !isAssignment || isDefaultTemplate;
+
           const printed = printTemplateTag(content, {
-            useHardline,
+            useHardline: node.extra.isDefaultTemplate,
             raw,
           });
           saveCurrentPrintOnSiblingNode(path, printed);
