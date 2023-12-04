@@ -1,4 +1,4 @@
-import type { RawGlimmerTemplate } from '../types/glimmer';
+import type { RawGlimmerTemplate } from '../types/glimmer.js';
 
 const STATIC_OPEN = 'static{`';
 const STATIC_CLOSE = '`}';

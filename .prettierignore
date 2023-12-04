@@ -5,6 +5,7 @@ tests/__snapshots__
 tests/cases
 CHANGELOG.md
 examples
+.eslintignore
 
 # Everything below this point should match gitignore
 
