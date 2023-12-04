@@ -39,6 +39,7 @@
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
     "lint:ts": "tsc --project tsconfig.lint.json",
+    "changelog": "release-it --changelog",
     "release": "release-it",
     "release:ci": "release-it --ci",
     "release:debug": "release-it --verbose --dry-run",
@@ -75,7 +76,7 @@
     "eslint-plugin-unicorn": "^49.0.0",
     "eslint-plugin-vitest": "^0.3.10",
     "prettier-plugin-jsdoc": "^1.1.1",
-    "release-it": "^16.2.1",
+    "release-it": "^16.3.0",
     "typescript": "^5.3.2",
     "vite": "^4.5.0",
     "vitest": "^0.34.6"
@@ -89,5 +90,15 @@
   "volta": {
     "node": "16.20.2",
     "pnpm": "8.9.2"
+  },
+  "changelog": {
+    "labels": {
+      "breaking": ":boom: Breaking Change",
+      "enhancement": ":rocket: Enhancement",
+      "bug": ":bug: Bug Fix",
+      "documentation": ":memo: Documentation",
+      "internal": ":house: Internal",
+      "dependencies": ":robot: Dependencies"
+    }
   }
 }
