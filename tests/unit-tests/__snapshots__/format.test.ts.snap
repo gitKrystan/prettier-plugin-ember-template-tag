@@ -254,6 +254,21 @@ exports[`format > config > default > it formats ../cases/gjs/prettier-ignore/sim
 "
 `;
 
+exports[`format > config > default > it formats ../cases/gjs/route.gjs 1`] = `
+"import Layout from \\"docs-app/components/layout\\";
+import pageTitle from \\"ember-page-title/helpers/page-title\\";
+import Route from \\"ember-route-template\\";
+
+export default Route(
+  <template>
+    {{pageTitle \\"ember-primitives\\"}}
+
+    <Layout />
+  </template>,
+);
+"
+`;
+
 exports[`format > config > default > it formats ../cases/gjs/simple.gjs 1`] = `
 "<template>
   what
