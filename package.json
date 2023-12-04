@@ -56,11 +56,11 @@
   "devDependencies": {
     "@babel/types": "^7.23.5",
     "@release-it-plugins/lerna-changelog": "^6.0.0",
-    "@tsconfig/node16": "^16.1.1",
+    "@tsconfig/node18": "^18.2.2",
     "@tsconfig/strictest": "^2.0.2",
     "@types/babel__core": "^7.20.5",
     "@types/eslint": "^8.44.8",
-    "@types/node": "^20.8.7",
+    "@types/node": "^18.19.2",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "@vitest/ui": "^0.34.6",
@@ -84,10 +84,10 @@
     "prettier": ">= 3.0.0"
   },
   "engines": {
-    "node": "16.* || 18.* || >= 20"
+    "node": "18.* || >= 20"
   },
   "volta": {
-    "node": "16.20.2",
+    "node": "18.19.0",
     "pnpm": "8.11.0"
   },
   "changelog": {
