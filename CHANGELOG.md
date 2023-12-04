@@ -1,3 +1,4 @@
+
 ## v2.0.0-0 (2023-12-04)
 
 This version is essentially a re-write. We are switching from using [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) to parse template tags to the more robust [content-tag](https://github.com/embroider-build/content-tag) preprocessor. This should result in fewer unhandled cases and other bugs. For example, this plugin [can now format](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/173) route templates from [ember-route-template](https://github.com/discourse/ember-route-template)!
