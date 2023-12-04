@@ -1,16 +1,40 @@
+## v2.0.0-0 (2023-12-04)
 
+This version is essentially a re-write. We are switching from using [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) to parse template tags to the more robust [content-tag](https://github.com/embroider-build/content-tag) preprocessor. This should result in fewer unhandled cases and other bugs. For example, this plugin [can now format](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/173) route templates from [ember-route-template](https://github.com/discourse/ember-route-template)!
 
+This is a breaking change in that we are breaking compatibility with the current version of [eslint-plugin-ember](https://github.com/ember-cli/eslint-plugin-ember). If you are running Prettier via eslint-plugin-ember and eslint-plugin-prettier<sup>1</sup>, you will need to follow the following compatibility table, which also appears in the [README](https://github.com/gitKrystan/prettier-plugin-ember-template-tag#compatibility) for this plugin:
 
+| eslint-plugin-ember | prettier-plugin-ember-template-tag |
+| ------------------- | ---------------------------------- |
+| <12                 | 1.1.0                              |
+| >=12.0.0-alpha.1    | 2+                                 |
 
+<sup>1</sup> Neither I [nor the Prettier project](https://prettier.io/docs/en/integrating-with-linters.html) recommend running Prettier this way.
 
+#### :boom: Breaking Change
+* [#152](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/152) Drop Node 16 ([@gitKrystan](https://github.com/gitKrystan))
 
+#### :boom: Breaking Change / :rocket: Enhancement / :robot: Dependencies
+* [#162](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/162), [#178](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/178), [#185](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/185), and [#180](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/180) Replace ember-template-imports with content-tag. As a result, we were also able to remove dependencies on ember-cli-htmlbars and @glimmer/syntax. ([@patricklx](https://github.com/patricklx), [@gitKrystan](https://github.com/gitKrystan))
 
+### :rocket: Enhancement
+* [#178](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/178) Disable minification for easier debugging.
 
+#### :robot: Dependencies
+* [#158](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/158) Upgrade Prettier to 3.1 (including relevant docs updates) ([@bartocc](https://github.com/bartocc))
+* [#182](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/182), [#177](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/177), [#176](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/176), and [#147](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/147) Upgrade typescript and @typescript-eslint dependencies ([@gitKrystan](https://github.com/gitKrystan), [@dependabot[bot]](https://github.com/apps/dependabot))
+* [#181](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/181), [#169](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/169), [#171](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/171), and [#148](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/148) Upgrade eslint and eslint plugins (not including typescript-eslint) ([@gitKrystan](https://github.com/gitKrystan), [@dependabot[bot]](https://github.com/apps/dependabot))
+* [#179](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/179), [#140](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/140), and [#150](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/150) Update babel dependencies ([@gitKrystan](https://github.com/gitKrystan), [@dependabot[bot]](https://github.com/apps/dependabot))
+* [#161](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/161) Bump actions/setup-node from 3 to 4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#151](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/151) Upgrade various minor dependencies ([@gitKrystan](https://github.com/gitKrystan))
+* [#145](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/145) Bump postcss from 8.4.27 to 8.4.31 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#144](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/144) Bump @vitest/ui from 0.34.3 to 0.34.6 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#130](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/130) Bump actions/checkout from 3 to 4 ([@dependabot[bot]](https://github.com/apps/dependabot))
 
-
-
-
-
+#### Committers: 3
+- Julien Palmas ([@bartocc](https://github.com/bartocc))
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
 
 ## v1.1.0 (2023-09-03)
 
@@ -195,4 +219,3 @@
 
 #### Committers: 1
 - Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
-
