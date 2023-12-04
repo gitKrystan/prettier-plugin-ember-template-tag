@@ -39,6 +39,7 @@
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
     "lint:ts": "tsc --project tsconfig.lint.json",
+    "changelog": "release-it --changelog",
     "release": "release-it",
     "release:ci": "release-it --ci",
     "release:debug": "release-it --verbose --dry-run",

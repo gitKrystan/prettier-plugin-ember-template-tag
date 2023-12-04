@@ -27,6 +27,8 @@ When reviewing merged PR's the labels to be used are:
 
 Click "Run workflow" [here](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/actions/workflows/release.yml).
 
+NOTE: This is only set up for minor version bumps currently.
+
 ### Manual
 
 - First, ensure that you have obtained a [GitHub personal access token][generate-token] with the `repo` scope (no other permissions are needed). Make sure the token is available as the `GITHUB_AUTH` environment variable.
