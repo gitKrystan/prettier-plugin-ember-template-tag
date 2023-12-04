@@ -10,6 +10,15 @@ A [Prettier](https://prettier.io/) plugin for formatting [Ember template tags](h
 
 Prettier 3.0.0 and above
 
+**_IMPORTANT!_** If you are running Prettier via eslint-plugin-ember and eslint-plugin-prettier<sup>1</sup>:
+
+| eslint-plugin-ember | prettier-plugin-ember-template-tag |
+| ------------------- | ---------------------------------- |
+| <12                 | 1.1.0                              |
+| >=12                | 2+                                 |
+
+<sup>1</sup> Neither I [nor the Prettier project](https://prettier.io/docs/en/integrating-with-linters.html) recommend running Prettier this way.
+
 ## Usage
 
 1. Install:
