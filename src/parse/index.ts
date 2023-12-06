@@ -15,7 +15,7 @@ import type { Options } from '../options.js';
 import type { GlimmerTemplateInfo, RawGlimmerTemplate } from '../types/glimmer';
 import { isDefaultTemplate } from '../types/glimmer';
 import { assert } from '../utils';
-import { normalizeWhitespace } from './whitespace';
+import { normalizeWhitespace } from './preprocess';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
