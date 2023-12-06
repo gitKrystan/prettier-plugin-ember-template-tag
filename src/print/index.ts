@@ -88,7 +88,7 @@ export const printer: Printer<Node | undefined> = {
       if (node && isGlimmerTemplate(node)) {
         try {
           const content = await printTemplateContent(
-            node.extra.template,
+            node.extra.template.contents,
             textToDoc,
             embedOptions as Options,
           );

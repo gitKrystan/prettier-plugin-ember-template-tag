@@ -12,7 +12,7 @@ import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
 import { PRINTER_NAME } from '../config';
 import type { Options } from '../options.js';
-import type { GlimmerTemplateInfo, RawGlimmerTemplate } from '../types/glimmer';
+import type { GlimmerTemplate, RawGlimmerTemplate } from '../types/glimmer';
 import { isDefaultTemplate } from '../types/glimmer';
 import { assert } from '../utils';
 import { preprocessTemplateRange } from './preprocess';
@@ -24,19 +24,23 @@ const p = new Preprocessor();
 function convertNode(
   path: NodePath,
   node: BlockStatement | ObjectExpression | StaticBlock,
-  templateInfo: GlimmerTemplateInfo,
+  rawTemplate: RawGlimmerTemplate,
 ): void {
-  Object.assign(node, templateInfo, {
-    type: 'FunctionDeclaration',
-    extra: Object.assign(node.extra ?? {}, templateInfo.extra, {
-      isGlimmerTemplate: true,
-      isDefaultTemplate: isDefaultTemplate(path),
-    }),
+  const cast = node as unknown as GlimmerTemplate;
+  // HACK: Changing the node type here isn't recommended by babel
+  cast.type = 'FunctionDeclaration';
+  cast.range = [rawTemplate.range.start, rawTemplate.range.end];
+  cast.start = rawTemplate.range.start;
+  cast.end = rawTemplate.range.end;
+  cast.extra = Object.assign(node.extra ?? {}, {
+    isGlimmerTemplate: true as const,
+    isDefaultTemplate: isDefaultTemplate(path),
+    template: rawTemplate,
   });
 }
 
 /** Traverses the AST and replaces the transformed template parts with other AST */
-function convertAst(ast: Node, templateInfos: GlimmerTemplateInfo[]): void {
+function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
   let counter = 0;
 
   traverse(ast, {
@@ -49,19 +53,20 @@ function convertAst(ast: Node, templateInfos: GlimmerTemplateInfo[]): void {
       ) {
         const { range } = node;
         assert('expected range', range);
+        const [start, end] = range;
 
-        const templateInfo = templateInfos.find(
-          (p) =>
-            (p.range[0] === range[0] && p.range[1] === range[1]) ||
-            (p.range[0] === range[0] - 1 && p.range[1] === range[1] + 1) ||
-            (p.range[0] === range[0] && p.range[1] === range[1] + 1),
+        const rawTemplate = rawTemplates.find(
+          (t) =>
+            (t.range.start === start && t.range.end === end) ||
+            (t.range.start === start - 1 && t.range.end === end + 1) ||
+            (t.range.start === start && t.range.end === end + 1),
         );
 
-        if (!templateInfo) {
+        if (!rawTemplate) {
           return null;
         }
 
-        convertNode(path, node, templateInfo);
+        convertNode(path, node, rawTemplate);
 
         counter++;
       }
@@ -69,7 +74,7 @@ function convertAst(ast: Node, templateInfos: GlimmerTemplateInfo[]): void {
     },
   });
 
-  if (counter !== templateInfos.length) {
+  if (counter !== rawTemplates.length) {
     throw new Error('failed to process all templates');
   }
 }
@@ -81,26 +86,16 @@ function convertAst(ast: Node, templateInfos: GlimmerTemplateInfo[]): void {
  */
 function preprocess(code: string): {
   code: string;
-  templateInfos: GlimmerTemplateInfo[];
+  rawTemplates: RawGlimmerTemplate[];
 } {
-  const templateNodes = p.parse(code) as RawGlimmerTemplate[];
-  const templateInfos: GlimmerTemplateInfo[] = [];
-  let output = code;
-  for (const templateNode of templateNodes) {
-    output = preprocessTemplateRange(templateNode, code, output);
+  const rawTemplates = p.parse(code) as RawGlimmerTemplate[];
 
-    const templateInfo: GlimmerTemplateInfo = {
-      range: [templateNode.range.start, templateNode.range.end],
-      start: templateNode.range.start,
-      end: templateNode.range.end,
-      extra: {
-        template: templateNode.contents,
-      },
-    };
-    templateInfos.push(templateInfo);
+  let output = code;
+  for (const rawTemplate of rawTemplates) {
+    output = preprocessTemplateRange(rawTemplate, code, output);
   }
 
-  return { templateInfos, code: output };
+  return { rawTemplates, code: output };
 }
 
 export const parser: Parser<Node | undefined> = {
@@ -111,7 +106,7 @@ export const parser: Parser<Node | undefined> = {
     const preprocessed = preprocess(code);
     const ast = await typescript.parse(preprocessed.code, options);
     assert('expected ast', ast);
-    convertAst(ast, preprocessed.templateInfos);
+    convertAst(ast, preprocessed.rawTemplates);
     return ast;
   },
 };

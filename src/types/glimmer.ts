@@ -1,5 +1,5 @@
 import type { NodePath } from '@babel/core';
-import type { Comment, Node } from '@babel/types';
+import type { Node } from '@babel/types';
 
 /** The raw GlimmerTemplate node as parsed by the content-tag parser. */
 export interface RawGlimmerTemplate {
@@ -41,28 +41,8 @@ export interface RawGlimmerTemplate {
   };
 }
 
-export interface GlimmerTemplateInfo {
-  /**
-   * Range of the contents, inclusive of inclusive of the
-   * `<template></template>` tags.
-   */
-  range: [start: number, end: number];
-
-  /** Beginning of the range, before the opening `<template>` tag. */
-  start: number;
-
-  /** End of the range, after the closing `</template>` tag. */
-  end: number;
-
-  extra: {
-    template: string;
-  };
-}
-
 export interface GlimmerTemplate {
   type: 'FunctionDeclaration';
-
-  leadingComments: Comment[];
 
   /**
    * Range of the contents, inclusive of inclusive of the
@@ -79,7 +59,8 @@ export interface GlimmerTemplate {
   extra: {
     isGlimmerTemplate: true;
     isDefaultTemplate: boolean;
-    template: string;
+    template: RawGlimmerTemplate;
+    [key: string]: unknown;
   };
 }
 

@@ -15,20 +15,20 @@ function replaceRange(
  * range.
  */
 export function preprocessTemplateRange(
-  templateNode: RawGlimmerTemplate,
+  rawTemplate: RawGlimmerTemplate,
   originalCode: string,
   currentCode: string,
 ): string {
   let prefix: string;
   let suffix: string;
 
-  if (templateNode.type === 'class-member') {
+  if (rawTemplate.type === 'class-member') {
     prefix = 'static{`';
     suffix = '`}';
   } else {
-    const nextWord = originalCode.slice(templateNode.range.end).match(/\S+/);
     prefix = '{';
     suffix = '}';
+    const nextWord = originalCode.slice(rawTemplate.range.end).match(/\S+/);
     if (nextWord && nextWord[0] === 'as') {
       prefix = '(' + prefix;
       suffix = suffix + ')';
@@ -37,13 +37,13 @@ export function preprocessTemplateRange(
     }
   }
 
-  const totalLength = templateNode.range.end - templateNode.range.start;
+  const totalLength = rawTemplate.range.end - rawTemplate.range.start;
   const placeholderLength = totalLength - prefix.length - suffix.length;
   const placeholder = ' '.repeat(placeholderLength);
 
   return replaceRange(
     currentCode,
-    templateNode.range,
+    rawTemplate.range,
     `${prefix}${placeholder}${suffix}`,
   );
 }
