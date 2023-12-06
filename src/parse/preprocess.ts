@@ -1,9 +1,5 @@
 import type { RawGlimmerTemplate } from '../types/glimmer';
 
-const STATIC_OPEN = 'static{`';
-const STATIC_CLOSE = '`}';
-const NEWLINE = '\n';
-
 function replaceRange(
   original: string,
   range: { start: number; end: number },
@@ -14,8 +10,11 @@ function replaceRange(
   );
 }
 
-/** Hacks to normalize whitespace. */
-export function normalizeWhitespace(
+/**
+ * Replace the template with a parsable placeholder that takes up the same
+ * range.
+ */
+export function preprocessTemplateRange(
   templateNode: RawGlimmerTemplate,
   originalCode: string,
   currentCode: string,
@@ -24,8 +23,8 @@ export function normalizeWhitespace(
   let suffix: string;
 
   if (templateNode.type === 'class-member') {
-    prefix = STATIC_OPEN;
-    suffix = STATIC_CLOSE;
+    prefix = 'static{`';
+    suffix = '`}';
   } else {
     const nextWord = originalCode.slice(templateNode.range.end).match(/\S+/);
     prefix = '{';
@@ -38,17 +37,13 @@ export function normalizeWhitespace(
     }
   }
 
-  const lineBreakCount = [...templateNode.contents].reduce(
-    (sum, currentContents) => sum + (currentContents === NEWLINE ? 1 : 0),
-    0,
-  );
   const totalLength = templateNode.range.end - templateNode.range.start;
-  const spaces = totalLength - prefix.length - suffix.length - lineBreakCount;
-  const content = ' '.repeat(spaces) + NEWLINE.repeat(lineBreakCount);
+  const placeholderLength = totalLength - prefix.length - suffix.length;
+  const placeholder = ' '.repeat(placeholderLength);
 
   return replaceRange(
     currentCode,
     templateNode.range,
-    `${prefix}${content}${suffix}`,
+    `${prefix}${placeholder}${suffix}`,
   );
 }

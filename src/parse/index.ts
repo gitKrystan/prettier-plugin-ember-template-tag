@@ -15,7 +15,7 @@ import type { Options } from '../options.js';
 import type { GlimmerTemplateInfo, RawGlimmerTemplate } from '../types/glimmer';
 import { isDefaultTemplate } from '../types/glimmer';
 import { assert } from '../utils';
-import { normalizeWhitespace } from './preprocess';
+import { preprocessTemplateRange } from './preprocess';
 
 const typescript = babelParsers['babel-ts'] as Parser<Node | undefined>;
 const p = new Preprocessor();
@@ -87,18 +87,14 @@ function preprocess(code: string): {
   const templateInfos: GlimmerTemplateInfo[] = [];
   let output = code;
   for (const templateNode of templateNodes) {
-    output = normalizeWhitespace(templateNode, code, output);
+    output = preprocessTemplateRange(templateNode, code, output);
 
-    const template = code.slice(
-      templateNode.contentRange.start,
-      templateNode.contentRange.end,
-    );
     const templateInfo: GlimmerTemplateInfo = {
       range: [templateNode.range.start, templateNode.range.end],
       start: templateNode.range.start,
       end: templateNode.range.end,
       extra: {
-        template,
+        template: templateNode.contents,
       },
     };
     templateInfos.push(templateInfo);

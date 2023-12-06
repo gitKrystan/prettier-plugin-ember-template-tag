@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "example": "pnpm exec prettier . --write",
-    "example-debug": "pnpm exec prettier . --write --log-level debug",
+    "example": "pnpm prettier ./input --write --plugin prettier-plugin-ember-template-tag",
+    "example-debug": "pnpm prettier ./input --write --plugin prettier-plugin-ember-template-tag --log-level debug",
     "test": "node ./bin/test.mjs"
   },
   "dependencies": {
