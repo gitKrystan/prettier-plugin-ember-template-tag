@@ -65,7 +65,7 @@ importers:
         version: 46.9.0(eslint@8.55.0)
       eslint-plugin-n:
         specifier: ^16.3.1
-        version: 16.3.1(eslint@8.55.0)
+        version: 16.5.0(eslint@8.55.0)
       eslint-plugin-simple-import-sort:
         specifier: ^10.0.0
         version: 10.0.0(eslint@8.55.0)
@@ -2190,8 +2190,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-n@16.3.1(eslint@8.55.0):
-    resolution: {integrity: sha512-w46eDIkxQ2FaTHcey7G40eD+FhTXOdKudDXPUO2n9WNcslze/i/HT2qJ3GXjHngYSGDISIgPNhwGtgoix4zeOw==}
+  /eslint-plugin-n@16.5.0(eslint@8.55.0):
+    resolution: {integrity: sha512-Hw02Bj1QrZIlKyj471Tb1jSReTl4ghIMHGuBGiMVmw+s0jOPbI4CBuYpGbZr+tdQ+VAvSK6FDSta3J4ib/SKHQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       eslint: '>=7.0.0'
