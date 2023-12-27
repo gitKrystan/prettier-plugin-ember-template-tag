@@ -80,7 +80,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi,
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -99,7 +99,7 @@ export interface Signature {
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -117,7 +117,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -141,7 +141,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -159,7 +159,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -177,7 +177,7 @@ const Private = <template>
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -214,7 +214,7 @@ const bool: boolean = false,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -251,7 +251,7 @@ const bool: boolean = false,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -346,7 +346,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi,
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -365,7 +365,7 @@ export interface Signature {
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -383,7 +383,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -407,7 +407,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -425,7 +425,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -443,7 +443,7 @@ const Private = <template>
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -480,7 +480,7 @@ const bool: boolean = false,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -517,7 +517,7 @@ const bool: boolean = false,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -551,7 +551,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without se
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -572,7 +572,7 @@ export interface Signature {
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -594,7 +594,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without se
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -616,7 +616,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without se
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -650,7 +650,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without se
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 export interface Signature {
   Element: HTMLElement;
   Args: {};
@@ -670,7 +670,7 @@ export interface Signature {
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 export interface Signature {
   Element: HTMLElement;
   Args: {};
@@ -691,7 +691,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without se
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 export interface Signature {
   Element: HTMLElement;
   Args: {};
@@ -712,7 +712,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without se
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 export interface Signature {
   Element: HTMLElement;
   Args: {};
@@ -806,7 +806,7 @@ oops => {};
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -825,7 +825,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -843,7 +843,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -867,7 +867,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -885,7 +885,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -903,7 +903,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -940,7 +940,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -977,7 +977,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1072,7 +1072,7 @@ oops => {};
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1091,7 +1091,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1109,7 +1109,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1133,7 +1133,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1151,7 +1151,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1169,7 +1169,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/multiple-declarations.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1206,7 +1206,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1243,7 +1243,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1277,7 +1277,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1298,7 +1298,7 @@ oops => {};
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1320,7 +1320,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1342,7 +1342,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, with newline > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 
 export interface Signature {
   Element: HTMLElement;
@@ -1376,7 +1376,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/component-class.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 export interface Signature {
   Element: HTMLElement;
   Args: {};
@@ -1396,7 +1396,7 @@ oops => {};
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 export interface Signature {
   Element: HTMLElement;
   Args: {};
@@ -1417,7 +1417,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/mod-var.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 export interface Signature {
   Element: HTMLElement;
   Args: {};
@@ -1438,7 +1438,7 @@ exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > without semi, without newline > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\";
+"import type { TemplateOnlyComponent } from "@ember/component/template-only";
 export interface Signature {
   Element: HTMLElement;
   Args: {};
