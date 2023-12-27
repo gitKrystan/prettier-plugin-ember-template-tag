@@ -434,6 +434,25 @@ export const Exported = <template>
 "
 `;
 
+exports[`format > config > default > it formats ../cases/gts/issue-191.gts 1`] = `
+"import Component from "@glimmer/component";
+
+/**
+ * This component contains a multi-byte character
+ */
+export default class PooComponent extends Component {
+  <template>💩</template>
+}
+"
+`;
+
+exports[`format > config > default > it formats ../cases/gts/issue-191-b.gts 1`] = `
+"<template>
+  💩
+</template>
+"
+`;
+
 exports[`format > config > default > it formats ../cases/gts/js-only.gts 1`] = `
 "const num: number = 1;
 "

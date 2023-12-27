@@ -30,9 +30,6 @@ function convertNode(
   const cast = node as unknown as GlimmerTemplate;
   // HACK: Changing the node type here isn't recommended by babel
   cast.type = 'FunctionDeclaration';
-  cast.range = [rawTemplate.range.start, rawTemplate.range.end];
-  cast.start = rawTemplate.range.start;
-  cast.end = rawTemplate.range.end;
   cast.extra = Object.assign(node.extra ?? {}, {
     isGlimmerTemplate: true as const,
     isDefaultTemplate: isDefaultTemplate(path),
@@ -57,6 +54,7 @@ function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
         const [start, end] = range;
 
         const rawTemplate = rawTemplates.find(
+          // FIXME: Probably not correct
           (t) =>
             (t.range.start === start && t.range.end === end) ||
             (t.range.start === start - 1 && t.range.end === end + 1) ||
@@ -91,12 +89,11 @@ function preprocess(code: string): {
 } {
   const rawTemplates = p.parse(code);
 
-  let output = code;
   for (const rawTemplate of rawTemplates) {
-    output = preprocessTemplateRange(rawTemplate, code, output);
+    code = preprocessTemplateRange(rawTemplate, code);
   }
 
-  return { rawTemplates, code: output };
+  return { rawTemplates, code };
 }
 
 export const parser: Parser<Node | undefined> = {
