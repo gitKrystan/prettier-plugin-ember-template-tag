@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@babel/core':
-        specifier: ^7.23.5
+        specifier: ^7.23.6
         version: 7.23.6
       prettier:
         specifier: ^3.1.0
         version: 3.1.0
     devDependencies:
       '@babel/types':
-        specifier: ^7.23.5
+        specifier: ^7.23.6
         version: 7.23.6
       '@release-it-plugins/lerna-changelog':
         specifier: ^6.0.0
