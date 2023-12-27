@@ -6,13 +6,14 @@ import type {
   ObjectExpression,
   StaticBlock,
 } from '@babel/types';
+import type { Parsed as RawGlimmerTemplate } from 'content-tag';
 import { Preprocessor } from 'content-tag';
 import type { Parser } from 'prettier';
 import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
 import { PRINTER_NAME } from '../config.js';
 import type { Options } from '../options.js';
-import type { GlimmerTemplate, RawGlimmerTemplate } from '../types/glimmer.js';
+import type { GlimmerTemplate } from '../types/glimmer.js';
 import { isDefaultTemplate } from '../types/glimmer.js';
 import { assert } from '../utils/index.js';
 import { preprocessTemplateRange } from './preprocess.js';
@@ -88,7 +89,7 @@ function preprocess(code: string): {
   code: string;
   rawTemplates: RawGlimmerTemplate[];
 } {
-  const rawTemplates = p.parse(code) as RawGlimmerTemplate[];
+  const rawTemplates = p.parse(code);
 
   let output = code;
   for (const rawTemplate of rawTemplates) {
