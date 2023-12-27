@@ -14,7 +14,7 @@
     "email": "kmenne@gmail.com",
     "name": "Krystan HuffMenne"
   },
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/prettier-plugin-ember-template-tag.js",
   "license": "MIT",
   "repository": {

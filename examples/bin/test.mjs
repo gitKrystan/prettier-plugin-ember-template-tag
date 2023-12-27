@@ -42,8 +42,6 @@ const run = async () => {
         './node_modules/prettier/bin/prettier.cjs',
         '.',
         '--write',
-        '--plugin',
-        'prettier-plugin-ember-template-tag',
         debug ? '--log-level' : null,
         debug ? 'debug' : null,
       ].filter(Boolean),

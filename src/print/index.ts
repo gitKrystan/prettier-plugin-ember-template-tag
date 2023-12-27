@@ -8,10 +8,13 @@ import type {
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';
-import { getGlimmerTemplate, isGlimmerTemplate } from '../types/glimmer';
-import { assert } from '../utils';
-import { fixPreviousPrint, saveCurrentPrintOnSiblingNode } from './ambiguity';
-import { printTemplateContent, printTemplateTag } from './template';
+import { getGlimmerTemplate, isGlimmerTemplate } from '../types/glimmer.js';
+import { assert } from '../utils/index.js';
+import {
+  fixPreviousPrint,
+  saveCurrentPrintOnSiblingNode,
+} from './ambiguity.js';
+import { printTemplateContent, printTemplateTag } from './template.js';
 
 const estreePrinter = estreePrinters['estree'] as Printer<Node | undefined>;
 
