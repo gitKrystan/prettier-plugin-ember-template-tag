@@ -1,44 +1,44 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`config > semi: false > it formats ../cases/gjs/complex.gjs 1`] = `
-"import { on } from \\"@ember/modifier\\"
-import { service } from \\"@ember/service\\"
-import Component from \\"@glimmer/component\\"
+"import { on } from "@ember/modifier"
+import { service } from "@ember/service"
+import Component from "@glimmer/component"
 
-import { task } from \\"ember-concurrency\\"
-import perform from \\"ember-concurrency/helpers/perform\\"
+import { task } from "ember-concurrency"
+import perform from "ember-concurrency/helpers/perform"
 
-import Button from \\"okapi/components/button\\"
-import Icon from \\"okapi/components/icon\\"
+import Button from "okapi/components/button"
+import Icon from "okapi/components/icon"
 
 export default class ProjectStatusComponent extends Component {
   <template>
     <Button
       data-test-project-status={{@project.id}}
-      class=\\"Button--theme-action\\"
-      {{on \\"click\\" (perform this.restartProject)}}
+      class="Button--theme-action"
+      {{on "click" (perform this.restartProject)}}
     >
       <Icon @type={{this.iconType}} @id={{this.iconId}} />
-      {{@project.status}}{{if this.restartProject.isRunning \\"...\\"}}
+      {{@project.status}}{{if this.restartProject.isRunning "..."}}
     </Button>
   </template>
 
   @service server
 
   private get iconType() {
-    return \\"mini\\"
+    return "mini"
   }
 
   private get iconId() {
     switch (this.args.project.status) {
-      case \\"starting\\":
-      case \\"stopping\\":
-        return \\"ellipsis-horizontal-circle\\"
+      case "starting":
+      case "stopping":
+        return "ellipsis-horizontal-circle"
 
-      case \\"started\\":
-        return \\"play-circle\\"
-      case \\"stopped\\":
-        return \\"stop-circle\\"
+      case "started":
+        return "play-circle"
+      case "stopped":
+        return "stop-circle"
     }
   }
 
@@ -50,7 +50,7 @@ export default class ProjectStatusComponent extends Component {
 `;
 
 exports[`config > semi: false > it formats ../cases/gjs/component-class.gjs 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -65,7 +65,7 @@ class MyComponent extends Component {
 `;
 
 exports[`config > semi: false > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -82,7 +82,7 @@ class MyComponent extends Component {
 `;
 
 exports[`config > semi: false > it formats ../cases/gjs/component-class-with-template-literal.gjs 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -169,7 +169,7 @@ exports[`config > semi: false > it formats ../cases/gjs/one-line.gjs 1`] = `
 `;
 
 exports[`config > semi: false > it formats ../cases/gjs/prettier-ignore/component-class.gjs 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -184,7 +184,7 @@ class MyComponent extends Component {
 `;
 
 exports[`config > semi: false > it formats ../cases/gjs/prettier-ignore/component-class-with-template-literal.gjs 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 /** It's a component */
 class MyComponent extends Component {
@@ -255,13 +255,13 @@ exports[`config > semi: false > it formats ../cases/gjs/prettier-ignore/simple.g
 `;
 
 exports[`config > semi: false > it formats ../cases/gjs/route.gjs 1`] = `
-"import Layout from \\"docs-app/components/layout\\"
-import pageTitle from \\"ember-page-title/helpers/page-title\\"
-import Route from \\"ember-route-template\\"
+"import Layout from "docs-app/components/layout"
+import pageTitle from "ember-page-title/helpers/page-title"
+import Route from "ember-route-template"
 
 export default Route(
   <template>
-    {{pageTitle \\"ember-primitives\\"}}
+    {{pageTitle "ember-primitives"}}
 
     <Layout />
   </template>,
@@ -277,17 +277,17 @@ exports[`config > semi: false > it formats ../cases/gjs/simple.gjs 1`] = `
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/complex.gts 1`] = `
-"import { on } from \\"@ember/modifier\\"
-import { service } from \\"@ember/service\\"
-import Component from \\"@glimmer/component\\"
+"import { on } from "@ember/modifier"
+import { service } from "@ember/service"
+import Component from "@glimmer/component"
 
-import { task } from \\"ember-concurrency\\"
-import perform from \\"ember-concurrency/helpers/perform\\"
+import { task } from "ember-concurrency"
+import perform from "ember-concurrency/helpers/perform"
 
-import Button from \\"okapi/components/button\\"
-import Icon from \\"okapi/components/icon\\"
-import Project, { ProjectStatus } from \\"okapi/models/project\\"
-import ServerService from \\"okapi/services/server\\"
+import Button from "okapi/components/button"
+import Icon from "okapi/components/icon"
+import Project, { ProjectStatus } from "okapi/models/project"
+import ServerService from "okapi/services/server"
 
 export interface ProjectStatusSig {
   Args: {
@@ -299,18 +299,18 @@ export default class ProjectStatusComponent extends Component<ProjectStatusSig> 
   <template>
     <Button
       data-test-project-status={{@project.id}}
-      class=\\"Button--theme-action\\"
-      {{on \\"click\\" (perform this.restartProject)}}
+      class="Button--theme-action"
+      {{on "click" (perform this.restartProject)}}
     >
       <Icon @type={{this.iconType}} @id={{this.iconId}} />
-      {{@project.status}}{{if this.restartProject.isRunning \\"...\\"}}
+      {{@project.status}}{{if this.restartProject.isRunning "..."}}
     </Button>
   </template>
 
   @service private declare server: ServerService
 
-  private get iconType(): \\"mini\\" {
-    return \\"mini\\"
+  private get iconType(): "mini" {
+    return "mini"
   }
 
   private get iconId(): string {
@@ -318,11 +318,11 @@ export default class ProjectStatusComponent extends Component<ProjectStatusSig> 
       case ProjectStatus.Starting:
 
       case ProjectStatus.Stopping:
-        return \\"ellipsis-horizontal-circle\\"
+        return "ellipsis-horizontal-circle"
       case ProjectStatus.Started:
-        return \\"play-circle\\"
+        return "play-circle"
       case ProjectStatus.Stopped:
-        return \\"stop-circle\\"
+        return "stop-circle"
     }
   }
 
@@ -334,7 +334,7 @@ export default class ProjectStatusComponent extends Component<ProjectStatusSig> 
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/component-class.gts 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 export interface Signature {
   Element: HTMLElement
@@ -357,7 +357,7 @@ class MyComponent extends Component<Signature> {
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/component-class-with-template-literal.gts 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 export interface Signature {
   Element: HTMLElement
@@ -383,7 +383,7 @@ class MyComponent extends Component<Signature> {
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -401,7 +401,7 @@ export interface Signature {
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/exported-mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -418,7 +418,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -440,7 +440,7 @@ exports[`config > semi: false > it formats ../cases/gts/js-only.gts 1`] = `
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -457,7 +457,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -474,7 +474,7 @@ const Private = <template>
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/multiple-declarations.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -509,7 +509,7 @@ const bool: boolean = false,
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/multiple-declarations-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -544,7 +544,7 @@ const bool: boolean = false,
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/one-line.gts 1`] = `
-"import type { TOC } from \\"@ember/component/template-only\\"
+"import type { TOC } from "@ember/component/template-only"
 
 export interface Sig {
   Element: HTMLElement
@@ -557,7 +557,7 @@ const Oneline = <template>One line.</template> as TOC<Sig>
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/component-class.gts 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 export interface Signature {
   Element: HTMLElement
@@ -580,7 +580,7 @@ class MyComponent extends Component<Signature> {
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/component-class-with-template-literal.gts 1`] = `
-"import Component from \\"@glimmer/component\\"
+"import Component from "@glimmer/component"
 
 export interface Signature {
   Element: HTMLElement
@@ -605,7 +605,7 @@ class MyComponent extends Component<Signature> {
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/default-export.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -618,7 +618,7 @@ export default <template>     Explicit default export module top level component
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/exported-mod-var.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -632,7 +632,7 @@ export const Exported: TemplateOnlyComponent<Signature>     = <template>       E
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/exported-mod-var-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -652,7 +652,7 @@ const num:   number = 1;
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/multiple-declarations.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -682,7 +682,7 @@ ModVar4: TemplateOnlyComponent<Signature> = <template>
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/multiple-declarations-with-as.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -712,7 +712,7 @@ ModVar4 = <template>
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/one-line.gts 1`] = `
-"import type { TOC } from \\"@ember/component/template-only\\"
+"import type { TOC } from "@ember/component/template-only"
 
 export interface Sig {
   Element: HTMLElement
@@ -726,7 +726,7 @@ const Oneline = <template>      Module variable template (one line). </template>
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/prettier-ignore/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
@@ -742,23 +742,23 @@ export interface Signature {
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/rendering-test.gts 1`] = `
-"import { module, test } from \\"qunit\\"
-import { render } from \\"@ember/test-helpers\\"
-import { setupRenderingTest } from \\"ember-qunit\\"
+"import { module, test } from "qunit"
+import { render } from "@ember/test-helpers"
+import { setupRenderingTest } from "ember-qunit"
 
-module(\\"Render with template tag\\", function (hooks) {
+module("Render with template tag", function (hooks) {
   setupRenderingTest(hooks)
 
-  test(\\"it has a template tag\\", async function (assert) {
+  test("it has a template tag", async function (assert) {
     await render(<template>what</template>)
-    assert.dom().hasText(\\"what\\")
+    assert.dom().hasText("what")
   })
 })
 "
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/simple.gts 1`] = `
-"import type { TemplateOnlyComponent } from \\"@ember/component/template-only\\"
+"import type { TemplateOnlyComponent } from "@ember/component/template-only"
 
 export interface Signature {
   Element: HTMLElement
