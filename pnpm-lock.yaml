@@ -11,6 +11,9 @@ importers:
       '@babel/core':
         specifier: ^7.23.6
         version: 7.23.6
+      content-tag:
+        specifier: ^1.2.2
+        version: 1.2.2
       prettier:
         specifier: ^3.1.1
         version: 3.1.1
@@ -48,9 +51,6 @@ importers:
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
-      content-tag:
-        specifier: ^1.1.2
-        version: 1.1.2
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1849,9 +1849,9 @@ packages:
       xdg-basedir: 5.1.0
     dev: true
 
-  /content-tag@1.1.2:
-    resolution: {integrity: sha512-AZkfc6TUmW+/RbZJioPzOQPAHHXqyqK4B0GNckJDjBAPK3SyGrMfn21bfFky/qwi5uoLph5sjAHUkO3CL6/IgQ==}
-    dev: true
+  /content-tag@1.2.2:
+    resolution: {integrity: sha512-9guqKIx2H+78N17otBpl8yLZbQGL5q1vBO/jDb3gF2JjixtcVpC62jDUNxjVMNoaZ09oxRX84ZOD6VX02qkVvg==}
+    dev: false
 
   /convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}

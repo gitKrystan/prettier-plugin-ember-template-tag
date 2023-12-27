@@ -1,4 +1,4 @@
-import type { RawGlimmerTemplate } from '../types/glimmer.js';
+import type { Parsed as RawGlimmerTemplate } from 'content-tag';
 
 function replaceRange(
   original: string,
