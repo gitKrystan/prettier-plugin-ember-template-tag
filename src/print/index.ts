@@ -59,6 +59,11 @@ export const printer: Printer<Node | undefined> = {
           printed.unshift('export ', 'default ');
         }
 
+        // Always remove trailing semicolon so we can manually manage it
+        if (docMatchesString(printed.at(-1), ';')) {
+          printed.pop();
+        }
+
         saveCurrentPrintOnSiblingNode(path, printed);
         return printed;
       }

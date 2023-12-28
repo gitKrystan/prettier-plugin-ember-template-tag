@@ -13,7 +13,7 @@ import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
 import { PRINTER_NAME } from '../config.js';
 import type { Options } from '../options.js';
-import { isDefaultTemplate } from '../types/glimmer.js';
+import { isTopLevelTemplate } from '../types/glimmer.js';
 import { assert } from '../utils/index.js';
 import { preprocessTemplateRange } from './preprocess.js';
 
@@ -28,8 +28,7 @@ function convertNode(
 ): void {
   node.extra = Object.assign(node.extra ?? {}, {
     isGlimmerTemplate: true as const,
-    // FIXME: Still need this?
-    isDefaultTemplate: isDefaultTemplate(path),
+    isDefaultTemplate: isTopLevelTemplate(path),
     template: rawTemplate,
   });
 }

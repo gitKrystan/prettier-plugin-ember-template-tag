@@ -396,7 +396,7 @@ export default <template>
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 "
 `;
 
@@ -441,7 +441,9 @@ exports[`config > templateExportDefault: true > it formats ../cases/gts/issue-19
  * This component contains a multi-byte character
  */
 export default class PooComponent extends Component {
-  <template>💩</template>
+  <template>
+    💩
+  </template>
 }
 "
 `;

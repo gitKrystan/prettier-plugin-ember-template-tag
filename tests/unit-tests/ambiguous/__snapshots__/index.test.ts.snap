@@ -1994,18 +1994,17 @@ exports[`ambiguous > config > default > +"oops" > without semi, with newline > i
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>;
-+"oops";
+</template> + "oops"
 "
 `;
 
 exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
-"export const Exported = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>;
-+"oops";
+"export const Exported =
+  <template>
+    Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.
+  </template> + "oops";
 "
 `;
 
@@ -2015,15 +2014,14 @@ exports[`ambiguous > config > default > +"oops" > without semi, with newline > i
 `;
 
 exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
-"const Private = <template>
-  Private variable template. Private variable template. Private variable
-  template. Private variable template. Private variable template. Private
-  variable template. Private variable template.
-</template>;
-+"oops";
+"const Private =
+  <template>
+    Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.
+  </template> + "oops";
 
-const What = <template>Hi</template>;
-+"oops";
+const What = <template>Hi</template> + "oops";
 "
 `;
 
@@ -2046,8 +2044,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
-+"oops";
+  ModVar4 = <template>Second module variable template.</template> + "oops";
 "
 `;
 
@@ -2088,12 +2085,12 @@ export interface Signature {
   Yields: [];
 }
 
-export const Exported: TemplateOnlyComponent<Signature> = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>;
-+"oops";
+export const Exported: TemplateOnlyComponent<Signature> =
+  <template>
+    Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.
+  </template> + "oops";
 "
 `;
 
@@ -2129,12 +2126,12 @@ export interface Signature {
   Yields: [];
 }
 
-const Private: TemplateOnlyComponent<Signature> = <template>
-  Private variable template. Private variable template. Private variable
-  template. Private variable template. Private variable template. Private
-  variable template. Private variable template.
-</template>;
-+"oops";
+const Private: TemplateOnlyComponent<Signature> =
+  <template>
+    Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.
+  </template> + "oops";
 "
 `;
 
@@ -2185,10 +2182,8 @@ const bool: boolean = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4: TemplateOnlyComponent<Signature> = <template>
-    Second module variable template.
-  </template>;
-+"oops";
+  ModVar4: TemplateOnlyComponent<Signature> =
+    <template>Second module variable template.</template> + "oops";
 "
 `;
 
@@ -2251,18 +2246,17 @@ exports[`ambiguous > config > default > +"oops" > without semi, without newline 
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>;
-+"oops";
+</template> + "oops"
 "
 `;
 
 exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
-"export const Exported = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>;
-+"oops";
+"export const Exported =
+  <template>
+    Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.
+  </template> + "oops";
 "
 `;
 
@@ -2272,15 +2266,14 @@ exports[`ambiguous > config > default > +"oops" > without semi, without newline 
 `;
 
 exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
-"const Private = <template>
-  Private variable template. Private variable template. Private variable
-  template. Private variable template. Private variable template. Private
-  variable template. Private variable template.
-</template>;
-+"oops";
+"const Private =
+  <template>
+    Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.
+  </template> + "oops";
 
-const What = <template>Hi</template>;
-+"oops";
+const What = <template>Hi</template> + "oops";
 "
 `;
 
@@ -2303,8 +2296,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
-+"oops";
+  ModVar4 = <template>Second module variable template.</template> + "oops";
 "
 `;
 
@@ -2343,12 +2335,12 @@ export interface Signature {
   Yields: [];
 }
 
-export const Exported: TemplateOnlyComponent<Signature> = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>;
-+"oops";
+export const Exported: TemplateOnlyComponent<Signature> =
+  <template>
+    Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.
+  </template> + "oops";
 "
 `;
 
@@ -2382,12 +2374,12 @@ export interface Signature {
   Yields: [];
 }
 
-const Private: TemplateOnlyComponent<Signature> = <template>
-  Private variable template. Private variable template. Private variable
-  template. Private variable template. Private variable template. Private
-  variable template. Private variable template.
-</template>;
-+"oops";
+const Private: TemplateOnlyComponent<Signature> =
+  <template>
+    Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.
+  </template> + "oops";
 "
 `;
 
@@ -2436,10 +2428,8 @@ const bool: boolean = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4: TemplateOnlyComponent<Signature> = <template>
-    Second module variable template.
-  </template>;
-+"oops";
+  ModVar4: TemplateOnlyComponent<Signature> =
+    <template>Second module variable template.</template> + "oops";
 "
 `;
 
@@ -3105,7 +3095,9 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3123,7 +3115,9 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3236,7 +3230,9 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3255,7 +3251,7 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 <template>
   oops
 </template>
@@ -3461,7 +3457,9 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3479,7 +3477,9 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3590,7 +3590,9 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3609,7 +3611,7 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 <template>
   oops
 </template>
@@ -3814,7 +3816,9 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3832,7 +3836,9 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3945,7 +3951,9 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -3964,7 +3972,7 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 <template>
   oops
 </template>
@@ -4169,7 +4177,9 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -4186,7 +4196,9 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -4265,7 +4277,9 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>oops</template>
+  <template>
+    oops
+  </template>
 }
 "
 `;
@@ -4283,7 +4297,7 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 <template>
   oops
 </template>
@@ -5060,13 +5074,12 @@ class MyComponent extends Component {
 `;
 
 exports[`ambiguous > config > default > ["oops"] > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>;
-["oops"];
+</template>["oops"];
 "
 `;
 
@@ -5075,8 +5088,7 @@ exports[`ambiguous > config > default > ["oops"] > without semi, with newline > 
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-["oops"];
+</template>["oops"];
 "
 `;
 
@@ -5090,11 +5102,9 @@ exports[`ambiguous > config > default > ["oops"] > without semi, with newline > 
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-["oops"];
+</template>["oops"];
 
-const What = <template>Hi</template>;
-["oops"];
+const What = <template>Hi</template>["oops"];
 "
 `;
 
@@ -5117,8 +5127,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
-["oops"];
+  ModVar4 = <template>Second module variable template.</template>["oops"];
 "
 `;
 
@@ -5186,8 +5195,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-["oops"];
+</template>["oops"];
 "
 `;
 
@@ -5227,8 +5235,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-["oops"];
+</template>["oops"];
 "
 `;
 
@@ -5281,8 +5288,7 @@ const bool: boolean = false,
   </template>,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
-  </template>;
-["oops"];
+  </template>["oops"];
 "
 `;
 
@@ -5371,13 +5377,12 @@ class MyComponent extends Component {
 `;
 
 exports[`ambiguous > config > default > ["oops"] > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>;
-["oops"];
+</template>["oops"];
 "
 `;
 
@@ -5386,8 +5391,7 @@ exports[`ambiguous > config > default > ["oops"] > without semi, without newline
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-["oops"];
+</template>["oops"];
 "
 `;
 
@@ -5401,11 +5405,9 @@ exports[`ambiguous > config > default > ["oops"] > without semi, without newline
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-["oops"];
+</template>["oops"];
 
-const What = <template>Hi</template>;
-["oops"];
+const What = <template>Hi</template>["oops"];
 "
 `;
 
@@ -5428,8 +5430,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
-["oops"];
+  ModVar4 = <template>Second module variable template.</template>["oops"];
 "
 `;
 
@@ -5494,8 +5495,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-["oops"];
+</template>["oops"];
 "
 `;
 
@@ -5533,8 +5533,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-["oops"];
+</template>["oops"];
 "
 `;
 
@@ -5585,8 +5584,7 @@ const bool: boolean = false,
   </template>,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
-  </template>;
-["oops"];
+  </template>["oops"];
 "
 `;
 
@@ -6177,13 +6175,12 @@ exports[`ambiguous > config > default > \`oops\` > without semi, with newline > 
 exports[`ambiguous > config > default > \`oops\` > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > \`oops\` > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 "
 `;
 
@@ -6192,8 +6189,7 @@ exports[`ambiguous > config > default > \`oops\` > without semi, with newline > 
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 "
 `;
 
@@ -6207,11 +6203,9 @@ exports[`ambiguous > config > default > \`oops\` > without semi, with newline > 
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 
-const What = <template>Hi</template>;
-\`oops\`;
+const What = <template>Hi</template>\`oops\`;
 "
 `;
 
@@ -6234,8 +6228,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
-\`oops\`;
+  ModVar4 = <template>Second module variable template.</template>\`oops\`;
 "
 `;
 
@@ -6281,8 +6274,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 "
 `;
 
@@ -6322,8 +6314,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 "
 `;
 
@@ -6376,8 +6367,7 @@ const bool: boolean = false,
   </template>,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
-  </template>;
-\`oops\`;
+  </template>\`oops\`;
 "
 `;
 
@@ -6438,13 +6428,12 @@ exports[`ambiguous > config > default > \`oops\` > without semi, without newline
 exports[`ambiguous > config > default > \`oops\` > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > \`oops\` > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 "
 `;
 
@@ -6453,8 +6442,7 @@ exports[`ambiguous > config > default > \`oops\` > without semi, without newline
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 "
 `;
 
@@ -6468,11 +6456,9 @@ exports[`ambiguous > config > default > \`oops\` > without semi, without newline
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 
-const What = <template>Hi</template>;
-\`oops\`;
+const What = <template>Hi</template>\`oops\`;
 "
 `;
 
@@ -6495,8 +6481,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
-\`oops\`;
+  ModVar4 = <template>Second module variable template.</template>\`oops\`;
 "
 `;
 
@@ -6540,8 +6525,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 "
 `;
 
@@ -6579,8 +6563,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-\`oops\`;
+</template>\`oops\`;
 "
 `;
 
@@ -6631,8 +6614,7 @@ const bool: boolean = false,
   </template>,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
-  </template>;
-\`oops\`;
+  </template>\`oops\`;
 "
 `;
 
@@ -7228,18 +7210,17 @@ exports[`ambiguous > config > default > -"oops" > without semi, with newline > i
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>;
--"oops";
+</template> - "oops"
 "
 `;
 
 exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
-"export const Exported = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>;
--"oops";
+"export const Exported =
+  <template>
+    Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.
+  </template> - "oops";
 "
 `;
 
@@ -7249,15 +7230,14 @@ exports[`ambiguous > config > default > -"oops" > without semi, with newline > i
 `;
 
 exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
-"const Private = <template>
-  Private variable template. Private variable template. Private variable
-  template. Private variable template. Private variable template. Private
-  variable template. Private variable template.
-</template>;
--"oops";
+"const Private =
+  <template>
+    Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.
+  </template> - "oops";
 
-const What = <template>Hi</template>;
--"oops";
+const What = <template>Hi</template> - "oops";
 "
 `;
 
@@ -7280,8 +7260,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
--"oops";
+  ModVar4 = <template>Second module variable template.</template> - "oops";
 "
 `;
 
@@ -7322,12 +7301,12 @@ export interface Signature {
   Yields: [];
 }
 
-export const Exported: TemplateOnlyComponent<Signature> = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>;
--"oops";
+export const Exported: TemplateOnlyComponent<Signature> =
+  <template>
+    Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.
+  </template> - "oops";
 "
 `;
 
@@ -7363,12 +7342,12 @@ export interface Signature {
   Yields: [];
 }
 
-const Private: TemplateOnlyComponent<Signature> = <template>
-  Private variable template. Private variable template. Private variable
-  template. Private variable template. Private variable template. Private
-  variable template. Private variable template.
-</template>;
--"oops";
+const Private: TemplateOnlyComponent<Signature> =
+  <template>
+    Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.
+  </template> - "oops";
 "
 `;
 
@@ -7419,10 +7398,8 @@ const bool: boolean = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4: TemplateOnlyComponent<Signature> = <template>
-    Second module variable template.
-  </template>;
--"oops";
+  ModVar4: TemplateOnlyComponent<Signature> =
+    <template>Second module variable template.</template> - "oops";
 "
 `;
 
@@ -7485,18 +7462,17 @@ exports[`ambiguous > config > default > -"oops" > without semi, without newline 
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>;
--"oops";
+</template> - "oops"
 "
 `;
 
 exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gjs/exported-mod-var.gjs 1`] = `
-"export const Exported = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>;
--"oops";
+"export const Exported =
+  <template>
+    Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.
+  </template> - "oops";
 "
 `;
 
@@ -7506,15 +7482,14 @@ exports[`ambiguous > config > default > -"oops" > without semi, without newline 
 `;
 
 exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gjs/mod-var.gjs 1`] = `
-"const Private = <template>
-  Private variable template. Private variable template. Private variable
-  template. Private variable template. Private variable template. Private
-  variable template. Private variable template.
-</template>;
--"oops";
+"const Private =
+  <template>
+    Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.
+  </template> - "oops";
 
-const What = <template>Hi</template>;
--"oops";
+const What = <template>Hi</template> - "oops";
 "
 `;
 
@@ -7537,8 +7512,7 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
--"oops";
+  ModVar4 = <template>Second module variable template.</template> - "oops";
 "
 `;
 
@@ -7577,12 +7551,12 @@ export interface Signature {
   Yields: [];
 }
 
-export const Exported: TemplateOnlyComponent<Signature> = <template>
-  Exported variable template. Exported variable template. Exported variable
-  template. Exported variable template. Exported variable template. Exported
-  variable template. Exported variable template.
-</template>;
--"oops";
+export const Exported: TemplateOnlyComponent<Signature> =
+  <template>
+    Exported variable template. Exported variable template. Exported variable
+    template. Exported variable template. Exported variable template. Exported
+    variable template. Exported variable template.
+  </template> - "oops";
 "
 `;
 
@@ -7616,12 +7590,12 @@ export interface Signature {
   Yields: [];
 }
 
-const Private: TemplateOnlyComponent<Signature> = <template>
-  Private variable template. Private variable template. Private variable
-  template. Private variable template. Private variable template. Private
-  variable template. Private variable template.
-</template>;
--"oops";
+const Private: TemplateOnlyComponent<Signature> =
+  <template>
+    Private variable template. Private variable template. Private variable
+    template. Private variable template. Private variable template. Private
+    variable template. Private variable template.
+  </template> - "oops";
 "
 `;
 
@@ -7670,10 +7644,8 @@ const bool: boolean = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4: TemplateOnlyComponent<Signature> = <template>
-    Second module variable template.
-  </template>;
--"oops";
+  ModVar4: TemplateOnlyComponent<Signature> =
+    <template>Second module variable template.</template> - "oops";
 "
 `;
 

@@ -28,14 +28,16 @@ export function isGlimmerTemplate(node: Node): node is Node & GlimmerTemplate {
   return node.extra?.['isGlimmerTemplate'] === true;
 }
 
-/** Returns true if the GlimmerTemplate path is already a default template. */
-export function isDefaultTemplate(path: NodePath): boolean {
+/** Returns true if the GlimmerTemplate path is in a "top level" position. */
+export function isTopLevelTemplate(path: NodePath): boolean {
   return (
     // Top level `<template></template>`
     path.parent.type === 'Program' ||
     // Top level `<template></template> as TemplateOnlyComponent<Signature>`
     (path.parent.type === 'TSAsExpression' &&
-      path.parentPath?.parentPath?.parent.type === 'Program')
+      path.parentPath?.parentPath?.parent.type === 'Program') ||
+    // Top level `class MyComponent { <template></template> }`
+    path.node.type === 'StaticBlock'
   );
 }
 
@@ -59,6 +61,18 @@ export function getGlimmerTemplate(
     isGlimmerTemplate(node.declaration.expression)
   ) {
     return node.declaration.expression;
+  }
+  // SUPER edge case:
+  // export default <template></template> + 'oops';
+  if (
+    node.type === 'ExportDefaultDeclaration' &&
+    node.declaration.type === 'BinaryExpression'
+  ) {
+    if (isGlimmerTemplate(node.declaration.left)) {
+      return node.declaration.left;
+    } else if (isGlimmerTemplate(node.declaration.right)) {
+      return node.declaration.right;
+    }
   }
   return null;
 }
