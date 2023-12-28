@@ -26,7 +26,7 @@ function convertNode(
 
 /** Traverses the AST and replaces the transformed template parts with other AST */
 function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
-  let counter = 0;
+  const unprocessedTemplates = [...rawTemplates];
 
   traverse(ast, {
     enter(path) {
@@ -36,28 +36,32 @@ function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
         assert('expected range', range);
         const [start, end] = range;
 
-        const rawTemplate = rawTemplates.find(
-          // FIXME: Probably not correct
+        const templateIndex = unprocessedTemplates.findIndex(
           (t) =>
-            (t.range.start === start && t.range.end === end) ||
-            (t.range.start === start - 1 && t.range.end === end + 1) ||
-            (t.range.start === start && t.range.end === end + 1),
+            (node.type === 'StaticBlock' &&
+              t.range.start === start &&
+              t.range.end === end) ||
+            (node.type === 'ObjectExpression' &&
+              t.range.start === start - 1 &&
+              t.range.end === end + 1),
         );
+        const rawTemplate = unprocessedTemplates.splice(templateIndex, 1)[0];
 
         if (!rawTemplate) {
           return null;
         }
 
         convertNode(node, rawTemplate);
-
-        counter++;
       }
+
       return null;
     },
   });
 
-  if (counter !== rawTemplates.length) {
-    throw new Error('failed to process all templates');
+  if (unprocessedTemplates.length) {
+    throw new Error(
+      `failed to process all templates, ${unprocessedTemplates.length} remaining`,
+    );
   }
 }
 

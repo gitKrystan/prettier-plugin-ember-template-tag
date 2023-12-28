@@ -449,6 +449,12 @@ exports[`format > config > default > it formats ../cases/gts/issue-191-b.gts 1`]
 "
 `;
 
+exports[`format > config > default > it formats ../cases/gts/issue-191-c.gts 1`] = `
+"const one = <template>💩💩💩💩💩💩💩</template>;
+const two = <template>💩</template>;
+"
+`;
+
 exports[`format > config > default > it formats ../cases/gts/js-only.gts 1`] = `
 "const num: number = 1;
 "
