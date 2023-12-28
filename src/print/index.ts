@@ -22,7 +22,7 @@ export const printer: Printer<Node | undefined> = {
   ...estreePrinter,
 
   getVisitorKeys(node, nonTraversableKeys) {
-    if (!node || isGlimmerTemplate(node)) {
+    if (node && isGlimmerTemplate(node)) {
       return [];
     }
     return estreePrinter.getVisitorKeys?.(node, nonTraversableKeys) || [];
@@ -35,8 +35,10 @@ export const printer: Printer<Node | undefined> = {
     args: unknown,
   ) {
     const { node } = path;
+    // FIXME: Why not short-circuit if prettier-ignored?
     const hasPrettierIgnore = checkPrettierIgnore(path);
-    if (getGlimmerTemplate(node)) {
+    const template = getGlimmerTemplate(node);
+    if (template) {
       if (hasPrettierIgnore) {
         return printRawText(path, options);
       } else {
@@ -83,6 +85,7 @@ export const printer: Printer<Node | undefined> = {
 
     const hasPrettierIgnore = checkPrettierIgnore(path);
 
+    // FIXME: should probably only check this for GlimmerTemplates
     if (hasPrettierIgnore) {
       return printRawText(path, embedOptions as Options);
     }
@@ -103,6 +106,7 @@ export const printer: Printer<Node | undefined> = {
           saveCurrentPrintOnSiblingNode(path, printed);
           return printed;
         } catch {
+          // FIXME: Why wrap in array?
           const printed = [printRawText(path, embedOptions as Options)];
           saveCurrentPrintOnSiblingNode(path, printed);
           return printed;

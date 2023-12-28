@@ -57,13 +57,12 @@ function replaceByteRange(
   const result = Buffer.concat([beforeRange, replacementBuffer, afterRange]);
 
   if (result.length !== originalBuffer.length) {
-    debugger;
     throw new Error(
       `Result length (${result.length}) does not match original length (${originalBuffer.length})`,
     );
   }
 
-  return result.toString('utf-8');
+  return result.toString('utf8');
 }
 
 /**
@@ -78,9 +77,11 @@ export function preprocessTemplateRange(
   let suffix: string;
 
   if (rawTemplate.type === 'class-member') {
-    prefix = 'static{`';
-    suffix = '`}';
+    // Replace with StaticBlock
+    prefix = 'static{';
+    suffix = '}';
   } else {
+    // Replace with BlockStatement or ObjectExpression
     prefix = '{';
     suffix = '}';
     // FIXME: Don't bufferify code twice
@@ -93,7 +94,8 @@ export function preprocessTemplateRange(
       prefix = '(' + prefix;
       suffix = suffix + ')';
     } else if (!nextWord || ![',', ')'].includes(nextWord[0][0] || '')) {
-      suffix += ';';
+      // FIXME: This adds double ; sometimes. Is it necessary?
+      // suffix += ';';
     }
   }
 

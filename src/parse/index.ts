@@ -13,7 +13,6 @@ import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
 import { PRINTER_NAME } from '../config.js';
 import type { Options } from '../options.js';
-import type { GlimmerTemplate } from '../types/glimmer.js';
 import { isDefaultTemplate } from '../types/glimmer.js';
 import { assert } from '../utils/index.js';
 import { preprocessTemplateRange } from './preprocess.js';
@@ -27,11 +26,9 @@ function convertNode(
   node: BlockStatement | ObjectExpression | StaticBlock,
   rawTemplate: RawGlimmerTemplate,
 ): void {
-  const cast = node as unknown as GlimmerTemplate;
-  // HACK: Changing the node type here isn't recommended by babel
-  cast.type = 'FunctionDeclaration';
-  cast.extra = Object.assign(node.extra ?? {}, {
+  node.extra = Object.assign(node.extra ?? {}, {
     isGlimmerTemplate: true as const,
+    // FIXME: Still need this?
     isDefaultTemplate: isDefaultTemplate(path),
     template: rawTemplate,
   });
@@ -83,11 +80,14 @@ function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
  * fixing the offsets and locations of all nodes also calculates the block
  * params locations & ranges and adding it to the info
  */
-function preprocess(code: string): {
+function preprocess(
+  code: string,
+  fileName: string,
+): {
   code: string;
   rawTemplates: RawGlimmerTemplate[];
 } {
-  const rawTemplates = p.parse(code);
+  const rawTemplates = p.parse(code, fileName);
 
   for (const rawTemplate of rawTemplates) {
     code = preprocessTemplateRange(rawTemplate, code);
@@ -101,7 +101,7 @@ export const parser: Parser<Node | undefined> = {
   astFormat: PRINTER_NAME,
 
   async parse(code: string, options: Options): Promise<Node> {
-    const preprocessed = preprocess(code);
+    const preprocessed = preprocess(code, options.filepath);
     const ast = await typescript.parse(preprocessed.code, options);
     assert('expected ast', ast);
     convertAst(ast, preprocessed.rawTemplates);

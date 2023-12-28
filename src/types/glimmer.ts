@@ -2,9 +2,7 @@ import type { NodePath } from '@babel/core';
 import type { Node } from '@babel/types';
 import type { Parsed as RawGlimmerTemplate } from 'content-tag';
 
-export interface GlimmerTemplate {
-  type: 'FunctionDeclaration';
-
+interface GlimmerTemplate {
   /**
    * Range of the contents, inclusive of inclusive of the
    * `<template></template>` tags.
