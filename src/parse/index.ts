@@ -58,7 +58,7 @@ function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
     },
   });
 
-  if (unprocessedTemplates.length) {
+  if (unprocessedTemplates.length > 0) {
     throw new Error(
       `failed to process all templates, ${unprocessedTemplates.length} remaining`,
     );

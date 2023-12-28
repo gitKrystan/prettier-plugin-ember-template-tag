@@ -109,8 +109,8 @@ export const printer: Printer<Node | undefined> = {
           );
 
           return printTemplateTag(content);
-        } catch (e) {
-          console.error(e);
+        } catch (error) {
+          console.error(error);
           return printRawText(path, embedOptions as Options);
         }
       }
