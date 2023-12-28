@@ -7,8 +7,12 @@ import type {
 } from 'prettier';
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
+import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config.js';
 import type { Options } from '../options.js';
-import { getGlimmerTemplate, isGlimmerTemplate } from '../types/glimmer.js';
+import {
+  isGlimmerTemplate,
+  isGlimmerTemplateParent,
+} from '../types/glimmer.js';
 import { assert } from '../utils/index.js';
 import {
   fixPreviousPrint,
@@ -35,9 +39,10 @@ export const printer: Printer<Node | undefined> = {
     args: unknown,
   ) {
     const { node } = path;
+
     // FIXME: Why not short-circuit if prettier-ignored?
     const hasPrettierIgnore = checkPrettierIgnore(path);
-    const template = getGlimmerTemplate(node);
+    const template = isGlimmerTemplateParent(node);
     if (template) {
       if (hasPrettierIgnore) {
         return printRawText(path, options);
@@ -59,7 +64,10 @@ export const printer: Printer<Node | undefined> = {
           printed.unshift('export ', 'default ');
         }
 
-        // Always remove trailing semicolon so we can manually manage it
+        // Remove semicolons so we can manage them ourselves
+        if (docMatchesString(printed[0], ';')) {
+          printed.shift();
+        }
         if (docMatchesString(printed.at(-1), ';')) {
           printed.pop();
         }
@@ -104,14 +112,10 @@ export const printer: Printer<Node | undefined> = {
             embedOptions as Options,
           );
 
-          const printed = printTemplateTag(
-            content,
-            node.extra.isDefaultTemplate,
-          );
+          const printed = printTemplateTag(content);
           saveCurrentPrintOnSiblingNode(path, printed);
           return printed;
         } catch {
-          // FIXME: Why wrap in array?
           const printed = [printRawText(path, embedOptions as Options)];
           saveCurrentPrintOnSiblingNode(path, printed);
           return printed;
@@ -129,6 +133,10 @@ function trimPrinted(printed: doc.builders.Doc[]): void {
   while (docMatchesString(printed[0], '')) {
     printed.shift();
   }
+
+  while (docMatchesString(printed.at(-1), '')) {
+    printed.pop();
+  }
 }
 
 function printRawText(
@@ -137,6 +145,11 @@ function printRawText(
 ): string {
   if (!node) {
     return '';
+  }
+  if (isGlimmerTemplate(node)) {
+    return (
+      TEMPLATE_TAG_OPEN + node.extra.template.contents + TEMPLATE_TAG_CLOSE
+    );
   }
   assert('expected start', typeof node.start == 'number');
   assert('expected end', typeof node.end == 'number');

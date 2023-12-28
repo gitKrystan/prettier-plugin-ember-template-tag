@@ -6,8 +6,11 @@ import type { Options } from '../options.js';
 
 const estreePrinter = estreePrinters['estree'] as Printer<Node | undefined>;
 
-/** NOTE: This is highly specialized for use in `fixPreviousPrint` */
-function flattenDoc(doc: doc.builders.Doc): string[] {
+// FIXME: Move
+/**
+ *
+ */
+export function flattenDoc(doc: doc.builders.Doc): string[] {
   if (Array.isArray(doc)) {
     return doc.flatMap(flattenDoc);
   } else if (typeof doc === 'string') {

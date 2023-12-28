@@ -4,6 +4,7 @@ import { doc } from 'prettier';
 import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config.js';
 import type { Options } from '../options.js';
 import { getTemplateSingleQuote } from '../options.js';
+import { flattenDoc } from './ambiguity.js';
 
 const {
   builders: { group, hardline, indent, softline },
@@ -44,8 +45,15 @@ export async function printTemplateContent(
  */
 export function printTemplateTag(
   content: doc.builders.Doc,
-  useHardline: boolean,
 ): doc.builders.Doc[] {
+  const contents = flattenDoc(content);
+  const useHardline = contents.some(
+    (c) =>
+      // contains angle bracket tag
+      /<.+>/.test(c) ||
+      // contains hbs block
+      /{{~?#.+}}/.test(c),
+  );
   const line = useHardline ? hardline : softline;
   const doc = [
     TEMPLATE_TAG_OPEN,
@@ -54,11 +62,4 @@ export function printTemplateTag(
     TEMPLATE_TAG_CLOSE,
   ];
   return [group(doc)];
-}
-
-/** Prints the given template content as a template literal. */
-export function printTemplateLiteral(
-  content: doc.builders.Doc,
-): doc.builders.Doc {
-  return group(['`', content, '`']);
 }

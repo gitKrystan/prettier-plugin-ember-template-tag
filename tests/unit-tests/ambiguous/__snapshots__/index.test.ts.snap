@@ -70,9 +70,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 (oh, no) => {};
 "
 `;
@@ -259,9 +257,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -336,9 +332,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 (oh, no) => {};
 "
 `;
@@ -525,9 +519,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -624,9 +616,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -719,9 +709,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -796,9 +784,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > (oops) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 (oops) => {};
 "
 `;
@@ -985,9 +971,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oops) => {};
 "
 `;
@@ -1062,9 +1046,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > (oops) => {} > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 (oops) => {};
 "
 `;
@@ -1251,9 +1233,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oops) => {};
 "
 `;
@@ -1350,9 +1330,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oops) => {};
 "
 `;
@@ -1445,9 +1423,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oops) => {};
 "
 `;
@@ -1522,9 +1498,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > +"oops" > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 +"oops";
 "
 `;
@@ -1711,9 +1685,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 +"oops";
 "
 `;
@@ -1788,9 +1760,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > +"oops" > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 +"oops";
 "
 `;
@@ -1977,9 +1947,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 +"oops";
 "
 `;
@@ -2049,10 +2017,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
-+"oops";
+"<template>what</template> + "oops";
 "
 `;
 
@@ -2301,10 +2266,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
-+"oops";
+"<template>what</template> + "oops";
 "
 `;
 
@@ -2550,9 +2512,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > /oops/ > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 /oops/;
 "
 `;
@@ -2739,9 +2699,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 /oops/;
 "
 `;
@@ -2816,9 +2774,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > /oops/ > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 /oops/;
 "
 `;
@@ -3005,9 +2961,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 /oops/;
 "
 `;
@@ -3095,9 +3049,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3115,9 +3067,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3129,9 +3079,7 @@ exports[`ambiguous > config > default > <template>oops</template> > with semi, w
   component. Explicit default export module top level component. Explicit
   default export module top level component.
 </template>
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3141,17 +3089,13 @@ exports[`ambiguous > config > default > <template>oops</template> > with semi, w
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > with semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3161,14 +3105,10 @@ exports[`ambiguous > config > default > <template>oops</template> > with semi, w
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 
 const What = <template>Hi</template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3182,9 +3122,7 @@ exports[`ambiguous > config > default > <template>oops</template> > with semi, w
   </template>,
   ModVar2 = <template>Second module variable template.</template>,
   num = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 
 const bool = false,
   ModVar3 = <template>
@@ -3195,19 +3133,13 @@ const bool = false,
     </h1>
   </template>,
   ModVar4 = <template>Second module variable template.</template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
-<template>
-  oops
-</template>
+"<template>what</template>
+<template>oops</template>
 "
 `;
 
@@ -3230,9 +3162,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3252,9 +3182,7 @@ export interface Signature {
   component. Explicit default export module top level component. Explicit
   default export module top level component.
 </template> as TemplateOnlyComponent<Signature>
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3272,9 +3200,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3292,17 +3218,13 @@ export const Exported = <template>
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > with semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `
 "const num: number = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3320,9 +3242,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3340,9 +3260,7 @@ const Private = <template>
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3366,9 +3284,7 @@ const ModVar1: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
   </template>,
   num = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 
 const bool: boolean = false,
   ModVar3: TemplateOnlyComponent<Signature> = <template>
@@ -3381,9 +3297,7 @@ const bool: boolean = false,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
   </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3407,9 +3321,7 @@ const ModVar1 = <template>
     Second module variable template.
   </template> as TemplateOnlyComponent<Signature>,
   num = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 
 const bool: boolean = false,
   ModVar3 = <template>
@@ -3422,9 +3334,7 @@ const bool: boolean = false,
   ModVar4 = <template>
     Second module variable template.
   </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3437,12 +3347,8 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>what</template> as TemplateOnlyComponent<Signature>
+<template>oops</template>
 "
 `;
 
@@ -3457,9 +3363,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3477,9 +3381,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3491,9 +3393,7 @@ exports[`ambiguous > config > default > <template>oops</template> > with semi, w
   component. Explicit default export module top level component. Explicit
   default export module top level component.
 </template>
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3503,17 +3403,13 @@ exports[`ambiguous > config > default > <template>oops</template> > with semi, w
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > with semi, without newline > it formats ../cases/gjs/js-only.gjs 1`] = `
 "const num = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3523,13 +3419,9 @@ exports[`ambiguous > config > default > <template>oops</template> > with semi, w
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 const What = <template>Hi</template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3543,9 +3435,7 @@ exports[`ambiguous > config > default > <template>oops</template> > with semi, w
   </template>,
   ModVar2 = <template>Second module variable template.</template>,
   num = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 const bool = false,
   ModVar3 = <template>
     <h1>
@@ -3555,19 +3445,13 @@ const bool = false,
     </h1>
   </template>,
   ModVar4 = <template>Second module variable template.</template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
-<template>
-  oops
-</template>
+"<template>what</template>
+<template>oops</template>
 "
 `;
 
@@ -3590,9 +3474,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3612,9 +3494,7 @@ export interface Signature {
   component. Explicit default export module top level component. Explicit
   default export module top level component.
 </template> as TemplateOnlyComponent<Signature>
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3632,9 +3512,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3652,17 +3530,13 @@ export const Exported = <template>
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > with semi, without newline > it formats ../cases/gts/js-only.gts 1`] = `
 "const num: number = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3680,9 +3554,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3700,9 +3572,7 @@ const Private = <template>
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3726,9 +3596,7 @@ const ModVar1: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
   </template>,
   num = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 const bool: boolean = false,
   ModVar3: TemplateOnlyComponent<Signature> = <template>
     <h1>
@@ -3740,9 +3608,7 @@ const bool: boolean = false,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
   </template>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3766,9 +3632,7 @@ const ModVar1 = <template>
     Second module variable template.
   </template> as TemplateOnlyComponent<Signature>,
   num = 1;
-<template>
-  oops
-</template>
+<template>oops</template>
 
 const bool: boolean = false,
   ModVar3 = <template>
@@ -3781,9 +3645,7 @@ const bool: boolean = false,
   ModVar4 = <template>
     Second module variable template.
   </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3796,12 +3658,8 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>what</template> as TemplateOnlyComponent<Signature>
+<template>oops</template>
 "
 `;
 
@@ -3816,9 +3674,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3836,9 +3692,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3849,10 +3703,7 @@ exports[`ambiguous > config > default > <template>oops</template> > without semi
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>
-<template>
-  oops
-</template>
+</template>(<template>oops</template>)
 "
 `;
 
@@ -3861,18 +3712,12 @@ exports[`ambiguous > config > default > <template>oops</template> > without semi
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-<template>
-  oops
-</template>
+</template>(<template>oops</template>);
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, with newline > it formats ../cases/gjs/js-only.gjs 1`] = `
-"const num = 1;
-<template>
-  oops
-</template>
+"const num = 1(<template>oops</template>);
 "
 `;
 
@@ -3881,15 +3726,9 @@ exports[`ambiguous > config > default > <template>oops</template> > without semi
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-<template>
-  oops
-</template>
+</template>(<template>oops</template>);
 
-const What = <template>Hi</template>;
-<template>
-  oops
-</template>
+const What = <template>Hi</template>(<template>oops</template>);
 "
 `;
 
@@ -3902,10 +3741,7 @@ exports[`ambiguous > config > default > <template>oops</template> > without semi
     </h1>
   </template>,
   ModVar2 = <template>Second module variable template.</template>,
-  num = 1;
-<template>
-  oops
-</template>
+  num = 1(<template>oops</template>);
 
 const bool = false,
   ModVar3 = <template>
@@ -3915,20 +3751,14 @@ const bool = false,
       variable template. Module variable template. Module variable template.
     </h1>
   </template>,
-  ModVar4 = <template>Second module variable template.</template>;
-<template>
-  oops
-</template>
+  ModVar4 = <template>Second module variable template.</template>(
+    <template>oops</template>,
+  );
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
-<template>
-  oops
-</template>
+"<template>what</template>(<template>oops</template>);
 "
 `;
 
@@ -3951,9 +3781,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -3973,9 +3801,7 @@ export interface Signature {
   component. Explicit default export module top level component. Explicit
   default export module top level component.
 </template> as TemplateOnlyComponent<Signature>
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -3992,10 +3818,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-<template>
-  oops
-</template>
+</template>(<template>oops</template>);
 "
 `;
 
@@ -4013,17 +3836,12 @@ export const Exported = <template>
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, with newline > it formats ../cases/gts/js-only.gts 1`] = `
-"const num: number = 1;
-<template>
-  oops
-</template>
+"const num: number = 1(<template>oops</template>);
 "
 `;
 
@@ -4040,10 +3858,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-<template>
-  oops
-</template>
+</template>(<template>oops</template>);
 "
 `;
 
@@ -4061,9 +3876,7 @@ const Private = <template>
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -4086,10 +3899,7 @@ const ModVar1: TemplateOnlyComponent<Signature> = <template>
   ModVar2: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
   </template>,
-  num = 1;
-<template>
-  oops
-</template>
+  num = 1(<template>oops</template>);
 
 const bool: boolean = false,
   ModVar3: TemplateOnlyComponent<Signature> = <template>
@@ -4101,10 +3911,7 @@ const bool: boolean = false,
   </template>,
   ModVar4: TemplateOnlyComponent<Signature> = <template>
     Second module variable template.
-  </template>;
-<template>
-  oops
-</template>
+  </template>(<template>oops</template>);
 "
 `;
 
@@ -4127,10 +3934,7 @@ const ModVar1 = <template>
   ModVar2 = <template>
     Second module variable template.
   </template> as TemplateOnlyComponent<Signature>,
-  num = 1;
-<template>
-  oops
-</template>
+  num = 1(<template>oops</template>);
 
 const bool: boolean = false,
   ModVar3 = <template>
@@ -4143,9 +3947,7 @@ const bool: boolean = false,
   ModVar4 = <template>
     Second module variable template.
   </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -4158,12 +3960,8 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>what</template> as TemplateOnlyComponent<Signature>
+<template>oops</template>
 "
 `;
 
@@ -4177,9 +3975,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -4196,9 +3992,7 @@ class MyComponent extends Component {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -4209,10 +4003,7 @@ exports[`ambiguous > config > default > <template>oops</template> > without semi
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>
-<template>
-  oops
-</template>
+</template>(<template>oops</template>)
 "
 `;
 
@@ -4221,10 +4012,7 @@ exports[`ambiguous > config > default > <template>oops</template> > without semi
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-<template>
-  oops
-</template>
+</template>(<template>oops</template>);
 "
 `;
 
@@ -4235,27 +4023,16 @@ exports[`ambiguous > config > default > <template>oops</template> > without semi
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-<template>
-  oops
-</template>
+</template>(<template>oops</template>);
 
-const What = <template>Hi</template>;
-<template>
-  oops
-</template>
+const What = <template>Hi</template>(<template>oops</template>);
 "
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/multiple-declarations.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
-<template>
-  oops
-</template>
+"<template>what</template>(<template>oops</template>);
 "
 `;
 
@@ -4277,9 +4054,7 @@ class MyComponent extends Component<Signature> {
       template. Class top level template. Class top level template.
     </h1>
   </template>
-  <template>
-    oops
-  </template>
+  <template>oops</template>
 }
 "
 `;
@@ -4298,9 +4073,7 @@ export interface Signature {
   component. Explicit default export module top level component. Explicit
   default export module top level component.
 </template> as TemplateOnlyComponent<Signature>
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -4316,10 +4089,7 @@ export const Exported: TemplateOnlyComponent<Signature> = <template>
   Exported variable template. Exported variable template. Exported variable
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
-</template>;
-<template>
-  oops
-</template>
+</template>(<template>oops</template>);
 "
 `;
 
@@ -4336,9 +4106,7 @@ export const Exported = <template>
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -4356,10 +4124,7 @@ const Private: TemplateOnlyComponent<Signature> = <template>
   Private variable template. Private variable template. Private variable
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
-</template>;
-<template>
-  oops
-</template>
+</template>(<template>oops</template>);
 "
 `;
 
@@ -4376,9 +4141,7 @@ const Private = <template>
   template. Private variable template. Private variable template. Private
   variable template. Private variable template.
 </template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>oops</template>
 "
 `;
 
@@ -4394,12 +4157,8 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
-<template>
-  oops
-</template>
+<template>what</template> as TemplateOnlyComponent<Signature>
+<template>oops</template>
 "
 `;
 
@@ -4503,9 +4262,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > ["oops"] > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 ["oops"];
 "
 `;
@@ -4714,9 +4471,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 ["oops"];
 "
 `;
@@ -4821,9 +4576,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > ["oops"] > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 ["oops"];
 "
 `;
@@ -5032,9 +4785,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 ["oops"];
 "
 `;
@@ -5132,10 +4883,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > ["oops"] > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
-["oops"];
+"<template>what</template>["oops"];
 "
 `;
 
@@ -5337,9 +5085,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 ["oops"];
 "
 `;
@@ -5435,10 +5181,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > ["oops"] > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
-["oops"];
+"<template>what</template>["oops"];
 "
 `;
 
@@ -5631,9 +5374,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 ["oops"];
 "
 `;
@@ -5708,9 +5449,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > \`oops\` > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 \`oops\`;
 "
 `;
@@ -5897,9 +5636,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 \`oops\`;
 "
 `;
@@ -5974,9 +5711,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > \`oops\` > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 \`oops\`;
 "
 `;
@@ -6163,9 +5898,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 \`oops\`;
 "
 `;
@@ -6233,10 +5966,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > \`oops\` > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
-\`oops\`;
+"<template>what</template>\`oops\`;
 "
 `;
 
@@ -6416,9 +6146,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 \`oops\`;
 "
 `;
@@ -6486,10 +6214,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > \`oops\` > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
-\`oops\`;
+"<template>what</template>\`oops\`;
 "
 `;
 
@@ -6661,9 +6386,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 \`oops\`;
 "
 `;
@@ -6738,9 +6461,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > -"oops" > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 -"oops";
 "
 `;
@@ -6927,9 +6648,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 -"oops";
 "
 `;
@@ -7004,9 +6723,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > -"oops" > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 -"oops";
 "
 `;
@@ -7193,9 +6910,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 -"oops";
 "
 `;
@@ -7265,10 +6980,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
--"oops";
+"<template>what</template> - "oops";
 "
 `;
 
@@ -7517,10 +7229,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
--"oops";
+"<template>what</template> - "oops";
 "
 `;
 

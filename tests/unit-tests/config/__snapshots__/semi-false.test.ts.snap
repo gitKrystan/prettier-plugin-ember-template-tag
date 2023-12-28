@@ -270,9 +270,7 @@ export default Route(
 `;
 
 exports[`config > semi: false > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
+"<template>what</template>
 "
 `;
 
@@ -447,9 +445,7 @@ export default class PooComponent extends Component {
 `;
 
 exports[`config > semi: false > it formats ../cases/gts/issue-191-b.gts 1`] = `
-"<template>
-  💩
-</template>
+"<template>💩</template>
 "
 `;
 
@@ -785,8 +781,6 @@ export interface Signature {
   Yields: []
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>
+<template>what</template> as TemplateOnlyComponent<Signature>
 "
 `;

@@ -270,9 +270,7 @@ export default Route(
 `;
 
 exports[`format > config > default > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
+"<template>what</template>
 "
 `;
 
@@ -441,17 +439,13 @@ exports[`format > config > default > it formats ../cases/gts/issue-191.gts 1`] =
  * This component contains a multi-byte character
  */
 export default class PooComponent extends Component {
-  <template>
-    💩
-  </template>
+  <template>💩</template>
 }
 "
 `;
 
 exports[`format > config > default > it formats ../cases/gts/issue-191-b.gts 1`] = `
-"<template>
-  💩
-</template>
+"<template>💩</template>
 "
 `;
 
@@ -787,8 +781,6 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>
 "
 `;

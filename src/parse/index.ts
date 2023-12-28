@@ -1,11 +1,5 @@
-import type { NodePath } from '@babel/core';
 import { traverse } from '@babel/core';
-import type {
-  BlockStatement,
-  Node,
-  ObjectExpression,
-  StaticBlock,
-} from '@babel/types';
+import type { Node, ObjectExpression, StaticBlock } from '@babel/types';
 import type { Parsed as RawGlimmerTemplate } from 'content-tag';
 import { Preprocessor } from 'content-tag';
 import type { Parser } from 'prettier';
@@ -13,7 +7,6 @@ import { parsers as babelParsers } from 'prettier/plugins/babel.js';
 
 import { PRINTER_NAME } from '../config.js';
 import type { Options } from '../options.js';
-import { isTopLevelTemplate } from '../types/glimmer.js';
 import { assert } from '../utils/index.js';
 import { preprocessTemplateRange } from './preprocess.js';
 
@@ -22,13 +15,11 @@ const p = new Preprocessor();
 
 /** Converts a node into a GlimmerTemplate node */
 function convertNode(
-  path: NodePath,
-  node: BlockStatement | ObjectExpression | StaticBlock,
+  node: ObjectExpression | StaticBlock,
   rawTemplate: RawGlimmerTemplate,
 ): void {
   node.extra = Object.assign(node.extra ?? {}, {
     isGlimmerTemplate: true as const,
-    isDefaultTemplate: isTopLevelTemplate(path),
     template: rawTemplate,
   });
 }
@@ -40,11 +31,7 @@ function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
   traverse(ast, {
     enter(path) {
       const { node } = path;
-      if (
-        node.type === 'ObjectExpression' ||
-        node.type === 'BlockStatement' ||
-        node.type === 'StaticBlock'
-      ) {
+      if (node.type === 'ObjectExpression' || node.type === 'StaticBlock') {
         const { range } = node;
         assert('expected range', range);
         const [start, end] = range;
@@ -61,7 +48,7 @@ function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
           return null;
         }
 
-        convertNode(path, node, rawTemplate);
+        convertNode(node, rawTemplate);
 
         counter++;
       }

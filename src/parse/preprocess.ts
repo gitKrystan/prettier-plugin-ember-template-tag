@@ -82,21 +82,18 @@ export function preprocessTemplateRange(
     suffix = '}';
   } else {
     // Replace with BlockStatement or ObjectExpression
-    prefix = '{';
-    suffix = '}';
+    prefix = '({';
+    suffix = '})';
     // FIXME: Don't bufferify code twice
-    const codeBuffer = Buffer.from(code);
-    const nextWord = codeBuffer
-      .subarray(rawTemplate.range.end)
-      .toString()
-      .match(/\S+/);
-    if (nextWord && nextWord[0] === 'as') {
-      prefix = '(' + prefix;
-      suffix = suffix + ')';
-    } else if (!nextWord || ![',', ')'].includes(nextWord[0][0] || '')) {
-      // FIXME: This adds double ; sometimes. Is it necessary?
-      // suffix += ';';
-    }
+    // const codeBuffer = Buffer.from(code);
+    // const nextWord = codeBuffer
+    //   .subarray(rawTemplate.range.end)
+    //   .toString()
+    //   .match(/\S+/);
+    // if (nextWord && nextWord[0] === 'as') {
+    //   prefix = '(' + prefix;
+    //   suffix = suffix + ')';
+    // }
   }
 
   return replaceByteRange(code, rawTemplate.range, {

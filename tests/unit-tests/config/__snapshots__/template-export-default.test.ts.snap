@@ -118,7 +118,7 @@ exports[`config > templateExportDefault: true > it formats ../cases/gjs/exported
 `;
 
 exports[`config > templateExportDefault: true > it formats ../cases/gjs/invalid-template.gjs 1`] = `
-"<template>
+"export default <template>
               {{#if oops}}
             </template>
 "
@@ -270,9 +270,7 @@ export default Route(
 `;
 
 exports[`config > templateExportDefault: true > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
+"export default <template>what</template>
 "
 `;
 
@@ -441,17 +439,13 @@ exports[`config > templateExportDefault: true > it formats ../cases/gts/issue-19
  * This component contains a multi-byte character
  */
 export default class PooComponent extends Component {
-  <template>
-    💩
-  </template>
+  <template>💩</template>
 }
 "
 `;
 
 exports[`config > templateExportDefault: true > it formats ../cases/gts/issue-191-b.gts 1`] = `
-"<template>
-  💩
-</template>
+"export default <template>💩</template>
 "
 `;
 
@@ -787,8 +781,6 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+export default <template>what</template> as TemplateOnlyComponent<Signature>
 "
 `;
