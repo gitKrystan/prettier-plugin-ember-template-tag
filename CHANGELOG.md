@@ -1,4 +1,30 @@
 
+
+## v2.0.0-1 (2023-12-28)
+
+#### :boom: Breaking Change
+* [#208](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/208) Switch to type: module ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :rocket: Enhancement
+* [#195](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/195) More content-tag cleanup ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :bug: Bug Fix
+* [#194](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/194) Fix formatting issues #191, #192, #193 ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :robot: Dependencies
+* [#211](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/211) Upgrade content-tag ([@gitKrystan](https://github.com/gitKrystan))
+* [#210](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/210) Upgrade Prettier to 3.1.1 ([@gitKrystan](https://github.com/gitKrystan))
+* [#209](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/209) Upgrade vite to v5, vitest to v1 ([@gitKrystan](https://github.com/gitKrystan))
+* [#207](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/207) Upgrade dev dependencies ([@gitKrystan](https://github.com/gitKrystan))
+* [#201](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/201) Bump @vitest/ui from 0.34.6 to 0.34.7 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#199](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/199) Bump @babel/core from 7.23.5 to 7.23.6 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#205](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/205) Bump @typescript-eslint/eslint-plugin from 6.13.1 to 6.15.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#206](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/206) Bump eslint-plugin-n from 16.3.1 to 16.5.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#196](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/196) Bump vite from 4.5.0 to 4.5.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v2.0.0-0 (2023-12-04)
 
 This version is essentially a re-write. We are switching from using [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) to parse template tags to the more robust [content-tag](https://github.com/embroider-build/content-tag) preprocessor. This should result in fewer unhandled cases and other bugs. For example, this plugin [can now format](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/173) route templates from [ember-route-template](https://github.com/discourse/ember-route-template)!
