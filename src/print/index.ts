@@ -57,6 +57,8 @@ export const printer: Printer<Node | undefined> = {
           printed.pop();
         }
 
+        trimPrinted(printed);
+
         // Always remove export default so we start with a blank slate
         if (
           docMatchesString(printed[0], 'export') &&
