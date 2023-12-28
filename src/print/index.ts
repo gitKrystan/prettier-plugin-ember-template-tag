@@ -7,8 +7,12 @@ import type {
 } from 'prettier';
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
+import { TEMPLATE_TAG_CLOSE, TEMPLATE_TAG_OPEN } from '../config.js';
 import type { Options } from '../options.js';
-import { getGlimmerTemplate, isGlimmerTemplate } from '../types/glimmer.js';
+import {
+  isGlimmerTemplate,
+  isGlimmerTemplateParent,
+} from '../types/glimmer.js';
 import { assert } from '../utils/index.js';
 import {
   fixPreviousPrint,
@@ -22,7 +26,7 @@ export const printer: Printer<Node | undefined> = {
   ...estreePrinter,
 
   getVisitorKeys(node, nonTraversableKeys) {
-    if (!node || isGlimmerTemplate(node)) {
+    if (node && isGlimmerTemplate(node)) {
       return [];
     }
     return estreePrinter.getVisitorKeys?.(node, nonTraversableKeys) || [];
@@ -35,13 +39,24 @@ export const printer: Printer<Node | undefined> = {
     args: unknown,
   ) {
     const { node } = path;
-    const hasPrettierIgnore = checkPrettierIgnore(path);
-    if (getGlimmerTemplate(node)) {
-      if (hasPrettierIgnore) {
+
+    if (isGlimmerTemplateParent(node)) {
+      if (checkPrettierIgnore(path)) {
         return printRawText(path, options);
       } else {
         let printed = estreePrinter.print(path, options, print, args);
+
         assert('Expected Glimmer doc to be an array', Array.isArray(printed));
+        trimPrinted(printed);
+
+        // Remove semicolons so we can manage them ourselves
+        if (docMatchesString(printed[0], ';')) {
+          printed.shift();
+        }
+        if (docMatchesString(printed.at(-1), ';')) {
+          printed.pop();
+        }
+
         trimPrinted(printed);
 
         // Always remove export default so we start with a blank slate
@@ -58,6 +73,7 @@ export const printer: Printer<Node | undefined> = {
         }
 
         saveCurrentPrintOnSiblingNode(path, printed);
+
         return printed;
       }
     }
@@ -72,23 +88,19 @@ export const printer: Printer<Node | undefined> = {
       );
     }
 
-    return hasPrettierIgnore
-      ? printRawText(path, options)
-      : estreePrinter.print(path, options, print, args);
+    return estreePrinter.print(path, options, print, args);
   },
 
   /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
   embed(path: AstPath<Node | undefined>, embedOptions: PrettierOptions) {
     const { node } = path;
 
-    const hasPrettierIgnore = checkPrettierIgnore(path);
-
-    if (hasPrettierIgnore) {
-      return printRawText(path, embedOptions as Options);
-    }
-
     return async (textToDoc) => {
       if (node && isGlimmerTemplate(node)) {
+        if (checkPrettierIgnore(path)) {
+          return printRawText(path, embedOptions as Options);
+        }
+
         try {
           const content = await printTemplateContent(
             node.extra.template.contents,
@@ -96,16 +108,10 @@ export const printer: Printer<Node | undefined> = {
             embedOptions as Options,
           );
 
-          const printed = printTemplateTag(
-            content,
-            node.extra.isDefaultTemplate,
-          );
-          saveCurrentPrintOnSiblingNode(path, printed);
-          return printed;
-        } catch {
-          const printed = [printRawText(path, embedOptions as Options)];
-          saveCurrentPrintOnSiblingNode(path, printed);
-          return printed;
+          return printTemplateTag(content);
+        } catch (error) {
+          console.error(error);
+          return printRawText(path, embedOptions as Options);
         }
       }
 
@@ -120,6 +126,10 @@ function trimPrinted(printed: doc.builders.Doc[]): void {
   while (docMatchesString(printed[0], '')) {
     printed.shift();
   }
+
+  while (docMatchesString(printed.at(-1), '')) {
+    printed.pop();
+  }
 }
 
 function printRawText(
@@ -128,6 +138,11 @@ function printRawText(
 ): string {
   if (!node) {
     return '';
+  }
+  if (isGlimmerTemplate(node)) {
+    return (
+      TEMPLATE_TAG_OPEN + node.extra.template.contents + TEMPLATE_TAG_CLOSE
+    );
   }
   assert('expected start', typeof node.start == 'number');
   assert('expected end', typeof node.end == 'number');

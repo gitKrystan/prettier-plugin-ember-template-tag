@@ -118,7 +118,7 @@ exports[`config > templateExportDefault: true > it formats ../cases/gjs/exported
 `;
 
 exports[`config > templateExportDefault: true > it formats ../cases/gjs/invalid-template.gjs 1`] = `
-"<template>
+"export default <template>
               {{#if oops}}
             </template>
 "
@@ -270,9 +270,22 @@ export default Route(
 `;
 
 exports[`config > templateExportDefault: true > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
+"export default <template>what</template>
+"
+`;
+
+exports[`config > templateExportDefault: true > it formats ../cases/gjs/simple-with-tag.gjs 1`] = `
+"export default <template>
+  <h1>what</h1>
 </template>
+
+const two = <template>
+  {{#if true}}
+    true
+  {{/if}}
+</template>;
+
+const three = <template>{{if true "true"}}</template>;
 "
 `;
 
@@ -396,7 +409,7 @@ export default <template>
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 "
 `;
 
@@ -431,6 +444,29 @@ export const Exported = <template>
   template. Exported variable template. Exported variable template. Exported
   variable template. Exported variable template.
 </template> as TemplateOnlyComponent<Signature>;
+"
+`;
+
+exports[`config > templateExportDefault: true > it formats ../cases/gts/issue-191.gts 1`] = `
+"import Component from "@glimmer/component";
+
+/**
+ * This component contains a multi-byte character
+ */
+export default class PooComponent extends Component {
+  <template>💩</template>
+}
+"
+`;
+
+exports[`config > templateExportDefault: true > it formats ../cases/gts/issue-191-b.gts 1`] = `
+"export default <template>💩</template>
+"
+`;
+
+exports[`config > templateExportDefault: true > it formats ../cases/gts/issue-191-c.gts 1`] = `
+"const one = <template>💩💩💩💩💩💩💩</template>;
+const two = <template>💩</template>;
 "
 `;
 
@@ -753,6 +789,36 @@ module("Render with template tag", function (hooks) {
     await render(<template>what</template>);
     assert.dom().hasText("what");
   });
+
+  test("it has a template tag with a tag", async function (assert) {
+    await render(
+      <template>
+        <h1>what</h1>
+      </template>,
+    );
+    assert.dom().hasText("what");
+  });
+
+  test("it has a template tag with a block", async function (assert) {
+    await render(
+      <template>
+        {{#if true}}
+          what
+        {{/if}}
+      </template>,
+    );
+    assert.dom().hasText("what");
+  });
+
+  test("it has a template tag with a one-line block", async function (assert) {
+    await render(<template>{{#if true}}what{{/if}}</template>);
+    assert.dom().hasText("what");
+  });
+
+  test("it has a template tag with a one-line block", async function (assert) {
+    await render(<template>{{if true "what"}}</template>);
+    assert.dom().hasText("what");
+  });
 });
 "
 `;
@@ -766,8 +832,6 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+export default <template>what</template> as TemplateOnlyComponent<Signature>
 "
 `;

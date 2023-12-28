@@ -3,21 +3,9 @@ import type { AstPath, doc, Printer } from 'prettier';
 import { printers as estreePrinters } from 'prettier/plugins/estree.js';
 
 import type { Options } from '../options.js';
+import { flattenDoc } from '../utils/doc.js';
 
 const estreePrinter = estreePrinters['estree'] as Printer<Node | undefined>;
-
-/** NOTE: This is highly specialized for use in `fixPreviousPrint` */
-function flattenDoc(doc: doc.builders.Doc): string[] {
-  if (Array.isArray(doc)) {
-    return doc.flatMap(flattenDoc);
-  } else if (typeof doc === 'string') {
-    return [doc];
-  } else if ('contents' in doc) {
-    return flattenDoc(doc.contents);
-  } else {
-    return [];
-  }
-}
 
 /**
  * Search next non EmptyStatement node and set current print, so we can fix it

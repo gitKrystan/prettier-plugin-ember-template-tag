@@ -70,9 +70,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 (oh, no) => {};
 "
 `;
@@ -259,9 +257,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -336,9 +332,7 @@ const bool = false,
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oh, no) => {} > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>;
+"<template>what</template>;
 (oh, no) => {};
 "
 `;
@@ -525,9 +519,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -624,9 +616,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -719,9 +709,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>;
 (oh, no) => {};
 "
 `;
@@ -796,9 +784,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, with newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
+"<template>what</template>
 oops => {};
 "
 `;
@@ -819,7 +805,7 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -985,9 +971,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1062,9 +1046,7 @@ oops => {};
 `;
 
 exports[`ambiguous > config > arrowParens: "avoid" > (oops) => {} > with semi, without newline > it formats ../cases/gjs/simple.gjs 1`] = `
-"<template>
-  what
-</template>
+"<template>what</template>
 oops => {};
 "
 `;
@@ -1085,7 +1067,7 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1251,9 +1233,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1290,7 +1270,7 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1350,9 +1330,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1388,7 +1366,7 @@ export interface Signature {
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> as TemplateOnlyComponent<Signature>;
+</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;
@@ -1445,9 +1423,7 @@ export interface Signature {
   Yields: [];
 }
 
-<template>
-  what
-</template> as TemplateOnlyComponent<Signature>;
+<template>what</template> as TemplateOnlyComponent<Signature>
 oops => {};
 "
 `;

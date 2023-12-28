@@ -8,7 +8,6 @@ import type {
 export interface Options extends ParserOptions<Node | undefined> {
   templateExportDefault?: boolean;
   templateSingleQuote?: boolean;
-  __inputWasPreprocessed?: boolean;
 }
 
 const templateExportDefault: BooleanSupportOption = {
@@ -38,15 +37,7 @@ const templateSingleQuote: BooleanSupportOption = {
     'Use single quotes instead of double quotes within template tags. Since 0.0.3.',
 };
 
-const __inputWasPreprocessed: BooleanSupportOption = {
-  category: 'Format',
-  type: 'boolean',
-  description:
-    'Internal: If true, the template was preprocessed before being run through Prettier. Since 0.1.0.',
-};
-
 export const options: SupportOptions = {
   templateExportDefault,
   templateSingleQuote,
-  __inputWasPreprocessed,
 };

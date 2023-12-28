@@ -40,7 +40,7 @@ const run = async () => {
       'node',
       [
         './node_modules/prettier/bin/prettier.cjs',
-        '.',
+        './input',
         '--write',
         debug ? '--log-level' : null,
         debug ? 'debug' : null,
