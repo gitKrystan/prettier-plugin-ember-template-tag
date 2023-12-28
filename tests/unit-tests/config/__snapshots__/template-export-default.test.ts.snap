@@ -274,6 +274,21 @@ exports[`config > templateExportDefault: true > it formats ../cases/gjs/simple.g
 "
 `;
 
+exports[`config > templateExportDefault: true > it formats ../cases/gjs/simple-with-tag.gjs 1`] = `
+"export default <template>
+  <h1>what</h1>
+</template>
+
+const two = <template>
+  {{#if true}}
+    true
+  {{/if}}
+</template>;
+
+const three = <template>{{if true "true"}}</template>;
+"
+`;
+
 exports[`config > templateExportDefault: true > it formats ../cases/gts/complex.gts 1`] = `
 "import { on } from "@ember/modifier";
 import { service } from "@ember/service";
