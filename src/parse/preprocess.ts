@@ -33,11 +33,8 @@ function replaceByteRange(
 
   // Adjust the space length to account for the prefix and suffix lengths
   const totalReplacementLength = range.end - range.start;
-  // FIXME: Shouldn't need Math.max here because of the validation above
-  const spaceLength = Math.max(
-    0,
-    totalReplacementLength - prefixBuffer.length - suffixBuffer.length,
-  );
+  const spaceLength =
+    totalReplacementLength - prefixBuffer.length - suffixBuffer.length;
 
   // Create a buffer for the replacement
   const spaceBuffer = Buffer.alloc(spaceLength, EMPTY_SPACE);
@@ -81,19 +78,9 @@ export function preprocessTemplateRange(
     prefix = 'static{';
     suffix = '}';
   } else {
-    // Replace with BlockStatement or ObjectExpression
+    // Replace with ObjectExpression
     prefix = '({';
     suffix = '})';
-    // FIXME: Don't bufferify code twice
-    // const codeBuffer = Buffer.from(code);
-    // const nextWord = codeBuffer
-    //   .subarray(rawTemplate.range.end)
-    //   .toString()
-    //   .match(/\S+/);
-    // if (nextWord && nextWord[0] === 'as') {
-    //   prefix = '(' + prefix;
-    //   suffix = suffix + ')';
-    // }
   }
 
   return replaceByteRange(code, rawTemplate.range, {
