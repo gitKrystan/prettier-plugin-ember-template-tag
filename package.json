@@ -31,7 +31,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "preexample": "vite build",
-    "example": "pnpm preexample && cd examples && pnpm example-debug",
+    "example": "pnpm preexample && cd examples && pnpm example",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\" --prefix-colors auto",
     "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\" --prefix-colors auto",
     "lint:eslint": "eslint . --cache",
