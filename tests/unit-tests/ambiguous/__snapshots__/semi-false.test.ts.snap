@@ -1957,7 +1957,7 @@ exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline
 exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -2206,7 +2206,7 @@ exports[`ambiguous > config > semi: false > +"oops" > without semi, without newl
 exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > +"oops" > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -3698,7 +3698,7 @@ class MyComponent extends Component {
 `;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -3998,7 +3998,7 @@ class MyComponent extends Component {
 `;
 
 exports[`ambiguous > config > semi: false > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -6920,7 +6920,7 @@ exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline
 exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
@@ -7169,7 +7169,7 @@ exports[`ambiguous > config > semi: false > -"oops" > without semi, without newl
 exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > semi: false > -"oops" > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit

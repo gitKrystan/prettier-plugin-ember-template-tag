@@ -1957,12 +1957,12 @@ exports[`ambiguous > config > default > +"oops" > without semi, with newline > i
 exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > +"oops" > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> + "oops"
+</template> + "oops";
 "
 `;
 
@@ -2206,12 +2206,12 @@ exports[`ambiguous > config > default > +"oops" > without semi, without newline 
 exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > +"oops" > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> + "oops"
+</template> + "oops";
 "
 `;
 
@@ -3698,12 +3698,12 @@ class MyComponent extends Component {
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>(<template>oops</template>)
+</template>(<template>oops</template>);
 "
 `;
 
@@ -3998,12 +3998,12 @@ class MyComponent extends Component {
 `;
 
 exports[`ambiguous > config > default > <template>oops</template> > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template>(<template>oops</template>)
+</template>(<template>oops</template>);
 "
 `;
 
@@ -6920,12 +6920,12 @@ exports[`ambiguous > config > default > -"oops" > without semi, with newline > i
 exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > -"oops" > without semi, with newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> - "oops"
+</template> - "oops";
 "
 `;
 
@@ -7169,12 +7169,12 @@ exports[`ambiguous > config > default > -"oops" > without semi, without newline 
 exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gjs/component-class-with-content-before-template.gjs 1`] = `"Syntax Error"`;
 
 exports[`ambiguous > config > default > -"oops" > without semi, without newline > it formats ../cases/gjs/default-export.gjs 1`] = `
-"<template>
+"export default <template>
   Explicit default export module top level component. Explicit default export
   module top level component. Explicit default export module top level
   component. Explicit default export module top level component. Explicit
   default export module top level component.
-</template> - "oops"
+</template> - "oops";
 "
 `;
 

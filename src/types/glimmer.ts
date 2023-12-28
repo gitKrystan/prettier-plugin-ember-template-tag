@@ -1,4 +1,11 @@
-import type { Node, ObjectExpression, StaticBlock } from '@babel/types';
+import type {
+  ExportDefaultDeclaration,
+  ExpressionStatement,
+  Node,
+  ObjectExpression,
+  StaticBlock,
+  TSAsExpression,
+} from '@babel/types';
 import type { Parsed as RawGlimmerTemplate } from 'content-tag';
 
 interface GlimmerTemplateProperties {
@@ -39,67 +46,109 @@ export function isGlimmerTemplateParent(
   }
 
   // <template></template>;
-  if (
-    node.type === 'ExpressionStatement' &&
-    isGlimmerTemplate(node.expression)
-  ) {
+  if (isGlimmerExpressionStatement(node)) {
     return node.expression;
   }
 
-  // export default <template></template> as TemplateOnlyComponent<Signature>;
-  if (
-    node.type === 'ExpressionStatement' &&
-    node.expression.type === 'TSAsExpression' &&
-    isGlimmerTemplate(node.expression.expression)
-  ) {
+  // <template></template> as TemplateOnlyComponent<Signature>;
+  if (isGlimmerExpressionStatementTS(node)) {
     return node.expression.expression;
   }
 
   // export default <template></template>;
-  if (
-    node.type === 'ExportDefaultDeclaration' &&
-    isGlimmerTemplate(node.declaration)
-  ) {
+  if (isGlimmerExportDefaultDeclaration(node)) {
     return node.declaration;
   }
 
   // export default <template></template> as TemplateOnlyComponent<Signature>;
-  if (
-    node.type === 'ExportDefaultDeclaration' &&
-    node.declaration.type === 'TSAsExpression' &&
-    isGlimmerTemplate(node.declaration.expression)
-  ) {
+  if (isGlimmerExportDefaultDeclarationTS(node)) {
     return node.declaration.expression;
   }
 
-  // FIXME: Do we need to handle this for the non export default case?
-  // SUPER edge case:
-  // export default <template></template> + 'oops';
-  // TODO: content-tag should probably consider this a syntax error
-  if (
-    node.type === 'ExportDefaultDeclaration' &&
-    node.declaration.type === 'BinaryExpression'
-  ) {
-    if (isGlimmerTemplate(node.declaration.left)) {
-      return node.declaration.left;
-    }
-    if (isGlimmerTemplate(node.declaration.right)) {
-      return node.declaration.right;
-    }
-  }
-
-  // FIXME: Do we need to handle this for the non export default case?
-  // SUPER edge case:
-  // export default <template></template>;
-  // <template></template>
-  // TODO: content-tag should probably consider this a syntax error
-  if (
-    node.type === 'ExportDefaultDeclaration' &&
-    node.declaration.type === 'CallExpression' &&
-    isGlimmerTemplate(node.declaration.callee)
-  ) {
-    return node.declaration.callee;
-  }
-
   return null;
+}
+
+type GlimmerExpressionStatement = ExpressionStatement & {
+  expression: GlimmerTemplate;
+};
+
+/**
+ * Type predicate for:
+ *
+ * ```gts
+ * <template></template>;
+ * ```
+ */
+export function isGlimmerExpressionStatement(
+  node: Node,
+): node is GlimmerExpressionStatement {
+  return (
+    node.type === 'ExpressionStatement' && isGlimmerTemplate(node.expression)
+  );
+}
+
+type GlimmerExpressionStatementTS = ExpressionStatement & {
+  expression: TSAsExpression & {
+    expression: GlimmerTemplate;
+  };
+};
+
+/**
+ * Type predicate for:
+ *
+ * ```gts
+ * <template></template> as TemplateOnlyComponent<Signature>
+ * ```
+ */
+export function isGlimmerExpressionStatementTS(
+  node: Node,
+): node is GlimmerExpressionStatementTS {
+  return (
+    node.type === 'ExpressionStatement' &&
+    node.expression.type === 'TSAsExpression' &&
+    isGlimmerTemplate(node.expression.expression)
+  );
+}
+
+type GlimmerExportDefaultDeclaration = ExportDefaultDeclaration & {
+  declaration: GlimmerTemplate;
+};
+
+/**
+ * Type predicate for:
+ *
+ * ```gts
+ * export default <template></template>;
+ * ```
+ */
+export function isGlimmerExportDefaultDeclaration(
+  node: Node,
+): node is GlimmerExportDefaultDeclaration {
+  return (
+    node.type === 'ExportDefaultDeclaration' &&
+    isGlimmerTemplate(node.declaration)
+  );
+}
+
+type GlimmerExportDefaultDeclarationTS = ExportDefaultDeclaration & {
+  declaration: TSAsExpression & {
+    expression: GlimmerTemplate;
+  };
+};
+
+/**
+ * Type predicate for:
+ *
+ * ```gts
+ * export default <template></template> as TemplateOnlyComponent<Signature>
+ * ```
+ */
+export function isGlimmerExportDefaultDeclarationTS(
+  node: Node,
+): node is GlimmerExportDefaultDeclarationTS {
+  return (
+    node.type === 'ExportDefaultDeclaration' &&
+    node.declaration.type === 'TSAsExpression' &&
+    isGlimmerTemplate(node.declaration.expression)
+  );
 }
