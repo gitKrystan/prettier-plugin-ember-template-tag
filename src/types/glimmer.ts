@@ -8,7 +8,7 @@ import type {
 } from '@babel/types';
 import type { Parsed as RawGlimmerTemplate } from 'content-tag';
 
-interface GlimmerTemplateProperties {
+type GlimmerTemplate = (ObjectExpression | StaticBlock) & {
   /**
    * Range of the contents, inclusive of inclusive of the
    * `<template></template>` tags.
@@ -26,46 +26,35 @@ interface GlimmerTemplateProperties {
     template: RawGlimmerTemplate;
     [key: string]: unknown;
   };
-}
-
-type GlimmerTemplate = (ObjectExpression | StaticBlock) &
-  GlimmerTemplateProperties;
+};
 
 /** Returns true if the node is a GlimmerTemplate. */
 export function isGlimmerTemplate(node: Node): node is Node & GlimmerTemplate {
   return node.extra?.['isGlimmerTemplate'] === true;
 }
 
-/** Extracts GlimmerTemplate from parent node. */
+export type GlimmerTemplateParent =
+  | GlimmerExpressionStatement
+  | GlimmerExpressionStatementTS
+  | GlimmerExportDefaultDeclaration
+  | GlimmerExportDefaultDeclarationTS;
+
+/**
+ * Type predicate for nodes that should be special-cased as the parent of a
+ * GlimmerTemplate.
+ */
 export function isGlimmerTemplateParent(
   node: Node | undefined,
-): GlimmerTemplate | null {
-  if (!node) return null;
-  if (isGlimmerTemplate(node)) {
-    return node;
-  }
+): node is GlimmerTemplateParent {
+  if (!node) return false;
 
-  // <template></template>;
-  if (isGlimmerExpressionStatement(node)) {
-    return node.expression;
-  }
-
-  // <template></template> as TemplateOnlyComponent<Signature>;
-  if (isGlimmerExpressionStatementTS(node)) {
-    return node.expression.expression;
-  }
-
-  // export default <template></template>;
-  if (isGlimmerExportDefaultDeclaration(node)) {
-    return node.declaration;
-  }
-
-  // export default <template></template> as TemplateOnlyComponent<Signature>;
-  if (isGlimmerExportDefaultDeclarationTS(node)) {
-    return node.declaration.expression;
-  }
-
-  return null;
+  return (
+    isGlimmerTemplate(node) ||
+    isGlimmerExpressionStatement(node) ||
+    isGlimmerExpressionStatementTS(node) ||
+    isGlimmerExportDefaultDeclaration(node) ||
+    isGlimmerExportDefaultDeclarationTS(node)
+  );
 }
 
 type GlimmerExpressionStatement = ExpressionStatement & {
@@ -79,7 +68,7 @@ type GlimmerExpressionStatement = ExpressionStatement & {
  * <template></template>;
  * ```
  */
-export function isGlimmerExpressionStatement(
+function isGlimmerExpressionStatement(
   node: Node,
 ): node is GlimmerExpressionStatement {
   return (
@@ -100,7 +89,7 @@ type GlimmerExpressionStatementTS = ExpressionStatement & {
  * <template></template> as TemplateOnlyComponent<Signature>
  * ```
  */
-export function isGlimmerExpressionStatementTS(
+function isGlimmerExpressionStatementTS(
   node: Node,
 ): node is GlimmerExpressionStatementTS {
   return (
@@ -121,7 +110,7 @@ type GlimmerExportDefaultDeclaration = ExportDefaultDeclaration & {
  * export default <template></template>;
  * ```
  */
-export function isGlimmerExportDefaultDeclaration(
+function isGlimmerExportDefaultDeclaration(
   node: Node,
 ): node is GlimmerExportDefaultDeclaration {
   return (
@@ -143,7 +132,7 @@ type GlimmerExportDefaultDeclarationTS = ExportDefaultDeclaration & {
  * export default <template></template> as TemplateOnlyComponent<Signature>
  * ```
  */
-export function isGlimmerExportDefaultDeclarationTS(
+function isGlimmerExportDefaultDeclarationTS(
   node: Node,
 ): node is GlimmerExportDefaultDeclarationTS {
   return (

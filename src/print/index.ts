@@ -40,14 +40,22 @@ export const printer: Printer<Node | undefined> = {
   ) {
     const { node } = path;
 
-    const template = isGlimmerTemplateParent(node);
-    if (template) {
+    if (isGlimmerTemplateParent(node)) {
       if (checkPrettierIgnore(path)) {
         return printRawText(path, options);
       } else {
         let printed = estreePrinter.print(path, options, print, args);
+
         assert('Expected Glimmer doc to be an array', Array.isArray(printed));
         trimPrinted(printed);
+
+        // Remove semicolons so we can manage them ourselves
+        if (docMatchesString(printed[0], ';')) {
+          printed.shift();
+        }
+        if (docMatchesString(printed.at(-1), ';')) {
+          printed.pop();
+        }
 
         // Always remove export default so we start with a blank slate
         if (
@@ -62,15 +70,8 @@ export const printer: Printer<Node | undefined> = {
           printed.unshift('export ', 'default ');
         }
 
-        // Remove semicolons so we can manage them ourselves
-        if (docMatchesString(printed[0], ';')) {
-          printed.shift();
-        }
-        if (docMatchesString(printed.at(-1), ';')) {
-          printed.pop();
-        }
-
         saveCurrentPrintOnSiblingNode(path, printed);
+
         return printed;
       }
     }
@@ -105,13 +106,10 @@ export const printer: Printer<Node | undefined> = {
             embedOptions as Options,
           );
 
-          const printed = printTemplateTag(content);
-          saveCurrentPrintOnSiblingNode(path, printed);
-          return printed;
-        } catch {
-          const printed = [printRawText(path, embedOptions as Options)];
-          saveCurrentPrintOnSiblingNode(path, printed);
-          return printed;
+          return printTemplateTag(content);
+        } catch (e) {
+          console.error(e);
+          return printRawText(path, embedOptions as Options);
         }
       }
 
