@@ -40,11 +40,9 @@ export const printer: Printer<Node | undefined> = {
   ) {
     const { node } = path;
 
-    // FIXME: Why not short-circuit if prettier-ignored?
-    const hasPrettierIgnore = checkPrettierIgnore(path);
     const template = isGlimmerTemplateParent(node);
     if (template) {
-      if (hasPrettierIgnore) {
+      if (checkPrettierIgnore(path)) {
         return printRawText(path, options);
       } else {
         let printed = estreePrinter.print(path, options, print, args);
@@ -87,24 +85,19 @@ export const printer: Printer<Node | undefined> = {
       );
     }
 
-    return hasPrettierIgnore
-      ? printRawText(path, options)
-      : estreePrinter.print(path, options, print, args);
+    return estreePrinter.print(path, options, print, args);
   },
 
   /** Prints embedded GlimmerExpressions/GlimmerTemplates. */
   embed(path: AstPath<Node | undefined>, embedOptions: PrettierOptions) {
     const { node } = path;
 
-    const hasPrettierIgnore = checkPrettierIgnore(path);
-
-    // FIXME: should probably only check this for GlimmerTemplates
-    if (hasPrettierIgnore) {
-      return printRawText(path, embedOptions as Options);
-    }
-
     return async (textToDoc) => {
       if (node && isGlimmerTemplate(node)) {
+        if (checkPrettierIgnore(path)) {
+          return printRawText(path, embedOptions as Options);
+        }
+
         try {
           const content = await printTemplateContent(
             node.extra.template.contents,
