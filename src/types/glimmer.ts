@@ -42,7 +42,6 @@ export function isGlimmerTemplate(node: Node): node is Node & GlimmerTemplate {
 }
 
 export type GlimmerTemplateParent =
-  | GlimmerStatement
   | GlimmerStatementTS
   | GlimmerExportDefaultDeclaration
   | GlimmerExportDefaultDeclarationTS;
@@ -57,25 +56,10 @@ export function isGlimmerTemplateParent(
   if (!node) return false;
 
   return (
-    isGlimmerTemplate(node) ||
-    isGlimmerStatement(node) ||
     isGlimmerStatementTS(node) ||
     isGlimmerExportDefaultDeclaration(node) ||
     isGlimmerExportDefaultDeclarationTS(node)
   );
-}
-
-type GlimmerStatement = BlockStatement & GlimmerTemplateProperties;
-
-/**
- * Type predicate for:
- *
- * ```gts
- * <template></template>;
- * ```
- */
-function isGlimmerStatement(node: Node): node is GlimmerStatement {
-  return node.type === 'BlockStatement' && isGlimmerTemplate(node);
 }
 
 type GlimmerStatementTS = ExpressionStatement & {
