@@ -56,7 +56,9 @@ function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
         if (templateIndex > -1) {
           const rawTemplate = unprocessedTemplates.splice(templateIndex, 1)[0];
           if (!rawTemplate) {
-            return null;
+            throw new Error(
+              'expected raw template because splice index came from findIndex',
+            );
           }
           convertNode(node, rawTemplate);
         } else {
