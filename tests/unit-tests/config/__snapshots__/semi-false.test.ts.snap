@@ -168,6 +168,12 @@ exports[`config > semi: false > it formats ../cases/gjs/one-line.gjs 1`] = `
 "
 `;
 
+exports[`config > semi: false > it formats ../cases/gjs/preceded-by-object.gjs 1`] = `
+"const foo = {}
+<template>hello</template>
+"
+`;
+
 exports[`config > semi: false > it formats ../cases/gjs/prettier-ignore/component-class.gjs 1`] = `
 "import Component from "@glimmer/component"
 

@@ -108,10 +108,14 @@ export const printer: Printer<Node | undefined> = {
             embedOptions as Options,
           );
 
-          return printTemplateTag(content);
+          const printed = printTemplateTag(content);
+          saveCurrentPrintOnSiblingNode(path, printed);
+          return printed;
         } catch (error) {
           console.error(error);
-          return printRawText(path, embedOptions as Options);
+          const printed = [printRawText(path, embedOptions as Options)];
+          saveCurrentPrintOnSiblingNode(path, printed);
+          return printed;
         }
       }
 

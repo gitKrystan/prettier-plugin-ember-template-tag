@@ -1,5 +1,10 @@
 import { traverse } from '@babel/core';
-import type { Node, ObjectExpression, StaticBlock } from '@babel/types';
+import type {
+  BlockStatement,
+  Node,
+  ObjectExpression,
+  StaticBlock,
+} from '@babel/types';
 import type { Parsed as RawGlimmerTemplate } from 'content-tag';
 import { Preprocessor } from 'content-tag';
 import type { Parser } from 'prettier';
@@ -15,7 +20,7 @@ const p = new Preprocessor();
 
 /** Converts a node into a GlimmerTemplate node */
 function convertNode(
-  node: ObjectExpression | StaticBlock,
+  node: BlockStatement | ObjectExpression | StaticBlock,
   rawTemplate: RawGlimmerTemplate,
 ): void {
   node.extra = Object.assign(node.extra ?? {}, {
@@ -31,27 +36,32 @@ function convertAst(ast: Node, rawTemplates: RawGlimmerTemplate[]): void {
   traverse(ast, {
     enter(path) {
       const { node } = path;
-      if (node.type === 'ObjectExpression' || node.type === 'StaticBlock') {
+      if (
+        node.type === 'BlockStatement' ||
+        node.type === 'ObjectExpression' ||
+        node.type === 'StaticBlock'
+      ) {
         const { range } = node;
         assert('expected range', range);
         const [start, end] = range;
 
         const templateIndex = unprocessedTemplates.findIndex(
           (t) =>
-            (node.type === 'StaticBlock' &&
-              t.range.start === start &&
-              t.range.end === end) ||
+            (t.range.start === start && t.range.end === end) ||
             (node.type === 'ObjectExpression' &&
+              node.extra?.['parenthesized'] === true &&
               t.range.start === start - 1 &&
               t.range.end === end + 1),
         );
-        const rawTemplate = unprocessedTemplates.splice(templateIndex, 1)[0];
-
-        if (!rawTemplate) {
+        if (templateIndex > -1) {
+          const rawTemplate = unprocessedTemplates.splice(templateIndex, 1)[0];
+          if (!rawTemplate) {
+            return null;
+          }
+          convertNode(node, rawTemplate);
+        } else {
           return null;
         }
-
-        convertNode(node, rawTemplate);
       }
 
       return null;
