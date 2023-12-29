@@ -1,5 +1,14 @@
 
 
+
+## v2.0.0-2 (2023-12-29)
+
+#### :bug: Bug Fix
+* [#212](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/212) Fix bug where preceding {} was slurping up template ([@gitKrystan](https://github.com/gitKrystan))
+
+#### Committers: 1
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+
 ## v2.0.0-1 (2023-12-28)
 
 #### :boom: Breaking Change
