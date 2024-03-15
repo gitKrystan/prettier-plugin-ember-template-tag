@@ -1,67 +1,51 @@
-import type { Parsed as RawGlimmerTemplate } from 'content-tag';
+export interface Template {
+  contents: string;
+  type: string;
+  range: {
+    start: number;
+    end: number;
+  };
+  utf16Range: {
+    start: number;
+    end: number;
+  };
+}
 
-const EMPTY_SPACE = ' ';
+const BufferMap: Map<string, Buffer> = new Map();
 
-/**
- * Given a string (`original`), replaces the bytes in the given `range` with
- * equivalent bytes of empty space (' ') surrounded by the given prefix and
- * suffix. The total byte length will not change.
- *
- * Returns the resulting string.
- */
-function replaceByteRange(
-  originalBuffer: Buffer,
-  range: { start: number; end: number },
-  options: { prefix: string; suffix: string },
+function getBuffer(s: string): Buffer {
+  let buf = BufferMap.get(s);
+  if (!buf) {
+    buf = Buffer.from(s);
+    BufferMap.set(s, buf);
+  }
+  return buf;
+}
+
+/** Slice string using byte range */
+export function sliceByteRange(s: string, a: number, b?: number): string {
+  const buf = getBuffer(s);
+  return buf.subarray(a, b).toString();
+}
+
+/** Converts byte index to js char index (utf16) */
+export function byteToCharIndex(s: string, byteOffset: number): number {
+  const buf = getBuffer(s);
+  return buf.subarray(0, byteOffset).toString().length;
+}
+
+/** Calculate byte length */
+export function byteLength(s: string): number {
+  return getBuffer(s).length;
+}
+
+function replaceRange(
+  s: string,
+  start: number,
+  end: number,
+  substitute: string,
 ): string {
-  const prefixBuffer = Buffer.from(options.prefix);
-  const suffixBuffer = Buffer.from(options.suffix);
-
-  // Validate range
-  if (
-    range.start < 0 ||
-    range.end > originalBuffer.length ||
-    range.start > range.end ||
-    prefixBuffer.length + suffixBuffer.length > range.end - range.start
-  ) {
-    throw new Error(
-      `Invalid byte range:\n\tstart=${range.start}\n\tend=${
-        range.end
-      }\n\tprefix=${options.prefix}\n\tsuffix=${
-        options.suffix
-      }\n\tstring=\n\t${originalBuffer.toString()}`,
-    );
-  }
-
-  // Adjust the space length to account for the prefix and suffix lengths
-  const totalReplacementLength = range.end - range.start;
-  const spaceLength =
-    totalReplacementLength - prefixBuffer.length - suffixBuffer.length;
-
-  // Create a buffer for the replacement
-  const spaceBuffer = Buffer.alloc(spaceLength, EMPTY_SPACE);
-
-  // Concatenate prefix, space, and suffix buffers
-  const replacementBuffer = Buffer.concat([
-    prefixBuffer,
-    spaceBuffer,
-    suffixBuffer,
-  ]);
-
-  // Create buffers for before and after the range using subarray
-  const beforeRange = originalBuffer.subarray(0, range.start);
-  const afterRange = originalBuffer.subarray(range.end);
-
-  // Concatenate all parts and convert back to a string
-  const result = Buffer.concat([beforeRange, replacementBuffer, afterRange]);
-
-  if (result.length !== originalBuffer.length) {
-    throw new Error(
-      `Result length (${result.length}) does not match original length (${originalBuffer.length})`,
-    );
-  }
-
-  return result.toString('utf8');
+  return sliceByteRange(s, 0, start) + substitute + sliceByteRange(s, end);
 }
 
 /**
@@ -69,27 +53,22 @@ function replaceByteRange(
  * range.
  */
 export function preprocessTemplateRange(
-  rawTemplate: RawGlimmerTemplate,
+  template: Template,
   code: string,
 ): string {
-  const codeBuffer = Buffer.from(code);
-
   let prefix: string;
   let suffix: string;
 
-  if (rawTemplate.type === 'class-member') {
+  if (template.type === 'class-member') {
     // Replace with StaticBlock
-    prefix = 'static{';
-    suffix = '}';
+    prefix = 'static{/*';
+    suffix = '*/}';
   } else {
     // Replace with BlockStatement or ObjectExpression
-    prefix = '{';
-    suffix = '}';
+    prefix = '{/*';
+    suffix = '*/}';
 
-    const nextToken = codeBuffer
-      .subarray(rawTemplate.range.end)
-      .toString()
-      .match(/\S+/);
+    const nextToken = code.slice(template.range.end).toString().match(/\S+/);
     if (nextToken && nextToken[0] === 'as') {
       // Replace with parenthesized ObjectExpression
       prefix = '(' + prefix;
@@ -97,8 +76,10 @@ export function preprocessTemplateRange(
     }
   }
 
-  return replaceByteRange(codeBuffer, rawTemplate.range, {
-    prefix,
-    suffix,
-  });
+  const content = template.contents.replaceAll('/', '\\/');
+  const tplLength = template.range.end - template.range.start;
+  const spaces =
+    tplLength - byteLength(content) - prefix.length - suffix.length;
+  const total = prefix + content + ' '.repeat(spaces) + suffix;
+  return replaceRange(code, template.range.start, template.range.end, total);
 }
