@@ -1,6 +1,21 @@
 
 
 
+
+## v2.0.1 (2024-03-15)
+
+#### :bug: Bug Fix
+* [#253](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/253) Fix errors when components contain multi-byte characters ([@patricklx](https://github.com/patricklx))
+
+#### :robot: Dependencies
+* [#213](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/213) Bump @vitest/ui from 1.1.0 to 1.1.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#214](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/214) Bump eslint-plugin-jsdoc from 46.9.1 to 47.0.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#215](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/215) Bump vitest from 1.1.0 to 1.1.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#216](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/216) Bump eslint-plugin-n from 16.5.0 to 16.6.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
 ## v2.0.0 (2023-12-29)
 
 This version is essentially a re-write. We are switching from using [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) to parse template tags to the more robust [content-tag](https://github.com/embroider-build/content-tag) preprocessor. This should result in fewer unhandled cases and other bugs. For example, this plugin [can now format](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/issues/173) route templates from [ember-route-template](https://github.com/discourse/ember-route-template)!
