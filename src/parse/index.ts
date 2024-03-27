@@ -92,24 +92,14 @@ function convertAst(ast: File, templates: Template[]): void {
  * fixing the offsets and locations of all nodes also calculates the block
  * params locations & ranges and adding it to the info
  */
-function preprocess(
+export function preprocess(
   code: string,
   fileName: string,
 ): {
   code: string;
   templates: Template[];
 } {
-  const rawTemplates = p.parse(code, fileName);
-  const templates: Template[] = rawTemplates.map((r) => ({
-    type: r.type,
-    range: r.range,
-    contentRange: r.contentRange,
-    contents: r.contents,
-    utf16Range: {
-      start: byteToCharIndex(code, r.range.start),
-      end: byteToCharIndex(code, r.range.end),
-    },
-  }));
+  const templates = codeToGlimmerAst(code, fileName);
 
   for (const template of templates) {
     code = preprocessTemplateRange(template, code);
@@ -130,3 +120,20 @@ export const parser: Parser<Node | undefined> = {
     return ast;
   },
 };
+
+/** Pre-processes the template info, parsing the template content to Glimmer AST. */
+export function codeToGlimmerAst(code: string, fileName: string): Template[] {
+  const rawTemplates = p.parse(code, fileName);
+  const templates: Template[] = rawTemplates.map((r) => ({
+    type: r.type,
+    range: r.range,
+    contentRange: r.contentRange,
+    contents: r.contents,
+    utf16Range: {
+      start: byteToCharIndex(code, r.range.start),
+      end: byteToCharIndex(code, r.range.end),
+    },
+  }));
+
+  return templates;
+}
