@@ -1,7 +1,6 @@
 {
   "explorer.excludeGitIgnore": true,
   "npm.packageManager": "pnpm",
-  "eslint.packageManager": "pnpm",
 
   "editor.formatOnSave": true,
   "[javascript]": {
@@ -10,6 +9,6 @@
   // Turn off this formatter so Prettier will be the only formatter and the user won't have to pick.
   "javascript.format.enable": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   }
 }
