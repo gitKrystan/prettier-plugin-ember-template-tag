@@ -13,6 +13,8 @@ export interface Template {
 
 const BufferMap: Map<string, Buffer> = new Map();
 
+export const PLACEHOLDER = '~';
+
 function getBuffer(s: string): Buffer {
   let buf = BufferMap.get(s);
   if (!buf) {
@@ -76,7 +78,9 @@ export function preprocessTemplateRange(
     }
   }
 
-  const content = template.contents.replaceAll('/', '\\/');
+  // We need to replace forward slash with _something else_, because
+  // forward slash breaks the parsed templates.
+  const content = template.contents.replaceAll('/', PLACEHOLDER);
   const tplLength = template.range.end - template.range.start;
   const spaces =
     tplLength - byteLength(content) - prefix.length - suffix.length;
