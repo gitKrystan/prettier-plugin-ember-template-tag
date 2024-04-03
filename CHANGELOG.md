@@ -2,6 +2,19 @@
 
 
 
+
+## v2.0.2 (2024-04-03)
+
+#### :bug: Bug Fix
+* [#259](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/259) Fix RangeError in files with multiple forward slashes ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### :house: Internal
+* [#262](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/262) Add config for Corepack ([@MichalBryxi](https://github.com/MichalBryxi))
+* [#263](https://github.com/gitKrystan/prettier-plugin-ember-template-tag/pull/263) VSCode settings cleanup ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### Committers: 1
+- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))
+
 ## v2.0.1 (2024-03-15)
 
 #### :bug: Bug Fix
