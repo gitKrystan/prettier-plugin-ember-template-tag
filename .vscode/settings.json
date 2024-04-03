@@ -1,7 +1,6 @@
 {
   "explorer.excludeGitIgnore": true,
   "npm.packageManager": "pnpm",
-  "eslint.packageManager": "pnpm",
 
   "editor.formatOnSave": true,
   "[javascript]": {
