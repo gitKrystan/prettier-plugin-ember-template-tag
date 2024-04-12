@@ -12,8 +12,8 @@ importers:
         specifier: ^7.23.6
         version: 7.23.6
       content-tag:
-        specifier: ^1.2.2
-        version: 1.2.2
+        specifier: ^2.0.1
+        version: 2.0.1
       prettier:
         specifier: ^3.1.1
         version: 3.1.1
@@ -1849,8 +1849,8 @@ packages:
       xdg-basedir: 5.1.0
     dev: true
 
-  /content-tag@1.2.2:
-    resolution: {integrity: sha512-9guqKIx2H+78N17otBpl8yLZbQGL5q1vBO/jDb3gF2JjixtcVpC62jDUNxjVMNoaZ09oxRX84ZOD6VX02qkVvg==}
+  /content-tag@2.0.1:
+    resolution: {integrity: sha512-jxsETSDs5NbNwyiDuIp672fUMhUyu8Qxc5MOBOJOcgW/fQESI6o5K1LBDrnEE7Bh810a685lWEZHTF4jQYGEEw==}
     dev: false
 
   /convert-source-map@2.0.0:

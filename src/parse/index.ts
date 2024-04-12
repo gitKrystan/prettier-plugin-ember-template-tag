@@ -122,8 +122,8 @@ export const parser: Parser<Node | undefined> = {
 };
 
 /** Pre-processes the template info, parsing the template content to Glimmer AST. */
-export function codeToGlimmerAst(code: string, fileName: string): Template[] {
-  const rawTemplates = p.parse(code, fileName);
+export function codeToGlimmerAst(code: string, filename: string): Template[] {
+  const rawTemplates = p.parse(code, { filename });
   const templates: Template[] = rawTemplates.map((r) => ({
     type: r.type,
     range: r.range,
